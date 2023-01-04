@@ -58,3 +58,16 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Default ignored files
+/.idea/.idea.UnityPaint/.idea/shelf/
+/.idea/.idea.UnityPaint/.idea/workspace.xml
+# Rider ignored files
+/.idea/.idea.UnityPaint/.idea/contentModel.xml
+/.idea/.idea.UnityPaint/.idea/.idea.UnityPaint.iml
+/.idea/.idea.UnityPaint/.idea/modules.xml
+/.idea/.idea.UnityPaint/.idea/projectSettingsUpdater.xml
+# Editor-based HTTP Client requests
+/.idea/.idea.UnityPaint/.idea/httpRequests/
+# Datasource local storage ignored files
+/.idea/.idea.UnityPaint/.idea/dataSources/
+/.idea/.idea.UnityPaint/.idea/dataSources.local.xml
