@@ -145,8 +145,7 @@ namespace Assets.Scripts.NetCode
                 StartHostServer(ServerSystem.Port, 4);
             }
             if (NetworkManager.Singleton != null)
-            {
-                Debug.Log("ApprovalCheck");
+            {                
                 NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
             }
         }
@@ -199,7 +198,6 @@ namespace Assets.Scripts.NetCode
             }
             if(serverDebugStartDirectGame)
             {
-                NetworkManager.Singleton.ConnectionApprovalCallback -= ApprovalCheck;
                 StartHostServer(7777, maxPlayers);
                 return;
             }
@@ -285,7 +283,6 @@ namespace Assets.Scripts.NetCode
             if(serverDebugStartDirectGame)
             {
                 SwitchTransport(_unityTransport);
-                NetworkManager.Singleton.ConnectionApprovalCallback -= ApprovalCheck;
                 StartHostServer(7777, maxPlayers);
                 return;
             }
