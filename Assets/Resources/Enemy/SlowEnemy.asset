@@ -16,4 +16,4 @@ MonoBehaviour:
   lives: 5
   speed: 1
   weapon: {fileID: 0}
-  color: {r: 0, g: 0, b: 1, a: 0}
+  color: {r: 0.17389464, g: 1, b: 0, a: 0}

@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a7e943800308642991ab819e9d410f, type: 3}
-  m_Name: FastEnemy
+  m_Script: {fileID: 11500000, guid: 28aaf23be622554429ef0e3223486d91, type: 3}
+  m_Name: StaticTest
   m_EditorClassIdentifier: 
-  firstName: Fastest Boi
-  lives: 6
-  speed: 5
-  weapon: {fileID: 0}
-  color: {r: 0.6226415, g: 0.6203076, b: 0.496351, a: 0}
+  firstName: Patrol1
+  lives: 0
+  speed: 2
+  color: {r: 1, g: 0, b: 0, a: 0}
+  goal1: {x: 2, y: 1.5, z: 0}
+  goal2: {x: 0, y: 1.5, z: 3}

@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class IDamageable : MonoBehaviour
 {
-    private int _lives = 0;
+    private int hitPoints = 0;
     private bool _isAlive = false;
 
     public void TakeDamage(int damage)
     {
-        if (damage > _lives)
+        if (damage > hitPoints)
         {
-            damage = _lives;
+            damage = hitPoints;
         }
-        _lives -= damage;
-        if (_lives == 0)
+        hitPoints -= damage;
+        if (hitPoints == 0)
         {
             _isAlive = false;
         }
@@ -25,8 +25,8 @@ public class IDamageable : MonoBehaviour
 
     public void AddLives(int lives)
     {
-        _lives += lives;
-        if (_lives > 0)
+        hitPoints += lives;
+        if (hitPoints > 0)
         {
             _isAlive = true;
         }
@@ -34,6 +34,6 @@ public class IDamageable : MonoBehaviour
 
     public int GetLives()
     {
-        return _lives;
+        return hitPoints;
     }
 }
