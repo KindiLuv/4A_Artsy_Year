@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -824,7 +824,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -923,9 +923,9 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 127.0.0.1
-    Port: 7777
-    ServerListenAddress: 
+    Address: 176.149.34.189
+    Port: 25565
+    ServerListenAddress: 0.0.0.0
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -983,10 +983,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initNetworkPrefabInGame: []
-  clientDebugStartDirectGame: 0
-  serverDebugStartDirectGame: 1
-  clientDebugDirectIP: 127.0.0.1
+  clientDebugStartDirectGame: 1
+  serverDebugStartDirectGame: 0
+  clientDebugDirectIP: 176.149.34.189
   ServerBuildlogLevel: 1
+  port: 25565
 --- !u!4 &2121246191
 Transform:
   m_ObjectHideFlags: 0

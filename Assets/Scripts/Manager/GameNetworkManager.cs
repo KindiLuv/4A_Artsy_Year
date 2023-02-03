@@ -35,6 +35,7 @@ namespace Assets.Scripts.NetCode
         private bool loadNetworkScene = false;
         private bool normalMode = false;
         private int endLoadCount = 0;
+        public int port;
 
         public static int MemberConnected { get => Instance._p2pmemberConnect; }
         public static int MemberMax { get => Instance._p2pmemberMax; }
@@ -193,12 +194,12 @@ namespace Assets.Scripts.NetCode
             bool findlobby = false;
             if(clientDebugStartDirectGame)
             {
-                StartClient(clientDebugDirectIP, 7777);
+                StartClient(clientDebugDirectIP, port);
                 return;
             }
             if(serverDebugStartDirectGame)
             {
-                StartHostServer(7777, maxPlayers);
+                StartHostServer(port, maxPlayers);
                 return;
             }
             int lobbyCountPerPlayer = 0;
