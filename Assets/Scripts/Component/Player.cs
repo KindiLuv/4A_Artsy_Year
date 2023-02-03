@@ -8,14 +8,17 @@ public class Player : Character
 {
     [ClientRpc] public void PingClientRPC()
     {
-        Debug.LogError("pinging server");
-        PongServerRpc(GetComponent<NetworkObject>().OwnerClientId);
+        Debug.Log("pinging server");
+        if (IsOwner)
+        {
+            PongServerRpc(GetComponent<NetworkObject>().OwnerClientId);
+        }
     }
 
     [ServerRpc] public void PongServerRpc(ulong id)
     {
-        Debug.LogError($"client id : {id}");
-        PingClientRPC();
+        Debug.Log($"client id : {id}");
+        //PingClientRPC();
     }
     
     void Start()

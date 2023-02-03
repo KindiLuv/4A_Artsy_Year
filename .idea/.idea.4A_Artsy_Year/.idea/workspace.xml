@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85c387ac-1a18-40b1-b40c-39c8fa8f9058" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Netcode/PlayerBase.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Netcode/PlayerBase.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuMulti.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MenuMulti.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.4A_Artsy_Year/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.4A_Artsy_Year/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameNetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameNetworkManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <workItem from="1675335800762" duration="520000" />
       <workItem from="1675337373901" duration="1364000" />
       <workItem from="1675431247200" duration="772000" />
-      <workItem from="1675437767001" duration="1310000" />
+      <workItem from="1675437767001" duration="1767000" />
     </task>
     <servers />
   </component>

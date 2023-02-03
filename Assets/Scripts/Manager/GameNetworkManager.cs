@@ -135,7 +135,7 @@ namespace Assets.Scripts.NetCode
                 SteamMatchmaking.OnLobbyInvite += OnLobbyInvite;
                 SteamMatchmaking.OnLobbyGameCreated += OnLobbyGameCreated;
                 SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
-                SteamNetworking.AllowP2PPacketRelay(true);
+                //SteamNetworking.AllowP2PPacketRelay(true);
                 //SteamNetworking.OnP2PSessionRequest += OnP2PSessionRequest;
                 //SteamNetworking.OnP2PConnectionFailed += OnP2PConnectionFailed;
             }
