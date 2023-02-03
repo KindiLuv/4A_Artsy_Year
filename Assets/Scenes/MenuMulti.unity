@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1149,7 +1149,6 @@ GameObject:
   - component: {fileID: 2121246190}
   - component: {fileID: 2121246189}
   - component: {fileID: 2121246188}
-  - component: {fileID: 2121246187}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1157,21 +1156,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2121246187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121246186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44dd247a00edbfa44b77868d755af6ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  steamAppId: 480
-  targetSteamId: 0
-  userSteamId: 0
 --- !u!114 &2121246188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1177,7 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 127.0.0.1
+    Address: 176.149.34.189
     Port: 25565
     ServerListenAddress: 0.0.0.0
   DebugSimulator:
@@ -1262,7 +1246,7 @@ MonoBehaviour:
   - {fileID: 8878760738659710155, guid: b4fd24e1e18725740a757e82b0f91332, type: 3}
   clientDebugStartDirectGame: 0
   serverDebugStartDirectGame: 1
-  clientDebugDirectIP: 127.0.0.1
+  clientDebugDirectIP: 176.149.34.189
   debugDirectPort: 25565
   ServerBuildlogLevel: 1
 --- !u!4 &2121246191
