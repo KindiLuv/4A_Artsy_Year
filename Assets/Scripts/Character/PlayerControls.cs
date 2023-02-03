@@ -44,6 +44,78 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc8ccd02-299a-41cb-92c8-24acb7e3f15f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BasicAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""48376818-4946-4a4d-b4e3-c3e1ff82034e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spell1"",
+                    ""type"": ""Button"",
+                    ""id"": ""35e68fb4-a6b9-4ca1-8827-64fdff9a8671"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spell2"",
+                    ""type"": ""Button"",
+                    ""id"": ""0eea18b6-1200-456c-9df0-8dacccb4afde"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ultimate"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b6a30e7-bb3e-4620-8b0b-8d07ca63c63d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4317a91-f0fe-46ef-9426-62eba3711602"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""af4f20ed-5663-457f-bb67-169396b2c937"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1702914-6d30-43c6-9188-0c6ead1a88fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +206,116 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02c5621b-bdb4-475b-990b-80a062a754e5"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c949ca71-2b9b-4517-9626-ff08ab0e0642"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb7a6319-bffc-4802-8830-2d3915e94fc2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""BasicAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""434640f5-f4c0-477f-acad-fe236714b132"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""BasicAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""236a9364-d11b-4378-9b53-f990a560aff0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Spell1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ff5cac0-9077-4985-b87f-a77205221f91"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Spell2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e19e14b-5717-4cbc-9d94-094f69d8a089"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Ultimate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50817e8b-daf5-48f2-b4ef-992009497742"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17b17a48-fc27-4c80-8b66-aa243f552a23"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57883ed6-0ffd-4f87-bf3a-e77c64bb630a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""OpenMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -172,6 +354,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_controls = asset.FindActionMap("controls", throwIfNotFound: true);
         m_controls_Movement = m_controls.FindAction("Movement", throwIfNotFound: true);
         m_controls_Aim = m_controls.FindAction("Aim", throwIfNotFound: true);
+        m_controls_Dash = m_controls.FindAction("Dash", throwIfNotFound: true);
+        m_controls_BasicAttack = m_controls.FindAction("BasicAttack", throwIfNotFound: true);
+        m_controls_Spell1 = m_controls.FindAction("Spell1", throwIfNotFound: true);
+        m_controls_Spell2 = m_controls.FindAction("Spell2", throwIfNotFound: true);
+        m_controls_Ultimate = m_controls.FindAction("Ultimate", throwIfNotFound: true);
+        m_controls_UseItem = m_controls.FindAction("UseItem", throwIfNotFound: true);
+        m_controls_Interact = m_controls.FindAction("Interact", throwIfNotFound: true);
+        m_controls_OpenMenu = m_controls.FindAction("OpenMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,12 +423,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IControlsActions m_ControlsActionsCallbackInterface;
     private readonly InputAction m_controls_Movement;
     private readonly InputAction m_controls_Aim;
+    private readonly InputAction m_controls_Dash;
+    private readonly InputAction m_controls_BasicAttack;
+    private readonly InputAction m_controls_Spell1;
+    private readonly InputAction m_controls_Spell2;
+    private readonly InputAction m_controls_Ultimate;
+    private readonly InputAction m_controls_UseItem;
+    private readonly InputAction m_controls_Interact;
+    private readonly InputAction m_controls_OpenMenu;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
         public ControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_controls_Movement;
         public InputAction @Aim => m_Wrapper.m_controls_Aim;
+        public InputAction @Dash => m_Wrapper.m_controls_Dash;
+        public InputAction @BasicAttack => m_Wrapper.m_controls_BasicAttack;
+        public InputAction @Spell1 => m_Wrapper.m_controls_Spell1;
+        public InputAction @Spell2 => m_Wrapper.m_controls_Spell2;
+        public InputAction @Ultimate => m_Wrapper.m_controls_Ultimate;
+        public InputAction @UseItem => m_Wrapper.m_controls_UseItem;
+        public InputAction @Interact => m_Wrapper.m_controls_Interact;
+        public InputAction @OpenMenu => m_Wrapper.m_controls_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -254,6 +460,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Aim.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnAim;
+                @Dash.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnDash;
+                @BasicAttack.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnBasicAttack;
+                @BasicAttack.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnBasicAttack;
+                @BasicAttack.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnBasicAttack;
+                @Spell1.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSpell1;
+                @Spell1.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSpell1;
+                @Spell1.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSpell1;
+                @Spell2.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSpell2;
+                @Spell2.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSpell2;
+                @Spell2.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSpell2;
+                @Ultimate.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUltimate;
+                @Ultimate.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUltimate;
+                @Ultimate.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUltimate;
+                @UseItem.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnUseItem;
+                @Interact.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteract;
+                @OpenMenu.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnOpenMenu;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -264,6 +494,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @BasicAttack.started += instance.OnBasicAttack;
+                @BasicAttack.performed += instance.OnBasicAttack;
+                @BasicAttack.canceled += instance.OnBasicAttack;
+                @Spell1.started += instance.OnSpell1;
+                @Spell1.performed += instance.OnSpell1;
+                @Spell1.canceled += instance.OnSpell1;
+                @Spell2.started += instance.OnSpell2;
+                @Spell2.performed += instance.OnSpell2;
+                @Spell2.canceled += instance.OnSpell2;
+                @Ultimate.started += instance.OnUltimate;
+                @Ultimate.performed += instance.OnUltimate;
+                @Ultimate.canceled += instance.OnUltimate;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @OpenMenu.started += instance.OnOpenMenu;
+                @OpenMenu.performed += instance.OnOpenMenu;
+                @OpenMenu.canceled += instance.OnOpenMenu;
             }
         }
     }
@@ -290,5 +544,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnBasicAttack(InputAction.CallbackContext context);
+        void OnSpell1(InputAction.CallbackContext context);
+        void OnSpell2(InputAction.CallbackContext context);
+        void OnUltimate(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
 }

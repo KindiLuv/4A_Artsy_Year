@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor.Build;
 using UnityEditor.Hardware;
 using UnityEngine;
@@ -25,8 +26,14 @@ public class TwinStickMovement : MonoBehaviour
 
     private Vector3 _playerVelocity;
 
+    private float _dashValue = 1f;
+
+    private bool _actionLocked;
+    private bool _dashLocked;
+
     private PlayerControls _playerControls;
     private PlayerInput _playerInput;
+    [SerializeField] private TrailRenderer _tr;
 
     #endregion
 
@@ -35,11 +42,20 @@ public class TwinStickMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _playerControls = new PlayerControls();
         _playerInput = GetComponent<PlayerInput>();
+        //_tr = GetComponent<TrailRenderer>();
+        _playerControls.controls.Dash.performed += HandleDash;
+        _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
+        _playerControls.controls.Spell1.performed += HandleSpell1;
+        _playerControls.controls.Spell2.performed += HandleSpell2;
+        _playerControls.controls.Ultimate.performed += HandleUltimate;
+        _playerControls.controls.Interact.performed += HandleInteract;
+        _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
     }
 
     private void OnEnable()
     {
         _playerControls.Enable();
+        
     }
 
     private void OnDisable()
@@ -49,21 +65,30 @@ public class TwinStickMovement : MonoBehaviour
 
     private void Update()
     {
-        OnDeviceChange(_playerInput);
-        HandleInput();
+        
+        if (_actionLocked) return;
         HandleMovement();
+        HandleInputAim();
         HandleRotation();
+        if (_dashLocked) return;
+        OnDeviceChange(_playerInput);
+        HandleInputMovement();
+
     }
 
-    void HandleInput()
+    void HandleInputMovement()
     {
         _movement = _playerControls.controls.Movement.ReadValue<Vector2>();
+    }
+    
+    void HandleInputAim()
+    {
         _aim = _playerControls.controls.Aim.ReadValue<Vector2>();
     }
     void HandleMovement()
     {
         Vector3 move = new Vector3(_movement.x, 0, _movement.y);
-        _controller.Move(move * (Time.deltaTime * _playerspeed));
+        _controller.Move(move * (Time.deltaTime * _playerspeed * _dashValue));
 
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         _controller.Move(_playerVelocity * Time.deltaTime);
@@ -96,6 +121,55 @@ public class TwinStickMovement : MonoBehaviour
             }
         }
     }
+    
+    private void HandleDash(InputAction.CallbackContext obj)
+    {
+        StartCoroutine(DashAction());
+    }
+    
+    private void HandleBasicAttack(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void HandleSpell1(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void HandleSpell2(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }    
+    
+    private void HandleUltimate(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void HandleInteract(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void HandleOpenMenu(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator DashAction()
+    {
+        if (_dashLocked) yield break;
+        _dashLocked = true;
+        _tr.emitting = true;
+        _dashValue = 3f;
+        yield return new WaitForSeconds(0.3f);
+        _dashValue = 0.7f;
+        _tr.emitting = false;
+        yield return new WaitForSeconds(0.2f);
+        _dashValue = 1f;
+        _dashLocked = false;
+    }
 
     void LookAt(Vector3 target)
     {
@@ -107,4 +181,5 @@ public class TwinStickMovement : MonoBehaviour
     {
         _isGamepad = pi.currentControlScheme.Equals("Controller");
     }
+    
 }
