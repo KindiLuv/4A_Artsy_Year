@@ -22,8 +22,8 @@ public class PlayerManager : NetEntity
         foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             player = Instantiate(prefabPlayer,arraySpawnPoint[i%arraySpawnPoint.Length].transform.position,Quaternion.identity);
-            no = GetComponent<NetworkObject>();
-            no.SpawnAsPlayerObject(clientId);
+            no = player.GetComponent<NetworkObject>();            
+            no.SpawnWithOwnership(clientId);
             no.ChangeOwnership(clientId);
             i++;
         }
