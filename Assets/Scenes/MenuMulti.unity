@@ -824,7 +824,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -924,8 +924,8 @@ MonoBehaviour:
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
     Address: 127.0.0.1
-    Port: 7777
-    ServerListenAddress: 
+    Port: 25565
+    ServerListenAddress: 0.0.0.0
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -986,6 +986,7 @@ MonoBehaviour:
   clientDebugStartDirectGame: 0
   serverDebugStartDirectGame: 1
   clientDebugDirectIP: 127.0.0.1
+  debugDirectPort: 25565
   ServerBuildlogLevel: 1
 --- !u!4 &2121246191
 Transform:

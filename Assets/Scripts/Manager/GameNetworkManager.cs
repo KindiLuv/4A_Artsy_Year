@@ -19,6 +19,7 @@ namespace Assets.Scripts.NetCode
         [SerializeField][Tooltip("Start the direct connection ip in p2p client")] private bool clientDebugStartDirectGame = false;
         [SerializeField][Tooltip("Start host connection p2p server")] private bool serverDebugStartDirectGame = false;
         [SerializeField][Tooltip("IP connection")] private string clientDebugDirectIP = "127.0.0.1";
+        [SerializeField][Tooltip("Port connection")] private int debugDirectPort = 25565;
         [SerializeField][Tooltip("Server Log")] private LogLevel ServerBuildlogLevel = LogLevel.Developer;
         public static GameNetworkManager Instance { get; private set; } = null;
         public Action<ulong> Disconected;
@@ -193,12 +194,12 @@ namespace Assets.Scripts.NetCode
             bool findlobby = false;
             if(clientDebugStartDirectGame)
             {
-                StartClient(clientDebugDirectIP, 7777);
+                StartClient(clientDebugDirectIP, debugDirectPort);
                 return;
             }
             if(serverDebugStartDirectGame)
             {
-                StartHostServer(7777, maxPlayers);
+                StartHostServer(debugDirectPort, maxPlayers);
                 return;
             }
             int lobbyCountPerPlayer = 0;
@@ -277,13 +278,13 @@ namespace Assets.Scripts.NetCode
             if(clientDebugStartDirectGame)
             {
                 SwitchTransport(_unityTransport);
-                StartClient(clientDebugDirectIP, 7777);
+                StartClient(clientDebugDirectIP, debugDirectPort);
                 return;
             }
             if(serverDebugStartDirectGame)
             {
                 SwitchTransport(_unityTransport);
-                StartHostServer(7777, maxPlayers);
+                StartHostServer(debugDirectPort, maxPlayers);
                 return;
             }
             normalMode = normalM;
