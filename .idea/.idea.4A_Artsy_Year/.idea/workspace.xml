@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="85c387ac-1a18-40b1-b40c-39c8fa8f9058" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.4A_Artsy_Year/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.4A_Artsy_Year/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuMulti.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MenuMulti.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ClientNetwork/Transform/ClientNetworkTransform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ClientNetwork/Transform/ClientNetworkTransform.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameNetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameNetworkManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PlayerManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +15,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@1.0.2/Components/NetworkTransform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@1.0.2/Runtime/Core/NetworkBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.netcode.gameobjects@1.0.2/Runtime/Core/NetworkManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -96,7 +99,7 @@
       <workItem from="1675335800762" duration="520000" />
       <workItem from="1675337373901" duration="1364000" />
       <workItem from="1675431247200" duration="772000" />
-      <workItem from="1675437767001" duration="1767000" />
+      <workItem from="1675437767001" duration="4839000" />
     </task>
     <servers />
   </component>

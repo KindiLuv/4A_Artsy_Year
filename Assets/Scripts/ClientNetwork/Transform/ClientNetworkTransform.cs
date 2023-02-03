@@ -18,6 +18,11 @@ namespace Unity.Netcode.Components
         /// </summary>
         // This is public to make sure that users don't depend on this IsClient && IsOwner check in their code. If this logic changes in the future, we can make it invisible here
 
+        protected override bool OnIsServerAuthoritative()
+        {
+            return false;
+        }
+        
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();

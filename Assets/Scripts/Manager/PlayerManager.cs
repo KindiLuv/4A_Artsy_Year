@@ -23,7 +23,7 @@ public class PlayerManager : NetEntity
         {
             player = Instantiate(prefabPlayer,arraySpawnPoint[i%arraySpawnPoint.Length].transform.position,Quaternion.identity);
             no = player.GetComponent<NetworkObject>();            
-            no.SpawnWithOwnership(clientId);
+            no.SpawnAsPlayerObject(clientId);
             no.ChangeOwnership(clientId);
             i++;
         }

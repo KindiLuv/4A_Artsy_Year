@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using ArtsyNetcode;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 
 public class Player : Character
 {
@@ -20,8 +18,8 @@ public class Player : Character
         Debug.Log($"client id : {id}");
         //PingClientRPC();
     }
-    
-    void Start()
+
+    private void Start()
     {
         if (!IsServer)
         {

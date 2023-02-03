@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 176.149.34.189
+    Address: 127.0.0.1
     Port: 25565
     ServerListenAddress: 0.0.0.0
   DebugSimulator:
@@ -1246,7 +1246,7 @@ MonoBehaviour:
   - {fileID: 8878760738659710155, guid: b4fd24e1e18725740a757e82b0f91332, type: 3}
   clientDebugStartDirectGame: 0
   serverDebugStartDirectGame: 1
-  clientDebugDirectIP: 176.149.34.189
+  clientDebugDirectIP: 127.0.0.1
   debugDirectPort: 25565
   ServerBuildlogLevel: 1
 --- !u!4 &2121246191
