@@ -183,6 +183,24 @@ namespace Assets.Scripts.NetCode
 
         private void OnApplicationQuit() => Disconnect();
 
+        public void DebugStartIPClient(int maxPlayers)
+        {
+            SwitchTransport(_unityTransport);
+            isFindingGame = true;
+            clientDebugStartDirectGame = true;
+            serverDebugStartDirectGame = false;
+            StartClient(clientDebugDirectIP, debugDirectPort);
+        }
+
+        public void DebugStartIPServer(int maxPlayers)
+        {
+            SwitchTransport(_unityTransport);
+            isFindingGame = true;
+            clientDebugStartDirectGame = false;
+            serverDebugStartDirectGame = true;
+            StartHostServer(debugDirectPort, maxPlayers);
+        }
+
         public async void FindServerGame(int maxPlayers)
         {
             if (CurrentLobby != null)
