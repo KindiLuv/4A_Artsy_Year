@@ -1,23 +1,21 @@
 ﻿using System;
 using ArtsyNetcode;
-using Unity.Mathematics;
 using Unity.Netcode;
-using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(SphereCollider))]
 public class Interactable : NetEntity
 {
     [Header("Animator")]
     [SerializeField] protected Animator animator = null;
-    protected bool useState = false;
     protected bool interactState = false;
     private SphereCollider sphereCollider;
     private GameObject interactableObject;
-    [SerializeField] [Range(.5f, 2f)] private float radius;
-    
+    [SerializeField][Range(.5f, 2f)] private float radius;
+
     #region GetterSetter
-    
+
     public bool InteractState
     {
         get
@@ -29,47 +27,58 @@ public class Interactable : NetEntity
 
     public virtual void StartInteract()
     {
-        useState = true;
         animator.SetTrigger("Start");
     }
-        
+
     public virtual void Interact(Character character)
     {
-        if (useState)
+        animator.SetTrigger("Use");
+        if (IsLocalPlayer)
         {
-            animator.SetTrigger("Use");
-            InteractServerRpc();
-        }            
+            NetworkObject obj = character.GetComponent<NetworkObject>();
+            InteractServerRpc(obj.OwnerClientId, obj.NetworkObjectId);
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void InteractServerRpc()
+    public void InteractServerRpc(ulong clientId, ulong networkId)
     {
-        Debug.Log("");
+        Debug.Log("Interact Server");
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.ConnectedClientsIds.Where(x => x != clientId).ToArray() }
+        };
+        InteractClientRpc(networkId, clientRpcParams);
+    }
+
+    [ClientRpc]
+    public void InteractClientRpc(ulong networkId, ClientRpcParams clientRpcParams = default)
+    {
+        NetworkObject obj = null;
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkId, out obj))
+        {
+            Interact(obj.GetComponent<Character>());
+        }
     }
 
     public virtual void StopInteract()
     {
-        if (useState)
-        {
-            animator.SetTrigger("Stop");
-            useState = false;
-        }
+        animator.SetTrigger("Stop");
     }
 
     public override void OnGameStateChanged(GameState newGameState)
     {
         base.OnGameStateChanged(newGameState);
-        if(animator != null)
+        if (animator != null)
         {
             animator.speed = newGameState == GameState.GamePlay ? 1.0f : 0.0f;
         }
     }
 
 
-    public virtual void ChangeInteract(){}
+    public virtual void ChangeInteract() { }
 
-    private void OnValidate()
+    /*private void OnValidate()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.delayCall += () =>
@@ -95,5 +104,5 @@ public class Interactable : NetEntity
             }
         };
 #endif
-    }
+    }*/
 }

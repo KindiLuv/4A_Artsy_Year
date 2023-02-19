@@ -1,9 +1,10 @@
+using ArtsyNetcode;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : NetEntity
 {
     [SerializeField] private List<Interactable> interactable = new List<Interactable>();
     [SerializeField] private float fovInteraction = 60f;
@@ -31,6 +32,14 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsLocalPlayer)
+        {
+            Destroy(this);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
