@@ -129,7 +129,7 @@ public class TwinStickMovement : MonoBehaviour
     
     private void HandleBasicAttack(InputAction.CallbackContext obj)
     {
-        throw new NotImplementedException();
+        Debug.Log("basic attack");
     }
     
     private void HandleSpell1(InputAction.CallbackContext obj)

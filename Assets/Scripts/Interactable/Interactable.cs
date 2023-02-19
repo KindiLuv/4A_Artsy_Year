@@ -74,6 +74,10 @@ public class Interactable : NetEntity
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.delayCall += () =>
         {
+            if (Application.isPlaying)
+            {
+                return;
+            }
             sphereCollider = GetComponent<SphereCollider>();
             sphereCollider.radius = radius;
             sphereCollider.isTrigger = true;
