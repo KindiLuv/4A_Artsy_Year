@@ -43,19 +43,12 @@ public class Player : Character
         _playerControls = new PlayerControls();
         _playerInput = GetComponent<PlayerInput>();
         //_tr = GetComponent<TrailRenderer>();
-        _playerControls.controls.Dash.performed += HandleDash;
-        _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
-        _playerControls.controls.Spell1.performed += HandleSpell1;
-        _playerControls.controls.Spell2.performed += HandleSpell2;
-        _playerControls.controls.Ultimate.performed += HandleUltimate;
-        _playerControls.controls.Interact.performed += HandleInteract;
-        _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
+
     }
 
     private void OnEnable()
     {
         _playerControls.Enable();
-        _playerCamera.transform.parent = null;
     }
 
     public override void OnNetworkSpawn()
@@ -63,8 +56,17 @@ public class Player : Character
         if (!IsLocalPlayer)
         {
             Destroy(_playerCamera);
+            Destroy(_playerInput);
             enabled = false;
+            return;
         }
+        _playerControls.controls.Dash.performed += HandleDash;
+        _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
+        _playerControls.controls.Spell1.performed += HandleSpell1;
+        _playerControls.controls.Spell2.performed += HandleSpell2;
+        _playerControls.controls.Ultimate.performed += HandleUltimate;
+        _playerControls.controls.Interact.performed += HandleInteract;
+        _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
     }
 
     private void OnDisable()

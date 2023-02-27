@@ -16,7 +16,7 @@ public class Door : Interactable
     {
         base.Interact(character);
         interactState = !interactState;
-        meshRenderer.enabled = interactState;
+        meshRenderer.enabled = !interactState;
     }
 
     public override void ChangeInteract()

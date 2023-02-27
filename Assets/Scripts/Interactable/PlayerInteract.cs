@@ -106,7 +106,7 @@ public class PlayerInteract : NetEntity
 
     public List<Interactable> isInView(List<Interactable> list, float fov)
     {            
-        return list.FindAll(x => x != null &&  Vector3.Angle(x.transform.position - player.transform.position, -player.transform.forward) < fov || x.InteractState);
+        return list.FindAll(x => x != null &&  Vector3.Angle(player.transform.forward,x.transform.position - player.transform.position) < fov || x.InteractState);
     }
 
     private void OnTriggerExit(Collider other)

@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(SphereCollider))]
-public class Interactable : NetEntity
+public class Interactable : NetEntity, InitializeEditor
 {
     [Header("Animator")]
     [SerializeField] protected Animator animator = null;
@@ -33,9 +33,9 @@ public class Interactable : NetEntity
     public virtual void Interact(Character character)
     {
         animator.SetTrigger("Use");
-        if (IsLocalPlayer)
-        {
-            NetworkObject obj = character.GetComponent<NetworkObject>();
+        NetworkObject obj = character.GetComponent<NetworkObject>();
+        if (obj.IsLocalPlayer)
+        {            
             InteractServerRpc(obj.OwnerClientId, obj.NetworkObjectId);
         }
     }
@@ -54,6 +54,7 @@ public class Interactable : NetEntity
     [ClientRpc]
     public void InteractClientRpc(ulong networkId, ClientRpcParams clientRpcParams = default)
     {
+        Debug.Log("InteractClientRpc");
         NetworkObject obj = null;
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(networkId, out obj))
         {
@@ -78,9 +79,9 @@ public class Interactable : NetEntity
 
     public virtual void ChangeInteract() { }
 
-    /*private void OnValidate()
+    public void InitializeEditor()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         UnityEditor.EditorApplication.delayCall += () =>
         {
             if (Application.isPlaying)
@@ -103,6 +104,6 @@ public class Interactable : NetEntity
                 tag = "Interactable";
             }
         };
-#endif
-    }*/
+        #endif
+    }
 }
