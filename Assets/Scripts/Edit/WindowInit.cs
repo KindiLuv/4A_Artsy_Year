@@ -18,9 +18,9 @@ public class ArstyEditorWindow : EditorWindow
     {
         GUILayout.Label("Arsty Editor", EditorStyles.boldLabel);
 
-        initObject = EditorGUILayout.ObjectField("GameObject à initialiser", initObject, typeof(GameObject), true) as GameObject;
+        initObject = EditorGUILayout.ObjectField("GameObject Ã  initialiser", initObject, typeof(GameObject), true) as GameObject;
 
-        if (GUILayout.Button("Initialiser les données"))
+        if (GUILayout.Button("Initialiser les donnÃ©es"))
         {
             if (initObject != null)
             {
@@ -32,7 +32,7 @@ public class ArstyEditorWindow : EditorWindow
             }
             else
             {
-                Debug.LogWarning("Sélectionnez un GameObject à initialiser.");
+                Debug.LogWarning("SÃ©lectionnez un GameObject Ã  initialiser.");
             }
         }
     }

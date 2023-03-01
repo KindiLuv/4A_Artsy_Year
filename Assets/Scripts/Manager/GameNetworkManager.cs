@@ -87,8 +87,10 @@ namespace Assets.Scripts.NetCode
         private void OnLoadSceneComplete(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
         {
             Debug.Log($"OnLoadSceneComplete: {sceneName} clientID: {clientId} mode: {loadSceneMode}");
-            if (loadNetworkScene && NetworkManager.Singleton.IsHost)
+            Debug.Log("loadnetworkscene " + loadNetworkScene  + " :  singelton.ishost : " + NetworkManager.Singleton.IsHost);
+            if ((loadNetworkScene || _p2pmemberConnect == 1) && NetworkManager.Singleton.IsHost)
             {
+                Debug.Log("endloadcount : "+loadNetworkScene + " : p2pmemberconnect : " + _p2pmemberConnect);
                 if (++endLoadCount >= _p2pmemberConnect)
                 {
                     loadNetworkScene = false;

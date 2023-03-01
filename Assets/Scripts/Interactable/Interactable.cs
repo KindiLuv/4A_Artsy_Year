@@ -12,7 +12,6 @@ public class Interactable : NetEntity, InitializeEditor
     protected bool interactState = false;
     private SphereCollider sphereCollider;
     private GameObject interactableObject;
-    [SerializeField][Range(.5f, 2f)] private float radius;
 
     #region GetterSetter
 
@@ -89,7 +88,6 @@ public class Interactable : NetEntity, InitializeEditor
                 return;
             }
             sphereCollider = GetComponent<SphereCollider>();
-            sphereCollider.radius = radius;
             sphereCollider.isTrigger = true;
             if (transform.childCount == 0)
             {
