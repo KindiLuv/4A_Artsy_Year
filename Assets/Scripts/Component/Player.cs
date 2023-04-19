@@ -150,7 +150,7 @@ public class Player : Character
 
     private void HandleSpell2(InputAction.CallbackContext obj)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     private void HandleUltimate(InputAction.CallbackContext obj)
