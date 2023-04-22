@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSO : MonoBehaviour
+[CreateAssetMenu(fileName = "Weapon", menuName = "ScriptableObjects/Weapon/WeaponSO", order = 1)]
+public class WeaponSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public string weaponName;
+   public string weaponType;
+   public string weaponFamily;
+   public string rarity;
+   public string weaponDescription;
+   public float weaponWeight;
+   public int dmgPerHit;
+   public GameObject weaponModel;
 }
