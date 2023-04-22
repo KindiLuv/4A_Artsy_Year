@@ -544,7 +544,8 @@ namespace Assets.Scripts.NetCode
                 {
                     Debug.Log("Lobby is full Start the Game ...", this);
                     CurrentLobby?.SetPrivate();
-                    NetworkManager.Singleton.SceneManager.LoadScene("InteractionGame", LoadSceneMode.Single);// change this
+                    //TODO CHANGE SCENE LOADED
+                    NetworkManager.Singleton.SceneManager.LoadScene("TutorialRoom", LoadSceneMode.Single);// change this
                 }
             }
             if (NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsHost)
