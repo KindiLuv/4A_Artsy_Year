@@ -10,7 +10,7 @@ public class Room : IComparable<Room>
     public bool isAccessibleFromMainRoom;
     public bool isMainRoom;
 
-    public Room()
+    public Room()      
     {
     }
 

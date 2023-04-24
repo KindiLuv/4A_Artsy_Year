@@ -13,8 +13,19 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] [Range(0, 100)] private int randomAddPercent = 0;
     [SerializeField] private int countZone = 10;
     [SerializeField] private Material mat = null;
-    private Dictionary<Vector2Int, int[,]> maps = new Dictionary<Vector2Int, int[,]>();    
-    
+    private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();    
+        
+    struct Chunck
+    {
+        public int[,] map;
+        public List<Spawnable> spawnables;
+    }
+    struct Spawnable
+    {
+        public int id;
+        public Vector3 position;
+        public Quaternion rotation;
+    }
     public void Start()
     {
         Create();
@@ -38,30 +49,30 @@ public class ProceduralMapManager : MonoBehaviour
                 ConnectChunks(pair.Key, pair.Value.Key[i]);
             }
         }
-        foreach (KeyValuePair<Vector2Int, int[,]> pair in maps)
+        foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
             for(int x = 0; x < chunckSize;x++)
             {
-                if (pair.Value[x, 0] == 1) { pair.Value[x, 0] = 0; }
-                if (pair.Value[x, chunckSize - 1] == 1) { pair.Value[x, chunckSize - 1] = 0; }                
+                if (pair.Value.map[x, 0] == 1) { pair.Value.map[x, 0] = -1; }
+                if (pair.Value.map[x, chunckSize - 1] == 1) { pair.Value.map[x, chunckSize - 1] = -1; }                
             }
             for (int x = 1; x < chunckSize-1; x++)
             {
-                if (pair.Value[x, 1] == 0) { pair.Value[x, 1] = 1; }
-                if (pair.Value[x, chunckSize - 2] == 0) { pair.Value[x, chunckSize - 2] = 1; }
+                if (pair.Value.map[x, 1] == 0) { pair.Value.map[x, 1] = 1; }
+                if (pair.Value.map[x, chunckSize - 2] == 0) { pair.Value.map[x, chunckSize - 2] = 1; }
             }
             for (int y = 0; y < chunckSize; y++)
             {
-                if (pair.Value[0, y] == 1) { pair.Value[0, y] = 0; }
-                if (pair.Value[chunckSize - 1, y] == 1) { pair.Value[chunckSize - 1, y] = 0; }
+                if (pair.Value.map[0, y] == 1) { pair.Value.map[0, y] = -1; }
+                if (pair.Value.map[chunckSize - 1, y] == 1) { pair.Value.map[chunckSize - 1, y] = -1; }
             }
             for (int y = 1; y < chunckSize-1; y++)
             {
-                if (pair.Value[1, y] == 0) { pair.Value[1, y] = 1; }
-                if (pair.Value[chunckSize - 2, y] == 0) { pair.Value[chunckSize - 2, y] = 1; }
+                if (pair.Value.map[1, y] == 0) { pair.Value.map[1, y] = 1; }
+                if (pair.Value.map[chunckSize - 2, y] == 0) { pair.Value.map[chunckSize - 2, y] = 1; }
             }
         }
-        foreach (KeyValuePair<Vector2Int, int[,]> pair in maps)
+        foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
             GameObject obj = new GameObject("Chunck_" + pair.Key.ToString());
             obj.transform.position = new Vector3(pair.Key.x * (chunckSize-2), 0, pair.Key.y * (chunckSize - 2));
@@ -80,11 +91,10 @@ public class ProceduralMapManager : MonoBehaviour
             ground.transform.localPosition = new Vector3(-(chunckSize-2)/2,-wallSize, -(chunckSize - 2) / 2);
             MeshRenderer mr3 = ground.AddComponent<MeshRenderer>();
             mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), wallSize);
-            mg.GenerateMesh(pair.Value, 1,pair.Key);
+            mg.GenerateMesh(pair.Value.map, 1,pair.Key);
             mr1.material = mat;
             mr2.material = mat;
-            mr3.material = mat;
-            //Mathf.PerlinNoise(xCoord, yCoord);
+            mr3.material = mat;                
         }
     }
 
@@ -134,8 +144,8 @@ public class ProceduralMapManager : MonoBehaviour
 
     private void ConnectChunks(Vector2Int chunk1, Vector2Int chunk2)
     {
-        int[,] map1 = maps[chunk1];
-        int[,] map2 = maps[chunk2];
+        int[,] map1 = maps[chunk1].map;
+        int[,] map2 = maps[chunk2].map;
 
         float minDist = float.MaxValue;
         Vector2Int fp1 = Vector2Int.zero;
@@ -192,6 +202,11 @@ public class ProceduralMapManager : MonoBehaviour
                 }
             }
         }
+        Spawnable spawn;
+        spawn.id = 0;
+        spawn.position = (new Vector3(gfp1.x, 0, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f;
+        spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
+        maps[chunk1].spawnables.Add(spawn);
     }
 
     private void CreateChunck(Vector2Int pos)
@@ -222,7 +237,10 @@ public class ProceduralMapManager : MonoBehaviour
             SmoothMap(chunckMap);
         }
         ProcessMap(chunckMap);
-        maps[pos] = chunckMap;
+        Chunck c;
+        c.map = chunckMap;
+        c.spawnables = new List<Spawnable>();
+        maps[pos] = c;
     }
 
     void SmoothMap(int[,] chunckMap)
