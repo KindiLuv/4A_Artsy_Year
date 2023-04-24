@@ -6,16 +6,21 @@ using ArtsyNetcode;
 [RequireComponent(typeof(CharacterController))]
 public class Character : NetEntity, IDamageable
 {
+    private bool ded;
     private float _health;
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        _health -= damage;
+        if (_health < 0)
+        {
+            Death();
+        }
     }
 
-    public void HealDamage()
+    public void HealDamage(float heal)
     {
-        throw new System.NotImplementedException();
+        _health += heal;
     }
 
     public void DropLoot()
@@ -25,11 +30,11 @@ public class Character : NetEntity, IDamageable
 
     public void Death()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("You died");
     }
 
     public bool isAlive()
     {
-        throw new System.NotImplementedException();
+        return !ded;
     }
 }

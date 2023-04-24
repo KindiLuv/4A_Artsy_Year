@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage();
-    void HealDamage();
+    void TakeDamage(float damage);
+    void HealDamage(float heal);
     void DropLoot();
     void Death();
     bool isAlive();

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IStats
 {
     float GetDamage();
+    
 }
