@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2dc00779e807d764fbf311aeb74b949f,
         type: 3}
       propertyPath: m_Name
-      value: swordfish2
+      value: swordfish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dc00779e807d764fbf311aeb74b949f, type: 3}
@@ -91,6 +91,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 2dc00779e807d764fbf311aeb74b949f, type: 3}

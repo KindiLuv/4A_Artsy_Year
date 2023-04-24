@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Character, IDamageable
+public class PlayerController : Character, IDamageable
 {
 
     #region Variables
