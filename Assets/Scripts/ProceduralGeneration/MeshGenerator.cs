@@ -96,6 +96,8 @@ public class MeshGenerator : MonoBehaviour
         wallMesh.triangles = wallTriangles.ToArray();
         walls.mesh = wallMesh;
 
+        //Vector2[] uv;//TODO: Create uv;
+
         MeshCollider wallCollider = walls.gameObject.AddComponent<MeshCollider>();
         wallCollider.sharedMesh = wallMesh;
     }
@@ -168,7 +170,7 @@ public class MeshGenerator : MonoBehaviour
             for (int x = 0; x <= gridSize; x++)
             {
                 vertices[i] = new Vector3(x * gridSpacing, 0f, z * gridSpacing);
-                uv[i] = new Vector2((float)x / gridSize, (float)z / gridSize);
+                uv[i] = new Vector2((float)x/(gridSize/8), (float)z / (gridSize / 8));
                 i++;
             }
         }

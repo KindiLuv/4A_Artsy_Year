@@ -13,6 +13,8 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] [Range(0, 100)] private int randomAddPercent = 0;
     [SerializeField] private int countZone = 10;
     [SerializeField] private Material mat = null;
+    private SpawnableObject[] spawnData;
+    private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();    
         
     struct Chunck
@@ -28,6 +30,8 @@ public class ProceduralMapManager : MonoBehaviour
     }
     public void Start()
     {
+        spawnData = Resources.LoadAll<SpawnableObject>("SpawnableObject");
+        biomeData = Resources.LoadAll<Biome>("Biome");
         Create();
     }
 
@@ -92,10 +96,46 @@ public class ProceduralMapManager : MonoBehaviour
             MeshRenderer mr3 = ground.AddComponent<MeshRenderer>();
             mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), wallSize);
             mg.GenerateMesh(pair.Value.map, 1,pair.Key);
-            mr1.material = mat;
-            mr2.material = mat;
-            mr3.material = mat;                
+            Biome b = GetBiomeID(0);
+            mr1.material = b.Wall;
+            mr2.material = b.Ceil;
+            mr3.material = b.Ground;     
+            foreach(Spawnable spawn in pair.Value.spawnables)
+            {
+                SpawnableObject so = GetID(spawn.id);
+                if (so != null)
+                {
+                    GameObject go = Instantiate(so.Prefab,spawn.position,spawn.rotation);
+                    go.transform.parent = obj.transform;
+                }
+            }
         }
+    }
+
+    public Biome GetBiomeID(int id)
+    {
+        Biome obj = null;
+        for (int i = 0; i < biomeData.Length; i++)
+        {
+            if (biomeData[i].BiomeID == id)
+            {
+                return biomeData[i];
+            }
+        }
+        return obj;
+    }
+
+    public SpawnableObject GetID(int id)
+    {
+        SpawnableObject obj = null;
+        for(int i = 0; i < spawnData.Length;i++)
+        {
+            if (spawnData[i].SpawnID == id)
+            {
+                return spawnData[i];
+            }
+        }
+        return obj;
     }
 
     public Dictionary<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> CreateDungeon(Vector2Int startPosition)
@@ -119,7 +159,7 @@ public class ProceduralMapManager : MonoBehaviour
         {
             pair.Value.Value.Remove(endPos);
         }
-        if (placedZone.ContainsKey(startPos))
+        if (placedZone.ContainsKey(startPos) && startPos != endPos)
         {
             placedZone[startPos].Key.Add(endPos);
         }
@@ -177,8 +217,8 @@ public class ProceduralMapManager : MonoBehaviour
             }
         }
 
-        Vector2 gfp1 = new Vector2((chunk1.x * chunckSize) + fp1.x, (chunk1.y * chunckSize) + fp1.y);
-        Vector2 gfp2 = new Vector2((chunk2.x * chunckSize) + fp2.x, (chunk2.y * chunckSize) + fp2.y);
+        Vector2 gfp1 = new Vector2((chunk1.x * chunckSize-2) + fp1.x, (chunk1.y * chunckSize-2) + fp1.y);
+        Vector2 gfp2 = new Vector2((chunk2.x * chunckSize-2) + fp2.x, (chunk2.y * chunckSize-2) + fp2.y);
         int d = Mathf.RoundToInt(Vector2.Distance(gfp1, gfp2));
         Vector2 direction = (gfp2 - gfp1).normalized;
         for (int k = -1; k < 2; k++)
@@ -201,12 +241,20 @@ public class ProceduralMapManager : MonoBehaviour
                     }
                 }
             }
-        }
+        }        
+        Vector3 offset = -new Vector3((chunckSize - 2)/2,0, (chunckSize - 2) / 2);
         Spawnable spawn;
         spawn.id = 0;
-        spawn.position = (new Vector3(gfp1.x, 0, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f;
+        spawn.position = ((new Vector3(gfp1.x, 0, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
+        spawn.rotation = Quaternion.identity;
         maps[chunk1].spawnables.Add(spawn);
+        
+        /*Debug.Log(chunk1 + " " + chunk2);
+        GameObject A = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject B = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        A.transform.position = new Vector3(gfp1.x, 0, gfp1.y) + offset;
+        B.transform.position = new Vector3(gfp2.x, 0, gfp2.y) + offset;*/
     }
 
     private void CreateChunck(Vector2Int pos)
