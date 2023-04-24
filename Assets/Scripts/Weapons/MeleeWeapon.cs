@@ -10,6 +10,7 @@ public class MeleeWeapon : MonoBehaviour, IMeleeWeapon
     public void Start()
     {
         Instantiate(meleeWeaponAttributes.weaponModel, transform);
+        
     }
 
 

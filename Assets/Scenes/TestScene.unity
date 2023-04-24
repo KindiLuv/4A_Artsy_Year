@@ -123,6 +123,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &1138317462
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7380621215771288453, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_Name
+      value: Swordfish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.6563716
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.677562
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.375278
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380621215771288507, guid: bf57c7556d20de945ae5b76c9f6d7051,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf57c7556d20de945ae5b76c9f6d7051, type: 3}
 --- !u!1 &1173695532
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,52 +286,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1247755171
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1247755173}
-  - component: {fileID: 1247755172}
-  m_Layer: 0
-  m_Name: Swordfish
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1247755172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247755171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b93050214ffe684bb47ce6aebeab37a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeWeaponAttributes: {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f,
-    type: 2}
---- !u!4 &1247755173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247755171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.385995, y: -0.07, z: 7.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123242434
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123242434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.9, y: 1, z: 6.93}
+  m_LocalPosition: {x: -0.293, y: 0.56, z: -5.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

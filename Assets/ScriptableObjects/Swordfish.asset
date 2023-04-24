@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Swordfish
   m_EditorClassIdentifier: 
   weaponName: Swordfish
-  weaponType: Great Sword
+  weaponType: 1
   weaponFamily: Fish
-  rarity: Legendary
+  rarity: 4
   weaponDescription: 50% sword, 50% fish, 100% deadly
   weaponWeight: 30
   dmgPerHit: 35
-  weaponModel: {fileID: 8992267738569672123, guid: 2b37f3a6639dc4140aebea8800d99176,
+  weaponModel: {fileID: 7788945480511224751, guid: f174f9860203e164abd3690c9e3c2303,
     type: 3}
   delayPostSwing: 1.2
