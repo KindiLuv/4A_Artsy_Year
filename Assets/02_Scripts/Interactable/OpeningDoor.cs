@@ -44,16 +44,4 @@ public class OpeningDoor : Interactable
     {
         animationComponent.Play("DoorClose");
     }
-
-    public void OpenDoor()
-    {
-        leftPart.position += Vector3.left;
-        rightPart.position += Vector3.right;
-    }
-
-    public void CloseDoor()
-    {
-        leftPart.position -= Vector3.left;
-        rightPart.position -= Vector3.right;
-    }
 }

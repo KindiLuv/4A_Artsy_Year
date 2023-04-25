@@ -14,6 +14,7 @@ namespace Assets.Scripts.NetCode
 {
     public class GameNetworkManager : MonoBehaviour
     {
+        [SerializeField] private string sceneToLoad;
         [SerializeField] private List<GameObject> initNetworkPrefabInGame = new List<GameObject>();
         //[SerializeField][Tooltip("Load the same map when is active")] private bool DebugMode = false;
         [SerializeField][Tooltip("Start the direct connection ip in p2p client")] private bool clientDebugStartDirectGame = false;
@@ -545,7 +546,7 @@ namespace Assets.Scripts.NetCode
                     Debug.Log("Lobby is full Start the Game ...", this);
                     CurrentLobby?.SetPrivate();
                     //TODO CHANGE SCENE LOADED
-                    NetworkManager.Singleton.SceneManager.LoadScene("TutorialRoom", LoadSceneMode.Single);// change this
+                    NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);// change this
                 }
             }
             if (NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsHost)

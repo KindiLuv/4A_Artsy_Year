@@ -75,9 +75,9 @@ public class PlayerController : Character, IDamageable
     }
 
     private void Update()
-    {        
-        Debug.Log(_gravityValue);
+    {
         if (_actionLocked) return;
+        HandleRespawn();
         HandleMovement();
         HandleInputAim();
         HandleRotation();
@@ -85,6 +85,11 @@ public class PlayerController : Character, IDamageable
         OnDeviceChange(_playerInput);
         HandleInputMovement();
 
+    }
+
+    public void HandleRespawn()
+    {
+        transform.position = Vector3.zero;
     }
 
     void HandleInputMovement()
