@@ -37,4 +37,9 @@ public class Character : NetEntity, IDamageable
     {
         return !ded;
     }
+
+    public virtual void Teleportation(Vector3 positionTarget)
+    {
+        transform.position = positionTarget;
+    }
 }

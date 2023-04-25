@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Character, IDamageable
+public class PlayerController : Character
 {
 
     #region Variables
@@ -44,6 +44,13 @@ public class PlayerController : Character, IDamageable
         _playerInput = GetComponent<PlayerInput>();
         //_tr = GetComponent<TrailRenderer>();
 
+    }
+    
+    public override void Teleportation(Vector3 positionTarget)
+    {
+        _controller.enabled = false;
+        transform.position = positionTarget;
+        _controller.enabled = true;
     }
 
     private void OnEnable()
