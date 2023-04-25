@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Character
+public class PlayerController : Character, IDamageable
 {
 
     #region Variables
@@ -76,6 +76,7 @@ public class Player : Character
 
     private void Update()
     {        
+        Debug.Log(_gravityValue);
         if (_actionLocked) return;
         HandleMovement();
         HandleInputAim();
@@ -100,7 +101,7 @@ public class Player : Character
         Vector3 move = new Vector3(_movement.x, 0, _movement.y);
         _controller.Move(move * (Time.deltaTime * _playerspeed * _dashValue));
 
-        _playerVelocity.y += _gravityValue * Time.deltaTime;
+        _playerVelocity.y = _gravityValue;
         _controller.Move(_playerVelocity * Time.deltaTime);
     }
     void HandleRotation()
@@ -140,7 +141,7 @@ public class Player : Character
     private void HandleBasicAttack(InputAction.CallbackContext obj)
     {
         Debug.Log("basic attack");
-        _playerInteract.Interact();
+        
     }
 
     private void HandleSpell1(InputAction.CallbackContext obj)
@@ -160,7 +161,7 @@ public class Player : Character
 
     private void HandleInteract(InputAction.CallbackContext obj)
     {
-        throw new NotImplementedException();
+        _playerInteract.Interact();
     }
 
     private void HandleOpenMenu(InputAction.CallbackContext obj)
@@ -174,8 +175,10 @@ public class Player : Character
         _dashLocked = true;
         _tr.emitting = true;
         _dashValue = 3f;
+        _gravityValue = 0f;
         yield return new WaitForSeconds(0.3f);
         _dashValue = 0.7f;
+        _gravityValue = -9.81f;
         _tr.emitting = false;
         yield return new WaitForSeconds(0.2f);
         _dashValue = 1f;

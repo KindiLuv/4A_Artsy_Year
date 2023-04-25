@@ -9,7 +9,7 @@ public class PlayerInteract : NetEntity
     [SerializeField] private List<Interactable> interactable = new List<Interactable>();
     [SerializeField] private float fovInteraction = 60f;
     private Interactable lastInteraction = null;
-    private Player player = null;
+    private PlayerController _playerController = null;
 
     #region GetterSetter
     public bool CanInteract
@@ -31,7 +31,7 @@ public class PlayerInteract : NetEntity
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     public override void OnNetworkSpawn()
@@ -106,7 +106,7 @@ public class PlayerInteract : NetEntity
 
     public List<Interactable> isInView(List<Interactable> list, float fov)
     {            
-        return list.FindAll(x => x != null &&  Vector3.Angle(player.transform.forward,x.transform.position - player.transform.position) < fov || x.InteractState);
+        return list.FindAll(x => x != null &&  Vector3.Angle(_playerController.transform.forward,x.transform.position - _playerController.transform.position) < fov || x.InteractState);
     }
 
     private void OnTriggerExit(Collider other)

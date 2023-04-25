@@ -47,12 +47,12 @@ public class InstantiateBullet : NetEntity
             }
         
 
-        if (IsClient && IsLocalPlayer)
-        {            
-            if (Input.GetKey(KeyCode.E))
-            {
-                InstantiateBulletAndMovesItServerRPC();
+            if (IsClient && IsLocalPlayer)
+            {            
+                if (Input.GetKey(KeyCode.E))
+                {
+                    InstantiateBulletAndMovesItServerRPC();
+                }
             }
-        }
     }
 }	 						  				  	 	 
