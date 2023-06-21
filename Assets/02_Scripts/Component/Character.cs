@@ -6,7 +6,7 @@ using ArtsyNetcode;
 [RequireComponent(typeof(CharacterController))]
 public class Character : NetEntity, IDamageable
 {
-    private bool ded;
+    private bool _ded;
     private float _health;
 
     public void TakeDamage(float damage)
@@ -35,7 +35,7 @@ public class Character : NetEntity, IDamageable
 
     public bool isAlive()
     {
-        return !ded;
+        return !_ded;
     }
 
     public virtual void Teleportation(Vector3 positionTarget)

@@ -18,6 +18,7 @@ public class TwinStickMovement : MonoBehaviour
     [SerializeField] private bool _isGamepad; //Mostly a visualizer
 
     private CharacterController _controller;
+    private Player _player;
 
     private Vector2 _movement;
     private Vector2 _aim;
@@ -40,6 +41,7 @@ public class TwinStickMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _playerControls = new PlayerControls();
         _playerInput = GetComponent<PlayerInput>();
+        _player = GetComponent<Player>();
         //_tr = GetComponent<TrailRenderer>();
         _playerControls.controls.Dash.performed += HandleDash;
         _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
