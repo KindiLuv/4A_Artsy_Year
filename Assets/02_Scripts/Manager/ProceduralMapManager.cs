@@ -233,13 +233,12 @@ public class ProceduralMapManager : MonoBehaviour
                 }
             }
         }        
-        /*Vector3 offset = -new Vector3((chunckSize)/2,0, (chunckSize) / 2);
+        Vector3 offset = -new Vector3((chunckSize)/2,0, (chunckSize) / 2);
         Spawnable spawn;
         spawn.id = 0;
-        spawn.position = ((new Vector3(gfp1.x, 0, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
+        spawn.position = ((new Vector3(gfp1.x, -wallSize, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
-        spawn.rotation = Quaternion.identity;
-        maps[chunk1].spawnables.Add(spawn);*/
+        maps[chunk1].spawnables.Add(spawn);
         
         /*Debug.Log(chunk1 + " " + chunk2);
         GameObject A = GameObject.CreatePrimitive(PrimitiveType.Cube);

@@ -58,7 +58,7 @@ public class MeshGenerator : MonoBehaviour
                     {
                         Bounds b = new Bounds();
                         b.center = new Vector3(x - (map.GetLength(0) / 2), wallHeight, y - (map.GetLength(1) / 2));
-                        b.extents = new Vector3(1.0f,wallHeight,1.0f);
+                        b.extents = new Vector3(1.5f,wallHeight,1.5f);
                         door.Add(b);
                     }                
                 }
