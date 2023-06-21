@@ -440,7 +440,7 @@ MonoBehaviour:
   useRandomSeed: 0
   randomFillPercent: 50
   randomAddPercent: 1
-  countZone: 20
+  countZone: 1
   mat: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
 --- !u!1001 &4910950371596276939
 PrefabInstance:

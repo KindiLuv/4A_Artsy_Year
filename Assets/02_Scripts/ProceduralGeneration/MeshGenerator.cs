@@ -9,6 +9,7 @@ public class MeshGenerator : MonoBehaviour
     private MeshFilter walls;
     private MeshFilter cave;
     private MeshFilter ground;
+    private MeshFilter border;
     private float wallHeight = 4.0f;
 
     List<Vector3> vertices;
@@ -17,10 +18,11 @@ public class MeshGenerator : MonoBehaviour
     Dictionary<int, List<Triangle>> triangleDictionary = new Dictionary<int, List<Triangle>>();
     List<List<int>> outlines = new List<List<int>>();
     HashSet<int> checkedVertices = new HashSet<int>();    
-    public void InitMesh(MeshFilter w, MeshFilter c, MeshFilter g,float h)
+    public void InitMesh(MeshFilter w, MeshFilter c, MeshFilter g, MeshFilter b, float h)
     {
         wallHeight = h;
         walls = w;
+        border = b;
         cave = c;
         ground = g;
     }
@@ -95,11 +97,88 @@ public class MeshGenerator : MonoBehaviour
         mesh.uv = uvs;
       
 
-        CreateWallMesh(squareGrid.squares.GetLength(0),door);
+        CreateWallMesh(door);
+        CreateBorderWall(door);
         CreateGroundMesh(map.GetLength(0));
     }
 
-    void CreateWallMesh(int chunckSize,List<Bounds> door)
+    void CreateBorderWall(List<Bounds> door)
+    {
+        List<Vector3> borderVertices = new List<Vector3>();
+        List<Vector2> uvs = new List<Vector2>();
+        List<int> wallTriangles = new List<int>();
+
+        Mesh borderMesh = new Mesh();
+
+        foreach (List<int> outline in outlines)
+        {
+            for (int i = 0; i < outline.Count - 1; i++)
+            {
+                Vector3 currentVertex = vertices[outline[i]];
+
+                int startIndex = borderVertices.Count;
+
+                // Ajouter les vertices du cube à borderVertices
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, -0.5f, -0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, -0.5f, -0.5f));//down
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, -0.5f, 0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, -0.5f, 0.5f));
+
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, 0.5f, 0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, 0.5f, 0.5f));//up
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, 0.5f, -0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, 0.5f, -0.5f));
+
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, 0.5f, -0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, 0.5f, -0.5f));//front
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, -0.5f, -0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, -0.5f, -0.5f));
+
+                borderVertices.Add(currentVertex + new Vector3(0.5f, 0.5f, 0.5f));
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, 0.5f, 0.5f));//back
+                borderVertices.Add(currentVertex + new Vector3(0.5f, -0.5f, 0.5f));
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, -0.5f, 0.5f));
+
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, -0.5f, -0.5f));//left
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, -0.5f, 0.5f));
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, 0.5f, -0.5f));
+                borderVertices.Add(currentVertex + new Vector3(-0.5f, 0.5f, 0.5f));
+
+                borderVertices.Add(currentVertex + new Vector3(0.5f, -0.5f, 0.5f));//right
+                borderVertices.Add(currentVertex + new Vector3(0.5f, -0.5f, -0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, 0.5f, 0.5f));
+                borderVertices.Add(currentVertex + new Vector3(0.5f, 0.5f, -0.5f));
+
+
+
+                // Ajouter les triangles du cube à wallTriangles
+                for (int k = 0; k < 6; k++)
+                {
+                    wallTriangles.Add(startIndex + (k*4));
+                    wallTriangles.Add(startIndex + 1 + (k * 4));
+                    wallTriangles.Add(startIndex + 2 + (k * 4));
+                    wallTriangles.Add(startIndex + 1 + (k * 4));
+                    wallTriangles.Add(startIndex + 3 + (k * 4));
+                    wallTriangles.Add(startIndex + 2 + (k * 4));
+
+                    uvs.Add(new Vector2(0, 0));
+                    uvs.Add(new Vector2(1, 0));
+                    uvs.Add(new Vector2(0, 1));
+                    uvs.Add(new Vector2(1, 1));
+                }
+            }
+        }
+
+        borderMesh.vertices = borderVertices.ToArray();
+        borderMesh.triangles = wallTriangles.ToArray();
+        borderMesh.uv = uvs.ToArray();
+        borderMesh.RecalculateTangents();
+        border.mesh = borderMesh;
+        border.mesh.RecalculateNormals();
+        border.sharedMesh = borderMesh;
+    }
+
+    void CreateWallMesh(List<Bounds> door)
     {
         CalculateMeshOutlines();
 
@@ -125,12 +204,13 @@ public class MeshGenerator : MonoBehaviour
                         height = 0.0f;
                     }
                 }
+
                 wallVertices.Add(vertices[outline[i]] - Vector3.up * height); // bottom left
                 wallVertices.Add(vertices[outline[i + 1]] - Vector3.up * height); // bottom right
-                uvs.Add(new Vector2(i+1,0));
-                uvs.Add(new Vector2(i,0));
-                uvs.Add(new Vector2(i+1,4));                
-                uvs.Add(new Vector2(i,4));                
+                uvs.Add(new Vector2(i, height));
+                uvs.Add(new Vector2(i + 1, height));
+                uvs.Add(new Vector2(i, 0));
+                uvs.Add(new Vector2(i+1,0));              
 
                 wallTriangles.Add(startIndex + 0);
                 wallTriangles.Add(startIndex + 2);
@@ -147,7 +227,7 @@ public class MeshGenerator : MonoBehaviour
         wallMesh.uv = uvs.ToArray();
         walls.mesh = wallMesh;
 
-        //Vector2[] uv;//TODO: Create uv;
+        walls.mesh.RecalculateNormals();
 
         MeshCollider wallCollider = walls.gameObject.AddComponent<MeshCollider>();
         wallCollider.sharedMesh = wallMesh;
