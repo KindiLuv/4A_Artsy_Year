@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -400,11 +400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a65bd89229fb294b935905ddf290042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunckSize: 55
+  chunckSize: 64
   wallSize: 4
-  seed: 777
+  seed: 8
   useRandomSeed: 0
-  randomFillPercent: 48
-  randomAddPercent: 2
-  countZone: 100
+  randomFillPercent: 54
+  randomAddPercent: 1
+  countZone: 5
   mat: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}

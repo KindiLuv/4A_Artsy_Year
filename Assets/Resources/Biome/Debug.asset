@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Debug
   m_EditorClassIdentifier: 
   biomeID: 0
-  ground: {fileID: 2100000, guid: 275c1393352c79842a4d195d950a190e, type: 2}
-  wall: {fileID: 2100000, guid: 7007d7aaf0876974394a452d72cd2fb4, type: 2}
-  ceil: {fileID: 2100000, guid: 67ecaa3e2970b7d4fbee86214b1647ca, type: 2}
+  ground: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  wall: {fileID: 2100000, guid: 2a6235bfe830c9d4fb42ecef250c97d0, type: 2}
+  ceil: {fileID: 2100000, guid: 2a6235bfe830c9d4fb42ecef250c97d0, type: 2}

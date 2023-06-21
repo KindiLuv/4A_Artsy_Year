@@ -47,6 +47,39 @@ public class MeshGenerator : MonoBehaviour
         Mesh mesh = new Mesh();
         cave.mesh = mesh;
 
+        List<Bounds> door = new List<Bounds>();       
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map[x, y] == 2)
+                {
+                    if (x == 0 || x == map.GetLength(0) - 1 || y == 0 || y == map.GetLength(1) - 1)
+                    {
+                        Bounds b = new Bounds();
+                        b.center = new Vector3(x - (map.GetLength(0) / 2), wallHeight, y - (map.GetLength(1) / 2));
+                        b.extents = new Vector3(1.0f,wallHeight,1.0f);
+                        door.Add(b);
+                    }                
+                }
+            }
+        }
+
+        Vector3 change;
+        for(int i = 0; i < vertices.Count;i++)
+        {
+            for(int j = 0; j < door.Count;j++)
+            {
+                if(door[j].Contains(vertices[i]))
+                {
+                    change = vertices[i];
+                    change.y = -wallHeight; 
+                    vertices[i] = change;
+                    break;
+                }
+            }            
+        }  
+
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
@@ -60,28 +93,44 @@ public class MeshGenerator : MonoBehaviour
             uvs[i] = new Vector2(percentX, percentY);
         }
         mesh.uv = uvs;
+      
 
-        CreateWallMesh();
-        CreateGroundMesh(map.GetLength(0)-2);
+        CreateWallMesh(squareGrid.squares.GetLength(0),door);
+        CreateGroundMesh(map.GetLength(0));
     }
 
-    void CreateWallMesh()
+    void CreateWallMesh(int chunckSize,List<Bounds> door)
     {
         CalculateMeshOutlines();
 
         List<Vector3> wallVertices = new List<Vector3>();
-        List<int> wallTriangles = new List<int>();
-        Mesh wallMesh = new Mesh();
+        List<Vector2> uvs = new List<Vector2>();
 
+        List<int> wallTriangles = new List<int>();
+
+        Mesh wallMesh = new Mesh();        
         foreach (List<int> outline in outlines)
         {
             for (int i = 0; i < outline.Count - 1; i++)
             {
                 int startIndex = wallVertices.Count;
                 wallVertices.Add(vertices[outline[i]]); // left
-                wallVertices.Add(vertices[outline[i + 1]]); // right
-                wallVertices.Add(vertices[outline[i]] - Vector3.up * wallHeight); // bottom left
-                wallVertices.Add(vertices[outline[i + 1]] - Vector3.up * wallHeight); // bottom right
+                wallVertices.Add(vertices[outline[i + 1]]); // right;
+                float height = wallHeight;
+
+                for(int j = 0; j < door.Count;j++)
+                {
+                    if(door[j].Contains(vertices[outline[i]]))
+                    {                    
+                        height = 0.0f;
+                    }
+                }
+                wallVertices.Add(vertices[outline[i]] - Vector3.up * height); // bottom left
+                wallVertices.Add(vertices[outline[i + 1]] - Vector3.up * height); // bottom right
+                uvs.Add(new Vector2(i+1,0));
+                uvs.Add(new Vector2(i,0));
+                uvs.Add(new Vector2(i+1,4));                
+                uvs.Add(new Vector2(i,4));                
 
                 wallTriangles.Add(startIndex + 0);
                 wallTriangles.Add(startIndex + 2);
@@ -89,11 +138,13 @@ public class MeshGenerator : MonoBehaviour
 
                 wallTriangles.Add(startIndex + 3);
                 wallTriangles.Add(startIndex + 1);
-                wallTriangles.Add(startIndex + 0);
+                wallTriangles.Add(startIndex + 0);                
             }
-        }
+        }        
+
         wallMesh.vertices = wallVertices.ToArray();
         wallMesh.triangles = wallTriangles.ToArray();
+        wallMesh.uv = uvs.ToArray();
         walls.mesh = wallMesh;
 
         //Vector2[] uv;//TODO: Create uv;

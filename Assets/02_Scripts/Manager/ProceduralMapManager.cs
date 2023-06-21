@@ -56,42 +56,34 @@ public class ProceduralMapManager : MonoBehaviour
         {
             for(int x = 0; x < chunckSize;x++)
             {
-                if (pair.Value.map[x, 0] == 1) { pair.Value.map[x, 0] = -1; }
-                if (pair.Value.map[x, chunckSize - 1] == 1) { pair.Value.map[x, chunckSize - 1] = -1; }                
-            }
-            for (int x = 1; x < chunckSize-1; x++)
-            {
-                if (pair.Value.map[x, 1] == 0) { pair.Value.map[x, 1] = 1; }
-                if (pair.Value.map[x, chunckSize - 2] == 0) { pair.Value.map[x, chunckSize - 2] = 1; }
+                if (pair.Value.map[x, 0] == 0) { pair.Value.map[x, 0] = 1; }
+                if (pair.Value.map[x, chunckSize - 1] == 0) { pair.Value.map[x, chunckSize - 1] = 1; }                
             }
             for (int y = 0; y < chunckSize; y++)
             {
-                if (pair.Value.map[0, y] == 1) { pair.Value.map[0, y] = -1; }
-                if (pair.Value.map[chunckSize - 1, y] == 1) { pair.Value.map[chunckSize - 1, y] = -1; }
-            }
-            for (int y = 1; y < chunckSize-1; y++)
-            {
-                if (pair.Value.map[1, y] == 0) { pair.Value.map[1, y] = 1; }
-                if (pair.Value.map[chunckSize - 2, y] == 0) { pair.Value.map[chunckSize - 2, y] = 1; }
+                if (pair.Value.map[0, y] == 0) { pair.Value.map[0, y] = 1; }
+                if (pair.Value.map[chunckSize - 1, y] == 0) { pair.Value.map[chunckSize - 1, y] = 1; }
             }
         }
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
             GameObject obj = new GameObject("Chunck_" + pair.Key.ToString());
-            obj.transform.position = new Vector3(pair.Key.x * (chunckSize-2), 0, pair.Key.y * (chunckSize - 2));
+            obj.transform.position = new Vector3(pair.Key.x * (chunckSize), 0, pair.Key.y * (chunckSize));
             obj.transform.parent = transform;            
             MeshGenerator mg = obj.AddComponent<MeshGenerator>();            
             GameObject wall = new GameObject("ChunckWall_" + pair.Key.ToString());
             wall.transform.parent = obj.transform;
             wall.transform.localPosition = Vector3.zero;
+            wall.transform.localScale = Vector3.one*1.016f;
             MeshRenderer mr1 = wall.AddComponent<MeshRenderer>();
             GameObject cave = new GameObject("ChunckCave_" + pair.Key.ToString());
             cave.transform.parent = obj.transform;
             cave.transform.localPosition = Vector3.zero;          
+            cave.transform.localScale = Vector3.one*1.016f;
             MeshRenderer mr2 = cave.AddComponent<MeshRenderer>();
             GameObject ground = new GameObject("ChunckGround_" + pair.Key.ToString());
             ground.transform.parent = obj.transform;
-            ground.transform.localPosition = new Vector3(-(chunckSize-2)/2,-wallSize, -(chunckSize - 2) / 2);
+            ground.transform.localPosition = new Vector3(-(chunckSize)/2,-wallSize, -(chunckSize) / 2);
             MeshRenderer mr3 = ground.AddComponent<MeshRenderer>();
             mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), wallSize);
             mg.GenerateMesh(pair.Value.map, 1,pair.Key);
@@ -216,8 +208,8 @@ public class ProceduralMapManager : MonoBehaviour
             }
         }
 
-        Vector2 gfp1 = new Vector2((chunk1.x * chunckSize-2) + fp1.x, (chunk1.y * chunckSize-2) + fp1.y);
-        Vector2 gfp2 = new Vector2((chunk2.x * chunckSize-2) + fp2.x, (chunk2.y * chunckSize-2) + fp2.y);
+        Vector2 gfp1 = new Vector2((chunk1.x * chunckSize) + fp1.x, (chunk1.y * chunckSize) + fp1.y);
+        Vector2 gfp2 = new Vector2((chunk2.x * chunckSize) + fp2.x, (chunk2.y * chunckSize) + fp2.y);
         int d = Mathf.RoundToInt(Vector2.Distance(gfp1, gfp2));
         Vector2 direction = (gfp2 - gfp1).normalized;
         for (int k = -1; k < 2; k++)
@@ -228,26 +220,26 @@ public class ProceduralMapManager : MonoBehaviour
                 {
                     int x = Mathf.RoundToInt(k+fp1.x + direction.x * i);
                     int y = Mathf.RoundToInt(j+fp1.y + direction.y * i);
-                    if (x >= 1 && x <= chunckSize - 2 && y >= 1 && y <= chunckSize - 2)
+                    if (x >= 0 && x < chunckSize && y >= 0 && y < chunckSize)
                     {
                         map1[x, y] = 2;
                     }
                     x = Mathf.RoundToInt(k+fp2.x + -direction.x * i);
                     y = Mathf.RoundToInt(j+fp2.y + -direction.y * i);
-                    if (x >= 1 && x <= chunckSize - 2 && y >= 1 && y <= chunckSize - 2)
+                    if (x >= 0 && x < chunckSize && y >= 0 && y < chunckSize)
                     {
                         map2[x, y] = 2;
                     }
                 }
             }
         }        
-        Vector3 offset = -new Vector3((chunckSize - 2)/2,0, (chunckSize - 2) / 2);
+        /*Vector3 offset = -new Vector3((chunckSize)/2,0, (chunckSize) / 2);
         Spawnable spawn;
         spawn.id = 0;
         spawn.position = ((new Vector3(gfp1.x, 0, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
         spawn.rotation = Quaternion.identity;
-        maps[chunk1].spawnables.Add(spawn);
+        maps[chunk1].spawnables.Add(spawn);*/
         
         /*Debug.Log(chunk1 + " " + chunk2);
         GameObject A = GameObject.CreatePrimitive(PrimitiveType.Cube);
