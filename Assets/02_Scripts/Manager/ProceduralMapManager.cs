@@ -92,11 +92,21 @@ public class ProceduralMapManager : MonoBehaviour
             MeshRenderer mr4 = border.AddComponent<MeshRenderer>();
             mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), border.AddComponent<MeshFilter>(), wallSize);
             mg.GenerateMesh(pair.Value.map, 1,pair.Key);
+            GameObject borderB = new GameObject("ChunckBorderBase_" + pair.Key.ToString());
+            borderB.transform.parent = obj.transform;
+            borderB.transform.localPosition = new Vector3(0, -wallSize, 0);
+            borderB.transform.localScale = Vector3.one * 1.016f;
+            MeshRenderer mr5 = borderB.AddComponent<MeshRenderer>();
+            MeshFilter mf = borderB.AddComponent<MeshFilter>();
+            mf.mesh = border.GetComponent<MeshFilter>().mesh;
+
             Biome b = GetBiomeID(0);
             mr1.material = b.Wall;
             mr2.material = b.Ceil;
-            mr3.material = b.Ground;     
-            foreach(Spawnable spawn in pair.Value.spawnables)
+            mr3.material = b.Ground;
+            mr4.material = b.Border;
+            mr5.material = b.Border;
+            foreach (Spawnable spawn in pair.Value.spawnables)
             {
                 SpawnableObject so = GetID(spawn.id);
                 if (so != null)
@@ -217,6 +227,7 @@ public class ProceduralMapManager : MonoBehaviour
         Vector2 gfp2 = new Vector2((chunk2.x * chunckSize) + fp2.x, (chunk2.y * chunckSize) + fp2.y);
         int d = Mathf.RoundToInt(Vector2.Distance(gfp1, gfp2));
         Vector2 direction = (gfp2 - gfp1).normalized;
+        List<Vector2> doorPos;
         for (int k = -1; k < 2; k++)
         {
             for (int j = -1; j < 2; j++)
@@ -228,6 +239,10 @@ public class ProceduralMapManager : MonoBehaviour
                     if (x >= 0 && x < chunckSize && y >= 0 && y < chunckSize)
                     {
                         map1[x, y] = 2;
+                    }
+                    if(x == 0 || x == chunckSize-1 && y == 0 && y == chunckSize-1)
+                    {
+                        //doorPos
                     }
                     x = Mathf.RoundToInt(k+fp2.x + -direction.x * i);
                     y = Mathf.RoundToInt(j+fp2.y + -direction.y * i);

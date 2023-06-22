@@ -9,6 +9,7 @@ public class Biome : ScriptableObject
     [SerializeField] private Material ground = null;
     [SerializeField] private Material wall = null;
     [SerializeField] private Material ceil = null;
+    [SerializeField] private Material border = null;
 
     #region Getter Setter
 
@@ -16,6 +17,7 @@ public class Biome : ScriptableObject
     public Material Ground { get { return ground; } }
     public Material Wall { get { return wall; } }
     public Material Ceil { get { return ceil; } }
+    public Material Border { get { return border; } }
 
     #endregion
 }
