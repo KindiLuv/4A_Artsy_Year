@@ -8,21 +8,24 @@ public class MeshGenerator : MonoBehaviour
     private MeshFilter cave;
     private MeshFilter ground;
     private MeshFilter border;
+    private MeshFilter holeBorder;
     private float wallHeight = 4.0f;
 
     List<Vector3> vertices;
     List<int> triangles;
+    List<Vector3> holeBorders = new List<Vector3>();
 
     Dictionary<int, List<Triangle>> triangleDictionary = new Dictionary<int, List<Triangle>>();
     List<List<int>> outlines = new List<List<int>>();
     HashSet<int> checkedVertices = new HashSet<int>();    
-    public void InitMesh(MeshFilter w, MeshFilter c, MeshFilter g, MeshFilter b, float h)
+    public void InitMesh(MeshFilter w, MeshFilter c, MeshFilter g, MeshFilter b,MeshFilter hb, float h)
     {
         wallHeight = h;
         walls = w;
         border = b;
         cave = c;
         ground = g;
+        holeBorder = hb;
     }
 
     public void GenerateMesh(int[,] map, float squareSize,Vector2Int pos)
@@ -97,8 +100,8 @@ public class MeshGenerator : MonoBehaviour
 
         CreateWallMesh(door);
         CreateBorderWall();
-        CreateBorderHole();
-        CreateGroundMesh(map,map.GetLength(0));
+        CreateGroundMesh(map, map.GetLength(0));
+        CreateBorderHole();        
     }
 
     void CreateBorderWall()
@@ -215,14 +218,35 @@ public class MeshGenerator : MonoBehaviour
                     Vector3.right
         };
 
-        float a = 0.5f;
-
-        foreach (List<int> outline in outlines)
+        float a = 0.25f;
+        List<Vector3> neighbor = new List<Vector3>();
+        Vector3 pos = Vector3.zero;
+        Vector3[] offset = new Vector3[] 
         {
-            for (int i = 0; i < outline.Count - 1; i++)
-            {
-                Vector3 currentVertex = vertices[outline[i]];
+            new Vector3(1,0,0),
+            new Vector3(-1,0,0),
+            new Vector3(0,0,1),
+            new Vector3(0,0,-1)
+        };
 
+        for(int i = 0; i < holeBorders.Count;i++)
+        {
+            for (int j = 0; j < offset.Length; j++)
+            {
+                pos = holeBorders[i] + offset[j];
+                if (!neighbor.Contains((holeBorders[i] + pos) / 2.0f) && holeBorders.Contains(pos))
+                {
+                    neighbor.Add((holeBorders[i] + pos) / 2.0f);
+                }
+            }
+        }
+
+        holeBorders.AddRange(neighbor);
+
+            for (int i = 0; i < holeBorders.Count; i++)
+            {
+                Vector3 currentVertex = holeBorders[i];
+                currentVertex -= new Vector3(0.0f, a-0.01f, 0.0f);
                 int startIndex = borderVertices.Count;
                 
                 borderVertices.Add(currentVertex + new Vector3(-a, -a, -a));
@@ -265,9 +289,9 @@ public class MeshGenerator : MonoBehaviour
                     wallTriangles.Add(startIndex + 2 + (k * 4));
 
                     uvs.Add(new Vector2(0, 0));
-                    uvs.Add(new Vector2(1, 0));
-                    uvs.Add(new Vector2(0, 1));
-                    uvs.Add(new Vector2(1, 1));
+                    uvs.Add(new Vector2(0.5f, 0));
+                    uvs.Add(new Vector2(0, 0.5f));
+                    uvs.Add(new Vector2(0.5f, 0.5f));
                 }
 
                 for (int k = 0; k < 6; k++)
@@ -278,7 +302,7 @@ public class MeshGenerator : MonoBehaviour
                     }
                 }
             }
-        }
+
 
         borderMesh.vertices = borderVertices.ToArray();
         borderMesh.triangles = wallTriangles.ToArray();
@@ -287,8 +311,8 @@ public class MeshGenerator : MonoBehaviour
 
         borderMesh.RecalculateNormals();
 
-        border.mesh = borderMesh;
-        border.sharedMesh = borderMesh; 
+        holeBorder.mesh = borderMesh;
+        holeBorder.sharedMesh = borderMesh; 
     }
 
     void CreateWallMesh(List<Bounds> door)
@@ -405,8 +429,8 @@ public class MeshGenerator : MonoBehaviour
     }
 
     void CreateGroundMesh(int[,] map,int gridSize, float gridSpacing = 1.0f)
-    {
-        List<Vector3> holeBorders = new List<Vector3>();
+    { 
+        holeBorders.Clear();        
         int indexHole = 0;
         Mesh mesh = new Mesh();
         Vector3[] vertices = new Vector3[(gridSize+1) * (gridSize+1)];
@@ -434,12 +458,6 @@ public class MeshGenerator : MonoBehaviour
                     {
                         vertices[x+ (gridSize + 1) * z] = new Vector3(x * gridSpacing, 0.0f, z * gridSpacing);
                         holeBorders.Add(new Vector3(x * gridSpacing, 0.0f, z * gridSpacing));
-                        
-                        // TODO Remove Debug
-                        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        go.transform.position = holeBorders[indexHole] - new Vector3(gridSize/2, wallHeight/2 + 2,gridSize/2);
-                        indexHole++;
-                        
                         uv[x + (gridSize + 1) * z] = new Vector2((float)x / (gridSize / 8), (float)z / (gridSize / 8));
                     }
                 }

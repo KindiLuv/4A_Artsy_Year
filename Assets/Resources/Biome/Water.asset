@@ -17,5 +17,6 @@ MonoBehaviour:
   wall: {fileID: 2100000, guid: a79fa5868d0f2864fa7274587a524f55, type: 2}
   ceil: {fileID: 2100000, guid: 2ebb6e8ed43f53d4287e7ed54fc84d58, type: 2}
   border: {fileID: 2100000, guid: a020c34f204b79242b7a2387631d8464, type: 2}
+  borderHole: {fileID: 2100000, guid: 41f6a84d8a43e3e4eaee4c92c57e4a40, type: 2}
   hole_rate_chunck: 50
   hole_fill_percent: 56

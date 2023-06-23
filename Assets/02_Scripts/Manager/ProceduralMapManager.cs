@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ProceduralMapManager : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] private Material matVoid = null;
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
-    private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();    
-        
+    private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
+    private NavMeshSurface ns;
     struct Chunck
     {
         public int[,] map;
@@ -43,9 +44,11 @@ public class ProceduralMapManager : MonoBehaviour
         }
         Biome b = GetBiomeID(idBiome);
         Dictionary<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> dungeon = CreateDungeon(Vector2Int.zero);
+        int countBoss = 0;
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
-            CreateChunck(pair.Key);
+            CreateChunck(pair.Key, countBoss == dungeon.Count-1);
+            countBoss++;
         }
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
@@ -153,7 +156,11 @@ public class ProceduralMapManager : MonoBehaviour
                     }
                 }
             }
-        }        
+        }
+        GameObject navmeshSurface = new GameObject("NavMeshSurface");
+        navmeshSurface.transform.parent = transform;
+        ns = navmeshSurface.AddComponent<NavMeshSurface>();
+        ns.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
 
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
@@ -178,10 +185,15 @@ public class ProceduralMapManager : MonoBehaviour
             GameObject border = new GameObject("ChunckBorder_" + pair.Key.ToString());
             border.transform.parent = obj.transform;
             border.transform.localPosition = Vector3.zero;
-            border.transform.localScale = Vector3.one * 1.016f;
             MeshRenderer mr4 = border.AddComponent<MeshRenderer>();
-            mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), border.AddComponent<MeshFilter>(), wallSize);
+            GameObject holeBorder = new GameObject("ChunckHoleBorder_" + pair.Key.ToString());
+            holeBorder.transform.parent = obj.transform;
+            holeBorder.transform.localPosition = new Vector3(-(chunckSize) / 2, -wallSize, -(chunckSize) / 2);
+            MeshRenderer mr7 = holeBorder.AddComponent<MeshRenderer>();
+            mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), border.AddComponent<MeshFilter>(), holeBorder.AddComponent<MeshFilter>(), wallSize);
             mg.GenerateMesh(pair.Value.map, 1,pair.Key);
+            MeshCollider mc = ground.AddComponent<MeshCollider>();
+            mc.sharedMesh = ground.GetComponent<MeshFilter>().mesh;
             GameObject borderB = new GameObject("ChunckBorderBase_" + pair.Key.ToString());
             borderB.transform.parent = obj.transform;
             borderB.transform.localPosition = new Vector3(0, -wallSize, 0);
@@ -204,6 +216,7 @@ public class ProceduralMapManager : MonoBehaviour
             mr3.material = b.Ground;
             mr4.material = b.Border;
             mr5.material = b.Border;
+            mr7.material = b.BorderHole;
             foreach (Spawnable spawn in pair.Value.spawnables)
             {
                 SpawnableObject so = GetID(spawn.id);
@@ -214,6 +227,7 @@ public class ProceduralMapManager : MonoBehaviour
                 }
             }
         }
+        ns.BuildNavMesh();
     }
 
     public Biome GetBiomeID(int id)
@@ -380,7 +394,7 @@ public class ProceduralMapManager : MonoBehaviour
         return chunckMap;
     }
 
-    private void CreateChunck(Vector2Int pos)
+    private void CreateChunck(Vector2Int pos,bool special = false)
     {
         if (maps.ContainsKey(pos))
         {
@@ -388,7 +402,15 @@ public class ProceduralMapManager : MonoBehaviour
         }
         int[,] chunckMap = new int[chunckSize, chunckSize];
         System.Random pseudoRandom = new System.Random(seed.GetHashCode() + pos.GetHashCode());
-        int fillpercent = Mathf.Min(randomFillPercent + pseudoRandom.Next(randomAddPercent),90);
+        int fillpercent;
+        if (special)
+        {
+            fillpercent = 10;
+        }
+        else
+        {
+            fillpercent = Mathf.Min(randomFillPercent + pseudoRandom.Next(randomAddPercent), 90);
+        }
         for (int x = 0; x < chunckSize; x++)
         {
             for (int y = 0; y < chunckSize; y++)
