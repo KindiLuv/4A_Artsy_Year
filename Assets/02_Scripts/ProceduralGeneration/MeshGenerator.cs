@@ -1,10 +1,5 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using System.Linq;
-using Unity.VisualScripting;
-using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 
 public class MeshGenerator : MonoBehaviour
 {
@@ -101,11 +96,107 @@ public class MeshGenerator : MonoBehaviour
       
 
         CreateWallMesh(door);
-        CreateBorderWall(door);
+        CreateBorderWall();
+        CreateBorderHole();
         CreateGroundMesh(map,map.GetLength(0));
     }
 
-    void CreateBorderWall(List<Bounds> door)
+    void CreateBorderWall()
+    {
+        List<Vector3> borderVertices = new List<Vector3>();
+        List<Vector2> uvs = new List<Vector2>();
+        List<Vector3> normal = new List<Vector3>();
+        List<int> wallTriangles = new List<int>();
+
+        Mesh borderMesh = new Mesh();
+
+        Vector3[] faceNormals =
+        {
+                    Vector3.down,
+                    Vector3.up,
+                    Vector3.back,
+                    Vector3.forward, 
+                    Vector3.left, 
+                    Vector3.right
+        };
+
+        float a = 0.5f;
+
+        foreach (List<int> outline in outlines)
+        {
+            for (int i = 0; i < outline.Count - 1; i++)
+            {
+                Vector3 currentVertex = vertices[outline[i]];
+
+                int startIndex = borderVertices.Count;
+                
+                borderVertices.Add(currentVertex + new Vector3(-a, -a, -a));
+                borderVertices.Add(currentVertex + new Vector3(a, -a, -a));//down
+                borderVertices.Add(currentVertex + new Vector3(-a, -a, a));
+                borderVertices.Add(currentVertex + new Vector3(a, -a, a));
+
+                borderVertices.Add(currentVertex + new Vector3(-a, a, a));
+                borderVertices.Add(currentVertex + new Vector3(a, a, a));//up
+                borderVertices.Add(currentVertex + new Vector3(-a, a, -a));
+                borderVertices.Add(currentVertex + new Vector3(a, a, -a));
+
+                borderVertices.Add(currentVertex + new Vector3(-a, a, -a));
+                borderVertices.Add(currentVertex + new Vector3(a, a, -a));//front
+                borderVertices.Add(currentVertex + new Vector3(-a, -a, -a));
+                borderVertices.Add(currentVertex + new Vector3(a, -a, -a));
+
+                borderVertices.Add(currentVertex + new Vector3(a, a, a));
+                borderVertices.Add(currentVertex + new Vector3(-a, a, a));//back
+                borderVertices.Add(currentVertex + new Vector3(a, -a, a));
+                borderVertices.Add(currentVertex + new Vector3(-a, -a, a));
+
+                borderVertices.Add(currentVertex + new Vector3(-a, -a, -a));//left
+                borderVertices.Add(currentVertex + new Vector3(-a, -a, a));
+                borderVertices.Add(currentVertex + new Vector3(-a, a, -a));
+                borderVertices.Add(currentVertex + new Vector3(-a, a, a));
+
+                borderVertices.Add(currentVertex + new Vector3(a, -a, a));//right
+                borderVertices.Add(currentVertex + new Vector3(a, -a, -a));
+                borderVertices.Add(currentVertex + new Vector3(a, a, a));
+                borderVertices.Add(currentVertex + new Vector3(a, a, -a));
+                
+                for (int k = 0; k < 6; k++)
+                {
+                    wallTriangles.Add(startIndex + (k*4));
+                    wallTriangles.Add(startIndex + 1 + (k * 4));
+                    wallTriangles.Add(startIndex + 2 + (k * 4));
+                    wallTriangles.Add(startIndex + 1 + (k * 4));
+                    wallTriangles.Add(startIndex + 3 + (k * 4));
+                    wallTriangles.Add(startIndex + 2 + (k * 4));
+
+                    uvs.Add(new Vector2(0, 0));
+                    uvs.Add(new Vector2(1, 0));
+                    uvs.Add(new Vector2(0, 1));
+                    uvs.Add(new Vector2(1, 1));
+                }
+
+                for (int k = 0; k < 6; k++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        normal.Add(faceNormals[k]);
+                    }
+                }
+            }
+        }
+
+        borderMesh.vertices = borderVertices.ToArray();
+        borderMesh.triangles = wallTriangles.ToArray();
+        borderMesh.normals = normal.ToArray();
+        borderMesh.uv = uvs.ToArray();
+
+        borderMesh.RecalculateNormals();
+
+        border.mesh = borderMesh;
+        border.sharedMesh = borderMesh; 
+    }
+
+    void CreateBorderHole()
     {
         List<Vector3> borderVertices = new List<Vector3>();
         List<Vector2> uvs = new List<Vector2>();
@@ -315,6 +406,8 @@ public class MeshGenerator : MonoBehaviour
 
     void CreateGroundMesh(int[,] map,int gridSize, float gridSpacing = 1.0f)
     {
+        List<Vector3> holeBorders = new List<Vector3>();
+        int indexHole = 0;
         Mesh mesh = new Mesh();
         Vector3[] vertices = new Vector3[(gridSize+1) * (gridSize+1)];
         Vector2[] uv =  new Vector2[(gridSize + 1) * (gridSize + 1)];
@@ -340,6 +433,13 @@ public class MeshGenerator : MonoBehaviour
                     if (bord)
                     {
                         vertices[x+ (gridSize + 1) * z] = new Vector3(x * gridSpacing, 0.0f, z * gridSpacing);
+                        holeBorders.Add(new Vector3(x * gridSpacing, 0.0f, z * gridSpacing));
+                        
+                        // TODO Remove Debug
+                        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        go.transform.position = holeBorders[indexHole] - new Vector3(gridSize/2, wallHeight/2 + 2,gridSize/2);
+                        indexHole++;
+                        
                         uv[x + (gridSize + 1) * z] = new Vector2((float)x / (gridSize / 8), (float)z / (gridSize / 8));
                     }
                 }

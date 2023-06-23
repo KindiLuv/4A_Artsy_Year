@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.NetCode;
 
 namespace Assets.Scripts.Systems
 {
