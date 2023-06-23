@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Player : Character
 {
-    //TODO
-    //private Role _playerClass;
+
+    private Role _playerClass;
     
     //TODO
     //private Inventory _playerInventory;
@@ -14,7 +14,10 @@ public class Player : Character
     //TODO
     private Equipment _playerEquipment;
 
-    [SerializeField] private GameObject _playerHand;
+    [SerializeField] private Animator _playerHand;
+    private static readonly int Attacking = Animator.StringToHash("Attacking");
+
+    // [SerializeField] private Ani
 
     private void Start()
     {
@@ -36,6 +39,27 @@ public class Player : Character
     public void UpdatePlayerEquipment()
     {
         Instantiate(_playerEquipment.GetMainWeeapon().weaponModel, _playerHand.transform);
+    }
+
+    public void BasicAttack()
+    {
+        
+        switch ((int)_playerEquipment.GetMainWeeapon().weaponType)
+        {
+            case 0:
+                break;
+            case 1:
+                _playerHand.SetTrigger(Attacking);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                break;
+        }
     }
 
     //Load Save data
