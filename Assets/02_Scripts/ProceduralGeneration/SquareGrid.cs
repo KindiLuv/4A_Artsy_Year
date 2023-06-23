@@ -17,14 +17,16 @@ public class SquareGrid
             for (int y = 0; y < nodeCountY; y++)
             {
                 Vector3 pos = new Vector3(-mapWidth / 2 + x * squareSize + squareSize / 2, 0, -mapHeight / 2 + y * squareSize + squareSize / 2);
-                controlNodes[x, y] = new ControlNode(pos, map[x, y] == 1, squareSize);
+                bool state = false;
+                state = map[x, y] == 1 || (map[x, y] == 2 && (x == nodeCountX-1 || y == nodeCountY-1 || x == 0 ||y == 0));            
+                controlNodes[x, y] = new ControlNode(pos, state, squareSize);
             }
         }
 
-        squares = new Square[nodeCountX - 1, nodeCountY - 1];
-        for (int x = 0; x < nodeCountX - 1; x++)
+        squares = new Square[nodeCountX-1, nodeCountY-1];
+        for (int x = 0; x < nodeCountX-1; x++)
         {
-            for (int y = 0; y < nodeCountY - 1; y++)
+            for (int y = 0; y < nodeCountY-1; y++)
             {
                 squares[x, y] = new Square(controlNodes[x, y + 1], controlNodes[x + 1, y + 1], controlNodes[x + 1, y], controlNodes[x, y]);
             }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SpawnableObject", menuName = "ScriptableObjects/SpawnableObject", order = 1)]

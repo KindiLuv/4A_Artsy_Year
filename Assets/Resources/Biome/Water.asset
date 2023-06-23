@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b131bcaa2b79ee4d82be636147ee8e8, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  biomeID: 0
+  ground: {fileID: 2100000, guid: 224b9352ce5c3104cb6a0c5773083cc9, type: 2}
+  wall: {fileID: 2100000, guid: a79fa5868d0f2864fa7274587a524f55, type: 2}
+  ceil: {fileID: 2100000, guid: 2ebb6e8ed43f53d4287e7ed54fc84d58, type: 2}
+  border: {fileID: 2100000, guid: a020c34f204b79242b7a2387631d8464, type: 2}
+  hole_rate_chunck: 50
+  hole_fill_percent: 56
