@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
+using Unity.VisualScripting;
+using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 
 public class MeshGenerator : MonoBehaviour
 {
@@ -75,7 +78,7 @@ public class MeshGenerator : MonoBehaviour
                 if(door[j].Contains(vertices[i]))
                 {
                     change = vertices[i];
-                    change.y = -wallHeight; 
+                    change.y = -wallHeight*2; 
                     vertices[i] = change;
                     break;
                 }
@@ -99,7 +102,7 @@ public class MeshGenerator : MonoBehaviour
 
         CreateWallMesh(door);
         CreateBorderWall(door);
-        CreateGroundMesh(map.GetLength(0));
+        CreateGroundMesh(map,map.GetLength(0));
     }
 
     void CreateBorderWall(List<Bounds> door)
@@ -310,49 +313,88 @@ public class MeshGenerator : MonoBehaviour
 
     }
 
-    void CreateGroundMesh(int gridSize, float gridSpacing = 1.0f)
+    void CreateGroundMesh(int[,] map,int gridSize, float gridSpacing = 1.0f)
     {
         Mesh mesh = new Mesh();
-        Vector3[] vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];
-        Vector2[] uv = new Vector2[vertices.Length];
-        for (int i = 0, z = 0; z <= gridSize; z++)
+        Vector3[] vertices = new Vector3[(gridSize+1) * (gridSize+1)];
+        Vector2[] uv =  new Vector2[(gridSize + 1) * (gridSize + 1)];
+
+        List<int> triangles = new List<int>();
+        for (int z = 0; z <= gridSize; z++)
         {
             for (int x = 0; x <= gridSize; x++)
             {
-                vertices[i] = new Vector3(x * gridSpacing, 0f, z * gridSpacing);
-                uv[i] = new Vector2((float)x/(gridSize/8), (float)z / (gridSize / 8));
-                i++;
+                if (x != gridSize && z != gridSize && map[x, z] == 3)
+                {
+                    bool bord = false;
+                    for (int k = -1; k <= 1 && !bord; k++)
+                    {
+                        for (int j = -1; j <= 1 && !bord; j++)
+                        {
+                            if (x + k >= 0 && x + k < gridSize && z + j >= 0 && z + j < gridSize && (k != 0 || j != 0) && map[x + k, z + j] != 3)
+                            {
+                                bord = true;
+                            }
+                        }
+                    }
+                    if (bord)
+                    {
+                        vertices[x+ (gridSize + 1) * z] = new Vector3(x * gridSpacing, 0.0f, z * gridSpacing);
+                        uv[x + (gridSize + 1) * z] = new Vector2((float)x / (gridSize / 8), (float)z / (gridSize / 8));
+                    }
+                }
+                else
+                {
+                    vertices[x + (gridSize + 1) * z] = new Vector3(x * gridSpacing, 0.0f, z * gridSpacing);
+                    uv[x + (gridSize + 1) * z] = new Vector2((float)x / (gridSize / 8), (float)z / (gridSize / 8));
+                }
             }
         }
 
-        int[] triangles = new int[gridSize * gridSize * 6];
-        int vert = 0;
-        int tris = 0;
-        for (int z = 0; z < gridSize; z++)
-        {
-            for (int x = 0; x < gridSize; x++)
-            {
-                triangles[tris + 0] = vert + 0;
-                triangles[tris + 1] = vert + gridSize + 1;
-                triangles[tris + 2] = vert + 1;
-                triangles[tris + 3] = vert + 1;
-                triangles[tris + 4] = vert + gridSize + 1;
-                triangles[tris + 5] = vert + gridSize + 2;
+        List<Vector3> globalVertices = new List<Vector3>();
+        List<Vector2> globalUv = new List<Vector2>();
 
-                vert++;
-                tris += 6;
+        int vert = 0;
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            globalVertices.Add(vertices[i]);
+            globalUv.Add(uv[i]);
+            bool isFill = true;
+            for (int x= 0; x <= 1 && isFill; x++)
+            {
+                for (int y = 0; y <= 1 && isFill; y++)
+                {
+                    if (i + x + y * (gridSize + 1) < vertices.Length)
+                    {
+                        if (i != 0 && vertices[i + x + y * (gridSize + 1)] == Vector3.zero)
+                        {
+                            isFill = false;
+                        }
+                    }
+                    else
+                    {
+                        isFill = false;
+                    }
+                }
+            }
+            if (isFill)
+            {         
+                triangles.Add(vert + 0);
+                triangles.Add(vert + (gridSize + 1));
+                triangles.Add(vert + 1);
+                triangles.Add(vert + 1);
+                triangles.Add(vert + (gridSize + 1));
+                triangles.Add(vert + (gridSize + 2));                
             }
             vert++;
         }
 
-        mesh.vertices = vertices;
-        mesh.uv = uv;
-        mesh.triangles = triangles;
+        mesh.vertices = globalVertices.ToArray();
+        mesh.uv = globalUv.ToArray();
+        mesh.triangles = triangles.ToArray();
 
         mesh.RecalculateNormals();
         ground.mesh = mesh;
-
-
     }
 
     void MeshFromPoints(params Node[] points)

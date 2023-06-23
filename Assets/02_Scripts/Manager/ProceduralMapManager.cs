@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class ProceduralMapManager : MonoBehaviour
 {
@@ -11,7 +13,8 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] [Range(0, 100)] private int randomFillPercent = 50;
     [SerializeField] [Range(0, 100)] private int randomAddPercent = 0;
     [SerializeField] private int countZone = 10;
-    [SerializeField] private Material mat = null;
+    [SerializeField] private int idBiome = 0;
+    [SerializeField] private Material matVoid = null;
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();    
@@ -35,11 +38,12 @@ public class ProceduralMapManager : MonoBehaviour
     }
 
     public void Create()
-    {        
+    {
         if (useRandomSeed)
         {
             seed = Time.time.ToString();
         }
+        Biome b = GetBiomeID(idBiome);
         Dictionary<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> dungeon = CreateDungeon(Vector2Int.zero);
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
@@ -54,10 +58,10 @@ public class ProceduralMapManager : MonoBehaviour
         }
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
-            for(int x = 0; x < chunckSize;x++)
+            for (int x = 0; x < chunckSize; x++)
             {
                 if (pair.Value.map[x, 0] == 0) { pair.Value.map[x, 0] = 1; }
-                if (pair.Value.map[x, chunckSize - 1] == 0) { pair.Value.map[x, chunckSize - 1] = 1; }                
+                if (pair.Value.map[x, chunckSize - 1] == 0) { pair.Value.map[x, chunckSize - 1] = 1; }
             }
             for (int y = 0; y < chunckSize; y++)
             {
@@ -65,6 +69,94 @@ public class ProceduralMapManager : MonoBehaviour
                 if (pair.Value.map[chunckSize - 1, y] == 0) { pair.Value.map[chunckSize - 1, y] = 1; }
             }
         }
+
+        System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+        foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
+        {
+            if (pseudoRandom.NextDouble() * 100.0 <= b.HoldeRateChunck)
+            {
+                int[,] nmap = InitChunkHole(b.HoleFill, pseudoRandom);
+                for(int i = 0; i < nmap.GetLength(0); i++)
+                {
+                    for(int j = 0; j < nmap.GetLength(1); j++)
+                    {
+                        bool sideofWall = false;
+                        for(int x = -1; x <= 1 && !sideofWall; x++)
+                        {
+                            for(int y= -1; y <= 1 && !sideofWall; y++)
+                            {
+                                if (x + i < chunckSize && y + j < chunckSize && x+i >= 0 && y + j >= 0)
+                                {
+                                    if(pair.Value.map[i+x, j+y] == 1 || pair.Value.map[i + x, j + y] == 2)
+                                    {
+                                        sideofWall = true;
+                                    }
+                                }
+                            }
+                        }
+                        if(pair.Value.map[i,j] == 0)
+                        {
+                            if (nmap[i, j] != 1 && !sideofWall)
+                            {
+                                pair.Value.map[i, j] = 3;
+                            }                            
+                        }
+                    }
+                }
+            }
+        }
+
+
+        List<Vector2Int> borderMaps = new List<Vector2Int>();
+        Vector2Int bo;
+        Mesh mflat = new Mesh();
+        List<Vector3> pos = new List<Vector3>();
+        List<int> indice = new List<int>();
+        List<Vector2> uvs = new List<Vector2>();
+        float csDivid = chunckSize / 2.0f;
+        pos.Add(new Vector3(csDivid, 0, csDivid));
+        pos.Add(new Vector3(-csDivid, 0, csDivid));
+        pos.Add(new Vector3(csDivid, 0, -csDivid));
+        pos.Add(new Vector3(-csDivid, 0, -csDivid));
+        indice.Add(1);
+        indice.Add(0);        
+        indice.Add(2);
+        indice.Add(2);
+        indice.Add(3);        
+        indice.Add(1);
+        uvs.Add(new Vector2(0.0f, 0.0f));
+        uvs.Add(new Vector2(0.0f, 10.0f));
+        uvs.Add(new Vector2(10.0f, 0.0f));
+        uvs.Add(new Vector2(10.0f, 10.0f));
+
+
+        mflat.vertices = pos.ToArray();
+        mflat.triangles = indice.ToArray();
+        mflat.uv = uvs.ToArray();
+        mflat.RecalculateNormals();        
+
+        foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
+        {            
+            for (int x = -1; x < 2; x++)
+            {
+                for (int y = -1; y < 2; y++)
+                {
+                    bo = pair.Key + new Vector2Int(x, y);
+                    if(!(x == 0 && y == 0) && !maps.ContainsKey(bo) && !borderMaps.Contains(bo))
+                    {
+                        GameObject obj = new GameObject("Chunck_" + bo.ToString());
+                        obj.transform.position = new Vector3(bo.x * (chunckSize), 0, bo.y * (chunckSize));
+                        obj.transform.parent = transform;
+                        MeshRenderer mr = obj.AddComponent<MeshRenderer>();
+                        MeshFilter mf = obj.AddComponent<MeshFilter>();
+                        mf.mesh = mflat;
+                        borderMaps.Add(bo);
+                        mr.material = b.Ceil;
+                    }
+                }
+            }
+        }        
+
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
             GameObject obj = new GameObject("Chunck_" + pair.Key.ToString());
@@ -98,9 +190,17 @@ public class ProceduralMapManager : MonoBehaviour
             borderB.transform.localScale = Vector3.one * 1.016f;
             MeshRenderer mr5 = borderB.AddComponent<MeshRenderer>();
             MeshFilter mf = borderB.AddComponent<MeshFilter>();
-            mf.mesh = border.GetComponent<MeshFilter>().mesh;
+            GameObject voidB = new GameObject("ChunckVoid_" + pair.Key.ToString());
+            voidB.transform.parent = obj.transform;
+            voidB.transform.localPosition = new Vector3(0, -wallSize*2, 0);
+            voidB.transform.localScale = Vector3.one * 1.016f;
+            MeshRenderer mr6 = voidB.AddComponent<MeshRenderer>();
+            MeshFilter mf6 = voidB.AddComponent<MeshFilter>();
+            mf6.mesh = mflat;
+            mr6.material = matVoid;
 
-            Biome b = GetBiomeID(0);
+            mf.mesh = border.GetComponent<MeshFilter>().mesh;
+            
             mr1.material = b.Wall;
             mr2.material = b.Ceil;
             mr3.material = b.Ground;
@@ -240,10 +340,6 @@ public class ProceduralMapManager : MonoBehaviour
                     {
                         map1[x, y] = 2;
                     }
-                    if(x == 0 || x == chunckSize-1 && y == 0 && y == chunckSize-1)
-                    {
-                        //doorPos
-                    }
                     x = Mathf.RoundToInt(k+fp2.x + -direction.x * i);
                     y = Mathf.RoundToInt(j+fp2.y + -direction.y * i);
                     if (x >= 0 && x < chunckSize && y >= 0 && y < chunckSize)
@@ -259,12 +355,31 @@ public class ProceduralMapManager : MonoBehaviour
         spawn.position = ((new Vector3(gfp1.x, -wallSize, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
         maps[chunk1].spawnables.Add(spawn);
-        
-        /*Debug.Log(chunk1 + " " + chunk2);
-        GameObject A = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        GameObject B = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        A.transform.position = new Vector3(gfp1.x, 0, gfp1.y) + offset;
-        B.transform.position = new Vector3(gfp2.x, 0, gfp2.y) + offset;*/
+    }
+
+    private int[,] InitChunkHole(int fill, System.Random pseudoRandom)
+    {
+        int[,] chunckMap = new int[chunckSize, chunckSize];        
+        int fillpercent = Mathf.Min(fill, 99);
+        for (int x = 0; x < chunckSize; x++)
+        {
+            for (int y = 0; y < chunckSize; y++)
+            {
+                if (x == 0 || x == chunckSize - 1 || y == 0 || y == chunckSize - 1)
+                {
+                    chunckMap[x, y] = 1;
+                }
+                else
+                {
+                    chunckMap[x, y] = (pseudoRandom.Next(0, 100) < fillpercent) ? 1 : 0;
+                }
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            SmoothMap(chunckMap);
+        }
+        return chunckMap;
     }
 
     private void CreateChunck(Vector2Int pos)

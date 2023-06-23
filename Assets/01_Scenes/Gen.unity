@@ -436,12 +436,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunckSize: 64
   wallSize: 4
-  seed: 0
+  seed: 2
   useRandomSeed: 0
-  randomFillPercent: 48
-  randomAddPercent: 1
-  countZone: 5
+  randomFillPercent: 46
+  randomAddPercent: 4
+  countZone: 1
   mat: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  idBiome: 0
+  matVoid: {fileID: 2100000, guid: bc0a3b09afe6aa44ea05b7b5d3fcbca3, type: 2}
 --- !u!1001 &4910950371596276939
 PrefabInstance:
   m_ObjectHideFlags: 0
