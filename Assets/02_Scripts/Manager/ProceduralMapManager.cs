@@ -15,7 +15,6 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] [Range(0, 100)] private int randomAddPercent = 0;
     [SerializeField] private int countZone = 10;
     [SerializeField] private int idBiome = 0;
-    [SerializeField] private Material matVoid = null;
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
@@ -192,7 +191,7 @@ public class ProceduralMapManager : MonoBehaviour
     {
         if (useRandomSeed)
         {
-            seed = Time.time.ToString();
+            seed = UnityEngine.Random.Range(0,10000).ToString();
         }
         Biome b = GetBiomeID(idBiome);
         Dictionary<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> dungeon = CreateDungeon(Vector2Int.zero);
@@ -393,7 +392,7 @@ public class ProceduralMapManager : MonoBehaviour
             MeshRenderer mr6 = voidB.AddComponent<MeshRenderer>();
             MeshFilter mf6 = voidB.AddComponent<MeshFilter>();
             mf6.mesh = mflat;
-            mr6.material = matVoid;            
+            mr6.material = b.VoidHole;            
             mf.mesh = border.GetComponent<MeshFilter>().mesh;
 
             

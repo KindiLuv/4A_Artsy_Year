@@ -143,7 +143,7 @@ Material:
     - _RockAmount: 1
     - _RockNormalStrength: 1
     - _RockOutOff: 0.76
-    - _RockScale: 4
+    - _RockScale: 2
     - _RockSpeed: 0.03
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -158,10 +158,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlobalTilling: {r: 4, g: 4, b: 0, a: 0}
+    - _GlobalTilling: {r: 2, g: 2, b: 0, a: 0}
     - _LavaEmisionColor: {r: 1.2264152, g: 0.52047735, b: 0, a: 0}
     - _RockEmisionColor: {r: 6.498019, g: 2.7521024, b: 0, a: 0}
-    - _RockSpeed: {r: 0.03, g: 0.03, b: 0, a: 0}
+    - _RockSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpeedLavaOffset: {r: 0.05, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []

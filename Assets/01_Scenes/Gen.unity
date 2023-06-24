@@ -218,7 +218,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 7abc4a3e0daadb54db6e7cab23f2d71e, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -437,12 +437,11 @@ MonoBehaviour:
   chunckSize: 64
   wallSize: 4
   seed: 0
-  useRandomSeed: 0
+  useRandomSeed: 1
   randomFillPercent: 46
   randomAddPercent: 4
   countZone: 15
   idBiome: 0
-  matVoid: {fileID: 2100000, guid: bc0a3b09afe6aa44ea05b7b5d3fcbca3, type: 2}
 --- !u!1001 &4910950371596276939
 PrefabInstance:
   m_ObjectHideFlags: 0

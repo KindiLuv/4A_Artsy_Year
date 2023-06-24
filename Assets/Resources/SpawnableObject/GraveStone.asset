@@ -20,10 +20,10 @@ MonoBehaviour:
   size: {x: 2, y: 2}
   isNetCodeObject: 0
   wallObject: 1
-  rotateMode: 3
+  rotateMode: 4
   angleMin: 0
-  angle: 0
-  spawnRateChunck: 50
+  angle: 360
+  spawnRateChunck: 100
   hasSpawnFillPercent: 1
   spawnFillPercent: 0.005
   spawnNumber: 1
