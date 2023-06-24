@@ -15,6 +15,7 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] [Range(0, 100)] private int randomAddPercent = 0;
     [SerializeField] private int countZone = 10;
     [SerializeField] private int idBiome = 0;
+    [SerializeField] private LightCookieOffset lco = null;    
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
@@ -422,6 +423,8 @@ public class ProceduralMapManager : MonoBehaviour
             }
         }
         ns.BuildNavMesh();
+
+        lco.InitCookieOffset(b.SunLightCookie, b.SpeedSunMove, b.SunSizeCookie, b.SunIntensity, b.SunKelvin);
     }
 
     public Biome GetBiomeID(int id)

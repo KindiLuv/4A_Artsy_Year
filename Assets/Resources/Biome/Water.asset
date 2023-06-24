@@ -26,3 +26,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d46a9accdd7d464a93dd51ed43b258a, type: 2}
   hole_rate_chunck: 50
   hole_fill_percent: 56
+  sunKelvin: 8100
+  sunIntensity: 1
+  speedSunMove: {x: 0.5, y: 0.5}
+  sunSizeCookie: {x: 50, y: 50}
+  sunLightCookie: {fileID: 2800000, guid: c0adcfda771de8b4b953aebfd968cabe, type: 3}

@@ -101,7 +101,7 @@ public class SpiderProceduralAnimation : ProceduralAnimation
             }
 
             audioStep += Time.fixedDeltaTime * velocity.magnitude;
-            if(audioStep > 0.05f)
+            if(audioStep > 0.05f && audioClip.Count > 0)
             {
                 audioSource.PlayOneShot(audioClip[Random.Range(0, audioClip.Count)]);
                 audioStep = 0;

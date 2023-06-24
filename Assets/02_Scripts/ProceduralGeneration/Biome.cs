@@ -17,7 +17,8 @@ public class Biome : ScriptableObject
     [SerializeField] private int sunKelvin = 8100;
     [SerializeField] private float sunIntensity = 0.5f;
     [SerializeField] private Vector2 speedSunMove;
-    [SerializeField] private Texture sunLightCookie;
+    [SerializeField] private Vector2 sunSizeCookie;
+    [SerializeField] private Texture2D sunLightCookie;    
 
     #region Getter Setter
     public int BiomeID { get { return biomeID; } }
@@ -33,6 +34,7 @@ public class Biome : ScriptableObject
     public int SunKelvin { get { return sunKelvin; } }
     public float SunIntensity { get { return sunIntensity; } }
     public Vector2 SpeedSunMove { get { return speedSunMove; } }
-    public Texture SunLightCookie { get { return sunLightCookie; } }
+    public Vector2 SunSizeCookie { get { return sunSizeCookie; } }    
+    public Texture2D SunLightCookie { get { return sunLightCookie; } }
     #endregion
 }
