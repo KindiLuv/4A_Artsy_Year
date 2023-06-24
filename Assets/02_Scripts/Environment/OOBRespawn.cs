@@ -6,7 +6,7 @@ public class OOBRespawn : NetworkBehaviour
 {
     [SerializeField] private Transform respawnPoint;
 
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         Character character = other.GetComponent<Character>();
         if (IsServer && character != null)
@@ -17,7 +17,7 @@ public class OOBRespawn : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void TeleportClientRpc(Vector3 teleportTarget,ulong netId)
+    protected void TeleportClientRpc(Vector3 teleportTarget,ulong netId)
     {
         NetworkObject obj = null;
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(netId, out obj))

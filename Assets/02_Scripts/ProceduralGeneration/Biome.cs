@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Biome", menuName = "ScriptableObjects/Biome", order = 2)]
@@ -9,6 +10,7 @@ public class Biome : ScriptableObject
     [SerializeField] private Material ceil = null;
     [SerializeField] private Material border = null;
     [SerializeField] private Material borderHole = null;
+    [SerializeField] private List<SpawnableObject> spawnObjects = new List<SpawnableObject>();
     [SerializeField][Range(0.0f, 100.0f)] private double hole_rate_chunck = 0.0f;
     [SerializeField][Range(0, 100)] private int hole_fill_percent = 0;
 
@@ -20,6 +22,7 @@ public class Biome : ScriptableObject
     public Material Ceil { get { return ceil; } }
     public Material Border { get { return border; } }
     public Material BorderHole { get { return borderHole; } }
+    public List<SpawnableObject> SpawnObjects { get { return spawnObjects; } }
     public double HoldeRateChunck { get { return hole_rate_chunck; } }
     public int HoleFill { get { return hole_fill_percent; } }
 

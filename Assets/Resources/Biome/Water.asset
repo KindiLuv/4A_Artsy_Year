@@ -18,5 +18,10 @@ MonoBehaviour:
   ceil: {fileID: 2100000, guid: 2ebb6e8ed43f53d4287e7ed54fc84d58, type: 2}
   border: {fileID: 2100000, guid: a020c34f204b79242b7a2387631d8464, type: 2}
   borderHole: {fileID: 2100000, guid: 41f6a84d8a43e3e4eaee4c92c57e4a40, type: 2}
+  spawnObjects:
+  - {fileID: 11400000, guid: 92b2033a781c19f4ab059d12b7e91068, type: 2}
+  - {fileID: 11400000, guid: fd530c768b6651d46a6a56418a8fce01, type: 2}
+  - {fileID: 11400000, guid: d557eebb0ad390f40832ab9034384a95, type: 2}
+  - {fileID: 11400000, guid: 0d46a9accdd7d464a93dd51ed43b258a, type: 2}
   hole_rate_chunck: 50
   hole_fill_percent: 56

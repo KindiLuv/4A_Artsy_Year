@@ -362,8 +362,7 @@ public class MeshGenerator : MonoBehaviour
         wallMesh.vertices = wallVertices.ToArray();
         wallMesh.triangles = wallTriangles.ToArray();
         wallMesh.uv = uvs.ToArray();
-        walls.mesh = wallMesh;
-
+        walls.mesh = wallMesh;        
         walls.mesh.RecalculateNormals();
 
         MeshCollider wallCollider = walls.gameObject.AddComponent<MeshCollider>();

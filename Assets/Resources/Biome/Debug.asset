@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b131bcaa2b79ee4d82be636147ee8e8, type: 3}
   m_Name: Debug
   m_EditorClassIdentifier: 
-  biomeID: 1
+  biomeID: 999
   ground: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
   wall: {fileID: 2100000, guid: 2a6235bfe830c9d4fb42ecef250c97d0, type: 2}
   ceil: {fileID: 2100000, guid: 2a6235bfe830c9d4fb42ecef250c97d0, type: 2}
   border: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  borderHole: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  hole_rate_chunck: 50
+  hole_fill_percent: 56

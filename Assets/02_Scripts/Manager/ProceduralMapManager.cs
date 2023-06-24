@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.FilePathAttribute;
 
 public class ProceduralMapManager : MonoBehaviour
 {
@@ -18,6 +20,12 @@ public class ProceduralMapManager : MonoBehaviour
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
     private NavMeshSurface ns;
+    private static ProceduralMapManager instance;
+
+    #region GetterSetter
+    public static ProceduralMapManager Instance { get { return instance; } }
+    public NavMeshSurface NavMesh { get { return ns; } }
+    #endregion
     struct Chunck
     {
         public int[,] map;
@@ -29,11 +37,155 @@ public class ProceduralMapManager : MonoBehaviour
         public Vector3 position;
         public Quaternion rotation;
     }
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void Start()
     {
         spawnData = Resources.LoadAll<SpawnableObject>("SpawnableObject");
         biomeData = Resources.LoadAll<Biome>("Biome");
         Create();
+    }
+
+    float[] RightAngle = new float[]
+    {
+        0.0f,180.0f,90.0f,270.0f
+    };
+
+    public float CalculateAngle(RotateMode rm,System.Random pseudoRandom,float AngleMin, float Angle, out bool Rotate)
+    {
+        switch(rm)
+        {
+            case RotateMode.Zero:
+                Rotate = true;
+                return 0.0f;
+            case RotateMode.No:
+                Rotate = false;
+                return 0.0f;
+            case RotateMode.TwoRightAngleRandom:
+                Rotate = true;
+                return RightAngle[pseudoRandom.Next(2)];
+            case RotateMode.FoorRightAngleRandom:
+                Rotate = true;
+                return RightAngle[pseudoRandom.Next(4)];
+            case RotateMode.RandomBetweenTwoAngle:
+                Rotate = true;
+                return (float)(pseudoRandom.NextDouble()* Angle) + AngleMin;
+            default:
+                break;
+        }
+        Rotate = true;
+        return 0.0f;
+    }
+
+    public List<Vector2Int> CheckIsSpawnable(int[,] map, Vector2Int size, int nb, System.Random pseudoRandom,bool onWall = false)
+    {
+        List<Vector2Int> spawnableLocations = new List<Vector2Int>();
+        int targetIDSpawn = 0;
+        int replaceID = 4;
+        if(onWall)
+        {
+            targetIDSpawn = 1;
+            replaceID = 5;
+        }
+        int mapWidth = map.GetLength(0);
+        int mapHeight = map.GetLength(1);
+
+        for (int x = 0; x < mapWidth; x++)
+        {
+            for (int y = 0; y < mapHeight; y++)
+            {
+                if (map[x, y] == targetIDSpawn)
+                {
+                    bool isSpawnable = true;
+                    for (int dx = -size.x; dx < size.x; dx++)
+                    {
+                        for (int dy = -size.y; dy < size.y; dy++)
+                        {
+                            int nx = x + dx;
+                            int ny = y + dy;
+
+                            if (nx >= mapWidth || ny >= mapHeight || nx < 0 || ny < 0)
+                            {
+                                isSpawnable = false;
+                                break;
+                            }
+
+                            if (map[nx, ny] != targetIDSpawn)
+                            {
+                                isSpawnable = false;
+                                break;
+                            }
+                        }
+
+                        if (!isSpawnable)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (isSpawnable)
+                    {
+                        spawnableLocations.Add(new Vector2Int(x, y));
+                    }
+                }
+            }
+        }
+
+          Shuffle(spawnableLocations, pseudoRandom);
+
+        List<Vector2Int> finalSpawnableLocations = new List<Vector2Int>();
+        while(finalSpawnableLocations.Count < nb && spawnableLocations.Count > 0)
+        {
+            Vector2Int location = spawnableLocations[spawnableLocations.Count-1];
+            spawnableLocations.RemoveAt(spawnableLocations.Count - 1);
+            bool isSpawnable = true;
+            for (int dx = -size.x; dx < size.x; dx++)
+            {
+                for (int dy = -size.y; dy < size.y; dy++)
+                {
+                    int nx = location.x + dx;
+                    int ny = location.y + dy;
+                    if(map[nx, ny] == replaceID)
+                    {
+                        isSpawnable = false;
+                        break;
+                    }                    
+                }
+                if(!isSpawnable)
+                { 
+                    break;
+                }
+            }
+            if(isSpawnable)
+            {
+                finalSpawnableLocations.Add(location);
+                for (int dx = -size.x; dx < size.x; dx++)
+                {
+                    for (int dy = -size.y; dy < size.y; dy++)
+                    {
+                        int nx = location.x + dx;
+                        int ny = location.y + dy;
+                        map[nx, ny] = replaceID;
+                    }
+                }
+            }
+        }
+        return finalSpawnableLocations;
+    }
+
+    private void Shuffle<T>(List<T> list, System.Random random)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            int k = random.Next(n--);
+            T temp = list[n];
+            list[n] = list[k];
+            list[k] = temp;
+        }
     }
 
     public void Create()
@@ -107,6 +259,34 @@ public class ProceduralMapManager : MonoBehaviour
             }
         }
 
+        foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
+        {
+            for (int i = 0; i < b.SpawnObjects.Count; i++)
+            {
+                if (pseudoRandom.NextDouble() * 100.0 <= b.SpawnObjects[i].SpawnRateChunck)
+                {
+                    int spawnNb = 0;
+                    if(b.SpawnObjects[i].HasSpawnFillPercent)
+                    {
+                        spawnNb = (int)(pseudoRandom.NextDouble() * b.SpawnObjects[i].SpawnFillPercent * chunckSize * chunckSize);
+                    }
+                    else
+                    {
+                        spawnNb = b.SpawnObjects[i].SpawnNumber;
+                    }
+                    List<Vector2Int> posList = CheckIsSpawnable(pair.Value.map, b.SpawnObjects[i].Size, spawnNb, pseudoRandom, b.SpawnObjects[i].WallObject);
+                    for (int j = 0; j < posList.Count; j++)
+                    {
+                        Spawnable sp;
+                        sp.id = b.SpawnObjects[i].SpawnID;
+                        sp.position = new Vector3(posList[j].x + pair.Key.x * chunckSize, -wallSize, posList[j].y + pair.Key.y * chunckSize) - new Vector3(chunckSize / 2.0f, b.SpawnObjects[i].WallObject ? -wallSize : 0.0f, chunckSize / 2.0f);
+                        sp.rotation = Quaternion.identity;
+                        pair.Value.spawnables.Add(sp);
+                    }
+                }
+            }
+        }
+
 
         List<Vector2Int> borderMaps = new List<Vector2Int>();
         Vector2Int bo;
@@ -137,7 +317,7 @@ public class ProceduralMapManager : MonoBehaviour
         mflat.RecalculateNormals();        
 
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
-        {            
+        {
             for (int x = -1; x < 2; x++)
             {
                 for (int y = -1; y < 2; y++)
@@ -192,8 +372,10 @@ public class ProceduralMapManager : MonoBehaviour
             MeshRenderer mr7 = holeBorder.AddComponent<MeshRenderer>();
             mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), border.AddComponent<MeshFilter>(), holeBorder.AddComponent<MeshFilter>(), wallSize);
             mg.GenerateMesh(pair.Value.map, 1,pair.Key);
+            Mesh current = ground.GetComponent<MeshFilter>().mesh;   
             MeshCollider mc = ground.AddComponent<MeshCollider>();
-            mc.sharedMesh = ground.GetComponent<MeshFilter>().mesh;
+            mc.sharedMesh = current;
+
             GameObject borderB = new GameObject("ChunckBorderBase_" + pair.Key.ToString());
             borderB.transform.parent = obj.transform;
             borderB.transform.localPosition = new Vector3(0, -wallSize, 0);
@@ -204,12 +386,16 @@ public class ProceduralMapManager : MonoBehaviour
             voidB.transform.parent = obj.transform;
             voidB.transform.localPosition = new Vector3(0, -wallSize*2, 0);
             voidB.transform.localScale = Vector3.one * 1.016f;
+            voidB.AddComponent<OOBRespawnNavMesh>();
+            BoxCollider bc = voidB.AddComponent<BoxCollider>();
+            bc.isTrigger = true;
+            bc.size = mflat.bounds.extents*2.0f + new Vector3(0, wallSize, 0);            
             MeshRenderer mr6 = voidB.AddComponent<MeshRenderer>();
             MeshFilter mf6 = voidB.AddComponent<MeshFilter>();
             mf6.mesh = mflat;
-            mr6.material = matVoid;
-
+            mr6.material = matVoid;            
             mf.mesh = border.GetComponent<MeshFilter>().mesh;
+
             
             mr1.material = b.Wall;
             mr2.material = b.Ceil;
@@ -222,8 +408,17 @@ public class ProceduralMapManager : MonoBehaviour
                 SpawnableObject so = GetID(spawn.id);
                 if (so != null)
                 {
-                    GameObject go = Instantiate(so.Prefab,spawn.position,spawn.rotation);
-                    go.transform.parent = obj.transform;
+                    GameObject go = Instantiate(so.Prefab[pseudoRandom.Next(so.Prefab.Count)],spawn.position,spawn.rotation);
+                    bool rotate = false;
+                    float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
+                    if (rotate)
+                    {
+                        go.transform.eulerAngles = new Vector3(0, angle, 0);
+                    }
+                    if (!so.IsNetCodeObject)
+                    {
+                        go.transform.parent = obj.transform;
+                    }
                 }
             }
         }
@@ -364,7 +559,7 @@ public class ProceduralMapManager : MonoBehaviour
         Vector3 offset = -new Vector3((chunckSize)/2,0, (chunckSize) / 2);
         Spawnable spawn;
         spawn.id = 0;
-        spawn.position = ((new Vector3(gfp1.x, -wallSize, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
+        spawn.position = ((new Vector3(gfp1.x, -wallSize*2, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
         maps[chunk1].spawnables.Add(spawn);
     }

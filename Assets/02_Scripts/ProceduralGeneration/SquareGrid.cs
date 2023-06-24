@@ -18,7 +18,7 @@ public class SquareGrid
             {
                 Vector3 pos = new Vector3(-mapWidth / 2 + x * squareSize + squareSize / 2, 0, -mapHeight / 2 + y * squareSize + squareSize / 2);
                 bool state = false;
-                state = map[x, y] == 1 || (map[x, y] == 2 && (x == nodeCountX-1 || y == nodeCountY-1 || x == 0 ||y == 0));            
+                state = map[x, y] == 5 || map[x, y] == 1 || (map[x, y] == 2 && (x == nodeCountX-1 || y == nodeCountY-1 || x == 0 ||y == 0));            
                 controlNodes[x, y] = new ControlNode(pos, state, squareSize);
             }
         }

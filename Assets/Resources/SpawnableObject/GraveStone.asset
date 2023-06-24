@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ca126a6c89a0541b5119ae2629e7bd, type: 3}
+  m_Name: GraveStone
+  m_EditorClassIdentifier: 
+  spawnID: 4
+  prefab:
+  - {fileID: 7189250994373967479, guid: b4644f25b01a10046994759e26648c85, type: 3}
+  - {fileID: 388904828572978028, guid: 200e30ed6e2fcf74591011adf378567b, type: 3}
+  - {fileID: 7428873609343175944, guid: bf68b6e08d288594c9abdc956464b977, type: 3}
+  size: {x: 2, y: 2}
+  isNetCodeObject: 0
+  wallObject: 1
+  rotateMode: 3
+  angleMin: 0
+  angle: 0
+  spawnRateChunck: 50
+  hasSpawnFillPercent: 1
+  spawnFillPercent: 0.005
+  spawnNumber: 1

@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: Door
   m_EditorClassIdentifier: 
   spawnID: 0
-  prefab: {fileID: 2211283696914234878, guid: 6614b989ba4936644b34f1a7f851b61c, type: 3}
-  isNetCodeObject: 0
+  prefab:
+  - {fileID: 6717879549476563698, guid: 31c1349f78f867246855c96fb1744378, type: 3}
+  size: {x: 0, y: 0}
+  isNetCodeObject: 1
+  wallObject: 0
+  rotateMode: 0
+  angleMin: 0
+  angle: 0
+  spawnRateChunck: 50
+  hasSpawnFillPercent: 1
+  spawnFillPercent: 1
+  spawnNumber: 1
