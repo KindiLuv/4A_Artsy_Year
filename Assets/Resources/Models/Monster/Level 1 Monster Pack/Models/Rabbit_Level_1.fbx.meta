@@ -1,0 +1,659 @@
+fileFormatVersion: 2
+guid: 05b0336cad2ece64b99ce054ed619f4c
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: HeadControl
+  - first:
+      1: 100002
+    second: HeadJoint
+  - first:
+      1: 100004
+    second: HipControl
+  - first:
+      1: 100006
+    second: lEarControl
+  - first:
+      1: 100008
+    second: lEarControl2
+  - first:
+      1: 100010
+    second: lEarJoint
+  - first:
+      1: 100012
+    second: lEarJoint2
+  - first:
+      1: 100014
+    second: lEarJoint3
+  - first:
+      1: 100016
+    second: lFeetControl
+  - first:
+      1: 100018
+    second: lFootJoint
+  - first:
+      1: 100020
+    second: lToeJoint
+  - first:
+      1: 100022
+    second: MESH
+  - first:
+      1: 100024
+    second: //RootNode
+  - first:
+      1: 100026
+    second: RabbitControl
+  - first:
+      1: 100028
+    second: rEarControl
+  - first:
+      1: 100030
+    second: rEarControl2
+  - first:
+      1: 100032
+    second: rEarJoint
+  - first:
+      1: 100034
+    second: rEarJoint2
+  - first:
+      1: 100036
+    second: rEarJoint3
+  - first:
+      1: 100038
+    second: rFeetControl
+  - first:
+      1: 100040
+    second: rFootJoint
+  - first:
+      1: 100042
+    second: RIG
+  - first:
+      1: 100044
+    second: RootJoint
+  - first:
+      1: 100046
+    second: rToeJoint
+  - first:
+      4: 400000
+    second: HeadControl
+  - first:
+      4: 400002
+    second: HeadJoint
+  - first:
+      4: 400004
+    second: HipControl
+  - first:
+      4: 400006
+    second: lEarControl
+  - first:
+      4: 400008
+    second: lEarControl2
+  - first:
+      4: 400010
+    second: lEarJoint
+  - first:
+      4: 400012
+    second: lEarJoint2
+  - first:
+      4: 400014
+    second: lEarJoint3
+  - first:
+      4: 400016
+    second: lFeetControl
+  - first:
+      4: 400018
+    second: lFootJoint
+  - first:
+      4: 400020
+    second: lToeJoint
+  - first:
+      4: 400022
+    second: MESH
+  - first:
+      4: 400024
+    second: //RootNode
+  - first:
+      4: 400026
+    second: RabbitControl
+  - first:
+      4: 400028
+    second: rEarControl
+  - first:
+      4: 400030
+    second: rEarControl2
+  - first:
+      4: 400032
+    second: rEarJoint
+  - first:
+      4: 400034
+    second: rEarJoint2
+  - first:
+      4: 400036
+    second: rEarJoint3
+  - first:
+      4: 400038
+    second: rFeetControl
+  - first:
+      4: 400040
+    second: rFootJoint
+  - first:
+      4: 400042
+    second: RIG
+  - first:
+      4: 400044
+    second: RootJoint
+  - first:
+      4: 400046
+    second: rToeJoint
+  - first:
+      43: 4300000
+    second: MESH
+  - first:
+      74: 7400000
+    second: rabbit_idle
+  - first:
+      74: 7400002
+    second: rabbit_move
+  - first:
+      74: 7400004
+    second: rabbit_attack
+  - first:
+      74: 7400006
+    second: rabbit_damage
+  - first:
+      74: 7400008
+    second: rabbit_die
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: MESH
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: rabbit_idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MESH
+        weight: 1
+      - path: RIG
+        weight: 1
+      - path: RIG/RabbitControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl/lEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl/rEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2/lEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2/rEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint/lToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint/rToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/lFeetControl
+        weight: 1
+      - path: RIG/RabbitControl/rFeetControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rabbit_move
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 40
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MESH
+        weight: 1
+      - path: RIG
+        weight: 1
+      - path: RIG/RabbitControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl/lEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl/rEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2/lEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2/rEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint/lToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint/rToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/lFeetControl
+        weight: 1
+      - path: RIG/RabbitControl/rFeetControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rabbit_attack
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 80
+      lastFrame: 104
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MESH
+        weight: 1
+      - path: RIG
+        weight: 1
+      - path: RIG/RabbitControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl/lEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl/rEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2/lEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2/rEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint/lToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint/rToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/lFeetControl
+        weight: 1
+      - path: RIG/RabbitControl/rFeetControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rabbit_damage
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 130
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MESH
+        weight: 1
+      - path: RIG
+        weight: 1
+      - path: RIG/RabbitControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl/lEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl/rEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2/lEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2/rEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint/lToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint/rToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/lFeetControl
+        weight: 1
+      - path: RIG/RabbitControl/rFeetControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rabbit_die
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 160
+      lastFrame: 190
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MESH
+        weight: 1
+      - path: RIG
+        weight: 1
+      - path: RIG/RabbitControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/lEarControl/lEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/HeadControl/rEarControl/rEarControl2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/lEarJoint/lEarJoint2/lEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/HeadJoint/rEarJoint/rEarJoint2/rEarJoint3
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/lFootJoint/lToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint
+        weight: 1
+      - path: RIG/RabbitControl/HipControl/RootJoint/rFootJoint/rToeJoint
+        weight: 1
+      - path: RIG/RabbitControl/lFeetControl
+        weight: 1
+      - path: RIG/RabbitControl/rFeetControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: RabbitControl
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

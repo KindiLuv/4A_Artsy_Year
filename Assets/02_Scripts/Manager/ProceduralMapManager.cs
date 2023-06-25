@@ -11,11 +11,10 @@ public class ProceduralMapManager : MonoBehaviour
     [SerializeField] private float wallSize = 4.0f;
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed = true;
-    [SerializeField] [Range(0, 100)] private int randomFillPercent = 50;
-    [SerializeField] [Range(0, 100)] private int randomAddPercent = 0;
     [SerializeField] private int countZone = 10;
     [SerializeField] private int idBiome = 0;
-    [SerializeField] private LightCookieOffset lco = null;    
+    [SerializeField] private LightCookieOffset lco = null;
+    private Biome b;
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
@@ -194,19 +193,24 @@ public class ProceduralMapManager : MonoBehaviour
         {
             seed = UnityEngine.Random.Range(0,10000).ToString();
         }
-        Biome b = GetBiomeID(idBiome);
+        b = GetBiomeID(idBiome);
         Dictionary<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> dungeon = CreateDungeon(Vector2Int.zero);
         int countBoss = 0;
+        Vector2Int bossRoom = Vector2Int.zero;
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
             CreateChunck(pair.Key, countBoss == dungeon.Count-1);
+            if(countBoss == dungeon.Count - 1)
+            {
+                bossRoom = pair.Key;
+            }
             countBoss++;
         }
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
             for (int i = 0; i < pair.Value.Key.Count; i++)
             {
-                ConnectChunks(pair.Key, pair.Value.Key[i]);
+                ConnectChunks(pair.Key, pair.Value.Key[i], pair.Key == bossRoom || pair.Value.Key[i] == bossRoom);
             }
         }
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
@@ -497,7 +501,7 @@ public class ProceduralMapManager : MonoBehaviour
         return nextZone;
     }
 
-    private void ConnectChunks(Vector2Int chunk1, Vector2Int chunk2)
+    private void ConnectChunks(Vector2Int chunk1, Vector2Int chunk2, bool boss = false)
     {
         int[,] map1 = maps[chunk1].map;
         int[,] map2 = maps[chunk2].map;
@@ -560,7 +564,7 @@ public class ProceduralMapManager : MonoBehaviour
         }        
         Vector3 offset = -new Vector3((chunckSize)/2,0, (chunckSize) / 2);
         Spawnable spawn;
-        spawn.id = 0;
+        spawn.id = boss ? b.BossDoor.SpawnID : b.Door.SpawnID;
         spawn.position = ((new Vector3(gfp1.x, -wallSize*2, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
         maps[chunk1].spawnables.Add(spawn);
@@ -606,7 +610,7 @@ public class ProceduralMapManager : MonoBehaviour
         }
         else
         {
-            fillpercent = Mathf.Min(randomFillPercent + pseudoRandom.Next(randomAddPercent), 90);
+            fillpercent = Mathf.Min(b.RandomFillPercent + pseudoRandom.Next(b.RandomAddPercent), 90);
         }
         for (int x = 0; x < chunckSize; x++)
         {

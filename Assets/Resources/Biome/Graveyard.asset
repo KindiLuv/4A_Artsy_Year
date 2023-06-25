@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b131bcaa2b79ee4d82be636147ee8e8, type: 3}
+  m_Name: Graveyard
+  m_EditorClassIdentifier: 
+  biomeID: 0
+  ground: {fileID: 2100000, guid: 224b9352ce5c3104cb6a0c5773083cc9, type: 2}
+  wall: {fileID: 2100000, guid: a79fa5868d0f2864fa7274587a524f55, type: 2}
+  ceil: {fileID: 2100000, guid: 2ebb6e8ed43f53d4287e7ed54fc84d58, type: 2}
+  border: {fileID: 2100000, guid: a020c34f204b79242b7a2387631d8464, type: 2}
+  borderHole: {fileID: 2100000, guid: 41f6a84d8a43e3e4eaee4c92c57e4a40, type: 2}
+  voidHole: {fileID: 2100000, guid: bc0a3b09afe6aa44ea05b7b5d3fcbca3, type: 2}
+  door: {fileID: 11400000, guid: 7755005087ce3e84ebaff5f9127217ef, type: 2}
+  bossDoor: {fileID: 11400000, guid: 4d7db77476684d0479e25b92bfbcf994, type: 2}
+  spawnObjects:
+  - {fileID: 11400000, guid: 92b2033a781c19f4ab059d12b7e91068, type: 2}
+  - {fileID: 11400000, guid: fd530c768b6651d46a6a56418a8fce01, type: 2}
+  - {fileID: 11400000, guid: d557eebb0ad390f40832ab9034384a95, type: 2}
+  - {fileID: 11400000, guid: 0d46a9accdd7d464a93dd51ed43b258a, type: 2}
+  - {fileID: 11400000, guid: c52f34255beaadb408f78f60b2513302, type: 2}
+  - {fileID: 11400000, guid: c0ff9b457065e0e40a15dcea3c2b8d4a, type: 2}
+  - {fileID: 11400000, guid: f4a291dd1e2bdfb4b9a1286716aa38e6, type: 2}
+  - {fileID: 11400000, guid: ace0922a3128cac45b5ffdd0016fed91, type: 2}
+  randomFillPercent: 46
+  randomAddPercent: 4
+  hole_rate_chunck: 50
+  hole_fill_percent: 56
+  sunKelvin: 16000
+  sunIntensity: 1
+  speedSunMove: {x: 0.5, y: 0.5}
+  sunSizeCookie: {x: 50, y: 50}
+  sunLightCookie: {fileID: 2800000, guid: c0adcfda771de8b4b953aebfd968cabe, type: 3}
