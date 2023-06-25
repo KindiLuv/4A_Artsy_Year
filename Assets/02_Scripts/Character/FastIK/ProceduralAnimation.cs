@@ -49,7 +49,7 @@ public class ProceduralAnimation : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(point + halfRange * up, - up);
 
-        //Debug.DrawRay(point + halfRange * up, -up, Color.red, 2f * halfRange);
+        Debug.DrawRay(point + halfRange * up, -up, Color.red, 2f * halfRange);
 
         if (Physics.Raycast(ray, out hit, 2f * halfRange,lm))
         {

@@ -121,8 +121,12 @@ public class SpiderProceduralAnimation : ProceduralAnimation
                 }
             }
             for (int i = 0; i < nbLegs; ++i)
+            {
                 if (i != indexToMove)
+                {
                     legTargets[i].position = lastLegPositions[i];
+                }
+            }
 
             if (indexToMove != -1 && !legMoving[0])
             {
