@@ -18,6 +18,7 @@ public class PlayerController : Character
     [SerializeField] private bool _isGamepad; //Mostly a visualizer
 
     private CharacterController _controller;
+    private Player _player;
 
     private Vector2 _movement;
     private Vector2 _aim;
@@ -42,6 +43,7 @@ public class PlayerController : Character
         _controller = GetComponent<CharacterController>();
         _playerControls = new PlayerControls();
         _playerInput = GetComponent<PlayerInput>();
+        _player = GetComponent<Player>();
         //_tr = GetComponent<TrailRenderer>();
 
     }
@@ -152,8 +154,7 @@ public class PlayerController : Character
 
     private void HandleBasicAttack(InputAction.CallbackContext obj)
     {
-        Debug.Log("basic attack");
-        
+        _player.BasicAttack();
     }
 
     private void HandleSpell1(InputAction.CallbackContext obj)
@@ -163,7 +164,7 @@ public class PlayerController : Character
 
     private void HandleSpell2(InputAction.CallbackContext obj)
     {
-        //throw new NotImplementedException();
+        throw new NotImplementedException();
     }
 
     private void HandleUltimate(InputAction.CallbackContext obj)
