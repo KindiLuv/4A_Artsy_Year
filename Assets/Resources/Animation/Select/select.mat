@@ -21,9 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: select
-  m_Shader: {fileID: -6465566751694194690, guid: a955a39e1940e9545b6eccdfd2ff519e, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
+  m_Shader: {fileID: -6465566751694194690, guid: a955a39e1940e9545b6eccdfd2ff519e,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _EMISSION
@@ -33,7 +32,6 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -117,8 +115,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - Color_67BDD5C8: {r: 1, g: 0.9830491, b: 0, a: 0}
-    - Color_DD0DAA92: {r: 2, g: 1.8966576, b: 0, a: 0}
+    - Color_67BDD5C8: {r: 0, g: 0.2466731, b: 1, a: 0}
+    - Color_DD0DAA92: {r: 0, g: 0.6719036, b: 2, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0.575444, b: 1.2675165, a: 1}

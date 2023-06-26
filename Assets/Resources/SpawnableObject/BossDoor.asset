@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnID: 10
   prefab:
-  - {fileID: 464103927212551695, guid: 794f1cb84915aa745874ea0d47efdefd, type: 3}
+  - {fileID: 5273598650047238186, guid: a124222644aa2eb44a88d9dc6369928a, type: 3}
   size: {x: 0, y: 0}
   isNetCodeObject: 1
   wallObject: 0
