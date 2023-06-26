@@ -11,7 +11,11 @@ public enum WeaponType
    Axe,
    Mace,
    Bow,
-   Staff
+   Staff,   
+   Rifle,
+   Shotgun,
+   Pistol,
+   AutoRifle
 }
 
 public enum Rarity
@@ -27,7 +31,8 @@ public enum Rarity
 
 public enum WeaponFamily
 {
-   Fish
+   Fish,
+   Metal
 }
 
 

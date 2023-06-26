@@ -539,8 +539,7 @@ public class ProceduralMapManager : MonoBehaviour
         Vector2 gfp1 = new Vector2((chunk1.x * chunckSize) + fp1.x, (chunk1.y * chunckSize) + fp1.y);
         Vector2 gfp2 = new Vector2((chunk2.x * chunckSize) + fp2.x, (chunk2.y * chunckSize) + fp2.y);
         int d = Mathf.RoundToInt(Vector2.Distance(gfp1, gfp2));
-        Vector2 direction = (gfp2 - gfp1).normalized;
-        List<Vector2> doorPos;
+        Vector2 direction = (gfp2 - gfp1).normalized;        
         for (int k = -1; k < 2; k++)
         {
             for (int j = -1; j < 2; j++)
