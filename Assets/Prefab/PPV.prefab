@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4910950370905110344}
   - component: {fileID: 4910950370905110345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PPV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
