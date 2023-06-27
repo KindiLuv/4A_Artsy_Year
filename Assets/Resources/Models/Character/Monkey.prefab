@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepSize: 0.3
-  smoothnessMax: 2
+  smoothnessMax: 3
   smoothnessMin: 1
   stepHeight: 0.1
   bodyOrientation: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  smoothness: 1
+  smoothness: 3
   activeAnimation: 1
   legTargets:
   - {fileID: 8323033448085829194}

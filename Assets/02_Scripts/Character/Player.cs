@@ -8,10 +8,8 @@ public class Player : Character
 
     private Role _playerClass;
     
-    //TODO
-    //private Inventory _playerInventory;
-    
-    //TODO
+    //TODO: private Inventory _playerInventory;
+
     private Equipment _playerEquipment;
 
     private CharacterSO characterData = null;
@@ -19,7 +17,13 @@ public class Player : Character
     [SerializeField] private Animator _playerHand;
     private static readonly int Attacking = Animator.StringToHash("Attacking");
 
-    // [SerializeField] private Ani
+    #region Getter Setter
+
+    public CharacterSO CharacterData { get { return characterData; } set { characterData = value; } }
+
+    #endregion
+
+    [SerializeField] private GameObject playerModelSpawn = null;
 
     private void Start()
     {
@@ -30,25 +34,42 @@ public class Player : Character
         else
         {
             _playerEquipment = gameObject.AddComponent<Equipment>();
-            //TODO
-            //Load player save data
+            //TODO: Load player save data
         }
-        
-        UpdatePlayerEquipment();
-        
+
+        LoadCharacterData();
+        UpdatePlayerEquipment();        
+    }    
+
+    public void LoadCharacterData()
+    {
+        foreach(Transform t in playerModelSpawn.transform)
+        {
+            Destroy(t.gameObject);
+        }
+        Instantiate(characterData.Prefab, playerModelSpawn.transform.position, playerModelSpawn.transform.rotation, playerModelSpawn.transform);
     }
+
 
     public void UpdatePlayerEquipment()
     {
-        if (_playerEquipment.GetMainWeeapon() != null)
+        if (HasWeapon())
         {
             Instantiate(_playerEquipment.GetMainWeeapon().weaponModel, _playerHand.transform);
         }
     }
 
-    public void BasicAttack()
+    public bool HasWeapon()
     {
-        
+        return _playerEquipment.GetMainWeeapon() != null;
+    }
+
+    public void BasicAttack()
+    {        
+        if(!HasWeapon())
+        {
+            return;
+        }
         switch ((int)_playerEquipment.GetMainWeeapon().weaponType)
         {
             case 0:

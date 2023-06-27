@@ -18,8 +18,10 @@ public class MenuManager : MonoBehaviour
     private static MenuManager instance = null;
 
     private PlayerControls _playerControls;
+    private List<CharacterSO> characters;
     private GameObject selectHero = null;
     private int _currentHeroSelected = -1;
+    private GameObject player = null;
     #region Getter Setter
 
     public static MenuManager Instance { get { return instance; } }
@@ -36,10 +38,10 @@ public class MenuManager : MonoBehaviour
 
     public void Start()
     {
-        List<CharacterSO> chracters = GameRessourceManager.Instance.Chracters;
-        for (int i = 0; i < chracters.Count; i++)
+        characters = GameRessourceManager.Instance.Chracters;
+        for (int i = 0; i < characters.Count; i++)
         {
-            spawnPrefabs.Add(Instantiate(chracters[i].Prefab, spawnPointList[i % spawnPointList.Count].position, spawnPointList[i % spawnPointList.Count].rotation, transform));
+            spawnPrefabs.Add(Instantiate(characters[i].Prefab, spawnPointList[i % spawnPointList.Count].position, spawnPointList[i % spawnPointList.Count].rotation, transform));
         }
         selectHero = Instantiate(_interactEffect);
         selectHero.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
@@ -82,8 +84,20 @@ public class MenuManager : MonoBehaviour
     public void LoadPlayerController()
     {
         _camera.gameObject.SetActive(false);
-        Instantiate(playerControlerPrefab, spawnPointList[_currentHeroSelected % spawnPointList.Count].position + new Vector3(0.0f, 1.0f,0.0f), Quaternion.identity);
-        spawnPrefabs[_currentHeroSelected % spawnPrefabs.Count].SetActive(false);        
+        player = Instantiate(playerControlerPrefab, spawnPointList[_currentHeroSelected % spawnPointList.Count].position + new Vector3(0.0f, 1.0f,0.0f), Quaternion.identity);
+        spawnPrefabs[_currentHeroSelected % spawnPrefabs.Count].SetActive(false);
+        player.GetComponent<Player>().CharacterData = characters[_currentHeroSelected % spawnPrefabs.Count];
+        FadeScreenManager.OnFadeInComplete -= LoadPlayerController;
         FadeScreenManager.FadeOut(0.0f);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            FadeScreenManager.FadeIn();
+            Destroy(player);
+            _camera.gameObject.SetActive(true);
+        }
     }
 }

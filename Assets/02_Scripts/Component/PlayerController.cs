@@ -43,6 +43,13 @@ public class PlayerController : Character
         _playerControls = InputManager.PlayerInput;
         _player = GetComponent<Player>();
         //_tr = GetComponent<TrailRenderer>();
+        _playerControls.controls.Dash.performed += HandleDash;
+        _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
+        _playerControls.controls.Spell1.performed += HandleSpell1;
+        _playerControls.controls.Spell2.performed += HandleSpell2;
+        _playerControls.controls.Ultimate.performed += HandleUltimate;
+        _playerControls.controls.Interact.performed += HandleInteract;
+        _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
     }
     
     public override void Teleportation(Vector3 positionTarget)
@@ -60,13 +67,6 @@ public class PlayerController : Character
             enabled = false;
             return;
         }
-        _playerControls.controls.Dash.performed += HandleDash;
-        _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
-        _playerControls.controls.Spell1.performed += HandleSpell1;
-        _playerControls.controls.Spell2.performed += HandleSpell2;
-        _playerControls.controls.Ultimate.performed += HandleUltimate;
-        _playerControls.controls.Interact.performed += HandleInteract;
-        _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
     }
 
     private void Update()
