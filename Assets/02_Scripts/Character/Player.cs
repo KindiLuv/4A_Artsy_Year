@@ -14,6 +14,8 @@ public class Player : Character
     //TODO
     private Equipment _playerEquipment;
 
+    private CharacterSO characterData = null;
+
     [SerializeField] private Animator _playerHand;
     private static readonly int Attacking = Animator.StringToHash("Attacking");
 
@@ -38,7 +40,10 @@ public class Player : Character
 
     public void UpdatePlayerEquipment()
     {
-        Instantiate(_playerEquipment.GetMainWeeapon().weaponModel, _playerHand.transform);
+        if (_playerEquipment.GetMainWeeapon() != null)
+        {
+            Instantiate(_playerEquipment.GetMainWeeapon().weaponModel, _playerHand.transform);
+        }
     }
 
     public void BasicAttack()

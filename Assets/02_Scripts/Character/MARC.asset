@@ -15,4 +15,4 @@ MonoBehaviour:
   BaseHealth: 100
   BaseSpeed: 0
   BaseDamage: 0
-  Prefab: {fileID: 4402447181789104996, guid: 88f89d7e91304f2468296c9aa533976b, type: 3}
+  Prefab: {fileID: 4239980422592476238, guid: 2fce5a5ef9f98a04c99c10ec66f2fc20, type: 3}

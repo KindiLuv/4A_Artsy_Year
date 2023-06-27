@@ -31,7 +31,6 @@ public class PlayerController : Character
     private bool _dashLocked;
 
     private PlayerControls _playerControls;
-    private PlayerInput _playerInput;
     [SerializeField] private TrailRenderer _tr = null;
     [SerializeField] private PlayerInteract _playerInteract = null;
     [SerializeField] private GameObject _playerCamera = null;
@@ -41,11 +40,9 @@ public class PlayerController : Character
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
-        _playerControls = new PlayerControls();
-        _playerInput = GetComponent<PlayerInput>();
+        _playerControls = InputManager.PlayerInput;
         _player = GetComponent<Player>();
         //_tr = GetComponent<TrailRenderer>();
-
     }
     
     public override void Teleportation(Vector3 positionTarget)
@@ -55,17 +52,11 @@ public class PlayerController : Character
         _controller.enabled = true;
     }
 
-    private void OnEnable()
-    {
-        _playerControls.Enable();
-    }
-
     public override void OnNetworkSpawn()
     {
         if (!IsLocalPlayer)
         {
-            Destroy(_playerCamera);
-            Destroy(_playerInput);
+            Destroy(_playerCamera);            
             enabled = false;
             return;
         }
@@ -78,11 +69,6 @@ public class PlayerController : Character
         _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
     }
 
-    private void OnDisable()
-    {
-        _playerControls.Disable();
-    }
-
     private void Update()
     {
         if (_actionLocked) return;
@@ -91,7 +77,7 @@ public class PlayerController : Character
         HandleInputAim();
         HandleRotation();
         if (_dashLocked) return;
-        OnDeviceChange(_playerInput);
+        //OnDeviceChange(_playerInput);
         HandleInputMovement();
 
     }
