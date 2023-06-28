@@ -111,18 +111,27 @@ public class MenuManager : MonoBehaviour
         GameNetworkManager.Instance.DebugStartIPServer(1);
     }
 
+    public void Server()
+    {
+        GameNetworkManager.Instance.DebugStartIPServer(2);
+    }
+
+    public void Client()
+    {
+        GameNetworkManager.Instance.DebugStartIPServer(2);
+    }
+
     public void Multijoueur()
     {
         launchGameUI.GetComponent<Animator>().SetTrigger("Exit");
         if (multiGameUI.activeSelf)
         {
-            multiGameUI.GetComponent<Animator>().SetTrigger("Spawn");
+            multiGameUI.GetComponent<Animator>().SetTrigger("Spawn");            
         }
         else
         {
             multiGameUI.SetActive(true);
-        }
-
+        }        
     }
 
     public void RetourGameLauncheur()
