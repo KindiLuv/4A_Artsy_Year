@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipment : MonoBehaviour
+public class Equipment
 {
     [SerializeField] private WeaponSO _equipedMainWeapon;
     /*TODO 

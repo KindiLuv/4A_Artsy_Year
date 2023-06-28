@@ -47,7 +47,11 @@ public class WeaponSO : ScriptableObject
    public WeaponFamily weaponFamily;
    public Rarity rarity;
    public string weaponDescription;
-   public float weaponWeight;
    public int dmgPerHit;
    public GameObject weaponModel;
+   public List<ProjectileSO> projectile;
+   public int spawnProjectileCount = 1;
+   public float spawnProjectileRate = 0.5f;
+   public float offsetAngle = 0.0f;
+   public float Angle = 0.0f;
 }

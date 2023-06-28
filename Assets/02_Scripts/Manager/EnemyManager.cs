@@ -2,6 +2,7 @@ using ArtsyNetcode;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class EnemyManager : NetEntity
@@ -17,17 +18,21 @@ public class EnemyManager : NetEntity
         }
     }
 
-    // To call
-    public void InstantiateEnemy()
+    public override void OnNetworkSpawn()
     {
-        var enemy = Instantiate(enemies[0].Prefab);
-        var enemySettings = enemy.AddComponent<Enemy>();
-        enemySettings.enemyInformations = enemies[0];
-        enemySettings.SetupEnemy();
+        if (IsServer)
+        {
+            InstantiateEnemy(0,new Vector3(0.0f,-1.0f,0.0f));
+        }
     }
 
-    private void Start()
+    public void InstantiateEnemy(int id,Vector3 pos)
     {
-        InstantiateEnemy();
+        GameObject enemy = Instantiate(enemies[id].Prefab);
+        Enemy enemySettings = enemy.GetComponent<Enemy>();
+        enemySettings.enemyInformations = enemies[id];
+        enemySettings.SetupEnemy();
+        enemy.transform.position = pos;
+        enemy.GetComponent<NetworkObject>().Spawn();
     }
 }

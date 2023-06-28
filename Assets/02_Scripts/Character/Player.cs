@@ -1,73 +1,107 @@
 using ArtsyNetcode;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.NetCode;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Player : NetEntity
 {
-
     private Role _playerClass;
-    
-    //TODO: private Inventory _playerInventory;
-
-    private Equipment _playerEquipment;
-
-    private CharacterSO characterData = null;
+    private int characterID = -1;
+    private int weaponID = -1;
+    private CharacterSO _character;
+    private WeaponSO _weapon;
 
     [SerializeField] private Animator _playerHand;
+    [SerializeField] private GameObject playerModelSpawn = null;
+
     private static readonly int Attacking = Animator.StringToHash("Attacking");
 
     #region Getter Setter
 
-    public CharacterSO CharacterData { get { return characterData; } set { characterData = value; } }
+    public int CharacterID { get { return characterID; } set { characterID = value; } }
+    public int WeaponID { get { return weaponID; } set { weaponID = value; } }
 
     #endregion
 
-    [SerializeField] private GameObject playerModelSpawn = null;
 
     private void Start()
     {
-        if (GetComponent<Equipment>())
+        if (GameNetworkManager.IsOffline)
         {
-            _playerEquipment = GetComponent<Equipment>();
+            LoadData(characterID,weaponID);            
         }
-        else
-        {
-            _playerEquipment = gameObject.AddComponent<Equipment>();
-        }
-        if(SaveManager.Instance.CurrentPlayerChracterChoise >= 0)
-        {
-            characterData = GameRessourceManager.Instance.Chracters[SaveManager.Instance.CurrentPlayerChracterChoise];
-        }
-        LoadCharacterData();
-        UpdatePlayerEquipment();        
-    }    
+    }
 
-    public void LoadCharacterData()
+    public override void OnNetworkSpawn()
+    {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
+        characterID = SaveManager.Instance.CurrentPlayerCharacterChoise;
+        weaponID = SaveManager.Instance.CurrentPlayerWeaponChoise;
+        LoadDataServerRpc(characterID,weaponID);
+    }
+
+    [ServerRpc]
+    public void LoadDataServerRpc(int ci,int wi)
+    {
+        LoadDataClientRpc(ci, wi);
+    }
+
+    [ClientRpc]
+    public void LoadDataClientRpc(int ci,int wi)
+    {
+        LoadData(ci, wi);
+    }
+
+    public void LoadData(int ci, int wi)
     {
         foreach(Transform t in playerModelSpawn.transform)
         {
             Destroy(t.gameObject);
         }
-        if (characterData != null)
+        if (ci >= 0)
         {
-            Instantiate(characterData.Prefab, playerModelSpawn.transform.position, playerModelSpawn.transform.rotation, playerModelSpawn.transform);
+            _character = GameRessourceManager.Instance.Characters[ci% GameRessourceManager.Instance.Characters.Count];
+            if (_character != null)
+            {
+                Instantiate(_character.Prefab, playerModelSpawn.transform.position, playerModelSpawn.transform.rotation, playerModelSpawn.transform);
+            }
         }
+        foreach (Transform t in _playerHand.transform)
+        {
+            Destroy(t.gameObject);
+        }
+        if (wi >= 0)
+        {
+            _weapon = GameRessourceManager.Instance.Weapons[wi % GameRessourceManager.Instance.Weapons.Count];
+            if(_weapon != null)
+            {
+                Instantiate(_weapon.weaponModel, _playerHand.transform);
+            }
+        }
+        characterID = ci;
+        weaponID = wi;
     }
 
 
-    public void UpdatePlayerEquipment()
+    [ServerRpc]
+    public void SpawnProjectileServerRpc()
     {
-        if (HasWeapon())
-        {
-            Instantiate(_playerEquipment.GetMainWeeapon().weaponModel, _playerHand.transform);
-        }
+        
+    }
+
+    [ClientRpc]
+    public void SpawnProjectileClientRpc()
+    {
+
     }
 
     public bool HasWeapon()
     {
-        return _playerEquipment.GetMainWeeapon() != null;
+        return _weapon != null;
     }
 
     public void BasicAttack()
@@ -76,7 +110,7 @@ public class Player : NetEntity
         {
             return;
         }
-        switch ((int)_playerEquipment.GetMainWeeapon().weaponType)
+        switch ((int)_weapon.weaponType)
         {
             case 0:
                 break;

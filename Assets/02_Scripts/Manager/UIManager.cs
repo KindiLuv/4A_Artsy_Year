@@ -18,13 +18,7 @@ public class UIManager : MonoBehaviour
     }
     
     public void CreateFloatingText(string text, Vector3 pos, Color color)
-    {
-        // TODO bah regarder mdr
-        /*if (PlayerPrefSystem.DisplayPlayerDamage != 1)
-        {
-            return;
-        }*/
-        
+    {   
         GameObject go = new GameObject("FloatingText");
         go.transform.position = pos;
         TextMeshPro textmeshPro = go.AddComponent<TextMeshPro>();
@@ -34,8 +28,6 @@ public class UIManager : MonoBehaviour
         textmeshPro.outlineColor = Color.black;
         textmeshPro.alignment = TextAlignmentOptions.Center;
         textmeshPro.text = text;
-        // TODO faire un ressource 
-        //textmeshPro.spriteAsset = RessourceSystem.Config.spriteAssetTextDamage;
         StartCoroutine(FloatingText(textmeshPro, color));
     }
 

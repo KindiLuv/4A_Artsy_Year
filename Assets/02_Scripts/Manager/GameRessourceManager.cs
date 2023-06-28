@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameRessourceManager : MonoBehaviour
 {
     [SerializeField] private List<Biome> biomes = new List<Biome>();
-    [SerializeField] private List<CharacterSO> chracters = new List<CharacterSO>();
+    [SerializeField] private List<CharacterSO> characters = new List<CharacterSO>();
+    [SerializeField] private List<WeaponSO> weapons = new List<WeaponSO>();    
 
     private static GameRessourceManager instance = null;
 
@@ -13,7 +14,8 @@ public class GameRessourceManager : MonoBehaviour
 
     public static GameRessourceManager Instance { get { return instance; } }
 
-    public List<CharacterSO> Chracters { get { return chracters; } }
+    public List<CharacterSO> Characters { get { return characters; } }
+    public List<WeaponSO> Weapons { get { return weapons; } }
 
     public List<Biome> Biomes { get { return biomes; } }
 

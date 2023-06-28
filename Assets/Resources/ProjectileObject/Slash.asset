@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 693dae453df35d64abde7e3a09a0452c, type: 3}
-  m_Name: MARC
+  m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
+  m_Name: Slash
   m_EditorClassIdentifier: 
-  BaseHealth: 100
-  BaseSpeed: 0
-  BaseDamage: 0
-  Prefab: {fileID: 4239980422592476238, guid: 2fce5a5ef9f98a04c99c10ec66f2fc20, type: 3}
+  speed: 1
+  prefab:
+  - {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb, type: 3}

@@ -41,20 +41,24 @@ public class MenuManager : MonoBehaviour
 
     public void Start()
     {
-        characters = GameRessourceManager.Instance.Chracters;
+        characters = GameRessourceManager.Instance.Characters;
         for (int i = 0; i < characters.Count; i++)
         {
             spawnPrefabs.Add(Instantiate(characters[i].Prefab, spawnPointList[i % spawnPointList.Count].position, spawnPointList[i % spawnPointList.Count].rotation, transform));
         }
         selectHero = Instantiate(_interactEffect);
         selectHero.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
+        OnEnable();
     }    
 
     public void OnEnable()
     {
-        _playerControls = InputManager.PlayerInput;
-        _playerControls.controls.BasicAttack.performed += SelectHero;
-        _playerControls.controls.Dash.performed += NextHero;
+        if (InputManager.Instance != null)
+        {
+            _playerControls = InputManager.PlayerInput;
+            _playerControls.controls.BasicAttack.performed += SelectHero;
+            _playerControls.controls.Dash.performed += NextHero;
+        }
     }
 
     public void OnDisable()
@@ -90,8 +94,10 @@ public class MenuManager : MonoBehaviour
         _camera.gameObject.SetActive(false);
         player = Instantiate(playerControlerPrefab, spawnPointList[_currentHeroSelected % spawnPointList.Count].position + new Vector3(0.0f, 1.0f,0.0f), Quaternion.identity);
         spawnPrefabs[_currentHeroSelected % spawnPrefabs.Count].SetActive(false);
-        SaveManager.Instance.CurrentPlayerChracterChoise = _currentHeroSelected % spawnPrefabs.Count;
-        player.GetComponent<Player>().CharacterData = characters[_currentHeroSelected % spawnPrefabs.Count];
+        SaveManager.Instance.CurrentPlayerCharacterChoise = _currentHeroSelected % spawnPrefabs.Count;
+        SaveManager.Instance.CurrentPlayerWeaponChoise = 0;
+        Player p = player.GetComponent<Player>();
+        p.CharacterID = _currentHeroSelected % spawnPrefabs.Count;        
         FadeScreenManager.OnFadeInComplete -= LoadPlayerController;
         FadeScreenManager.FadeOut(0.0f);
     }
@@ -118,7 +124,7 @@ public class MenuManager : MonoBehaviour
 
     public void Client()
     {
-        GameNetworkManager.Instance.DebugStartIPServer(2);
+        GameNetworkManager.Instance.DebugStartIPClient(2);
     }
 
     public void Multijoueur()

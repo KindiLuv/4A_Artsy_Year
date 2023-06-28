@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
             return instance.playerInput;
         }
     }
+
+    public static InputManager Instance { get { return instance; } }
     #endregion
 
     private void Awake()

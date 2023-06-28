@@ -30,6 +30,7 @@ namespace Assets.Scripts.NetCode
         private bool isFindingGame = false;        
         private SteamId OpponentSteamId { get; set; }
         public static bool IsConnectedToLobby { get => Instance.isConnectedToLobby; }
+        public static bool IsOffline { get => !NetworkManager.Singleton.IsConnectedClient && !NetworkManager.Singleton.IsHost; }
         public static bool IsFindingGame { get => Instance.isFindingGame; }
         private int _p2pmemberConnect = 0;
         private int _p2pmemberMax = 0;
