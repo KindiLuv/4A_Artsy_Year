@@ -12,6 +12,13 @@ public class Character : NetEntity, IDamageable
     protected float _maxHealth;
     protected float _speed;
     protected GameObject _prefab;
+    protected bool _actionLocked = false;
+
+    #region Getter Setter
+
+    public virtual bool AtionLocked { set { _actionLocked = value; } get { return _actionLocked; } }
+
+    #endregion
 
     public void TakeDamage(float damage)
     {

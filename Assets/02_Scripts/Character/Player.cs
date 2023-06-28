@@ -1,9 +1,10 @@
+using ArtsyNetcode;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Character
+public class Player : NetEntity
 {
 
     private Role _playerClass;
@@ -34,9 +35,11 @@ public class Player : Character
         else
         {
             _playerEquipment = gameObject.AddComponent<Equipment>();
-            //TODO: Load player save data
         }
-
+        if(SaveManager.Instance.CurrentPlayerChracterChoise >= 0)
+        {
+            characterData = GameRessourceManager.Instance.Chracters[SaveManager.Instance.CurrentPlayerChracterChoise];
+        }
         LoadCharacterData();
         UpdatePlayerEquipment();        
     }    
@@ -47,7 +50,10 @@ public class Player : Character
         {
             Destroy(t.gameObject);
         }
-        Instantiate(characterData.Prefab, playerModelSpawn.transform.position, playerModelSpawn.transform.rotation, playerModelSpawn.transform);
+        if (characterData != null)
+        {
+            Instantiate(characterData.Prefab, playerModelSpawn.transform.position, playerModelSpawn.transform.rotation, playerModelSpawn.transform);
+        }
     }
 
 
@@ -88,12 +94,9 @@ public class Player : Character
         }
     }
 
-    //Load Save data
     public static T LoadScriptableObject<T>() where T : ScriptableObject
     {
         System.Type type = typeof(T);
         return Resources.Load<T>(type.ToString());
-    }
-    
-    
+    }       
 }

@@ -3,12 +3,13 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     private static SaveManager instance = null;
+    private int currentPlayerChracterChoise = -1;
 
     #region Getter Setter
 
     public static SaveManager Instance { get { return instance; } }
-
-    #endregion 
+    public int CurrentPlayerChracterChoise { set { currentPlayerChracterChoise = value; } get { return currentPlayerChracterChoise; } }
+    #endregion
 
     private void Awake()
     {

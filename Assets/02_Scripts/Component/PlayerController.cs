@@ -27,7 +27,6 @@ public class PlayerController : Character
 
     private float _dashValue = 1f;
 
-    private bool _actionLocked;
     private bool _dashLocked;
 
     private PlayerControls _playerControls;
@@ -51,7 +50,18 @@ public class PlayerController : Character
         _playerControls.controls.Interact.performed += HandleInteract;
         _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
     }
-    
+
+    private void OnDestroy()
+    {
+        _playerControls.controls.Dash.performed -= HandleDash;
+        _playerControls.controls.BasicAttack.performed -= HandleBasicAttack;
+        _playerControls.controls.Spell1.performed -= HandleSpell1;
+        _playerControls.controls.Spell2.performed -= HandleSpell2;
+        _playerControls.controls.Ultimate.performed -= HandleUltimate;
+        _playerControls.controls.Interact.performed -= HandleInteract;
+        _playerControls.controls.OpenMenu.performed -= HandleOpenMenu;
+    }
+
     public override void Teleportation(Vector3 positionTarget)
     {
         _controller.enabled = false;
@@ -72,7 +82,6 @@ public class PlayerController : Character
     private void Update()
     {
         if (_actionLocked) return;
-        HandleRespawn();
         HandleMovement();
         HandleInputAim();
         HandleRotation();
@@ -80,11 +89,6 @@ public class PlayerController : Character
         //OnDeviceChange(_playerInput);
         HandleInputMovement();
 
-    }
-
-    public void HandleRespawn()
-    {
-        transform.position = Vector3.zero;
     }
 
     void HandleInputMovement()

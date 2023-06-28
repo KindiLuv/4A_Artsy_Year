@@ -34,6 +34,7 @@ using System;
             }
             else
             {
+                FadeOut(0.0f);
                 Destroy(gameObject);
             }
         }

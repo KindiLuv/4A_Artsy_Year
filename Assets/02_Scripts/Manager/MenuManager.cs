@@ -6,6 +6,7 @@ using Cinemachine.Utility;
 using Cinemachine;
 using Unity.Netcode;
 using Assets.Scripts.NetCode;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _interactEffect;
     [SerializeField] private GameObject playerControlerPrefab = null;
     [SerializeField] private GameObject selectHeroUI = null;
+    [SerializeField] private GameObject exitPoint = null;
+    [SerializeField] private GameObject launchGameUI = null;
+    [SerializeField] private GameObject multiGameUI = null;
     [SerializeField] private List<Transform> spawnPointList = new List<Transform>();
-    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();
+    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();    
     private static MenuManager instance = null;
 
     private PlayerControls _playerControls;
@@ -22,10 +26,9 @@ public class MenuManager : MonoBehaviour
     private GameObject selectHero = null;
     private int _currentHeroSelected = -1;
     private GameObject player = null;
+
     #region Getter Setter
-
     public static MenuManager Instance { get { return instance; } }
-
     #endregion 
 
     private void Awake()
@@ -59,6 +62,7 @@ public class MenuManager : MonoBehaviour
         _playerControls.controls.BasicAttack.performed -= SelectHero;
         _playerControls.controls.Dash.performed -= NextHero;
     }
+
     public void NextHero(InputAction.CallbackContext obj)
     {
         _currentHeroSelected++;
@@ -71,9 +75,7 @@ public class MenuManager : MonoBehaviour
     public void SelectHero(InputAction.CallbackContext obj)
     {
         if(_currentHeroSelected >= 0)
-        {
-            selectHeroUI.SetActive(false);
-            Destroy(selectHero);
+        {            
             _playerControls.controls.BasicAttack.performed -= SelectHero;
             _playerControls.controls.Dash.performed -= NextHero;
             FadeScreenManager.FadeIn(0.0f);
@@ -83,9 +85,12 @@ public class MenuManager : MonoBehaviour
 
     public void LoadPlayerController()
     {
+        selectHeroUI.SetActive(false);
+        Destroy(selectHero);
         _camera.gameObject.SetActive(false);
         player = Instantiate(playerControlerPrefab, spawnPointList[_currentHeroSelected % spawnPointList.Count].position + new Vector3(0.0f, 1.0f,0.0f), Quaternion.identity);
         spawnPrefabs[_currentHeroSelected % spawnPrefabs.Count].SetActive(false);
+        SaveManager.Instance.CurrentPlayerChracterChoise = _currentHeroSelected % spawnPrefabs.Count;
         player.GetComponent<Player>().CharacterData = characters[_currentHeroSelected % spawnPrefabs.Count];
         FadeScreenManager.OnFadeInComplete -= LoadPlayerController;
         FadeScreenManager.FadeOut(0.0f);
@@ -96,8 +101,56 @@ public class MenuManager : MonoBehaviour
         if(other.tag == "Player")
         {
             FadeScreenManager.FadeIn();
-            Destroy(player);
-            _camera.gameObject.SetActive(true);
+            FadeScreenManager.OnFadeInComplete += LaunchGame;
+            other.GetComponent<PlayerController>().AtionLocked = true;
         }
+    }
+
+    public void Solo()
+    {
+        GameNetworkManager.Instance.DebugStartIPServer(1);
+    }
+
+    public void Multijoueur()
+    {
+        launchGameUI.GetComponent<Animator>().SetTrigger("Exit");
+        if (multiGameUI.activeSelf)
+        {
+            multiGameUI.GetComponent<Animator>().SetTrigger("Spawn");
+        }
+        else
+        {
+            multiGameUI.SetActive(true);
+        }
+
+    }
+
+    public void RetourGameLauncheur()
+    {
+        multiGameUI.GetComponent<Animator>().SetTrigger("Exit");
+        launchGameUI.GetComponent<Animator>().SetTrigger("Spawn");
+    }
+
+    public void Retour()
+    {
+        FadeScreenManager.FadeIn(0.0f);
+        FadeScreenManager.OnFadeInComplete += RetourReloadScene;
+    }
+
+    private void RetourReloadScene()
+    {
+        FadeScreenManager.OnFadeInComplete -= RetourReloadScene;
+        SceneManager.LoadScene(0);
+    }
+
+    public void LaunchGame()
+    {
+        FadeScreenManager.OnFadeInComplete -= LaunchGame;
+        launchGameUI.SetActive(true);
+        Destroy(player);
+        _camera.gameObject.SetActive(true);
+        _camera.Follow = exitPoint.transform;
+        _camera.LookAt = exitPoint.transform;
+        FadeScreenManager.FadeOut();
     }
 }
