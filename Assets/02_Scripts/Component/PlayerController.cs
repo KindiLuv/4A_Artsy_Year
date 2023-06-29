@@ -1,8 +1,9 @@
+using Assets.Scripts.NetCode;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using Unity.Netcode;
 public class PlayerController : Character
 {
 
@@ -144,7 +145,10 @@ public class PlayerController : Character
 
     private void HandleBasicAttack(InputAction.CallbackContext obj)
     {
-        _player.BasicAttack();
+        if (GameNetworkManager.IsOffline || IsLocalPlayer)
+        {
+            _player.BasicAttack(transform.position,transform.rotation,(float)NetworkManager.Singleton.LocalTime.Time);
+        }
     }
 
     private void HandleSpell1(InputAction.CallbackContext obj)

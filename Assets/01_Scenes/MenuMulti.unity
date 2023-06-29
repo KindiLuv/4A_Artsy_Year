@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.000000011335704, y: -0.92387956, z: 0.38268343, w: 0.000000027366811}
+  m_LocalRotation: {x: 0.000000013188409, y: -0.92387956, z: 0.38268346, w: 0.000000031839637}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61131,17 +61131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534

@@ -1,8 +1,10 @@
 using ArtsyNetcode;
 using Assets.Scripts.NetCode;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class Player : NetEntity
 {
@@ -86,25 +88,29 @@ public class Player : NetEntity
         weaponID = wi;
     }
 
-
-    [ServerRpc]
-    public void SpawnProjectileServerRpc()
-    {
-        
-    }
-
-    [ClientRpc]
-    public void SpawnProjectileClientRpc()
-    {
-
-    }
-
     public bool HasWeapon()
     {
         return _weapon != null;
     }
 
-    public void BasicAttack()
+    [ServerRpc]
+    public void BasicAttackServerRpc(Vector3 pos, Quaternion rot,ulong localClientId,double timeStamp)
+    {        
+        BasicAttack(pos,rot,(float)timeStamp,true);
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds.Where(x => x != localClientId).ToList() }
+        };
+        BasicAttackClientRpc(pos, rot, timeStamp,clientRpcParams);
+    }
+
+    [ClientRpc]
+    public void BasicAttackClientRpc(Vector3 pos, Quaternion rot,double timeStamp, ClientRpcParams clientRpcParams = default)
+    {
+        BasicAttack(pos, rot, (float)timeStamp);       
+    }
+
+    public void BasicAttack(Vector3 pos, Quaternion rot,float time,bool serveur = false)
     {        
         if(!HasWeapon())
         {
@@ -125,6 +131,14 @@ public class Player : NetEntity
                 break;
             default:
                 break;
+        }        
+        if(IsLocalPlayer && !serveur)
+        {
+            BasicAttackServerRpc(pos,rot,NetworkManager.Singleton.LocalClientId, NetworkManager.Singleton.LocalTime.Time);
+        }
+        if (!serveur && IsClient || serveur && !IsClient)
+        {
+            ProjectileManager.Instance.SpawnProjectile(_weapon, pos + rot * Vector3.forward, rot, ((float)NetworkManager.Singleton.LocalTime.Time) - time);
         }
     }
 

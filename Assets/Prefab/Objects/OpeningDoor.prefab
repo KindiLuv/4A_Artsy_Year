@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 8018747631382333056}
   - component: {fileID: 8018747631382333071}
   - component: {fileID: 8018747631382333070}
+  - component: {fileID: 1149253746572766158}
   - component: {fileID: 8018747631382333057}
   m_Layer: 0
   m_Name: OpeningDoor
@@ -455,10 +456,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8018747631668344034}
-  leftPart: {fileID: 8018747631204778509}
-  rightPart: {fileID: 8018747631195623659}
-  doorOpen: {fileID: 7400000, guid: d5006a19d01bd7740b81f6cb9c9bbe7f, type: 2}
-  doorClose: {fileID: 7400000, guid: 63472e430a3d47d4884513d1497f19ff, type: 2}
+  animatorDoor: {fileID: 1149253746572766158}
+--- !u!95 &1149253746572766158
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018747631382333059}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddf533efc174ee64f87c2f9a1635a145, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8018747631382333057
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ public class WeaponSO : ScriptableObject
    public int dmgPerHit;
    public GameObject weaponModel;
    public List<ProjectileSO> projectile;
+   public int spawnProjectileAddRandom = 0;
    public int spawnProjectileCount = 1;
    public float spawnProjectileRate = 0.5f;
    public float offsetAngle = 0.0f;
