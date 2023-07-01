@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +6,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    [SerializeField] private TMP_FontAsset newFont;
+    [SerializeField] private AnimationCurve curveTextAlpha;
 
     private void Awake()
     {
@@ -16,31 +16,35 @@ public class UIManager : MonoBehaviour
             instance = this;
         }
     }
-    
-    public void CreateFloatingText(string text, Vector3 pos, Color color)
-    {   
+
+    public void CreateFloatingText(string text, Vector3 pos, Color colorG1, Color colorG2)
+    {
         GameObject go = new GameObject("FloatingText");
-        go.transform.position = pos;
+        go.transform.position = pos + Random.insideUnitSphere;
         TextMeshPro textmeshPro = go.AddComponent<TextMeshPro>();
+        textmeshPro.font = newFont;
         textmeshPro.outlineWidth = 0.2f;
-        textmeshPro.fontSize = 2.0f;
-        textmeshPro.color = new Color(color.r, color.g, color.b, 1.0f);
-        textmeshPro.outlineColor = Color.black;
+        textmeshPro.fontSize = 8.0f;
         textmeshPro.alignment = TextAlignmentOptions.Center;
         textmeshPro.text = text;
-        StartCoroutine(FloatingText(textmeshPro, color));
+        textmeshPro.color = new Color(1.0f, 1.0f, 1.0f,1.0f);
+
+        textmeshPro.enableVertexGradient = true;
+        textmeshPro.colorGradient = new TMPro.VertexGradient(colorG1, colorG1, colorG2, colorG2);
+
+        StartCoroutine(FloatingText(textmeshPro));
     }
 
-    IEnumerator FloatingText(TextMeshPro textmeshPro, Color color, float time = 1.5f)
+    IEnumerator FloatingText(TextMeshPro textmeshPro, float time = 1.0f)
     {
         float t = time;
         while (t > 0.0f)
         {
             t -= Time.deltaTime;
-            textmeshPro.transform.position += Vector3.up * Time.deltaTime * 0.5f;
+            textmeshPro.transform.position += Vector3.up * Time.deltaTime*0.5f;
             textmeshPro.transform.LookAt(2 * textmeshPro.transform.position - Camera.main.transform.position);
             textmeshPro.transform.localScale = Vector3.one * (1.0f + Mathf.Sin(Time.time * 2.0f) * 0.1f);
-            textmeshPro.color = new Color(color.r, color.g, color.b, t / time);
+            textmeshPro.color = new Color(1, 1, 1, Mathf.Clamp(curveTextAlpha.Evaluate(t), 0.0f,1.0f));
             yield return null;
         }
         Destroy(textmeshPro.gameObject);

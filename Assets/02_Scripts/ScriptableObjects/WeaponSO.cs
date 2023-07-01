@@ -35,10 +35,6 @@ public enum WeaponFamily
    Metal
 }
 
-
-
-
-
 [CreateAssetMenu(fileName = "Weapon", menuName = "ScriptableObjects/Weapon/WeaponSO", order = 1)]
 public class WeaponSO : ScriptableObject
 {
@@ -48,11 +44,17 @@ public class WeaponSO : ScriptableObject
    public Rarity rarity;
    public string weaponDescription;
    public int dmgPerHit;
+   public int dmgPerHitAddRandom;
    public GameObject weaponModel;
    public List<ProjectileSO> projectile;
    public int spawnProjectileAddRandom = 0;
    public int spawnProjectileCount = 1;
    public float spawnProjectileRate = 0.5f;
+   public bool autoWeapon = false;
+   public GameObject muzzelFlash = null;
+   public float muzzelDestroyTime = 1.0f;
+   public Vector3 spawnProjectileLocalPosition = Vector3.zero;
    public float offsetAngle = 0.0f;
    public float Angle = 0.0f;
+   public float impulseForce = 0.0f;
 }

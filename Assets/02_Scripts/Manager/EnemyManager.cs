@@ -22,7 +22,7 @@ public class EnemyManager : NetEntity
     {
         if (IsServer)
         {
-            InstantiateEnemy(0,new Vector3(0.0f,-1.0f,0.0f));
+            InstantiateEnemy(0,new Vector3(0.0f,-0.5f,0.0f));
         }
     }
 

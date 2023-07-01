@@ -162,6 +162,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a89e9d7a935ac74e922a4502826d708, type: 2}
   weapons:
   - {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f, type: 2}
+  - {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e, type: 2}
 --- !u!114 &2304225578689325126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f209a861da4ec4ba2f80d94771a1b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newFont: {fileID: 11400000, guid: 9e408192417f56349ba472e599e36b5e, type: 2}
 --- !u!114 &171174725332362110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePool: {fileID: 7134140247337050931}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 384
 --- !u!1 &7134140247337050931
 GameObject:
   m_ObjectHideFlags: 0

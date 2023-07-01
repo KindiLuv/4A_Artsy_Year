@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
-  speed: 1
+  moveProjectileType: 0
+  sinForce: 1
+  speed: 0
   prefab:
   - {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb, type: 3}
+  shapeProjectileType: 3
+  collideOffset: {x: 0, y: 0, z: 0}
+  radius: 3
+  extends: {x: 0, y: 0, z: 0}
+  rayDistance: 100
+  arcRadius: 3
+  lifeTime: 1
+  wallBounds: 0
+  explodeEffect: {fileID: 0}
+  timeExplode: 0

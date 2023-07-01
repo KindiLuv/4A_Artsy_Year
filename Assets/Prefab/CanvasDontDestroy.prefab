@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 3850688586566329717}
   - component: {fileID: 3850688586566329718}
   - component: {fileID: 8448372942287480205}
+  - component: {fileID: 1011744068}
   m_Layer: 5
   m_Name: CanvasDontDestroy
   m_TagString: Untagged
@@ -153,6 +154,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeScreen: {fileID: 3850688586204162317}
   FadeImage: {fileID: 3850688587774950747}
+--- !u!114 &1011744068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850688586566329719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d5ac82210311d4f824fecf8fdb3b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupText: {fileID: 3710302797744700445, guid: 4c40bcbfa9d4a2645ba6be8ec3f25afc,
+    type: 3}
+  canvas: {fileID: 3850688586566329719}
 --- !u!1 &3850688587774950741
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -19.999847, y: -19.999939}
+  m_AnchoredPosition: {x: -19.999878, y: -19.999939}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &3850688587774950746

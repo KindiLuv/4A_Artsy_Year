@@ -1,19 +1,18 @@
 using ArtsyNetcode;
 using Assets.Scripts.NetCode;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Networking;
 using System.Linq;
+using System;
 
 public class Player : NetEntity
 {
-    private Role _playerClass;
     private int characterID = -1;
     private int weaponID = -1;
     private CharacterSO _character;
     private WeaponSO _weapon;
 
+    private PlayerController _playerController;
     [SerializeField] private Animator _playerHand;
     [SerializeField] private GameObject playerModelSpawn = null;
 
@@ -23,16 +22,17 @@ public class Player : NetEntity
 
     public int CharacterID { get { return characterID; } set { characterID = value; } }
     public int WeaponID { get { return weaponID; } set { weaponID = value; } }
-
+    public WeaponSO Weapon { get { return _weapon; } }
     #endregion
 
 
-    private void Start()
+    protected void Start()
     {
         if (GameNetworkManager.IsOffline)
         {
             LoadData(characterID,weaponID);            
         }
+        _playerController = GetComponent<PlayerController>();        
     }
 
     public override void OnNetworkSpawn()
@@ -81,8 +81,14 @@ public class Player : NetEntity
             _weapon = GameRessourceManager.Instance.Weapons[wi % GameRessourceManager.Instance.Weapons.Count];
             if(_weapon != null)
             {
-                Instantiate(_weapon.weaponModel, _playerHand.transform);
+                Instantiate(_weapon.weaponModel, _playerHand.transform);                
             }
+            int enumSize = Enum.GetValues(typeof(WeaponType)).Length;
+            for (int i = 0; i < enumSize;i++)
+            {
+                _playerHand.SetLayerWeight(i+1, 0.0f);
+            }
+            _playerHand.SetLayerWeight((int)_weapon.weaponType+1, 1.0f); 
         }
         characterID = ci;
         weaponID = wi;
@@ -115,30 +121,15 @@ public class Player : NetEntity
         if(!HasWeapon())
         {
             return;
-        }
-        switch ((int)_weapon.weaponType)
-        {
-            case 0:
-                break;
-            case 1:
-                _playerHand.SetTrigger(Attacking);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            default:
-                break;
         }        
-        if(IsLocalPlayer && !serveur)
+        _playerHand.SetTrigger(Attacking);
+        if (IsLocalPlayer && !serveur)
         {
             BasicAttackServerRpc(pos,rot,NetworkManager.Singleton.LocalClientId, NetworkManager.Singleton.LocalTime.Time);
         }
         if (!serveur && IsClient || serveur && !IsClient)
         {
-            ProjectileManager.Instance.SpawnProjectile(_weapon, pos + rot * Vector3.forward, rot, ((float)NetworkManager.Singleton.LocalTime.Time) - time);
+            ProjectileManager.Instance.SpawnProjectile(_weapon, pos, rot, _playerController.Team,((float)NetworkManager.Singleton.LocalTime.Time) - time);
         }
     }
 

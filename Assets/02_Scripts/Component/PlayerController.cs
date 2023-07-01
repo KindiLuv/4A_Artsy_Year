@@ -1,9 +1,14 @@
 using Assets.Scripts.NetCode;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using UnityEngine.VFX;
+using Utilities;
+using System.Linq;
+
 public class PlayerController : Character
 {
 
@@ -29,33 +34,49 @@ public class PlayerController : Character
     private float _dashValue = 1f;
 
     private bool _dashLocked;
+    private bool _onAttackHandel = false;
+    private float _attackRate = 0.0f;
+    private Vector3 _impulseForce = Vector3.zero;
+    private float clampImpulseSpeed = 25;
+    private float timeToZeroImpulse = 20;
 
     private PlayerControls _playerControls;
-    [SerializeField] private TrailRenderer _tr = null;
+    [SerializeField] private VisualEffect _tr = null;
     [SerializeField] private PlayerInteract _playerInteract = null;
     [SerializeField] private GameObject _playerCamera = null;
 
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        team = Team.Player;
         _controller = GetComponent<CharacterController>();
         _playerControls = InputManager.PlayerInput;
         _player = GetComponent<Player>();
-        //_tr = GetComponent<TrailRenderer>();
-        _playerControls.controls.Dash.performed += HandleDash;
-        _playerControls.controls.BasicAttack.performed += HandleBasicAttack;
-        _playerControls.controls.Spell1.performed += HandleSpell1;
-        _playerControls.controls.Spell2.performed += HandleSpell2;
-        _playerControls.controls.Ultimate.performed += HandleUltimate;
-        _playerControls.controls.Interact.performed += HandleInteract;
-        _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
+    }
+
+    protected void Start()
+    {
+        if (GameNetworkManager.IsOffline || IsLocalPlayer)
+        {
+            _playerControls.controls.Dash.performed += HandleDash;
+            _playerControls.controls.BasicAttack.started += HandleBasicAttack;
+            _playerControls.controls.BasicAttack.canceled += HandleCancelBasicAttack;
+            _playerControls.controls.Spell1.performed += HandleSpell1;
+            _playerControls.controls.Spell2.performed += HandleSpell2;
+            _playerControls.controls.Ultimate.performed += HandleUltimate;
+            _playerControls.controls.Interact.performed += HandleInteract;
+            _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
+        }
     }
 
     private void OnDestroy()
     {
+
         _playerControls.controls.Dash.performed -= HandleDash;
-        _playerControls.controls.BasicAttack.performed -= HandleBasicAttack;
+        _playerControls.controls.BasicAttack.started -= HandleBasicAttack;
+        _playerControls.controls.BasicAttack.canceled -= HandleCancelBasicAttack;
         _playerControls.controls.Spell1.performed -= HandleSpell1;
         _playerControls.controls.Spell2.performed -= HandleSpell2;
         _playerControls.controls.Ultimate.performed -= HandleUltimate;
@@ -74,7 +95,7 @@ public class PlayerController : Character
     {
         if (!IsLocalPlayer)
         {
-            Destroy(_playerCamera);            
+            Destroy(_playerCamera);
             enabled = false;
             return;
         }
@@ -86,10 +107,40 @@ public class PlayerController : Character
         HandleMovement();
         HandleInputAim();
         HandleRotation();
+        HandleAttack();
         if (_dashLocked) return;
         //OnDeviceChange(_playerInput);
         HandleInputMovement();
+    }
 
+    void HandleAttack()
+    {
+        _attackRate -= Time.deltaTime;
+        if (_impulseForce.x > 0.5f) { _impulseForce.x -= Time.deltaTime * timeToZeroImpulse; }
+
+        if (_impulseForce.z > 0.5f) { _impulseForce.z -= Time.deltaTime * timeToZeroImpulse; }
+
+        if (_impulseForce.x < -0.5f) { _impulseForce.x += Time.deltaTime * timeToZeroImpulse; }
+
+        if (_impulseForce.z < -0.5f) { _impulseForce.z += Time.deltaTime * timeToZeroImpulse; }
+
+        if (_impulseForce.magnitude < 0.8f) { _impulseForce = Vector3.zero; }
+        if (_onAttackHandel && _attackRate <= 0.0f)
+        {
+            if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _player.HasWeapon())
+            {
+                _player.BasicAttack(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
+                _impulseForce += transform.forward * _player.Weapon.impulseForce;
+                _impulseForce.x = Mathf.Clamp(_impulseForce.x, -clampImpulseSpeed, clampImpulseSpeed);
+                _impulseForce.y = Mathf.Clamp(_impulseForce.y, -clampImpulseSpeed, clampImpulseSpeed);
+                _impulseForce.z = Mathf.Clamp(_impulseForce.z, -clampImpulseSpeed, clampImpulseSpeed);
+                _attackRate = _player.Weapon.spawnProjectileRate;
+                if (!_player.Weapon.autoWeapon)
+                {
+                    _onAttackHandel = false;
+                }
+            }
+        }
     }
 
     void HandleInputMovement()
@@ -104,11 +155,12 @@ public class PlayerController : Character
     void HandleMovement()
     {
         Vector3 move = new Vector3(_movement.x, 0, _movement.y);
-        _controller.Move(move * (Time.deltaTime * _playerspeed * _dashValue));
+        _controller.Move(move * (Time.deltaTime * _playerspeed * _dashValue) + (_impulseForce * Time.deltaTime));
 
         _playerVelocity.y = _gravityValue;
         _controller.Move(_playerVelocity * Time.deltaTime);
     }
+
     void HandleRotation()
     {
         if (_isGamepad)
@@ -140,15 +192,21 @@ public class PlayerController : Character
 
     private void HandleDash(InputAction.CallbackContext obj)
     {
+        if(GameNetworkManager.IsOffline || IsLocalPlayer)
+        {
+            DashServerRpc(NetworkManager.Singleton.LocalClientId);
+        }
         StartCoroutine(DashAction());
     }
 
     private void HandleBasicAttack(InputAction.CallbackContext obj)
     {
-        if (GameNetworkManager.IsOffline || IsLocalPlayer)
-        {
-            _player.BasicAttack(transform.position,transform.rotation,(float)NetworkManager.Singleton.LocalTime.Time);
-        }
+        _onAttackHandel = true;
+    }
+
+    private void HandleCancelBasicAttack(InputAction.CallbackContext obj)
+    {
+        _onAttackHandel = false;
     }
 
     private void HandleSpell1(InputAction.CallbackContext obj)
@@ -176,17 +234,33 @@ public class PlayerController : Character
         throw new NotImplementedException();
     }
 
+    [ServerRpc]
+    public void DashServerRpc(ulong localClientId)
+    {
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds.Where(x => x != localClientId).ToList() }
+        };
+        DashClientRpc(clientRpcParams);
+    }
+
+    [ClientRpc]
+    public void DashClientRpc(ClientRpcParams clientRpcParams = default)
+    {
+        StartCoroutine(DashAction());
+    }
+
     IEnumerator DashAction()
     {
         if (_dashLocked) yield break;
         _dashLocked = true;
-        _tr.emitting = true;
+        _tr.SetFloat("ParticlesRate", 256.0f);
         _dashValue = 3f;
         _gravityValue = 0f;
         yield return new WaitForSeconds(0.3f);
         _dashValue = 0.7f;
         _gravityValue = -9.81f;
-        _tr.emitting = false;
+        _tr.SetFloat("ParticlesRate", 0.0f);
         yield return new WaitForSeconds(0.2f);
         _dashValue = 1f;
         _dashLocked = false;

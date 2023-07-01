@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9176233715872ae4f8aed7eb113cff2a, type: 3}
+  m_Script: {fileID: 11500000, guid: c0952497ec5d431409abcfccfacb5275, type: 3}
   m_Name: Swordfish
   m_EditorClassIdentifier: 
   weaponName: Swordfish
@@ -17,10 +17,15 @@ MonoBehaviour:
   weaponFamily: 0
   rarity: 4
   weaponDescription: 50% sword, 50% fish, 100% deadly
-  weaponWeight: 30
-  dmgPerHit: 35
-  weaponModel: {fileID: 7788945480511224751, guid: f174f9860203e164abd3690c9e3c2303,
+  dmgPerHit: 1
+  dmgPerHitAddRandom: 0
+  weaponModel: {fileID: 7337924043238082969, guid: f174f9860203e164abd3690c9e3c2303,
     type: 3}
   projectile:
   - {fileID: 11400000, guid: fb1886806b9827942a084ee6d0a97716, type: 2}
-  delayPostSwing: 1.2
+  spawnProjectileAddRandom: 0
+  spawnProjectileCount: 1
+  spawnProjectileRate: 0.1
+  autoWeapon: 1
+  offsetAngle: 0
+  Angle: 0

@@ -60,7 +60,7 @@ MonoBehaviour:
       x: 1526
       y: -234
       width: 831
-      height: 2059
+      height: 2078
     contents:
     - model: {fileID: 8926484042661614811}
       id: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   - name: TRAIL HEAD
     collapsed: 1
   - name: PARTICLES ADDITIVE
-    collapsed: 1
+    collapsed: 0
   - name: PARTICLES AB
     collapsed: 0
   uiBounds:
@@ -167,7 +167,7 @@ MonoBehaviour:
     x: 584
     y: -249
     width: 2824
-    height: 2074
+    height: 2093
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1212,15 +1212,12 @@ MonoBehaviour:
   useSoftParticle: 1
   vfxSystemSortPriority: 1
   sort: 0
-  sortMode: 0
-  revertSorting: 0
   indirectDraw: 0
   computeCulling: 0
   frustumCulling: 0
   castShadows: 0
   useExposureWeight: 0
   flipbookLayout: 0
-  needsOwnSort: 0
   shaderGraph: {fileID: 0}
   materialSettings:
     m_PropertyNames: []
@@ -2447,7 +2444,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614868}
-  m_UIPosition: {x: 1907, y: 649}
+  m_UIPosition: {x: 1906, y: 724}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -2516,15 +2513,12 @@ MonoBehaviour:
   useSoftParticle: 1
   vfxSystemSortPriority: 2
   sort: 0
-  sortMode: 0
-  revertSorting: 0
   indirectDraw: 0
   computeCulling: 0
   frustumCulling: 0
   castShadows: 0
   useExposureWeight: 0
   flipbookLayout: 0
-  needsOwnSort: 0
   shaderGraph: {fileID: 0}
   materialSettings:
     m_PropertyNames: []
@@ -5583,7 +5577,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -7742,15 +7736,12 @@ MonoBehaviour:
   useSoftParticle: 1
   vfxSystemSortPriority: 0
   sort: 0
-  sortMode: 0
-  revertSorting: 0
   indirectDraw: 0
   computeCulling: 0
   frustumCulling: 0
   castShadows: 0
   useExposureWeight: 0
   flipbookLayout: 0
-  needsOwnSort: 0
   shaderGraph: {fileID: 0}
   materialSettings:
     m_PropertyNames: []

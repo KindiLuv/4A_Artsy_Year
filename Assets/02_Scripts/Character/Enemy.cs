@@ -6,8 +6,13 @@ public class Enemy : Character
 {
     public EnemySO enemyInformations;
 
-    public void SetupEnemy()
+    protected override void Awake()
     {
+        base.Awake();
+        team = Team.Enemy;
+    }
+    public void SetupEnemy()
+    {        
         _maxHealth = enemyInformations.BaseHealth;
         _health = enemyInformations.BaseHealth;
         _prefab = enemyInformations.Prefab;
