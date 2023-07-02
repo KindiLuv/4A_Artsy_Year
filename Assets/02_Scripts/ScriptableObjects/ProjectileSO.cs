@@ -6,7 +6,8 @@ public enum MoveProjectileType
 {
     Static,
     Linear,
-    Sin
+    Sin,
+    Follow
 }
 
 public enum ShapeProjectileType
@@ -22,6 +23,9 @@ public class ProjectileSO : ScriptableObject
 {
     public MoveProjectileType moveProjectileType = MoveProjectileType.Linear;
     [DrawIf("moveProjectileType", MoveProjectileType.Sin, ComparisonType.Equals)] public float sinForce = 1.0f;
+    [DrawIf("moveProjectileType", MoveProjectileType.Sin, ComparisonType.Equals)] public float sinFrequence = 5.0f;
+    [DrawIf("moveProjectileType", MoveProjectileType.Follow, ComparisonType.Equals)] public float radiusSearch = 5.0f;
+    [DrawIf("moveProjectileType", MoveProjectileType.Follow, ComparisonType.Equals)] public float colapseSearchSpeed = 5.0f;
     public float speed = 1.0f;
     public List<GameObject> prefab;
     public ShapeProjectileType shapeProjectileType = ShapeProjectileType.Sphere;

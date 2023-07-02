@@ -2,6 +2,7 @@ using ArtsyNetcode;
 using Assets.Scripts.NetCode;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.ProBuilder;
@@ -15,6 +16,7 @@ public class ProjectileData
     public int wallBoundsLeft;
     public float damage;
     public Team teamProjectile;
+    public float pioffset;
 }
 
 public class ProjectileManager : MonoBehaviour
@@ -25,10 +27,11 @@ public class ProjectileManager : MonoBehaviour
     private Dictionary<ProjectileSO, Queue<ProjectileData>> usedProjectiles = new Dictionary<ProjectileSO, Queue<ProjectileData>>();
     private System.Random pseudoRandom = new System.Random(0);
     private static ProjectileManager instance = null;
-    private List<Character> targetCharacter = new List<Character>();
+    private List<IDamageable> targetIDamageable = new List<IDamageable>();
     private bool hitWall = false;
     private Vector3 targetImpact = Vector3.zero;
     private int indexUpdate = 0;
+    private Collider[] colliders = new Collider[256];
     #region Getter Setter
 
     public static ProjectileManager Instance { get { return instance; } }
@@ -103,7 +106,11 @@ public class ProjectileManager : MonoBehaviour
             pd.timeLeft = p.lifeTime;
             pd.wallBoundsLeft = p.wallBounds;
             pd.damage = weapon.dmgPerHit + pseudoRandom.Next(weapon.dmgPerHitAddRandom);
-            pd.teamProjectile = t;            
+            pd.teamProjectile = t;   
+            if(p.moveProjectileType == MoveProjectileType.Sin)
+            {
+                pd.pioffset = ((Mathf.PI * 2.0f) - (p.lifeTime * p.sinFrequence) % (Mathf.PI * 2.0f)) + 1.3f;//<== tg c'est magique
+            }
             projectiles[p].Add(pd);
             UpdateProjectile(p, pd, timeStamp);
         }
@@ -128,27 +135,28 @@ public class ProjectileManager : MonoBehaviour
         indexUpdate--;
     }
 
-    public void ExplodeProjectile(ProjectileSO p, ProjectileData pd,List<Character> cs,bool hw)
+    public void ExplodeProjectile(ProjectileSO p, ProjectileData pd,List<IDamageable> cs,bool hw)
     {
-        List<Character> hitChracter = new List<Character>();
+        List<IDamageable> hitIDamageable = new List<IDamageable>();
         for (int i = 0; i < cs.Count; i++)
         {
             if(
-                pd.teamProjectile == Team.Player && cs[i].Team == Team.Enemy
-            ||  pd.teamProjectile == Team.Enemy && cs[i].Team == Team.Player
-            || pd.teamProjectile == Team.PlayerFF && cs[i].Team == Team.PlayerFF)
+                pd.teamProjectile == Team.Player && cs[i].GetTeam() == Team.Enemy
+            ||  pd.teamProjectile == Team.Enemy && cs[i].GetTeam() == Team.Player
+            || pd.teamProjectile == Team.PlayerFF && cs[i].GetTeam() == Team.PlayerFF
+            || cs[i].GetTeam() == Team.Object)
             {
-                hitChracter.Add(cs[i]);
+                hitIDamageable.Add(cs[i]);
             }
         }        
-        if(hitChracter.Count > 0 && GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
+        if(hitIDamageable.Count > 0 && GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
         {
-            for (int i = 0; i < hitChracter.Count; i++)
+            for (int i = 0; i < hitIDamageable.Count; i++)
             {
-                hitChracter[i].TakeDamage(pd.damage);
+                hitIDamageable[i].TakeDamage(pd.damage);
             }
         }
-        if (hw || hitChracter.Count > 0)
+        if (hw || hitIDamageable.Count > 0)
         {
             if (p.explodeEffect != null)
             {
@@ -160,17 +168,17 @@ public class ProjectileManager : MonoBehaviour
 
     public bool isCollide(ProjectileSO p, ProjectileData pd)
     {
-        Collider[] hitCollider = null;
         Vector3 rotateOffsetPosition = pd.obj.transform.rotation*p.collideOffset;
-        targetCharacter.Clear();
+        targetIDamageable.Clear();
         hitWall = false;
+        int numColliders = 0;
         if (p.shapeProjectileType == ShapeProjectileType.Sphere)
         {
-            hitCollider = Physics.OverlapSphere(pd.obj.transform.position+ rotateOffsetPosition, p.radius, collisionMask);
+            numColliders = Physics.OverlapSphereNonAlloc(pd.obj.transform.position+ rotateOffsetPosition, p.radius,colliders, collisionMask);
         }
         else if (p.shapeProjectileType == ShapeProjectileType.Box)
         {
-            hitCollider = Physics.OverlapBox(pd.obj.transform.position+ rotateOffsetPosition, p.extends,Quaternion.identity, collisionMask);
+            numColliders = Physics.OverlapBoxNonAlloc(pd.obj.transform.position+ rotateOffsetPosition, p.extends, colliders,Quaternion.identity, collisionMask);
         }
         else if (p.shapeProjectileType == ShapeProjectileType.Raycast)
         {
@@ -181,10 +189,10 @@ public class ProjectileManager : MonoBehaviour
             {
                 for(int i = 0; i < hits.Length; i++)
                 {
-                    Character c = hits[i].collider.GetComponent<Character>();
+                    IDamageable c = hits[i].collider.GetComponent<IDamageable>();
                     if (c != null)
                     {
-                        targetCharacter.Add(c);                                                
+                        targetIDamageable.Add(c);                                                
                     }
                     else
                     {
@@ -193,7 +201,7 @@ public class ProjectileManager : MonoBehaviour
                         return true;
                     }                    
                 }
-                if(targetCharacter.Count > 0)
+                if(targetIDamageable.Count > 0)
                 {
                     targetImpact = Vector3.zero;
                     hitWall = false;
@@ -203,46 +211,46 @@ public class ProjectileManager : MonoBehaviour
         }
         else if(p.shapeProjectileType == ShapeProjectileType.ArcSphere)
         {
-            hitCollider = Physics.OverlapSphere(pd.obj.transform.position + rotateOffsetPosition, p.radius, collisionMask);
+            numColliders = Physics.OverlapSphereNonAlloc(pd.obj.transform.position + rotateOffsetPosition, p.radius,colliders, collisionMask);
             Plane plane = new Plane(pd.obj.transform.rotation*Vector3.forward, pd.obj.transform.position + rotateOffsetPosition);
-            List<Collider> filteredColliders = new List<Collider>();
 
-            foreach (Collider collider in hitCollider)
+            int newSize = 0;
+            for (int i = 0; i < numColliders; i++)
             {
-                if (plane.GetDistanceToPoint(collider.transform.position) > 0)
+                if (plane.GetDistanceToPoint(colliders[i].transform.position) > 0)
                 {
-                    filteredColliders.Add(collider);
+                    colliders[newSize++] = colliders[i];
                 }
             }
-
-            hitCollider = filteredColliders.ToArray();
+            numColliders = newSize;
         }
 
-        if (hitCollider != null)
+        if (numColliders > 0)
         {
-            for (int i = 0; i < hitCollider.Length; i++)
+            int IDamageableCount = 0;
+            for (int i = 0; i < numColliders; i++)
             {
-                Character c = hitCollider[i].GetComponent<Character>();
+                IDamageable c = colliders[i].GetComponent<IDamageable>();
                 if (c != null)
                 {
-                    targetCharacter.Add(c);
-                    targetImpact = Vector3.zero;
-                    hitWall = false;
-                    return true;
+                    targetIDamageable.Add(c);
+                    IDamageableCount++;
                 }
             }            
-            if(hitCollider.Length > 0)
+           
+            targetImpact = Vector3.zero;
+            hitWall = false;
+            if (IDamageableCount != numColliders)
             {
-                targetImpact = Vector3.zero;
-                hitWall = false;
                 RaycastHit hit;
-                if(Physics.Raycast(pd.obj.transform.position+ rotateOffsetPosition, pd.direction, out hit, Mathf.Infinity, collisionMask))
+                if (Physics.Raycast(pd.obj.transform.position + rotateOffsetPosition, pd.direction, out hit, Mathf.Infinity, collisionMask))
                 {
                     targetImpact = hit.normal;
                     hitWall = true;
                 }
-                return true;
-            }            
+            }   
+            
+            return true;
         }
         targetImpact = Vector3.zero;
         return false;
@@ -258,7 +266,33 @@ public class ProjectileManager : MonoBehaviour
                 pd.obj.transform.position += pd.direction * p.speed * time;
                 break;
             case MoveProjectileType.Sin:
-                pd.obj.transform.position += pd.direction * p.speed * time + (Mathf.Sin(pd.timeLeft) * Vector3.Cross(Vector3.up,pd.direction).normalized * p.sinForce);
+                pd.obj.transform.position += pd.direction * p.speed * time + (Mathf.Sin(pd.timeLeft* p.sinFrequence + pd.pioffset) * Vector3.Cross(Vector3.up,pd.direction).normalized * p.sinForce);
+                break;
+            case MoveProjectileType.Follow:
+                int numColliders = 0;
+                numColliders = Physics.OverlapSphereNonAlloc(pd.obj.transform.position,p.radiusSearch,colliders,collisionMask);
+                int IDnearIDamagable = -1;
+                float d = Mathf.Infinity;
+                for(int i = 0; i < numColliders; i++)
+                {
+                    IDamageable idam = colliders[i].GetComponent<IDamageable>();
+                    if (idam != null && idam.GetTeam() != pd.teamProjectile)
+                    {
+                        float nd = Vector3.Distance(pd.obj.transform.position, colliders[i].transform.position);
+                        if (nd < d)
+                        {
+                            d = nd;
+                            IDnearIDamagable = i;
+                        }
+                    }
+                }
+                if(IDnearIDamagable >= 0)
+                {
+                    Vector3 dir = (colliders[IDnearIDamagable].transform.position - pd.obj.transform.position).normalized;
+                    dir.y = 0;
+                    pd.direction = Vector3.Lerp(pd.direction, dir, p.colapseSearchSpeed * Time.deltaTime);
+                }
+                pd.obj.transform.position += pd.direction * p.speed * time;
                 break;
             default:
                 break;
@@ -272,7 +306,7 @@ public class ProjectileManager : MonoBehaviour
 
         if(isCollide(p,pd))
         {
-            if(pd.wallBoundsLeft > 0 && targetCharacter.Count == 0 && hitWall)
+            if(pd.wallBoundsLeft > 0 && targetIDamageable.Count == 0 && hitWall)
             {
                 pd.wallBoundsLeft--;
                 Vector3 reflectionDirection = Vector3.Reflect(pd.direction, targetImpact);
@@ -281,7 +315,7 @@ public class ProjectileManager : MonoBehaviour
             }
             else
             {
-                ExplodeProjectile(p, pd, targetCharacter, hitWall);
+                ExplodeProjectile(p, pd, targetIDamageable, hitWall);
             }
         }
     }

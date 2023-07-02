@@ -10,6 +10,8 @@ public class EnemyManager : NetEntity
     public static EnemyManager instance;
     public List<EnemySO> enemies;
 
+    [SerializeField] private GameObject crate = null;//A suprimer
+
     private void Awake()
     {
         if (instance == null)
@@ -23,6 +25,8 @@ public class EnemyManager : NetEntity
         if (IsServer)
         {
             InstantiateEnemy(0,new Vector3(0.0f,-0.5f,0.0f));
+            GameObject o = Instantiate(crate, new Vector3(2.0f, -0.0f, 0.0f),Quaternion.identity);
+            o.GetComponent<NetworkObject>().Spawn();
         }
     }
 

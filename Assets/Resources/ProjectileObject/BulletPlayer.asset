@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: BulletPlayer
   m_EditorClassIdentifier: 
   moveProjectileType: 1
-  sinForce: 1
+  sinForce: 0.1
+  sinFrequence: 5
+  radiusSearch: 5
+  colapseSearchSpeed: 5
   speed: 8
   prefab:
   - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}

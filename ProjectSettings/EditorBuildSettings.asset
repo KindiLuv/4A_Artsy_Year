@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/01_Scenes/MenuMulti.unity
     guid: 0c57267750bcfb94183262a5571e23d0
   - enabled: 1
-    path: Assets/01_Scenes/InteractionGame.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/01_Scenes/Gen.unity
+    guid: c103b0f2f9ae01d49937a94e94ff6407
   - enabled: 1
     path: Assets/01_Scenes/TutorialRoom.unity
     guid: 426dfdbb312df1b4e8ec88239fd781dd

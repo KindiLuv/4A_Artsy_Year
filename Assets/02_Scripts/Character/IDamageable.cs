@@ -10,4 +10,5 @@ public interface IDamageable
     void DropLoot();
     void Death();
     bool isAlive();
+    Team GetTeam();
 }

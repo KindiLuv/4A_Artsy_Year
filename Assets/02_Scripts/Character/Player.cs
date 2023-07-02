@@ -4,6 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Threading;
 
 public class Player : NetEntity
 {

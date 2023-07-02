@@ -32,7 +32,7 @@ namespace CartoonFX
             if (shaderVariantsRemoved > 0)
             {
                 string currentPipeline = isUsingURP ? "Universal" : "Built-in";
-                Debug.Log(string.Format("<color=#ec7d38>[Cartoon FX Remaster]</color> {0} Render Pipeline detected, {1} Shader variants have been stripped from the build.", currentPipeline, shaderVariantsRemoved));
+                //Debug.Log(string.Format("<color=#ec7d38>[Cartoon FX Remaster]</color> {0} Render Pipeline detected, {1} Shader variants have been stripped from the build.", currentPipeline, shaderVariantsRemoved));
             }
         }
 

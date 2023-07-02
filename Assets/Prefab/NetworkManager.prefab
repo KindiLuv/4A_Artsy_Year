@@ -163,6 +163,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f, type: 2}
   - {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e, type: 2}
+  - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}
 --- !u!114 &2304225578689325126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +201,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newFont: {fileID: 11400000, guid: 9e408192417f56349ba472e599e36b5e, type: 2}
+  curveTextAlpha:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.9319406
+      outSlope: 3.9319406
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.22950912
+    - serializedVersion: 3
+      time: 1.0166626
+      value: 1.0023575
+      inSlope: -0.27564028
+      outSlope: -0.27564028
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.47130933
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &171174725332362110
 MonoBehaviour:
   m_ObjectHideFlags: 0

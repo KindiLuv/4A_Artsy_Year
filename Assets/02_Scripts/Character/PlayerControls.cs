@@ -318,34 +318,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Menu"",
-            ""id"": ""793edf66-1952-40e3-8fbc-d4fbc678fde3"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""33f2a761-4af5-412d-8db7-344f097b2e4a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""fe7b3ca5-0ca8-43eb-b81f-0e0b404c597a"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": [
@@ -390,9 +362,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_controls_UseItem = m_controls.FindAction("UseItem", throwIfNotFound: true);
         m_controls_Interact = m_controls.FindAction("Interact", throwIfNotFound: true);
         m_controls_OpenMenu = m_controls.FindAction("OpenMenu", throwIfNotFound: true);
-        // Menu
-        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -553,39 +522,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public ControlsActions @controls => new ControlsActions(this);
-
-    // Menu
-    private readonly InputActionMap m_Menu;
-    private IMenuActions m_MenuActionsCallbackInterface;
-    private readonly InputAction m_Menu_Newaction;
-    public struct MenuActions
-    {
-        private @PlayerControls m_Wrapper;
-        public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Menu_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Menu; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
-        public void SetCallbacks(IMenuActions instance)
-        {
-            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
-            {
-                @Newaction.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
-            }
-            m_Wrapper.m_MenuActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
-            }
-        }
-    }
-    public MenuActions @Menu => new MenuActions(this);
     private int m_ControllerSchemeIndex = -1;
     public InputControlScheme ControllerScheme
     {
@@ -616,9 +552,5 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnUseItem(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
-    }
-    public interface IMenuActions
-    {
-        void OnNewaction(InputAction.CallbackContext context);
     }
 }

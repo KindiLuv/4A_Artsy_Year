@@ -102,7 +102,7 @@ public class PlayerController : Character
     }
 
     private void Update()
-    {
+    {        
         if (_actionLocked) return;
         HandleMovement();
         HandleInputAim();
@@ -125,6 +125,7 @@ public class PlayerController : Character
         if (_impulseForce.z < -0.5f) { _impulseForce.z += Time.deltaTime * timeToZeroImpulse; }
 
         if (_impulseForce.magnitude < 0.8f) { _impulseForce = Vector3.zero; }
+
         if (_onAttackHandel && _attackRate <= 0.0f)
         {
             if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _player.HasWeapon())
@@ -192,6 +193,10 @@ public class PlayerController : Character
 
     private void HandleDash(InputAction.CallbackContext obj)
     {
+        if(_movement.magnitude < 0.1f || !_controller.isGrounded)
+        {
+            return;
+        }
         if(GameNetworkManager.IsOffline || IsLocalPlayer)
         {
             DashServerRpc(NetworkManager.Singleton.LocalClientId);
