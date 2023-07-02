@@ -15,6 +15,8 @@ MonoBehaviour:
   moveProjectileType: 0
   sinForce: 1
   sinFrequence: 5
+  radiusSearch: 5
+  colapseSearchSpeed: 5
   speed: 0
   prefab:
   - {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb, type: 3}
@@ -23,7 +25,7 @@ MonoBehaviour:
   radius: 3
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
-  arcRadius: 3
+  arcRadius: 1.5
   lifeTime: 1
   wallBounds: 0
   explodeEffect: {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb,
