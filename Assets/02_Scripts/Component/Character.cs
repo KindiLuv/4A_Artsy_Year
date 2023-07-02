@@ -28,7 +28,9 @@ public class Character : NetEntity, IDamageable
     protected GameObject _prefab;
     protected bool _actionLocked = false;
     protected float damageSameTime = 0.0f;
+    protected float healSameTime = 0.0f;
     private float timeDamage = 0.0f;
+    private float timeHeal = 0.0f;
     [SerializeField] protected Team team = Team.PNJ;
     private Renderer[] renderers;
     private bool visualDamage = false;
@@ -50,22 +52,45 @@ public class Character : NetEntity, IDamageable
         renderers = GetComponentsInChildren<MeshRenderer>();
     }    
 
-    public virtual void Update()
+    public void DamageIndicator()
     {
         timeDamage -= Time.deltaTime;
         if (timeDamage <= 0.0f && damageSameTime > 0.0f)
         {
             Vector3 pos = transform.position + Vector3.up * 3.0f;
-            UIManager.instance.CreateFloatingText(damageSameTime.ToString(), pos, Color.red,new Color(1.0f,0.5f,0.0f));
+            UIManager.instance.CreateFloatingText(damageSameTime.ToString(), pos, Color.red, new Color(1.0f, 0.5f, 0.0f));
             StartCoroutine(ApplyVisualDamage());
             ClientRpcParams clientRpcParams = new ClientRpcParams
             {
                 Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds.Where(x => x != NetworkManager.Singleton.LocalClientId).ToList() }
             };
-            CreateFTClientRpc(damageSameTime, pos,clientRpcParams);
+            CreateFTClientRpc(damageSameTime, pos, clientRpcParams);
             timeDamage = 0.15f;
             damageSameTime = 0.0f;
         }
+    }
+
+    public void HealIndicator()
+    {
+        timeHeal -= Time.deltaTime;
+        if (timeHeal <= 0.0f && healSameTime > 0.0f)
+        {
+            Vector3 pos = transform.position + Vector3.up * 3.0f;
+            UIManager.instance.CreateFloatingText(healSameTime.ToString(), pos, Color.green, new Color(0.0f, 1.0f, 0.5f));
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds.Where(x => x != NetworkManager.Singleton.LocalClientId).ToList() }
+            };
+            CreateFTHealClientRpc(healSameTime, pos, clientRpcParams);
+            timeHeal = 0.15f;
+            healSameTime = 0.0f;
+        }
+    }
+
+    public virtual void Update()
+    {
+        DamageIndicator();
+        HealIndicator();
     }
 
     [ClientRpc]
@@ -73,6 +98,12 @@ public class Character : NetEntity, IDamageable
     {
         UIManager.instance.CreateFloatingText(damage.ToString(), pos, Color.red, new Color(1.0f, 0.5f, 0.0f));
         StartCoroutine(ApplyVisualDamage());
+    }
+
+    [ClientRpc]
+    public void CreateFTHealClientRpc(float damage, Vector3 pos, ClientRpcParams clientRpcParams = default)
+    {
+        UIManager.instance.CreateFloatingText(damage.ToString(), pos, Color.green, new Color(0.0f, 1.0f, 0.5f));
     }
 
     public IEnumerator ApplyVisualDamage()
@@ -149,9 +180,11 @@ public class Character : NetEntity, IDamageable
     {
         if (_health + heal > _maxHealth)
         {
-            _health = _maxHealth;
+            healSameTime += _maxHealth - _health;
+            _health = _maxHealth;            
             return;
         }
+        healSameTime += heal;
         _health += heal;
     }
 

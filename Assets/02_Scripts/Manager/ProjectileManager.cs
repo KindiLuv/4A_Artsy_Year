@@ -1,12 +1,7 @@
-using ArtsyNetcode;
 using Assets.Scripts.NetCode;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.ProBuilder;
-using UnityEngine.TextCore.Text;
 
 public class ProjectileData
 {
@@ -14,9 +9,11 @@ public class ProjectileData
     public GameObject obj;
     public float timeLeft;
     public int wallBoundsLeft;
+    public int throughLeft;
     public float damage;
     public Team teamProjectile;
     public float pioffset;
+    public List<IDamageable> hasCollided = new List<IDamageable>();
 }
 
 public class ProjectileManager : MonoBehaviour
@@ -83,7 +80,7 @@ public class ProjectileManager : MonoBehaviour
         for (int i = 0; i < sp; i++)
         {
             ProjectileSO p = weapon.projectile[pseudoRandom.Next(weapon.projectile.Count)];
-            Quaternion rot = rotation * Quaternion.Euler(0f, weapon.offsetAngle + (float)pseudoRandom.NextDouble()* weapon.Angle, 0f);
+            Quaternion rot = rotation * Quaternion.Euler(0f, weapon.offsetAngle + (weapon.spreadUniform ? ((float)i/sp)* weapon.Angle : (float)pseudoRandom.NextDouble()* weapon.Angle), 0f);
             ProjectileData pd = new ProjectileData();
             if (usedProjectiles[p].Count == 0)
             {                
@@ -105,12 +102,14 @@ public class ProjectileManager : MonoBehaviour
             }
             pd.timeLeft = p.lifeTime;
             pd.wallBoundsLeft = p.wallBounds;
-            pd.damage = weapon.dmgPerHit + pseudoRandom.Next(weapon.dmgPerHitAddRandom);
-            pd.teamProjectile = t;   
-            if(p.moveProjectileType == MoveProjectileType.Sin)
+            pd.damage = p.dmgPerHit + pseudoRandom.Next(p.dmgPerHitAddRandom);
+            pd.teamProjectile = t;
+            pd.throughLeft = p.throughCount;            
+            if (p.moveProjectileType == MoveProjectileType.Sin)
             {
                 pd.pioffset = ((Mathf.PI * 2.0f) - (p.lifeTime * p.sinFrequence) % (Mathf.PI * 2.0f)) + 1.3f;//<== tg c'est magique
             }
+
             projectiles[p].Add(pd);
             UpdateProjectile(p, pd, timeStamp);
         }
@@ -129,7 +128,8 @@ public class ProjectileManager : MonoBehaviour
 
     public void DespawnProjectile(ProjectileSO p, ProjectileData pd)
     {
-        pd.obj.SetActive(false);        
+        pd.obj.SetActive(false);
+        pd.hasCollided.Clear();
         projectiles[p].Remove(pd);
         usedProjectiles[p].Enqueue(pd);
         indexUpdate--;
@@ -153,14 +153,51 @@ public class ProjectileManager : MonoBehaviour
         {
             for (int i = 0; i < hitIDamageable.Count; i++)
             {
-                hitIDamageable[i].TakeDamage(pd.damage);
+                if (hitIDamageable[i] != null)
+                {
+                    if (hitIDamageable[i].isAlive())
+                    {
+                        hitIDamageable[i].TakeDamage(pd.damage);
+                        if (p.punchThrough)
+                        {
+                            pd.hasCollided.Add(hitIDamageable[i]);
+                        }
+                    }
+                }
+            }
+        }
+        else if(!GameNetworkManager.IsOffline && !NetworkManager.Singleton.IsServer)
+        {
+            for (int i = 0; i < hitIDamageable.Count; i++)
+            {
+                if (hitIDamageable[i] != null)
+                {
+                    if (hitIDamageable[i].isAlive())
+                    {
+                        if (p.punchThrough)
+                        {
+                            pd.hasCollided.Add(hitIDamageable[i]);
+                        }
+                    }
+                }
             }
         }
         if (hw || hitIDamageable.Count > 0)
         {
+            if(hitIDamageable.Count > 0 && pd.throughLeft > 1)
+            {
+                pd.throughLeft--;
+                return;
+            }
             if (p.explodeEffect != null)
             {
-                Destroy(Instantiate(p.explodeEffect, pd.obj.transform.position, pd.obj.transform.rotation, projectilePool.transform), p.timeExplode);
+                GameObject go = Instantiate(p.explodeEffect, pd.obj.transform.position, pd.obj.transform.rotation, projectilePool.transform);
+                RaycastHit hit;
+                if (Physics.Raycast(pd.obj.transform.position, pd.direction, out hit, Mathf.Infinity, collisionMask))
+                {
+                    go.transform.rotation = Quaternion.LookRotation(-hit.normal);
+                }
+                Destroy(go, p.timeExplode);
             }
             DespawnProjectile(p, pd);
         }
@@ -190,7 +227,7 @@ public class ProjectileManager : MonoBehaviour
                 for(int i = 0; i < hits.Length; i++)
                 {
                     IDamageable c = hits[i].collider.GetComponent<IDamageable>();
-                    if (c != null)
+                    if (c != null && !pd.hasCollided.Contains(c))
                     {
                         targetIDamageable.Add(c);                                                
                     }
@@ -199,9 +236,9 @@ public class ProjectileManager : MonoBehaviour
                         hitWall = true;
                         targetImpact = hits[i].normal;
                         return true;
-                    }                    
+                    }
                 }
-                if(targetIDamageable.Count > 0)
+                if (targetIDamageable.Count > 0)
                 {
                     targetImpact = Vector3.zero;
                     hitWall = false;
@@ -224,6 +261,10 @@ public class ProjectileManager : MonoBehaviour
             }
             numColliders = newSize;
         }
+        else if (p.shapeProjectileType == ShapeProjectileType.NoCollide)
+        {
+            return false;
+        }
 
         if (numColliders > 0)
         {
@@ -233,8 +274,23 @@ public class ProjectileManager : MonoBehaviour
                 IDamageable c = colliders[i].GetComponent<IDamageable>();
                 if (c != null)
                 {
-                    targetIDamageable.Add(c);
-                    IDamageableCount++;
+                    if (p.punchThrough)
+                    {
+                        if(!pd.hasCollided.Contains(c))
+                        {
+                            targetIDamageable.Add(c);
+                            IDamageableCount++;
+                        }
+                        else
+                        {
+                            numColliders--;
+                        }
+                    }
+                    else
+                    {
+                        targetIDamageable.Add(c);
+                        IDamageableCount++;
+                    }
                 }
             }            
            
@@ -300,7 +356,7 @@ public class ProjectileManager : MonoBehaviour
         pd.timeLeft -= time;
         if(pd.timeLeft <= 0.0f)
         {
-            DespawnProjectile(p, pd);
+            DespawnProjectile(p, pd);            
             return;
         }
 
@@ -312,6 +368,7 @@ public class ProjectileManager : MonoBehaviour
                 Vector3 reflectionDirection = Vector3.Reflect(pd.direction, targetImpact);
                 reflectionDirection.y = pd.direction.y;
                 pd.direction = reflectionDirection;
+                pd.hasCollided.Clear();
             }
             else
             {

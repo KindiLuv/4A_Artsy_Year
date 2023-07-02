@@ -96,14 +96,17 @@ public class PlayerController : Character
         if (!IsLocalPlayer)
         {
             Destroy(_playerCamera);
-            enabled = false;
             return;
         }
     }
 
     private void Update()
-    {        
-        if (_actionLocked) return;
+    {
+        if (GameNetworkManager.IsOffline || IsServer)
+        {
+            HealIndicator();
+        }
+        if (_actionLocked || (!GameNetworkManager.IsOffline && !IsLocalPlayer)) return;
         HandleMovement();
         HandleInputAim();
         HandleRotation();

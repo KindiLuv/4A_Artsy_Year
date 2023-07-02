@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveProjectileType: 1
   sinForce: 1
+  sinFrequence: 5
+  radiusSearch: 5
+  colapseSearchSpeed: 5
   speed: 8
+  dmgPerHit: 3
+  dmgPerHitAddRandom: 1
   prefab:
   - {fileID: 8009012414925897728, guid: e93f2b4e75f84b540a93b22dd2efa446, type: 3}
   shapeProjectileType: 0

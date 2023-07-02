@@ -15,7 +15,8 @@ public enum ShapeProjectileType
     Sphere,
     Box,
     Raycast,
-    ArcSphere
+    ArcSphere,
+    NoCollide
 }
 
 [CreateAssetMenu(fileName = "Projectile", menuName = "ScriptableObjects/Weapon/ProjectileSO", order = 4)]
@@ -27,6 +28,8 @@ public class ProjectileSO : ScriptableObject
     [DrawIf("moveProjectileType", MoveProjectileType.Follow, ComparisonType.Equals)] public float radiusSearch = 5.0f;
     [DrawIf("moveProjectileType", MoveProjectileType.Follow, ComparisonType.Equals)] public float colapseSearchSpeed = 5.0f;
     public float speed = 1.0f;
+    public int dmgPerHit;
+    public int dmgPerHitAddRandom;
     public List<GameObject> prefab;
     public ShapeProjectileType shapeProjectileType = ShapeProjectileType.Sphere;
     public Vector3 collideOffset = Vector3.zero;
@@ -36,6 +39,8 @@ public class ProjectileSO : ScriptableObject
     [DrawIf("shapeProjectileType", ShapeProjectileType.ArcSphere, ComparisonType.Equals)] public float arcRadius = 1.0f;
     public float lifeTime = 20.0f;
     public int wallBounds = 0;
+    public bool punchThrough = false;
+    [DrawIf("punchThrough", true, ComparisonType.Equals)] public int throughCount = 0;
     public GameObject explodeEffect;
     public float timeExplode = 2.0f;
 }

@@ -10,26 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: Slash
+  m_Name: BulletAutoRifle
   m_EditorClassIdentifier: 
-  moveProjectileType: 0
-  sinForce: 1
-  sinFrequence: 5
+  moveProjectileType: 1
+  sinForce: 0
+  sinFrequence: 8
   radiusSearch: 5
-  colapseSearchSpeed: 5
-  speed: 0
-  dmgPerHit: 20
-  dmgPerHitAddRandom: 2
+  colapseSearchSpeed: 1
+  speed: 10
+  dmgPerHit: 3
+  dmgPerHitAddRandom: 1
   prefab:
-  - {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb, type: 3}
-  shapeProjectileType: 3
+  - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}
+  shapeProjectileType: 0
   collideOffset: {x: 0, y: 0, z: 0}
-  radius: 3
+  radius: 0.25
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
-  arcRadius: 1.5
-  lifeTime: 1
-  wallBounds: 0
-  explodeEffect: {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb,
+  arcRadius: 3
+  lifeTime: 10
+  wallBounds: 1
+  punchThrough: 0
+  throughCount: 2
+  explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
     type: 3}
-  timeExplode: 1
+  timeExplode: 5

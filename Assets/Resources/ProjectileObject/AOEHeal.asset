@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: BulletRifle
+  m_Name: AOEHeal
   m_EditorClassIdentifier: 
-  moveProjectileType: 1
-  sinForce: 0
-  sinFrequence: 8
+  moveProjectileType: 0
+  sinForce: 1
+  sinFrequence: 5
   radiusSearch: 5
-  colapseSearchSpeed: 1
-  speed: 10
+  colapseSearchSpeed: 5
+  speed: 0
+  dmgPerHit: 0
+  dmgPerHitAddRandom: 0
   prefab:
-  - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}
-  shapeProjectileType: 0
+  - {fileID: 7364396999178479647, guid: bc447fa8fdaad1f4dbb6140c0b122e8a, type: 3}
+  shapeProjectileType: 4
   collideOffset: {x: 0, y: 0, z: 0}
-  radius: 0.25
+  radius: 1
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
-  arcRadius: 3
-  lifeTime: 10
-  wallBounds: 0
-  explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
-    type: 3}
-  timeExplode: 5
+  arcRadius: 1.5
+  lifeTime: 4
+  wallBounds: 10
+  explodeEffect: {fileID: 0}
+  timeExplode: 0

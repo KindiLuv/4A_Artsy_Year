@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterClass: 0
   prefab: {fileID: 3949829733469281615, guid: 1cacfee6bd440154ab9901a104ace076, type: 3}
-  maxLife: 0
+  maxLife: 100
   maxShield: 0
   maxMana: 0
   maxSpeed: 1

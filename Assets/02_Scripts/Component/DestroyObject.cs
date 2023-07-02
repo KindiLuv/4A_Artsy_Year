@@ -48,7 +48,7 @@ public class DestroyObject : NetEntity, IDamageable
 
     public bool isAlive()
     {
-        return false;
+        return _health > 0;
     }
 
     public Team GetTeam()

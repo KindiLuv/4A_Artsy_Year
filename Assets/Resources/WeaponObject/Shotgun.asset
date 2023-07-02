@@ -17,8 +17,6 @@ MonoBehaviour:
   weaponFamily: 1
   rarity: 1
   weaponDescription: Shotgun
-  dmgPerHit: 5
-  dmgPerHitAddRandom: 1
   weaponModel: {fileID: 1768015853518661879, guid: 0de0f0f0ac9295e479b8757c3d895b81,
     type: 3}
   projectile:
@@ -31,6 +29,7 @@ MonoBehaviour:
     type: 3}
   muzzelDestroyTime: 1
   spawnProjectileLocalPosition: {x: 0.5, y: 0.4, z: 1.3}
+  spreadUniform: 0
   offsetAngle: -10
   Angle: 20
   impulseForce: -6
