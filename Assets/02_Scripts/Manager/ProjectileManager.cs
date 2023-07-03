@@ -1,7 +1,9 @@
 using Assets.Scripts.NetCode;
+using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class ProjectileData
 {
@@ -14,6 +16,36 @@ public class ProjectileData
     public Team teamProjectile;
     public float pioffset;
     public List<IDamageable> hasCollided = new List<IDamageable>();
+}
+
+
+public class DistanceComparer : IComparer<RaycastHit>
+{
+    private Vector3 referencePosition;
+
+    public DistanceComparer(Vector3 pos)
+    {
+        referencePosition = pos;
+    }
+
+    public int Compare(RaycastHit a, RaycastHit b)
+    {
+        float distanceA = Vector3.Distance(a.point, referencePosition);
+        float distanceB = Vector3.Distance(b.point, referencePosition);
+
+        if (distanceA < distanceB)
+        {
+            return -1;
+        }
+        else if (distanceA > distanceB)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
 
 public class ProjectileManager : MonoBehaviour
@@ -148,46 +180,49 @@ public class ProjectileManager : MonoBehaviour
             {
                 hitIDamageable.Add(cs[i]);
             }
-        }        
-        if(hitIDamageable.Count > 0 && GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
+        }
+        for (int i = 0; i < hitIDamageable.Count; i++)
         {
-            for (int i = 0; i < hitIDamageable.Count; i++)
+            if (hitIDamageable[i] != null)
             {
-                if (hitIDamageable[i] != null)
+                if (hitIDamageable[i].isAlive())
                 {
-                    if (hitIDamageable[i].isAlive())
+                    if (GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
                     {
                         hitIDamageable[i].TakeDamage(pd.damage);
-                        if (p.punchThrough)
-                        {
-                            pd.hasCollided.Add(hitIDamageable[i]);
-                        }
                     }
-                }
-            }
-        }
-        else if(!GameNetworkManager.IsOffline && !NetworkManager.Singleton.IsServer)
-        {
-            for (int i = 0; i < hitIDamageable.Count; i++)
-            {
-                if (hitIDamageable[i] != null)
-                {
-                    if (hitIDamageable[i].isAlive())
+                    if (p.punchThrough)
                     {
-                        if (p.punchThrough)
+                        pd.hasCollided.Add(hitIDamageable[i]);
+                        if (p.shapeProjectileType == ShapeProjectileType.Raycast)
                         {
-                            pd.hasCollided.Add(hitIDamageable[i]);
+                            pd.throughLeft--;
+                            if(pd.throughLeft == 0)
+                            {
+                                break;
+                            }
                         }
                     }
                 }
             }
         }
+
         if (hw || hitIDamageable.Count > 0)
         {
             if(hitIDamageable.Count > 0 && pd.throughLeft > 1)
             {
-                pd.throughLeft--;
-                return;
+                if (p.shapeProjectileType != ShapeProjectileType.Raycast)
+                {
+                    pd.throughLeft--;
+                    if(pd.wallBoundsLeft > 0)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
             if (p.explodeEffect != null)
             {
@@ -202,6 +237,7 @@ public class ProjectileManager : MonoBehaviour
             DespawnProjectile(p, pd);
         }
     }
+
 
     public bool isCollide(ProjectileSO p, ProjectileData pd)
     {
@@ -220,21 +256,33 @@ public class ProjectileManager : MonoBehaviour
         else if (p.shapeProjectileType == ShapeProjectileType.Raycast)
         {
             RaycastHit[] hits = null;
-            Ray r = new Ray(pd.obj.transform.position+ rotateOffsetPosition, pd.direction);
+            Ray r = new Ray(pd.obj.transform.position, pd.direction);
             hits = Physics.RaycastAll(r, p.rayDistance);
             if(hits != null)
             {
-                for(int i = 0; i < hits.Length; i++)
+                Array.Sort(hits, new DistanceComparer(pd.obj.transform.position + rotateOffsetPosition));
+                int tl = pd.throughLeft;
+                int idtl = -1;
+                for (int i = 0; i < hits.Length; i++)
                 {
                     IDamageable c = hits[i].collider.GetComponent<IDamageable>();
-                    if (c != null && !pd.hasCollided.Contains(c))
+                    if (c != null)
                     {
-                        targetIDamageable.Add(c);                                                
+                        if (!pd.hasCollided.Contains(c))
+                        {
+                            targetIDamageable.Add(c);                            
+                            tl--;
+                            if(tl <= 0 && idtl == -1)
+                            {
+                                idtl = i;
+                            }
+                        }
                     }
                     else
                     {
                         hitWall = true;
-                        targetImpact = hits[i].normal;
+                        targetImpact = hits[i].normal;                        
+                        pd.obj.transform.position = hits[idtl != -1 ? idtl : i].point;
                         return true;
                     }
                 }
@@ -368,7 +416,14 @@ public class ProjectileManager : MonoBehaviour
                 Vector3 reflectionDirection = Vector3.Reflect(pd.direction, targetImpact);
                 reflectionDirection.y = pd.direction.y;
                 pd.direction = reflectionDirection;
-                pd.hasCollided.Clear();
+                if (p.shapeProjectileType != ShapeProjectileType.Raycast)
+                {
+                    pd.hasCollided.Clear();
+                }
+                else
+                {
+                    ExplodeProjectile(p, pd, targetIDamageable, hitWall);
+                }
             }
             else
             {
