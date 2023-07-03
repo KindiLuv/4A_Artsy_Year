@@ -11,7 +11,7 @@ public class DestroyObject : NetEntity, IDamageable
     public void TakeDamage(float damage)
     {
         _health -= damage;
-        if(_health < 0)
+        if(_health <= 0)
         {
             Death();
         }
