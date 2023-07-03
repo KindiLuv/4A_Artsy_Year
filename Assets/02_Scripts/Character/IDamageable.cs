@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
 public interface IDamageable
 {
     void TakeDamage(float damage);

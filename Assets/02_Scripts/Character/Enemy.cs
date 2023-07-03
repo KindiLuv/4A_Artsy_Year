@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Enemy : Character
 {
     public EnemySO enemyInformations;
@@ -11,6 +7,7 @@ public class Enemy : Character
         base.Awake();
         team = Team.Enemy;
     }
+
     public void SetupEnemy()
     {        
         _maxHealth = enemyInformations.BaseHealth;
@@ -18,5 +15,4 @@ public class Enemy : Character
         _prefab = enemyInformations.Prefab;
         _speed = enemyInformations.BaseSpeed;
     }
-    
 }

@@ -61126,33 +61126,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030698, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030698, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[3].Prefab
-      value: 
-      objectReference: {fileID: 7404106123489038347, guid: 0a7b11088f142da4c8cb54e0659f5753,
-        type: 3}
     - target: {fileID: 1148866411645030701, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: aa3ed6a7f9966e947bc1f210b5f02a99,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534

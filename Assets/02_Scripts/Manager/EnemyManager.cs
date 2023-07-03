@@ -8,9 +8,8 @@ using UnityEngine;
 public class EnemyManager : NetEntity
 {
     public static EnemyManager instance;
-    public List<EnemySO> enemies;
 
-    [SerializeField] private GameObject crate = null;//A suprimer
+    [SerializeField] private GameObject crate = null;// TODO A supprimer
 
     private void Awake()
     {
@@ -25,6 +24,7 @@ public class EnemyManager : NetEntity
         if (IsServer)
         {
             InstantiateEnemy(0,new Vector3(0.0f,-0.5f,0.0f));
+            InstantiateEnemy(1,new Vector3(0.0f,-0.5f,20f));
             GameObject o = Instantiate(crate, new Vector3(2.0f, -0.0f, 0.0f),Quaternion.identity);
             o.GetComponent<NetworkObject>().Spawn();
         }
@@ -32,9 +32,9 @@ public class EnemyManager : NetEntity
 
     public void InstantiateEnemy(int id,Vector3 pos)
     {
-        GameObject enemy = Instantiate(enemies[id].Prefab);
+        GameObject enemy = Instantiate(GameRessourceManager.Instance.Enemies[id].Prefab);
         Enemy enemySettings = enemy.GetComponent<Enemy>();
-        enemySettings.enemyInformations = enemies[id];
+        enemySettings.enemyInformations = GameRessourceManager.Instance.Enemies[id];
         enemySettings.SetupEnemy();
         enemy.transform.position = pos;
         enemy.GetComponent<NetworkObject>().Spawn();

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using ArtsyNetcode;
 using Unity.Netcode;
@@ -6,6 +7,17 @@ public class PlayerManager : NetEntity
 {
     [SerializeField] private GameObject prefabPlayer = null;
     private GameObject[] arraySpawnPoint;
+    public static PlayerManager instance;
+    public List<GameObject> players;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     void Start()
     {
@@ -20,6 +32,7 @@ public class PlayerManager : NetEntity
         foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             player = Instantiate(prefabPlayer,arraySpawnPoint[i%arraySpawnPoint.Length].transform.position,Quaternion.identity);
+            players.Add(player);
             no = player.GetComponent<NetworkObject>();            
             no.SpawnAsPlayerObject(clientId);
             no.ChangeOwnership(clientId);

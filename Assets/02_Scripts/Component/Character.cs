@@ -17,7 +17,7 @@ public enum Team
     Object
 }
 
-[RequireComponent(typeof(CharacterController))]
+/*[RequireComponent(typeof(CharacterController))]*/
 public class Character : NetEntity, IDamageable
 {
     [SerializeField] protected bool _ded;

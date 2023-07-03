@@ -97,6 +97,18 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7404106123489038347, guid: 0a7b11088f142da4c8cb54e0659f5753,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6437199265679976842, guid: 8e34f7a476464cc4984b48819c04020d,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 1
@@ -164,6 +176,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f, type: 2}
   - {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e, type: 2}
   - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}
+  - {fileID: 11400000, guid: aa3ed6a7f9966e947bc1f210b5f02a99, type: 2}
+  enemies:
+  - {fileID: 11400000, guid: 3cf94f9c54e1e4743998f97cfd939826, type: 2}
+  - {fileID: 11400000, guid: dc68f74b8d1e5814ca252fcc5d29ea4c, type: 2}
 --- !u!114 &2304225578689325126
 MonoBehaviour:
   m_ObjectHideFlags: 0
