@@ -1,5 +1,4 @@
-﻿using System;
-using ArtsyNetcode;
+﻿using ArtsyNetcode;
 using Unity.Netcode;
 using UnityEngine;
 using System.Linq;

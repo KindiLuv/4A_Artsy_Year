@@ -1,12 +1,10 @@
 using Assets.Scripts.NetCode;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using UnityEngine.VFX;
-using Utilities;
 using System.Linq;
 
 public class PlayerController : Character
@@ -105,6 +103,7 @@ public class PlayerController : Character
         if (GameNetworkManager.IsOffline || IsServer)
         {
             HealIndicator();
+            DamageIndicator();
         }
         if (_actionLocked || (!GameNetworkManager.IsOffline && !IsLocalPlayer)) return;
         HandleMovement();

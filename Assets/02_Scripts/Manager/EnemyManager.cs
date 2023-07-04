@@ -1,7 +1,4 @@
 using ArtsyNetcode;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -24,7 +21,7 @@ public class EnemyManager : NetEntity
         if (IsServer)
         {
             InstantiateEnemy(0,new Vector3(0.0f,-0.5f,0.0f));
-            InstantiateEnemy(1,new Vector3(0.0f,-0.5f,20f));
+            InstantiateEnemy(1,new Vector3(0.0f,-0.5f,30f));
             GameObject o = Instantiate(crate, new Vector3(2.0f, -0.0f, 0.0f),Quaternion.identity);
             o.GetComponent<NetworkObject>().Spawn();
         }

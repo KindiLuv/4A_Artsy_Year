@@ -1,12 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using ArtsyNetcode;
-using TMPro;
 using Unity.Netcode;
 using System.Linq;
 using System.Collections.Generic;
-using UnityEngine.Rendering;
-using Unity.VisualScripting;
 
 public enum Team
 {
@@ -121,17 +118,20 @@ public class Character : NetEntity, IDamageable
             Color col = new Color(1.0f, 0.5f, 0.5f);
             foreach (Renderer r in renderers)
             {
-                foreach (Material m in r.materials)
+                if (r != null)
                 {
-                    if (m.HasProperty(ec) && m.HasProperty(em))
+                    foreach (Material m in r.materials)
                     {
-                        texture.Add(m.GetTexture(em));
-                        m.SetTexture(em, null);
-                        colors.Add(m.GetColor(ec));
-                        baseEnabled.Add(m.IsKeywordEnabled("_EMISSION"));
-                        m.EnableKeyword("_EMISSION");
-                        m.SetColor(ec, col);
-                        mats.Add(m);
+                        if (m.HasProperty(ec) && m.HasProperty(em))
+                        {
+                            texture.Add(m.GetTexture(em));
+                            m.SetTexture(em, null);
+                            colors.Add(m.GetColor(ec));
+                            baseEnabled.Add(m.IsKeywordEnabled("_EMISSION"));
+                            m.EnableKeyword("_EMISSION");
+                            m.SetColor(ec, col);
+                            mats.Add(m);
+                        }
                     }
                 }
             }

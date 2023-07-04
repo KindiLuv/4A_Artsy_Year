@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine.Utility;
 using Cinemachine;
-using Unity.Netcode;
 using Assets.Scripts.NetCode;
 using UnityEngine.SceneManagement;
 

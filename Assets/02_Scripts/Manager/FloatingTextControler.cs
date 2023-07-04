@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public class FloatingTextControler : MonoBehaviour
 {
     [SerializeField] private FloatingText popupText = null;
