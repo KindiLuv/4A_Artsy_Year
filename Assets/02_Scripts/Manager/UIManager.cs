@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         TextMeshPro textmeshPro = go.AddComponent<TextMeshPro>();
         textmeshPro.font = newFont;
         textmeshPro.outlineWidth = 0.2f;
-        textmeshPro.fontSize = 8.0f;
+        textmeshPro.fontSize = 6.0f;
         textmeshPro.alignment = TextAlignmentOptions.Center;
         textmeshPro.text = text;
         textmeshPro.color = new Color(1.0f, 1.0f, 1.0f,1.0f);

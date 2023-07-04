@@ -176,6 +176,11 @@ public class Character : NetEntity, IDamageable
         _health -= damage;
     }
 
+    public virtual void KnockBack(Vector3 impulse)
+    {
+
+    }
+
     public void HealDamage(float heal)
     {
         if (_health + heal > _maxHealth)

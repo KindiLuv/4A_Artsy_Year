@@ -14,6 +14,7 @@ public class ProjectileData
     public float damage;
     public Team teamProjectile;
     public float pioffset;
+    public Vector3 knockBack;
     public List<IDamageable> hasCollided = new List<IDamageable>();
 }
 
@@ -135,7 +136,8 @@ public class ProjectileManager : MonoBehaviour
             pd.wallBoundsLeft = p.wallBounds;
             pd.damage = p.dmgPerHit + pseudoRandom.Next(p.dmgPerHitAddRandom);
             pd.teamProjectile = t;
-            pd.throughLeft = p.throughCount;            
+            pd.throughLeft = p.punchThrough ? p.throughCount : 0;
+            pd.knockBack = p.knockBack;
             if (p.moveProjectileType == MoveProjectileType.Sin)
             {
                 pd.pioffset = ((Mathf.PI * 2.0f) - (p.lifeTime * p.sinFrequence) % (Mathf.PI * 2.0f)) + 1.3f;//<== tg c'est magique
@@ -166,7 +168,7 @@ public class ProjectileManager : MonoBehaviour
         indexUpdate--;
     }
 
-    public void ExplodeProjectile(ProjectileSO p, ProjectileData pd,List<IDamageable> cs,bool hw)
+    public void ExplodeProjectile(ProjectileSO p, ProjectileData pd,List<IDamageable> cs,bool hw,bool raycastS = false)
     {
         List<IDamageable> hitIDamageable = new List<IDamageable>();
         for (int i = 0; i < cs.Count; i++)
@@ -186,20 +188,29 @@ public class ProjectileManager : MonoBehaviour
             {
                 if (hitIDamageable[i].isAlive())
                 {
-                    if (GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
-                    {
-                        hitIDamageable[i].TakeDamage(pd.damage);
-                    }
                     if (p.punchThrough)
                     {
                         pd.hasCollided.Add(hitIDamageable[i]);
-                        if (p.shapeProjectileType == ShapeProjectileType.Raycast)
+                    }
+                    if (p.shapeProjectileType == ShapeProjectileType.Raycast)
+                    {
+                        pd.throughLeft--;
+                        if (GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
                         {
-                            pd.throughLeft--;
-                            if(pd.throughLeft == 0)
-                            {
-                                break;
-                            }
+                            hitIDamageable[i].TakeDamage(pd.damage);
+                            hitIDamageable[i].KnockBack(pd.obj.transform.rotation * pd.knockBack);
+                        }
+                        if (pd.throughLeft <= 0)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (GameNetworkManager.IsOffline || NetworkManager.Singleton.IsServer)
+                        {
+                            hitIDamageable[i].TakeDamage(pd.damage);
+                            hitIDamageable[i].KnockBack(pd.obj.transform.rotation * pd.knockBack);
                         }
                     }
                 }
@@ -213,15 +224,19 @@ public class ProjectileManager : MonoBehaviour
                 if (p.shapeProjectileType != ShapeProjectileType.Raycast)
                 {
                     pd.throughLeft--;
-                    if(pd.wallBoundsLeft > 0)
+                    return;
+                }
+                else
+                {
+                    if (pd.wallBoundsLeft > 0)
                     {
                         return;
                     }
                 }
-                else
-                {
-                    return;
-                }
+            }
+            if(raycastS && pd.throughLeft > 0)
+            {
+                return;
             }
             if (p.explodeEffect != null)
             {
@@ -256,7 +271,7 @@ public class ProjectileManager : MonoBehaviour
         {
             RaycastHit[] hits = null;
             Ray r = new Ray(pd.obj.transform.position, pd.direction);
-            hits = Physics.RaycastAll(r, p.rayDistance);
+            hits = Physics.RaycastAll(r, p.rayDistance, collisionMask);
             if(hits != null)
             {
                 Array.Sort(hits, new DistanceComparer(pd.obj.transform.position + rotateOffsetPosition));
@@ -264,25 +279,29 @@ public class ProjectileManager : MonoBehaviour
                 int idtl = -1;
                 for (int i = 0; i < hits.Length; i++)
                 {
-                    IDamageable c = hits[i].collider.GetComponent<IDamageable>();
-                    if (c != null)
+                    //if (hits[i].collider != null && hits[i].collider.isTrigger)
                     {
-                        if (!pd.hasCollided.Contains(c))
+                        IDamageable c = hits[i].collider.GetComponent<IDamageable>();
+                        if (c != null)
                         {
-                            targetIDamageable.Add(c);                            
-                            tl--;
-                            if(tl <= 0 && idtl == -1)
+                            if (!pd.hasCollided.Contains(c) && c.GetTeam() != pd.teamProjectile)
                             {
-                                idtl = i;
+                                targetIDamageable.Add(c);
+                                tl--;
+                                if (tl <= 0 && idtl == -1)
+                                {
+                                    idtl = i;
+                                }
+                                pd.obj.transform.position = hits[i].point;
                             }
                         }
-                    }
-                    else
-                    {
-                        hitWall = true;
-                        targetImpact = hits[i].normal;                        
-                        pd.obj.transform.position = hits[idtl != -1 ? idtl : i].point;
-                        return true;
+                        else
+                        {
+                            hitWall = true;
+                            targetImpact = hits[i].normal;
+                            pd.obj.transform.position = hits[idtl != -1 ? idtl : i].point;
+                            return true;
+                        }
                     }
                 }
                 if (targetIDamageable.Count > 0)
@@ -409,20 +428,17 @@ public class ProjectileManager : MonoBehaviour
 
         if(isCollide(p,pd))
         {
-            if(pd.wallBoundsLeft > 0 && targetIDamageable.Count == 0 && hitWall)
-            {
+            if(pd.wallBoundsLeft > 0 && (targetIDamageable.Count == 0 || p.shapeProjectileType == ShapeProjectileType.Raycast) && hitWall)
+            {                
                 pd.wallBoundsLeft--;
                 Vector3 reflectionDirection = Vector3.Reflect(pd.direction, targetImpact);
                 reflectionDirection.y = pd.direction.y;
                 pd.direction = reflectionDirection;
-                if (p.shapeProjectileType != ShapeProjectileType.Raycast)
+                pd.hasCollided.Clear();
+                if (p.shapeProjectileType == ShapeProjectileType.Raycast)
                 {
-                    pd.hasCollided.Clear();
-                }
-                else
-                {
-                    ExplodeProjectile(p, pd, targetIDamageable, hitWall);
-                }
+                    ExplodeProjectile(p, pd, targetIDamageable, hitWall,true);
+                }                
             }
             else
             {

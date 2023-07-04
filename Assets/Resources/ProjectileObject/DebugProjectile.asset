@@ -17,9 +17,9 @@ MonoBehaviour:
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 8
-  dmgPerHit: 3
-  dmgPerHitAddRandom: 2
+  speed: 10
+  dmgPerHit: 1
+  dmgPerHitAddRandom: 0
   prefab:
   - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}
   shapeProjectileType: 0
@@ -29,9 +29,9 @@ MonoBehaviour:
   rayDistance: 100
   arcRadius: 3
   lifeTime: 5
-  wallBounds: 0
-  punchThrough: 0
-  throughCount: 0
+  wallBounds: 1
+  punchThrough: 1
+  throughCount: 1
   explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
     type: 3}
-  timeExplode: 5
+  timeExplode: 2

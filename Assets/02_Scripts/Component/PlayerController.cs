@@ -98,6 +98,11 @@ public class PlayerController : Character
         }
     }
 
+    public override void KnockBack(Vector3 impulse)
+    {
+        _impulseForce += impulse;
+    }
+
     private void Update()
     {
         if (GameNetworkManager.IsOffline || IsServer)

@@ -29,6 +29,7 @@ public class ProjectileSO : ScriptableObject
     public float speed = 1.0f;
     public int dmgPerHit;
     public int dmgPerHitAddRandom;
+    public Vector3 knockBack = Vector3.zero;
     public List<GameObject> prefab;
     public ShapeProjectileType shapeProjectileType = ShapeProjectileType.Sphere;
     public Vector3 collideOffset = Vector3.zero;
