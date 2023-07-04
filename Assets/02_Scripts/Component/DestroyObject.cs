@@ -36,6 +36,10 @@ public class DestroyObject : NetEntity, IDamageable
         }
     }
 
+    public void KnockBack(Vector3 impulse)
+    {
+
+    }
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();

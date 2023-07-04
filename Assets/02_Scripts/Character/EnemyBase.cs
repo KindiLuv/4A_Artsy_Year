@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.NetCode;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBase : Enemy
 {
     private NavMeshAgent _navMeshAgent;
+    private Vector3 targetPositionImpulse = Vector3.zero;
+    private bool isImpulse = false;
 
     void Start()
     {
@@ -14,11 +17,40 @@ public class EnemyBase : Enemy
         _navMeshAgent.speed = _speed;
     }
 
-    // Update is called once per frame
+    public override void KnockBack(Vector3 impulse)
+    {
+        if (impulse != Vector3.zero)
+        {
+            StartCoroutine(ImpulseMovementCoroutine(impulse, 0.2f));
+        }
+    }
+
+    public IEnumerator ImpulseMovementCoroutine(Vector3 impulseForce, float impulseDuration)
+    {
+        targetPositionImpulse = transform.position + impulseForce;
+        if (!isImpulse)
+        {
+            isImpulse = true;
+            float timer = 0f;
+
+            while (timer < impulseDuration)
+            {
+                float t = timer / impulseDuration;
+                transform.position = Vector3.Lerp(transform.position, targetPositionImpulse, t);
+
+                timer += Time.deltaTime;
+
+                yield return null;
+            }
+            isImpulse = false;
+        }
+    }
+
     public override void Update()
     {
         base.Update();
         _navMeshAgent.destination = PlayerManager.instance.players[0].transform.position;
-        Debug.Log("I have  : "+ _health);
+       
+
     }
 }
