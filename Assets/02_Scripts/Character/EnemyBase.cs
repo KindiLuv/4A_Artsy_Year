@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.NetCode;
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,8 +11,8 @@ public class EnemyBase : Enemy
 
     IEnumerator Start()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.speed = _speed;
+        /*_navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent.speed = _speed;*/
         while (true)
         {
             yield return new WaitForSeconds(2);
@@ -55,10 +52,7 @@ public class EnemyBase : Enemy
     public override void Update()
     {
         base.Update();
-        _navMeshAgent.destination = PlayerManager.instance.players[0].transform.position;
         transform.LookAt(PlayerManager.instance.players[0].transform.position);
         Debug.DrawRay(transform.position, transform.forward, Color.red);
-       
-
     }
 }

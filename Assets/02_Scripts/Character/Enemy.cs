@@ -7,7 +7,7 @@ public class Enemy : Character
 {
     public EnemySO enemyInformations;
     protected List<WeaponSO> _weapons;
-    [SerializeField] private Animator _enemyHand;
+    public Animator _enemyHand;
     private static readonly int Attacking = Animator.StringToHash("Attacking");
 
     protected override void Awake()
