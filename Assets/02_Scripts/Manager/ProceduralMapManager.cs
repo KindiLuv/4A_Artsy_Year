@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -189,7 +190,7 @@ public class ProceduralMapManager : MonoBehaviour
     {
         if (useRandomSeed)
         {
-            seed = UnityEngine.Random.Range(0,10000).ToString();
+            seed = UnityEngine.Random.Range(0, 10000).ToString();
         }
         b = GetBiomeID(idBiome);
         Dictionary<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> dungeon = CreateDungeon(Vector2Int.zero);
@@ -197,8 +198,8 @@ public class ProceduralMapManager : MonoBehaviour
         Vector2Int bossRoom = Vector2Int.zero;
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
-            CreateChunck(pair.Key, countBoss == dungeon.Count-1);
-            if(countBoss == dungeon.Count - 1)
+            CreateChunck(pair.Key, countBoss == dungeon.Count - 1 || countBoss == 0);
+            if (countBoss == dungeon.Count - 1)
             {
                 bossRoom = pair.Key;
             }
@@ -231,30 +232,30 @@ public class ProceduralMapManager : MonoBehaviour
             if (pseudoRandom.NextDouble() * 100.0 <= b.HoldeRateChunck)
             {
                 int[,] nmap = InitChunkHole(b.HoleFill, pseudoRandom);
-                for(int i = 0; i < nmap.GetLength(0); i++)
+                for (int i = 0; i < nmap.GetLength(0); i++)
                 {
-                    for(int j = 0; j < nmap.GetLength(1); j++)
+                    for (int j = 0; j < nmap.GetLength(1); j++)
                     {
                         bool sideofWall = false;
-                        for(int x = -1; x <= 1 && !sideofWall; x++)
+                        for (int x = -1; x <= 1 && !sideofWall; x++)
                         {
-                            for(int y= -1; y <= 1 && !sideofWall; y++)
+                            for (int y = -1; y <= 1 && !sideofWall; y++)
                             {
-                                if (x + i < chunckSize && y + j < chunckSize && x+i >= 0 && y + j >= 0)
+                                if (x + i < chunckSize && y + j < chunckSize && x + i >= 0 && y + j >= 0)
                                 {
-                                    if(pair.Value.map[i+x, j+y] == 1 || pair.Value.map[i + x, j + y] == 2)
+                                    if (pair.Value.map[i + x, j + y] == 1 || pair.Value.map[i + x, j + y] == 2)
                                     {
                                         sideofWall = true;
                                     }
                                 }
                             }
                         }
-                        if(pair.Value.map[i,j] == 0)
+                        if (pair.Value.map[i, j] == 0)
                         {
                             if (nmap[i, j] != 1 && !sideofWall)
                             {
                                 pair.Value.map[i, j] = 3;
-                            }                            
+                            }
                         }
                     }
                 }
@@ -268,7 +269,7 @@ public class ProceduralMapManager : MonoBehaviour
                 if (pseudoRandom.NextDouble() * 100.0 <= b.SpawnObjects[i].SpawnRateChunck)
                 {
                     int spawnNb = 0;
-                    if(b.SpawnObjects[i].HasSpawnFillPercent)
+                    if (b.SpawnObjects[i].HasSpawnFillPercent)
                     {
                         spawnNb = (int)(pseudoRandom.NextDouble() * b.SpawnObjects[i].SpawnFillPercent * chunckSize * chunckSize);
                     }
@@ -302,10 +303,10 @@ public class ProceduralMapManager : MonoBehaviour
         pos.Add(new Vector3(csDivid, 0, -csDivid));
         pos.Add(new Vector3(-csDivid, 0, -csDivid));
         indice.Add(1);
-        indice.Add(0);        
+        indice.Add(0);
         indice.Add(2);
         indice.Add(2);
-        indice.Add(3);        
+        indice.Add(3);
         indice.Add(1);
         uvs.Add(new Vector2(0.0f, 0.0f));
         uvs.Add(new Vector2(0.0f, 10.0f));
@@ -316,7 +317,7 @@ public class ProceduralMapManager : MonoBehaviour
         mflat.vertices = pos.ToArray();
         mflat.triangles = indice.ToArray();
         mflat.uv = uvs.ToArray();
-        mflat.RecalculateNormals();        
+        mflat.RecalculateNormals();
 
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
@@ -325,7 +326,7 @@ public class ProceduralMapManager : MonoBehaviour
                 for (int y = -1; y < 2; y++)
                 {
                     bo = pair.Key + new Vector2Int(x, y);
-                    if(!(x == 0 && y == 0) && !maps.ContainsKey(bo) && !borderMaps.Contains(bo))
+                    if (!(x == 0 && y == 0) && !maps.ContainsKey(bo) && !borderMaps.Contains(bo))
                     {
                         GameObject obj = new GameObject("Chunck_" + bo.ToString());
                         obj.transform.position = new Vector3(bo.x * (chunckSize), 0, bo.y * (chunckSize));
@@ -348,21 +349,21 @@ public class ProceduralMapManager : MonoBehaviour
         {
             GameObject obj = new GameObject("Chunck_" + pair.Key.ToString());
             obj.transform.position = new Vector3(pair.Key.x * (chunckSize), 0, pair.Key.y * (chunckSize));
-            obj.transform.parent = transform;            
-            MeshGenerator mg = obj.AddComponent<MeshGenerator>();            
+            obj.transform.parent = transform;
+            MeshGenerator mg = obj.AddComponent<MeshGenerator>();
             GameObject wall = new GameObject("ChunckWall_" + pair.Key.ToString());
             wall.transform.parent = obj.transform;
             wall.transform.localPosition = Vector3.zero;
-            wall.transform.localScale = Vector3.one*1.016f;
+            wall.transform.localScale = Vector3.one * 1.016f;
             MeshRenderer mr1 = wall.AddComponent<MeshRenderer>();
             GameObject cave = new GameObject("ChunckCave_" + pair.Key.ToString());
             cave.transform.parent = obj.transform;
-            cave.transform.localPosition = Vector3.zero;          
-            cave.transform.localScale = Vector3.one*1.016f;
-            MeshRenderer mr2 = cave.AddComponent<MeshRenderer>();            
+            cave.transform.localPosition = Vector3.zero;
+            cave.transform.localScale = Vector3.one * 1.016f;
+            MeshRenderer mr2 = cave.AddComponent<MeshRenderer>();
             GameObject ground = new GameObject("ChunckGround_" + pair.Key.ToString());
             ground.transform.parent = obj.transform;
-            ground.transform.localPosition = new Vector3(-(chunckSize)/2,-wallSize, -(chunckSize) / 2);
+            ground.transform.localPosition = new Vector3(-(chunckSize) / 2, -wallSize, -(chunckSize) / 2);
             MeshRenderer mr3 = ground.AddComponent<MeshRenderer>();
             GameObject border = new GameObject("ChunckBorder_" + pair.Key.ToString());
             border.transform.parent = obj.transform;
@@ -373,8 +374,8 @@ public class ProceduralMapManager : MonoBehaviour
             holeBorder.transform.localPosition = new Vector3(-(chunckSize) / 2, -wallSize, -(chunckSize) / 2);
             MeshRenderer mr7 = holeBorder.AddComponent<MeshRenderer>();
             mg.InitMesh(wall.AddComponent<MeshFilter>(), cave.AddComponent<MeshFilter>(), ground.AddComponent<MeshFilter>(), border.AddComponent<MeshFilter>(), holeBorder.AddComponent<MeshFilter>(), wallSize);
-            mg.GenerateMesh(pair.Value.map, 1,pair.Key);
-            Mesh current = ground.GetComponent<MeshFilter>().mesh;   
+            mg.GenerateMesh(pair.Value.map, 1, pair.Key);
+            Mesh current = ground.GetComponent<MeshFilter>().mesh;
             MeshCollider mc = ground.AddComponent<MeshCollider>();
             mc.sharedMesh = current;
 
@@ -386,19 +387,21 @@ public class ProceduralMapManager : MonoBehaviour
             MeshFilter mf = borderB.AddComponent<MeshFilter>();
             GameObject voidB = new GameObject("ChunckVoid_" + pair.Key.ToString());
             voidB.transform.parent = obj.transform;
-            voidB.transform.localPosition = new Vector3(0, -wallSize*2, 0);
+            voidB.transform.localPosition = new Vector3(0, -wallSize * 2, 0);
             voidB.transform.localScale = Vector3.one * 1.016f;
             voidB.AddComponent<OOBRespawnNavMesh>();
+            voidB.AddComponent<NavMeshModifier>().ignoreFromBuild = true;
             BoxCollider bc = voidB.AddComponent<BoxCollider>();
             bc.isTrigger = true;
-            bc.size = mflat.bounds.extents*2.0f + new Vector3(0, wallSize, 0);            
+            bc.size = mflat.bounds.extents * 2.0f + new Vector3(0, wallSize, 0);
+            bc.center = new Vector3(0, -wallSize, 0);
             MeshRenderer mr6 = voidB.AddComponent<MeshRenderer>();
             MeshFilter mf6 = voidB.AddComponent<MeshFilter>();
             mf6.mesh = mflat;
-            mr6.material = b.VoidHole;            
+            mr6.material = b.VoidHole;
             mf.mesh = border.GetComponent<MeshFilter>().mesh;
 
-            
+
             mr1.material = b.Wall;
             mr2.material = b.Ceil;
             mr3.material = b.Ground;
@@ -410,7 +413,7 @@ public class ProceduralMapManager : MonoBehaviour
                 SpawnableObject so = GetID(spawn.id);
                 if (so != null)
                 {
-                    GameObject go = Instantiate(so.Prefab[pseudoRandom.Next(so.Prefab.Count)],spawn.position,spawn.rotation);
+                    GameObject go = Instantiate(so.Prefab[pseudoRandom.Next(so.Prefab.Count)], spawn.position, spawn.rotation);
                     bool rotate = false;
                     float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
                     if (rotate)
@@ -427,6 +430,17 @@ public class ProceduralMapManager : MonoBehaviour
         ns.BuildNavMesh();
 
         lco.InitCookieOffset(b.SunLightCookie, b.SpeedSunMove, b.SunSizeCookie, b.SunIntensity, b.SunKelvin);
+
+        GameObject[] arraySpawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        for(int i = 0; i < arraySpawnPoint.Length; i++)
+        {
+            NavMeshHit myNavHit;
+
+                if (UnityEngine.AI.NavMesh.SamplePosition(arraySpawnPoint[i].transform.position, out myNavHit, 1000, -1))
+                {
+                    arraySpawnPoint[i].transform.position = myNavHit.position;
+                }
+        }
     }
 
     public Biome GetBiomeID(int id)
