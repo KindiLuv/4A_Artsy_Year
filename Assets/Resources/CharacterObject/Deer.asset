@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf37e8044105cbb45972e76590ece05f, type: 3}
   m_Name: Deer
   m_EditorClassIdentifier: 
-  characterClass: 0
+  characterClass: 11
   prefab: {fileID: 2718956331391563092, guid: e5ee71d8a4cb3fa4fbf9f55c1751d7ee, type: 3}
-  maxLife: 100
-  maxShield: 0
-  maxMana: 0
-  maxSpeed: 1
+  baseLife: 100
+  baseShield: 0
+  baseMana: 0
+  baseSpeed: 8

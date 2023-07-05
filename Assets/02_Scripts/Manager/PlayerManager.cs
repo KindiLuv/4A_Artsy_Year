@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ArtsyNetcode;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : NetEntity
 {

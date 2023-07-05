@@ -28,11 +28,11 @@ public class Player : NetEntity
 
     protected void Start()
     {
+        _playerController = GetComponent<PlayerController>();
         if (GameNetworkManager.IsOffline)
         {
             LoadData(characterID,weaponID);            
-        }
-        _playerController = GetComponent<PlayerController>();        
+        }           
     }
 
     public override void OnNetworkSpawn()
@@ -70,6 +70,11 @@ public class Player : NetEntity
             if (_character != null)
             {
                 Instantiate(_character.Prefab, playerModelSpawn.transform.position, playerModelSpawn.transform.rotation, playerModelSpawn.transform);
+                if (!GameNetworkManager.IsOffline)
+                {
+                    _playerController = GetComponent<PlayerController>();
+                    _playerController.SetupCSO(_character);
+                }
             }
         }
         foreach (Transform t in _playerHand.transform)

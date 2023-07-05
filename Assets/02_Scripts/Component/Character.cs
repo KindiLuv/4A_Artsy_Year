@@ -34,6 +34,12 @@ public class Character : NetEntity, IDamageable
     private float timeVisualDamage = 0.0f;
     #region Getter Setter
 
+    public bool Ded { get { return _ded; } }
+    public float Health { get { return _health; } }
+    public bool IsInvicible { get { return _isInvicible; } }
+    public float MaxHealth { get { return _maxHealth; } }
+    public float Speed { get { return _speed; } }
+
     public virtual bool AtionLocked { set { _actionLocked = value; } get { return _actionLocked; } }
 
     public Team Team { get { return team; } }
