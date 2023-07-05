@@ -26,7 +26,7 @@ public class PlayerManager : NetEntity
         {
             return;
         } 
-        arraySpawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        arraySpawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");        
         int i = 0;
         NetworkObject no = null;
         GameObject player;
