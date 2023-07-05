@@ -56,7 +56,7 @@ public class EnemyBase : Enemy
         }
     }
 
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
         if (GameNetworkManager.IsOffline || IsServer)

@@ -135,7 +135,7 @@ public class PlayerController : Character
         }
         else
         {
-            transposer.m_FollowOffset = new Vector3(0.0f, 20.0f, -7.0f);
+            transposer.m_FollowOffset = new Vector3(0.0f, 25.0f, -10.0f);
         }
     }
 
@@ -144,12 +144,16 @@ public class PlayerController : Character
         _impulseForce += impulse;
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (GameNetworkManager.IsOffline || IsServer)
         {
             HealIndicator();
             DamageIndicator();
+        }
+        if (_controller.isGrounded)
+        {
+            lastGroundPosition = transform.position;
         }
         if (_actionLocked || (!GameNetworkManager.IsOffline && !IsLocalPlayer)) return;
         HandleMovement();

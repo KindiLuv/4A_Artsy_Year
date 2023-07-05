@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5251935581973133727
 Transform:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1467792067123654623
 Transform:
   m_ObjectHideFlags: 0
@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 2677176013022059147}
   - component: {fileID: 7732320747485962551}
   - component: {fileID: 8581276506759264625}
+  - component: {fileID: 1412257724}
   m_Layer: 0
   m_Name: door_01_frame
   m_TagString: Untagged
@@ -380,6 +381,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &1412257724
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994271690691619015}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 75c9620cba803794e93d587ea31a4d91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5665131569892844825
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,8 +522,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6228869126221803592}
   - component: {fileID: 1330758392}
-  - component: {fileID: 1330758391}
   - component: {fileID: 1330758390}
+  - component: {fileID: 1412257723}
   m_Layer: 0
   m_Name: ArchDoor
   m_TagString: Interactable
@@ -541,21 +562,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 4.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1330758391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6717879549476563698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b09b9c71eb6d324c93171461b990f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!114 &1330758390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +580,20 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1412257723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717879549476563698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1079e03ff0fb24787be8cc1643a1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2088370532533609618}
+  animatorDoor: {fileID: 1412257724}
 --- !u!1 &8390894671996172710
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +748,7 @@ PrefabInstance:
     - target: {fileID: 4223791513331297322, guid: be36c0c6aed2d19499533e6bf642706a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4223791513331297322, guid: be36c0c6aed2d19499533e6bf642706a,
         type: 3}
@@ -768,13 +790,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4223791514117460825, guid: be36c0c6aed2d19499533e6bf642706a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be36c0c6aed2d19499533e6bf642706a, type: 3}
+--- !u!95 &2088370532533609618 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4223791513331297323, guid: be36c0c6aed2d19499533e6bf642706a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2767055082769139897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2088370532533609619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4223791513331297322, guid: be36c0c6aed2d19499533e6bf642706a,

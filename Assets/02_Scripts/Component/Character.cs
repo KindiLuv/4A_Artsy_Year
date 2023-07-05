@@ -4,6 +4,7 @@ using ArtsyNetcode;
 using Unity.Netcode;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using Assets.Scripts.NetCode;
 
 public enum Team
@@ -33,6 +34,7 @@ public class Character : NetEntity, IDamageable
     private Renderer[] renderers;
     private bool visualDamage = false;
     private float timeVisualDamage = 0.0f;
+    protected Vector3 lastGroundPosition = Vector3.zero;
     #region Getter Setter
 
     public bool Ded { get { return _ded; } }
@@ -40,6 +42,8 @@ public class Character : NetEntity, IDamageable
     public bool IsInvicible { get { return _isInvicible; } }
     public float MaxHealth { get { return _maxHealth; } }
     public float Speed { get { return _speed; } }
+
+    public Vector3 LastGroundPosition { get { return lastGroundPosition; } }
 
     public virtual bool AtionLocked { set { _actionLocked = value; } get { return _actionLocked; } }
 
@@ -91,13 +95,14 @@ public class Character : NetEntity, IDamageable
         }
     }
 
-    public virtual void Update()
+    protected virtual void Update()
     {
         if (GameNetworkManager.IsOffline || IsServer)
         {
             HealIndicator();
             DamageIndicator();
         }
+        lastGroundPosition = transform.position;
     }
 
     [ClientRpc]
