@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2121246194}
   - component: {fileID: 2121246200}
   - component: {fileID: 171174725332362110}
+  - component: {fileID: 3891833324127919952}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905b99b3dfe26d94782aa52eb932c0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: TutorialRoom
+  sceneToLoad: Gen
   initNetworkPrefabInGame:
   - {fileID: 8878760738659710155, guid: b4fd24e1e18725740a757e82b0f91332, type: 3}
   clientDebugStartDirectGame: 0
@@ -173,6 +174,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28702582ad8c5554881df5cd1ba96f86, type: 2}
   - {fileID: 11400000, guid: 0a89e9d7a935ac74e922a4502826d708, type: 2}
   weapons:
+  - {fileID: 11400000, guid: 4d36d3b831eff34489f2fae60d8ed26b, type: 2}
   - {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f, type: 2}
   - {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e, type: 2}
   - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}
@@ -257,6 +259,20 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 384
+--- !u!114 &3891833324127919952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148866411645030701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c9cb8bc01bcc246a6e3abee9125c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClipOST: {fileID: 8300000, guid: 9d9d5ed97b73942488689270f0bb7457, type: 3}
+  musicClipAmbient: {fileID: 0}
 --- !u!1 &7134140247337050931
 GameObject:
   m_ObjectHideFlags: 0

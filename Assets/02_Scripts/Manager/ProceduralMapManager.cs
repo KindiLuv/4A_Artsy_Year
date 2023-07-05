@@ -43,6 +43,10 @@ public class ProceduralMapManager : MonoBehaviour
     {
         spawnData = Resources.LoadAll<SpawnableObject>("SpawnableObject");
         biomeData = Resources.LoadAll<Biome>("Biome");
+        StartCoroutine(SoundManager.Instance.StopOstSound());
+        // TODO remplacer par load dynamique
+        SoundManager.Instance.MusicClipOst = biomeData[1].BiomeMusic;
+        StartCoroutine(SoundManager.Instance.StartOstSound());
         Create();
     }
 

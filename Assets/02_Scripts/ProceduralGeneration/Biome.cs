@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Biome", menuName = "ScriptableObjects/Biome", order = 2)]
 public class Biome : ScriptableObject
 {
+    [SerializeField] private AudioClip biomeMusic;
+    [SerializeField] private AudioClip biomeAmbient;
     [SerializeField] private int biomeID = 0;
     [SerializeField] private Material ground = null;
     [SerializeField] private Material wall = null;
@@ -25,6 +27,7 @@ public class Biome : ScriptableObject
     [SerializeField] private Texture2D sunLightCookie;    
 
     #region Getter Setter
+    public AudioClip BiomeMusic { get { return biomeMusic; } }
     public int BiomeID { get { return biomeID; } }
     public Material Ground { get { return ground; } }
     public Material Wall { get { return wall; } }

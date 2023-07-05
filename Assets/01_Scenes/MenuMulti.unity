@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.000000004000423, y: -0.92387956, z: 0.38268346, w: 0.000000009657875}
+  m_LocalRotation: {x: 0.0000000058073812, y: -0.92387956, z: 0.38268346, w: 0.000000014020256}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61126,51 +61126,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030697, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: sceneToLoad
-      value: Gen
-      objectReference: {fileID: 0}
     - target: {fileID: 1148866411645030701, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 4d36d3b831eff34489f2fae60d8ed26b,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: aa3ed6a7f9966e947bc1f210b5f02a99,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534
