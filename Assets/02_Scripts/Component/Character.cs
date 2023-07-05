@@ -4,6 +4,7 @@ using ArtsyNetcode;
 using Unity.Netcode;
 using System.Linq;
 using System.Collections.Generic;
+using Assets.Scripts.NetCode;
 
 public enum Team
 {
@@ -92,8 +93,11 @@ public class Character : NetEntity, IDamageable
 
     public virtual void Update()
     {
-        DamageIndicator();
-        HealIndicator();
+        if (GameNetworkManager.IsOffline || IsServer)
+        {
+            HealIndicator();
+            DamageIndicator();
+        }
     }
 
     [ClientRpc]
@@ -176,6 +180,7 @@ public class Character : NetEntity, IDamageable
         // TODO radiant couleur en fonction degats        
         if (_health - damage < 1)
         {
+            _health = 0;
             Death();
             return;
         }
@@ -204,9 +209,9 @@ public class Character : NetEntity, IDamageable
         throw new System.NotImplementedException();
     }
 
-    public void Death()
+    public virtual void Death()
     {
-        Debug.Log("You died");
+        Debug.Log($"{gameObject.name} died");
         _ded = true;
     }
 

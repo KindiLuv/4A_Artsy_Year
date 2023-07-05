@@ -94,7 +94,7 @@ public class MenuManager : MonoBehaviour
         SaveManager.Instance.CurrentPlayerCharacterChoise = _currentHeroSelected % spawnPrefabs.Count;
         SaveManager.Instance.CurrentPlayerWeaponChoise = 1;
         Player p = player.GetComponent<Player>();
-        p.CharacterID = _currentHeroSelected % spawnPrefabs.Count;        
+        p.CharacterID = _currentHeroSelected % spawnPrefabs.Count;
         FadeScreenManager.OnFadeInComplete -= LoadPlayerController;
         FadeScreenManager.FadeOut(0.0f);
     }

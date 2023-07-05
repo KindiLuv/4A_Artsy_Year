@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseHealth: 100
   BaseSpeed: 0
-  BaseDamage: 0
   Prefab: {fileID: 8685688584890935724, guid: b754393ee4959424fa63233124e723f0, type: 3}
+  weapons:
+  - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}

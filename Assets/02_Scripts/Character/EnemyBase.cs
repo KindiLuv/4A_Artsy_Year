@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.NetCode;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,13 +12,19 @@ public class EnemyBase : Enemy
 
     IEnumerator Start()
     {
-        /*_navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.speed = _speed;*/
-        while (true)
+        base.Start();
+        if (IsServer)
         {
-            yield return new WaitForSeconds(2);
-            BasicAttack(transform.position, transform.rotation, (float) NetworkManager.Singleton.LocalTime.Time);
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.speed = _speed;
+        
+            while (!_ded)
+            {
+                yield return new WaitForSeconds(2);
+                BasicAttackClientRpc(transform.position, transform.rotation, (float) NetworkManager.Singleton.LocalTime.Time);
+            }
         }
+        yield return null;
     }
 
     public override void KnockBack(Vector3 impulse)
@@ -52,7 +59,20 @@ public class EnemyBase : Enemy
     public override void Update()
     {
         base.Update();
-        transform.LookAt(PlayerManager.instance.players[0].transform.position);
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
+        if (GameNetworkManager.IsOffline || IsServer)
+        {
+            if (!_ded)
+            {
+                if (PlayerManager.instance.players.Count > 0)
+                {
+                    _navMeshAgent.destination = PlayerManager.instance.players[0].transform.position;
+                    transform.LookAt(PlayerManager.instance.players[0].transform.position);
+                }
+                
+            }
+            Debug.DrawRay(transform.position, transform.forward, Color.red);
+        }
+        
     }
+    
 }
