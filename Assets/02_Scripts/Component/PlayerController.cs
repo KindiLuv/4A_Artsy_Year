@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 using Unity.Netcode;
 using UnityEngine.VFX;
 using System.Linq;
+using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Character
 {
@@ -13,8 +15,6 @@ public class PlayerController : Character
     #region Variables
 
     [SerializeField] private float _playerspeed = 5f;
-    public float PlayerSpeed => _playerspeed;
-
     [SerializeField] private float _gravityValue = -9.81f;
     [SerializeField] private float _controllerDeadzone = .1f;
     [SerializeField] private float _gamepadRotateSmoothing = 1000f;
@@ -45,6 +45,13 @@ public class PlayerController : Character
 
     #endregion
 
+    #region Getter Setter
+
+
+    public float Playerspeed { get { return _playerspeed; } }
+
+    #endregion
+
     protected override void Awake()
     {
         base.Awake();
@@ -52,6 +59,13 @@ public class PlayerController : Character
         _controller = GetComponent<CharacterController>();
         _playerControls = InputManager.PlayerInput;
         _player = GetComponent<Player>();
+    }
+
+    public void SetupCSO(CharacterSO cs)
+    {
+        _playerspeed = cs.BaseSpeed;
+        _health = cs.BaseLife;
+        _maxHealth = cs.BaseLife;
     }
 
     protected void Start()
@@ -95,6 +109,33 @@ public class PlayerController : Character
         {
             Destroy(_playerCamera);
             return;
+        }
+        else
+        {
+            SetupPlayerDungeon();
+        }
+    }
+
+    public void SetupPlayerDungeon()
+    {
+        if(SceneManager.GetActiveScene().name != "Gen")
+        {
+            //return;
+        }
+        ZoomCamera(_playerCamera.GetComponent<CinemachineVirtualCamera>(), false);
+
+    }
+
+    public void ZoomCamera(CinemachineVirtualCamera cvc,bool state)
+    {
+        CinemachineTransposer transposer = cvc.GetCinemachineComponent<CinemachineTransposer>();
+        if (state)
+        {
+            transposer.m_FollowOffset = new Vector3(0.0f,13.0f,-7.0f);
+        }
+        else
+        {
+            transposer.m_FollowOffset = new Vector3(0.0f, 20.0f, -7.0f);
         }
     }
 
