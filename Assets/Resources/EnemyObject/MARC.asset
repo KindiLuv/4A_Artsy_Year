@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693dae453df35d64abde7e3a09a0452c, type: 3}
   m_Name: MARC
   m_EditorClassIdentifier: 
+  EnemyType: 0
   BaseHealth: 100
   BaseSpeed: 0
-  Prefab: {fileID: 8685688584890935724, guid: b754393ee4959424fa63233124e723f0, type: 3}
-  weapons:
-  - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}
+  Prefab: {fileID: 5524944343573959598, guid: b2575b9573c654a4b8960b33f1f55230, type: 3}
+  weapons: []

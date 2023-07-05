@@ -1163,6 +1163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crate: {fileID: 7404106123489038347, guid: 0a7b11088f142da4c8cb54e0659f5753, type: 3}
+  _enemyTypePrebab:
+  - {fileID: 8685688584890935724, guid: b754393ee4959424fa63233124e723f0, type: 3}
+  - {fileID: 6437199265679976842, guid: 8e34f7a476464cc4984b48819c04020d, type: 3}
 --- !u!114 &1085340075
 MonoBehaviour:
   m_ObjectHideFlags: 0
