@@ -314,7 +314,7 @@ public class ProjectileManager : MonoBehaviour
         }
         else if(p.shapeProjectileType == ShapeProjectileType.ArcSphere)
         {
-            numColliders = Physics.OverlapSphereNonAlloc(pd.obj.transform.position + rotateOffsetPosition, p.radius,colliders, collisionMask);
+            numColliders = Physics.OverlapSphereNonAlloc(pd.obj.transform.position + rotateOffsetPosition, p.arcRadius,colliders, collisionMask);
             Plane plane = new Plane(pd.obj.transform.rotation*Vector3.forward, pd.obj.transform.position + rotateOffsetPosition);
 
             int newSize = 0;

@@ -7,15 +7,17 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    private int enemyID = -1;
-    private int _currentWeapon = -1;
+    protected int enemyID = -1;
+    protected int _currentWeapon = -1;
     public EnemySO _enemy;
     protected List<WeaponSO> _weapons = new List<WeaponSO>();
+    protected Animator _animator;
     
     [SerializeField] private Animator _enemyHand;
     [SerializeField] private GameObject enemyModelSpawn = null;
-    
-    private static readonly int Attacking = Animator.StringToHash("Attacking");
+
+    protected static readonly int Attacking = Animator.StringToHash("Attacking");
+    protected static readonly int ASpeed = Animator.StringToHash("Speed");
     #region Getter Setter
 
     public int EnemyID { get { return enemyID; } set { enemyID = value; } }
@@ -29,12 +31,12 @@ public class Enemy : Character
         team = Team.Enemy;
     }
 
-    protected void Start()
-    {
+    protected virtual void Start()
+    {        
         if (GameNetworkManager.IsOffline)
         {
             LoadData(EnemyID);
-        }
+        }        
     }
 
     [ClientRpc]
@@ -59,6 +61,7 @@ public class Enemy : Character
                 {
                     SetupEnemy();
                 }
+                _animator = GetComponentInChildren<Animator>();
             }
         }
         foreach (Transform t in _enemyHand.transform)
@@ -104,7 +107,6 @@ public class Enemy : Character
         BasicAttack(pos, rot, (float)timeStamp);       
     }
 
-    // TODO demander a tipot si c bon
     public void BasicAttack(Vector3 pos, Quaternion rot,float time,bool serveur = false)
     {
         _enemyHand.SetTrigger(Attacking);
@@ -113,6 +115,5 @@ public class Enemy : Character
         {
             ProjectileManager.Instance.SpawnProjectile(_weapons[0], pos, rot, Team.Enemy,((float)NetworkManager.Singleton.LocalTime.Time) - time);
         }
-    }
-    
+    }   
 }
