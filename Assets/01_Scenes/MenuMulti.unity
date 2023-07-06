@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.0000000058073812, y: -0.92387956, z: 0.38268346, w: 0.000000014020256}
+  m_LocalRotation: {x: 0.000000025712811, y: -0.92387956, z: 0.38268346, w: 0.000000062076225}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61131,6 +61131,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: biomes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: biomes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 20246bfcb76784c459b8fa614c81da5d,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: biomes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ac3ede023a2cf8488b1915de583e128,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534

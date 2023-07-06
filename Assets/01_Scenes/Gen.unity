@@ -471,7 +471,7 @@ MonoBehaviour:
   seed: 0
   useRandomSeed: 1
   countZone: 15
-  idBiome: 0
+  idBiome: 2
   lco: {fileID: 1013776612}
 --- !u!1 &2049767248
 GameObject:

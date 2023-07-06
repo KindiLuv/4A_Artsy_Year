@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeMusic: {fileID: 8300000, guid: 6d4ae89e5bdb8584b8a8a2f61d9b324f, type: 3}
   biomeAmbient: {fileID: 0}
-  biomeID: 0
+  biomeID: 1
   ground: {fileID: 2100000, guid: 224b9352ce5c3104cb6a0c5773083cc9, type: 2}
   wall: {fileID: 2100000, guid: a79fa5868d0f2864fa7274587a524f55, type: 2}
   ceil: {fileID: 2100000, guid: 2ebb6e8ed43f53d4287e7ed54fc84d58, type: 2}
