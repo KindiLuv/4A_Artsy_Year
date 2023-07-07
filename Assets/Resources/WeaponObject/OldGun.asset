@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25cfc86ed409cd846953683ec494a9fa, type: 3}
+  m_Name: OldGun
+  m_EditorClassIdentifier: 
+  weaponName: OldGun
+  weaponType: 8
+  weaponFamily: 2
+  rarity: 2
+  weaponDescription: OldGun
+  weaponModel: {fileID: 7567671579924029794, guid: bcc20cacfd5855a498a3dfd90a8b804a,
+    type: 3}
+  projectile:
+  - {fileID: 11400000, guid: 98c326eab97b8554da9a7db12a19b7f5, type: 2}
+  spawnProjectileAddRandom: 0
+  spawnProjectileCount: 1
+  spawnProjectileRate: 0.5
+  autoWeapon: 0
+  muzzelFlash: {fileID: 0}
+  muzzelDestroyTime: 1
+  spawnProjectileLocalPosition: {x: 0, y: 0, z: 0}
+  spreadUniform: 0
+  offsetAngle: 0
+  Angle: 0
+  impulseForce: 0
+  bulletRange: 0
+  bulletPerShot: 0
+  bulletType: 
+  delayPostShot: 0
