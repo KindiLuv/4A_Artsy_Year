@@ -14,6 +14,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6a5c2c7fac44e524ca5aa13fa9834b0d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a5c2c7fac44e524ca5aa13fa9834b0d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a5c2c7fac44e524ca5aa13fa9834b0d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6a5c2c7fac44e524ca5aa13fa9834b0d,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -69.467
       objectReference: {fileID: 0}
@@ -65,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6a5c2c7fac44e524ca5aa13fa9834b0d,
         type: 3}
       propertyPath: m_Name
-      value: RailGun
+      value: RailGun Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5c2c7fac44e524ca5aa13fa9834b0d, type: 3}

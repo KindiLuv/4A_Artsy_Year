@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: -0.0000000034178442, y: -0.92387956, z: 0.38268346, w: -0.000000008251407}
+  m_LocalRotation: {x: 0.000000012478453, y: -0.92387956, z: 0.38268346, w: 0.00000003012565}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61139,7 +61139,7 @@ PrefabInstance:
     - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
       propertyPath: weapons.Array.size
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
@@ -61176,6 +61176,24 @@ PrefabInstance:
       propertyPath: weapons.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: ffe159527ba2bfe4ba17d9755025e11b,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: weapons.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: a5d1bd011b0d2d04f8b4f5c75e4a43f3,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: weapons.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 666a339a802d8894183f23f3d1092bf7,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: weapons.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 848e71c2a367bbe4c9f14e07316375b8,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
@@ -67541,7 +67559,12 @@ PrefabInstance:
     - target: {fileID: 3850688587774950740, guid: 679b6c598591fed4e8fc9e0c28997d5c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -19.999756
+      value: -19.999634
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850688587774950740, guid: 679b6c598591fed4e8fc9e0c28997d5c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -19.999939
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679b6c598591fed4e8fc9e0c28997d5c, type: 3}
