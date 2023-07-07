@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25cfc86ed409cd846953683ec494a9fa, type: 3}
+  m_Name: StylizedGun
+  m_EditorClassIdentifier: 
+  weaponName: StylizedGun
+  weaponType: 9
+  weaponFamily: 1
+  rarity: 0
+  weaponDescription: StylizedGun
+  weaponModel: {fileID: 390144195646769036, guid: 05b6eeee682e0d949a552ebf10f6a9cf,
+    type: 3}
+  projectile:
+  - {fileID: 11400000, guid: 1413084296eb3b547b2207a5376e177f, type: 2}
+  spawnProjectileAddRandom: 0
+  spawnProjectileCount: 1
+  spawnProjectileRate: 0.5
+  autoWeapon: 0
+  muzzelFlash: {fileID: 0}
+  muzzelDestroyTime: 1
+  spawnProjectileLocalPosition: {x: 0, y: 0, z: 0}
+  spreadUniform: 0
+  offsetAngle: 0
+  Angle: 0
+  impulseForce: 0
+  bulletRange: 0
+  bulletPerShot: 0
+  bulletType: 
+  delayPostShot: 0
