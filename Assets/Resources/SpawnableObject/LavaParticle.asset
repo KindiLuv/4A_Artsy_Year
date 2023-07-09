@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63ca126a6c89a0541b5119ae2629e7bd, type: 3}
-  m_Name: LavaStone
+  m_Name: LavaParticle
   m_EditorClassIdentifier: 
-  spawnID: 13
+  spawnID: 11
   prefab:
-  - {fileID: 4698754836222871910, guid: 121fbd9bdbd7bf7438b0bb73153771eb, type: 3}
-  size: {x: 4, y: 4}
+  - {fileID: 5612964309774836909, guid: a6ee69bb0dba4bd46ad4c9f565a4ed2f, type: 3}
+  size: {x: 1, y: 1}
   isNetCodeObject: 0
   wallObject: 0
-  rotateMode: 4
+  rotateMode: 1
   angleMin: 0
-  angle: 360
+  angle: 0
   spawnRateChunck: 100
   hasSpawnFillPercent: 0
   spawnFillPercent: 0.01
-  spawnNumber: 3
+  spawnNumber: 1

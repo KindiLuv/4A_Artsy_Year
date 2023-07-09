@@ -313,16 +313,15 @@ public class PlayerController : Character
         _dashCD = true;
         _dashLocked = true;
         _tr.SetFloat("ParticlesRate", 256.0f);
-        _dashValue = 3f;
+        _dashValue = 4f;
         _gravityValue = 0f;
         yield return new WaitForSeconds(0.2f);
         _dashValue = 0.7f;
         _gravityValue = -9.81f;
         _tr.SetFloat("ParticlesRate", 0.0f);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         _dashValue = 1f;
         _dashLocked = false;
-        yield return new WaitForSeconds(0.35f);
         _dashCD = false;
         
     }
