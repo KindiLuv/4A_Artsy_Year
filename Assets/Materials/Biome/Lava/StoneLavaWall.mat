@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StoneLava
+  m_Name: StoneLavaWall
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _METALLICSPECGLOSSMAP
@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 48f4f66d4e15b924e845a15cc353d2db, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: fff10447baa86b44aa549f50f310265a, type: 3}
@@ -53,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 48f4f66d4e15b924e845a15cc353d2db, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 7bd79b1b559c13c4ea25e26930a8d68f, type: 3}
@@ -119,8 +119,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Emission_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 0.504717, b: 0.504717, a: 1}
-    - _Color: {r: 1, g: 0.504717, b: 0.504717, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
