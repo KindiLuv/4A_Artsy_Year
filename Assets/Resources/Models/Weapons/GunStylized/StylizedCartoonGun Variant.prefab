@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 556e74b37aafbab49a4e2e4528deddf0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -78.186745
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 556e74b37aafbab49a4e2e4528deddf0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 93.11473
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 556e74b37aafbab49a4e2e4528deddf0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -165.18875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 556e74b37aafbab49a4e2e4528deddf0,
         type: 3}
@@ -175,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 556e74b37aafbab49a4e2e4528deddf0,
         type: 3}
       propertyPath: m_Name
-      value: StylizedCartoonGun
+      value: StylizedCartoonGun Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4165465430536020871, guid: 556e74b37aafbab49a4e2e4528deddf0,
         type: 3}

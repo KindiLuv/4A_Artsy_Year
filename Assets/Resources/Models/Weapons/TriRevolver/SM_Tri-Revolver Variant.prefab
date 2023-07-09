@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5c1db75abf1ef4b43bab4049d51aec28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.48423123
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c1db75abf1ef4b43bab4049d51aec28,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.527562
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c1db75abf1ef4b43bab4049d51aec28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.564683
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5c1db75abf1ef4b43bab4049d51aec28,
         type: 3}
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5c1db75abf1ef4b43bab4049d51aec28,
         type: 3}
       propertyPath: m_Name
-      value: SM_Tri-Revolver
+      value: SM_Tri-Revolver Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c1db75abf1ef4b43bab4049d51aec28, type: 3}

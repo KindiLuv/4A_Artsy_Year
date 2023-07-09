@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b57989d9b78f03d409a38a835d5f8aef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.644432
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b57989d9b78f03d409a38a835d5f8aef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 115.00252
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b57989d9b78f03d409a38a835d5f8aef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 248.57623
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b57989d9b78f03d409a38a835d5f8aef,
         type: 3}
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b57989d9b78f03d409a38a835d5f8aef,
         type: 3}
       propertyPath: m_Name
-      value: f99e67fe49dd4ea89789c8afe8f4125f
+      value: GoldenFantasySword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b57989d9b78f03d409a38a835d5f8aef, type: 3}
