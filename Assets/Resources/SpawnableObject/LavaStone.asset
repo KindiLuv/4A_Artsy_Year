@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ca126a6c89a0541b5119ae2629e7bd, type: 3}
+  m_Name: LavaStone
+  m_EditorClassIdentifier: 
+  spawnID: 13
+  prefab:
+  - {fileID: 6534056088642133000, guid: 21c802ea76885da498c133f010c2bca9, type: 3}
+  size: {x: 1, y: 1}
+  isNetCodeObject: 0
+  wallObject: 0
+  rotateMode: 3
+  angleMin: 0
+  angle: 0
+  spawnRateChunck: 50
+  hasSpawnFillPercent: 1
+  spawnFillPercent: 0.01
+  spawnNumber: 1

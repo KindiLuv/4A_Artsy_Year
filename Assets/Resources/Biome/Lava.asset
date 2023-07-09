@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b131bcaa2b79ee4d82be636147ee8e8, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
-  biomeMusic: {fileID: 8300000, guid: 47af288458fd16d499c8a75b0318d444, type: 3}
+  biomeMusic: {fileID: 8300000, guid: 8cf7106e46ef2064cb455f4a49540d41, type: 3}
   biomeAmbient: {fileID: 0}
   biomeID: 2
-  ground: {fileID: 2100000, guid: 7167d262046aa554384812143ad4ea99, type: 2}
-  wall: {fileID: 2100000, guid: d41904f54d0554f4eb6aa3c36a920b36, type: 2}
+  ground: {fileID: 2100000, guid: 0978432325ed1284ca733725a3c17020, type: 2}
+  wall: {fileID: 2100000, guid: 0978432325ed1284ca733725a3c17020, type: 2}
   ceil: {fileID: 2100000, guid: 20d65b9ecafed9744abe628abb71d160, type: 2}
   border: {fileID: 2100000, guid: a020c34f204b79242b7a2387631d8464, type: 2}
   borderHole: {fileID: 2100000, guid: 41f6a84d8a43e3e4eaee4c92c57e4a40, type: 2}
@@ -25,12 +25,9 @@ MonoBehaviour:
   bossDoor: {fileID: 11400000, guid: 4d7db77476684d0479e25b92bfbcf994, type: 2}
   spawnObjects:
   - {fileID: 11400000, guid: 92b2033a781c19f4ab059d12b7e91068, type: 2}
-  - {fileID: 11400000, guid: fd530c768b6651d46a6a56418a8fce01, type: 2}
-  - {fileID: 11400000, guid: d557eebb0ad390f40832ab9034384a95, type: 2}
-  - {fileID: 11400000, guid: 0d46a9accdd7d464a93dd51ed43b258a, type: 2}
-  - {fileID: 11400000, guid: c52f34255beaadb408f78f60b2513302, type: 2}
+  - {fileID: 11400000, guid: 9cd286cdfceb52d4d95346ea8b9688a2, type: 2}
   - {fileID: 11400000, guid: c0ff9b457065e0e40a15dcea3c2b8d4a, type: 2}
-  - {fileID: 11400000, guid: f4a291dd1e2bdfb4b9a1286716aa38e6, type: 2}
+  - {fileID: 11400000, guid: aebc0a624b1a2dd43882cb52773ddc73, type: 2}
   - {fileID: 11400000, guid: ace0922a3128cac45b5ffdd0016fed91, type: 2}
   randomFillPercent: 46
   randomAddPercent: 4
