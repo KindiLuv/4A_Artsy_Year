@@ -181,7 +181,7 @@ public class PlayerController : Character
 
         if (_onAttackHandel && _attackRate <= 0.0f)
         {
-            if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _player.HasWeapon())
+            if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _player.HasWeapon() && !_dashLocked)
             {
                 _player.BasicAttack(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
                 _impulseForce += transform.forward * _player.Weapon.impulseForce;

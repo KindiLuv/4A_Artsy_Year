@@ -358,6 +358,7 @@ public class ProceduralMapManager : MonoBehaviour
             wall.transform.parent = obj.transform;
             wall.transform.localPosition = Vector3.zero;
             wall.transform.localScale = Vector3.one * 1.016f;
+            wall.layer = 8;
             MeshRenderer mr1 = wall.AddComponent<MeshRenderer>();
             GameObject cave = new GameObject("ChunckCave_" + pair.Key.ToString());
             cave.transform.parent = obj.transform;
@@ -426,6 +427,10 @@ public class ProceduralMapManager : MonoBehaviour
                     if (!so.IsNetCodeObject)
                     {
                         go.transform.parent = obj.transform;
+                    }
+                    else
+                    {
+                        go.GetComponent<NetworkObject>().Spawn();
                     }
                 }
             }

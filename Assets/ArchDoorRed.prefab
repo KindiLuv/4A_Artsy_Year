@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5251935581973133727}
   - component: {fileID: 8629041899542413704}
   - component: {fileID: 5400443689557000428}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3112258777852217054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1467792067123654623}
   - component: {fileID: 7535264800292737042}
   - component: {fileID: 7810098043721557198}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 1280630279352920018}
   - component: {fileID: 4187359698625151966}
   - component: {fileID: 7456655665620119022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door_01_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 7732320747485962551}
   - component: {fileID: 8581276506759264625}
   - component: {fileID: 1412257724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door_01_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 7061204990379373464}
   - component: {fileID: 1330758394}
   - component: {fileID: 1330758393}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 7531718569660170499}
   - component: {fileID: 321351521316859238}
   - component: {fileID: 1850973254397782471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door_01_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2593264177515339088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,10 +730,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6228869126221803592}
     m_Modifications:
+    - target: {fileID: 4087551779103090210, guid: be36c0c6aed2d19499533e6bf642706a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4223791513331297321, guid: be36c0c6aed2d19499533e6bf642706a,
         type: 3}
       propertyPath: m_Name
       value: SelectInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223791513331297321, guid: be36c0c6aed2d19499533e6bf642706a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4223791513331297322, guid: be36c0c6aed2d19499533e6bf642706a,
         type: 3}
@@ -789,6 +799,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223791514117460824, guid: be36c0c6aed2d19499533e6bf642706a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223791514250415680, guid: be36c0c6aed2d19499533e6bf642706a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be36c0c6aed2d19499533e6bf642706a, type: 3}

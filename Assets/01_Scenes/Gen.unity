@@ -597,7 +597,7 @@ MonoBehaviour:
   chunckSize: 64
   wallSize: 4
   seed: 0
-  useRandomSeed: 0
+  useRandomSeed: 1
   countZone: 15
   idBiome: 2
   lco: {fileID: 1013776612}
