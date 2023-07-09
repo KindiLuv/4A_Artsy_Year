@@ -15,6 +15,7 @@ public class ProjectileData
     public Team teamProjectile;
     public float pioffset;
     public Vector3 knockBack;
+    public TrailRenderer[] tr;
     public List<IDamageable> hasCollided = new List<IDamageable>();
 }
 
@@ -118,6 +119,7 @@ public class ProjectileManager : MonoBehaviour
             {                
                 pd.direction = rot * Vector3.forward;
                 pd.obj = Instantiate(p.prefab[pseudoRandom.Next(p.prefab.Count)], position+ (rot * weapon.spawnProjectileLocalPosition), rot, projectilePool.transform);
+                pd.tr = pd.obj.GetComponentsInChildren<TrailRenderer>();
             }
             else
             {
@@ -127,6 +129,10 @@ public class ProjectileManager : MonoBehaviour
                 pseudoRandom.Next(p.prefab.Count);//juste pour etre sur au niveaux de la synchronisation
                 pd.obj.transform.position = position+(rot * weapon.spawnProjectileLocalPosition);
                 pd.obj.transform.rotation = rot;
+                for (int j = 0; j < pd.tr.Length; j++)
+                {
+                    pd.tr[j].Clear();
+                }
             }
             if(weapon.muzzelFlash != null)
             {
@@ -161,6 +167,7 @@ public class ProjectileManager : MonoBehaviour
 
     public void DespawnProjectile(ProjectileSO p, ProjectileData pd)
     {
+
         pd.obj.SetActive(false);
         pd.hasCollided.Clear();
         projectiles[p].Remove(pd);
@@ -385,10 +392,10 @@ public class ProjectileManager : MonoBehaviour
             case MoveProjectileType.Static:
                 break;
             case MoveProjectileType.Linear:
-                pd.obj.transform.position += pd.direction * p.speed * time;
+                pd.obj.transform.position += pd.direction * (p.speed * time);
                 break;
             case MoveProjectileType.Sin:
-                pd.obj.transform.position += pd.direction * p.speed * time + (Mathf.Sin(pd.timeLeft* p.sinFrequence + pd.pioffset) * Vector3.Cross(Vector3.up,pd.direction).normalized * p.sinForce);
+                pd.obj.transform.position += pd.direction * (p.speed * time) + (Vector3.Cross(Vector3.up,pd.direction).normalized * (Mathf.Sin(pd.timeLeft* p.sinFrequence + pd.pioffset) * p.sinForce));
                 break;
             case MoveProjectileType.Follow:
                 int numColliders = 0;
@@ -414,7 +421,7 @@ public class ProjectileManager : MonoBehaviour
                     dir.y = 0;
                     pd.direction = Vector3.Lerp(pd.direction, dir, p.colapseSearchSpeed * Time.deltaTime);
                 }
-                pd.obj.transform.position += pd.direction * p.speed * time;
+                pd.obj.transform.position += pd.direction * (p.speed * time);
                 break;
             default:
                 break;

@@ -17,22 +17,22 @@ MonoBehaviour:
   weaponFamily: 1
   rarity: 0
   weaponDescription: StylizedGun
-  weaponModel: {fileID: 390144195646769036, guid: 05b6eeee682e0d949a552ebf10f6a9cf,
+  weaponModel: {fileID: 7822038601801294837, guid: 076572eaf15588a4591edbdc779e8a3d,
     type: 3}
   projectile:
-  - {fileID: 11400000, guid: 1413084296eb3b547b2207a5376e177f, type: 2}
+  - {fileID: 11400000, guid: 8c1fc2b1dfeeadd4eac878b8f33ac2bc, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 1
-  spawnProjectileRate: 0.5
-  autoWeapon: 0
+  spawnProjectileRate: 0.2
+  autoWeapon: 1
   muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
     type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0, y: 0, z: 0}
+  spawnProjectileLocalPosition: {x: 0.51, y: 0, z: 1.2}
   spreadUniform: 0
-  offsetAngle: 0
-  Angle: 0
-  impulseForce: 0
+  offsetAngle: -10
+  Angle: 20
+  impulseForce: -2
   bulletRange: 0
   bulletPerShot: 0
   bulletType: 
