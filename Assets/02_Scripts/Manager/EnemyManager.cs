@@ -3,13 +3,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : NetEntity
 {
     public static EnemyManager instance;
-
+    
+    private List<GameObject> enemies = new List<GameObject>();
+    
     [SerializeField] private GameObject crate = null;// TODO A supprimer
+
+    [SerializeField] private List<GameObject> _enemyTypePrebab;
 
     private void Awake()
     {
@@ -23,20 +28,20 @@ public class EnemyManager : NetEntity
     {
         if (IsServer)
         {
-            InstantiateEnemy(1, new Vector3(0.0f, -0.5f, 20.0f));
-            InstantiateEnemy(0,new Vector3(0.0f,-0.5f,0.0f));
+            LoadEnemy(1, new Vector3(0.0f, 0f, 25.0f));
+            LoadEnemy(0,new Vector3(0.0f,-0.5f,0.0f));
             GameObject o = Instantiate(crate, new Vector3(2.0f, -0.0f, 0.0f),Quaternion.identity);
             o.GetComponent<NetworkObject>().Spawn();
         }
     }
-
-    public void InstantiateEnemy(int id,Vector3 pos)
+    
+    public void LoadEnemy(int enemyId, Vector3 pos)
     {
-        GameObject enemy = Instantiate(GameRessourceManager.Instance.Enemies[id].Prefab);
-        Enemy enemySettings = enemy.GetComponent<Enemy>();
-        enemySettings.enemyInformations = GameRessourceManager.Instance.Enemies[id];
-        enemySettings.SetupEnemy();
-        enemy.transform.position = pos;
-        enemy.GetComponent<NetworkObject>().Spawn();
+        enemies.Add(Instantiate(_enemyTypePrebab[(int)GameRessourceManager.Instance.Enemies[enemyId].EnemyType], pos, Quaternion.identity));
+        Enemy p = enemies[enemies.Count-1].GetComponent<Enemy>();
+        p._enemy = GameRessourceManager.Instance.Enemies[enemyId];
+        p.SetupEnemy();
+        p.GetComponent<NetworkObject>().Spawn();
+        p.LoadDataClientRpc(enemyId);
     }
 }

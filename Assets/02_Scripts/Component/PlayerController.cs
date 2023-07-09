@@ -32,6 +32,7 @@ public class PlayerController : Character
     private float _dashValue = 1f;
 
     private bool _dashLocked;
+    private bool _dashCD;
     private bool _onAttackHandel = false;
     private float _attackRate = 0.0f;
     private Vector3 _impulseForce = Vector3.zero;
@@ -135,7 +136,7 @@ public class PlayerController : Character
         }
         else
         {
-            transposer.m_FollowOffset = new Vector3(0.0f, 20.0f, -7.0f);
+            transposer.m_FollowOffset = new Vector3(0.0f, 25.0f, -10.0f);
         }
     }
 
@@ -144,12 +145,16 @@ public class PlayerController : Character
         _impulseForce += impulse;
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (GameNetworkManager.IsOffline || IsServer)
         {
             HealIndicator();
             DamageIndicator();
+        }
+        if (_controller.isGrounded)
+        {
+            lastGroundPosition = transform.position;
         }
         if (_actionLocked || (!GameNetworkManager.IsOffline && !IsLocalPlayer)) return;
         HandleMovement();
@@ -241,7 +246,7 @@ public class PlayerController : Character
 
     private void HandleDash(InputAction.CallbackContext obj)
     {
-        if(_movement.magnitude < 0.1f || !_controller.isGrounded)
+        if(_movement.magnitude < 0.1f || !_controller.isGrounded || _dashCD || _dashLocked)
         {
             return;
         }
@@ -305,18 +310,21 @@ public class PlayerController : Character
 
     IEnumerator DashAction()
     {
-        if (_dashLocked) yield break;
+        _dashCD = true;
         _dashLocked = true;
         _tr.SetFloat("ParticlesRate", 256.0f);
         _dashValue = 3f;
         _gravityValue = 0f;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         _dashValue = 0.7f;
         _gravityValue = -9.81f;
         _tr.SetFloat("ParticlesRate", 0.0f);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.15f);
         _dashValue = 1f;
         _dashLocked = false;
+        yield return new WaitForSeconds(0.35f);
+        _dashCD = false;
+        
     }
 
     void LookAt(Vector3 target)
