@@ -92,7 +92,7 @@ public class MenuManager : MonoBehaviour
         player = Instantiate(playerControlerPrefab, spawnPointList[_currentHeroSelected % spawnPointList.Count].position + new Vector3(0.0f, 1.0f,0.0f), Quaternion.identity);
         spawnPrefabs[_currentHeroSelected % spawnPrefabs.Count].SetActive(false);
         SaveManager.Instance.CurrentPlayerCharacterChoise = _currentHeroSelected % spawnPrefabs.Count;
-        SaveManager.Instance.CurrentPlayerWeaponChoise = 8;
+        SaveManager.Instance.CurrentPlayerWeaponChoise = 7;
         Player p = player.GetComponent<Player>();
         p.CharacterID = _currentHeroSelected % spawnPrefabs.Count;
         FadeScreenManager.OnFadeInComplete -= LoadPlayerController;

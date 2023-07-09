@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: LongBullet
+  m_Name: BigBullet
   m_EditorClassIdentifier: 
   moveProjectileType: 1
   sinForce: 1
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 40
-  dmgPerHit: 100
-  dmgPerHitAddRandom: 4
-  knockBack: {x: 0, y: 0, z: 0.1}
+  speed: 9
+  dmgPerHit: 0
+  dmgPerHitAddRandom: 0
+  knockBack: {x: 0, y: 0, z: 0}
   prefab:
-  - {fileID: 7766503117856685945, guid: 052725283a627004396a6466395deb09, type: 3}
+  - {fileID: 8009012414925897728, guid: 947d398d11a901e40a8ce2c47a269edc, type: 3}
   shapeProjectileType: 0
   collideOffset: {x: 0, y: 0, z: 0}
-  radius: 0.6
-  extends: {x: 0.5, y: 0.5, z: 0.5}
+  radius: 0.5
+  extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
-  arcRadius: 1
-  lifeTime: 10
-  wallBounds: 0
+  arcRadius: 3
+  lifeTime: 5
+  wallBounds: -6
   punchThrough: 0
   throughCount: 0
-  explodeEffect: {fileID: 7080524343175428333, guid: 86e33f56ecab36a4bbf772c1f74f018d,
+  explodeEffect: {fileID: 9115680410458321563, guid: 992df61addb16df4d9045cd2d576676f,
     type: 3}
   timeExplode: 5

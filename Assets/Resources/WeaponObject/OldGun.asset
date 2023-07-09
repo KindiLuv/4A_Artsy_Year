@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25cfc86ed409cd846953683ec494a9fa, type: 3}
+  m_Script: {fileID: 11500000, guid: c0952497ec5d431409abcfccfacb5275, type: 3}
   m_Name: OldGun
   m_EditorClassIdentifier: 
   weaponName: OldGun
@@ -17,22 +17,19 @@ MonoBehaviour:
   weaponFamily: 2
   rarity: 2
   weaponDescription: OldGun
-  weaponModel: {fileID: 7567671579924029794, guid: bcc20cacfd5855a498a3dfd90a8b804a,
+  weaponModel: {fileID: 7397156004032159241, guid: 9909a555e6ffaf24f9bb1d3a2fb74552,
     type: 3}
   projectile:
-  - {fileID: 11400000, guid: 98c326eab97b8554da9a7db12a19b7f5, type: 2}
+  - {fileID: 11400000, guid: 89e6825f1733647488b25c13996c4cb2, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 1
-  spawnProjectileRate: 0.5
+  spawnProjectileRate: 1
   autoWeapon: 0
-  muzzelFlash: {fileID: 0}
+  muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
+    type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0, y: 0, z: 0}
+  spawnProjectileLocalPosition: {x: 0.6, y: 0, z: 1.5}
   spreadUniform: 0
   offsetAngle: 0
   Angle: 0
-  impulseForce: 0
-  bulletRange: 0
-  bulletPerShot: 0
-  bulletType: 
-  delayPostShot: 0
+  impulseForce: -20

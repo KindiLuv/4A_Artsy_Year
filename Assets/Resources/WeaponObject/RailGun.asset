@@ -25,14 +25,14 @@ MonoBehaviour:
   spawnProjectileCount: 1
   spawnProjectileRate: 0.5
   autoWeapon: 0
-  muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
+  muzzelFlash: {fileID: 3565017316599769400, guid: d435240a351203a46a72c8bce4005fa6,
     type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0.5, y: 0.4, z: 1.3}
+  spawnProjectileLocalPosition: {x: 0.5, y: 0.4, z: 1.8}
   spreadUniform: 0
   offsetAngle: 0
   Angle: 0
-  impulseForce: 0
+  impulseForce: -10
   bulletRange: 0
   bulletPerShot: 1
   bulletType: 
