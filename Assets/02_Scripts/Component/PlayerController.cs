@@ -312,6 +312,7 @@ public class PlayerController : Character
     {
         _dashCD = true;
         _dashLocked = true;
+        gameObject.layer = 9;
         _tr.SetFloat("ParticlesRate", 256.0f);
         _dashValue = 4f;
         _gravityValue = 0f;
@@ -319,7 +320,8 @@ public class PlayerController : Character
         _dashValue = 0.7f;
         _gravityValue = -9.81f;
         _tr.SetFloat("ParticlesRate", 0.0f);
-        yield return new WaitForSeconds(0.1f);
+        gameObject.layer = 8;
+        yield return new WaitForSeconds(0.1f);        
         _dashValue = 1f;
         _dashLocked = false;
         _dashCD = false;

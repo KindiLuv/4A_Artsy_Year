@@ -30,8 +30,8 @@ MonoBehaviour:
   rayDistance: 100
   arcRadius: 3
   lifeTime: 20
-  wallBounds: 2000
-  punchThrough: 0
+  wallBounds: 1
+  punchThrough: 1
   throughCount: 1
   explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
     type: 3}
