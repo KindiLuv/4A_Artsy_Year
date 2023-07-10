@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Enemy
   - Projectile
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - PPV
   - Projectile
   - ProjectileCollide
-  - 
+  - IFrame
   - 
   - 
   - 

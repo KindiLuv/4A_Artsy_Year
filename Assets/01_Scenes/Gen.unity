@@ -559,6 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2028589101}
   - component: {fileID: 2028589102}
+  - component: {fileID: 2028589103}
   m_Layer: 0
   m_Name: ---MAP---
   m_TagString: Untagged
@@ -601,6 +602,22 @@ MonoBehaviour:
   countZone: 15
   idBiome: 2
   lco: {fileID: 1013776612}
+--- !u!114 &2028589103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028589096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1600583468
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &2049767248
 GameObject:
   m_ObjectHideFlags: 0

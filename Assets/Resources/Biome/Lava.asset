@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92741497cfea4fc4db487db76124de88, type: 2}
   randomFillPercent: 46
   randomAddPercent: 4
-  hole_rate_chunck: 50
+  hole_rate_chunck: 60
   hole_fill_percent: 56
   sunKelvin: 3000
   sunIntensity: 3

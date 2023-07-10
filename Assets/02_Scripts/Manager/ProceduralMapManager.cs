@@ -1,10 +1,11 @@
+using ArtsyNetcode;
 using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ProceduralMapManager : MonoBehaviour
+public class ProceduralMapManager : NetEntity
 {
     [SerializeField] private int chunckSize = 50;
     [SerializeField] private float wallSize = 4.0f;
@@ -135,7 +136,7 @@ public class ProceduralMapManager : MonoBehaviour
             }
         }
 
-          Shuffle(spawnableLocations, pseudoRandom);
+        Shuffle(spawnableLocations, pseudoRandom);
 
         List<Vector2Int> finalSpawnableLocations = new List<Vector2Int>();
         while(finalSpawnableLocations.Count < nb && spawnableLocations.Count > 0)
@@ -201,7 +202,7 @@ public class ProceduralMapManager : MonoBehaviour
         Vector2Int bossRoom = Vector2Int.zero;
         foreach (KeyValuePair<Vector2Int, KeyValuePair<List<Vector2Int>, List<Vector2Int>>> pair in dungeon)
         {
-            CreateChunck(pair.Key, countBoss == dungeon.Count - 1 || countBoss == 0);
+            CreateChunck(pair.Key, (countBoss == dungeon.Count - 1 || countBoss == 0) ? (countBoss == 0 ? 1 : 0) : -1);
             if (countBoss == dungeon.Count - 1)
             {
                 bossRoom = pair.Key;
@@ -392,7 +393,7 @@ public class ProceduralMapManager : MonoBehaviour
             GameObject voidB = new GameObject("ChunckVoid_" + pair.Key.ToString());
             voidB.transform.parent = obj.transform;
             voidB.transform.localPosition = new Vector3(0, -wallSize * 2, 0);
-            voidB.transform.localScale = Vector3.one * 1.016f;
+            voidB.transform.localScale = Vector3.one * 1.016f;            
             voidB.AddComponent<OOBRespawnNavMesh>();
             voidB.AddComponent<NavMeshModifier>().ignoreFromBuild = true;
             BoxCollider bc = voidB.AddComponent<BoxCollider>();
@@ -558,8 +559,10 @@ public class ProceduralMapManager : MonoBehaviour
 
         Vector2 gfp1 = new Vector2((chunk1.x * chunckSize) + fp1.x, (chunk1.y * chunckSize) + fp1.y);
         Vector2 gfp2 = new Vector2((chunk2.x * chunckSize) + fp2.x, (chunk2.y * chunckSize) + fp2.y);
+        Vector2 midel1 = Vector2.zero;
+        Vector2 midel2 = Vector2.zero;
         int d = Mathf.RoundToInt(Vector2.Distance(gfp1, gfp2));
-        Vector2 direction = (gfp2 - gfp1).normalized;        
+        Vector2 direction = (gfp2 - gfp1).normalized;
         for (int k = -1; k < 2; k++)
         {
             for (int j = -1; j < 2; j++)
@@ -571,12 +574,22 @@ public class ProceduralMapManager : MonoBehaviour
                     if (x >= 0 && x < chunckSize && y >= 0 && y < chunckSize)
                     {
                         map1[x, y] = 2;
-                    }
+                        if (x == 0 || x == chunckSize - 1 || y == 0 || y == chunckSize - 1)
+                        {
+                            midel1.x = x;
+                            midel1.y = y;
+                        }
+                    }                    
                     x = Mathf.RoundToInt(k+fp2.x + -direction.x * i);
                     y = Mathf.RoundToInt(j+fp2.y + -direction.y * i);
                     if (x >= 0 && x < chunckSize && y >= 0 && y < chunckSize)
                     {
                         map2[x, y] = 2;
+                        if (x == 0 || x == chunckSize - 1 || y == 0 || y == chunckSize - 1)
+                        {
+                            midel2.x = x;
+                            midel2.y = y;
+                        }
                     }
                 }
             }
@@ -584,7 +597,8 @@ public class ProceduralMapManager : MonoBehaviour
         Vector3 offset = -new Vector3((chunckSize)/2,0, (chunckSize) / 2);
         Spawnable spawn;
         spawn.id = boss ? b.BossDoor.SpawnID : b.Door.SpawnID;
-        spawn.position = ((new Vector3(gfp1.x, -wallSize*2, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
+        //spawn.position = ((new Vector3(gfp1.x, -wallSize*2, gfp1.y) + new Vector3(gfp2.x, 0, gfp2.y)) / 2.0f) + offset;
+        spawn.position = new Vector3((((chunk1.x * chunckSize) + midel1.x)+ ((chunk2.x * chunckSize) + midel2.x))/2.0f, -wallSize, (((chunk1.y * chunckSize) + midel1.y)+ ((chunk2.y * chunckSize) + midel2.y))/2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
         maps[chunk1].spawnables.Add(spawn);
     }
@@ -614,7 +628,7 @@ public class ProceduralMapManager : MonoBehaviour
         return chunckMap;
     }
 
-    private void CreateChunck(Vector2Int pos,bool special = false)
+    private void CreateChunck(Vector2Int pos,int special = -1)
     {
         if (maps.ContainsKey(pos))
         {
@@ -623,7 +637,7 @@ public class ProceduralMapManager : MonoBehaviour
         int[,] chunckMap = new int[chunckSize, chunckSize];
         System.Random pseudoRandom = new System.Random(seed.GetHashCode() + pos.GetHashCode());
         int fillpercent;
-        if (special)
+        if (special >= 0)
         {
             fillpercent = 10;
         }
@@ -642,6 +656,20 @@ public class ProceduralMapManager : MonoBehaviour
                 else
                 {
                     chunckMap[x, y] = (pseudoRandom.Next(0, 100) < fillpercent) ? 1 : 0;
+                }
+            }
+        }
+        if(special == 1)
+        {
+            int cs = chunckSize / 4;
+            for (int x = 0; x < chunckSize; x++)
+            {
+                for (int y = 0; y < chunckSize; y++)
+                {
+                    if (x <= cs || x >= (chunckSize- cs) || y <= cs || y >= (chunckSize- cs))
+                    {
+                        chunckMap[x, y] = 1;
+                    }
                 }
             }
         }

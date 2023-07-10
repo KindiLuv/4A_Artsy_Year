@@ -21,9 +21,9 @@ MonoBehaviour:
   weaponChangeRate: 30
   maxFollowDistance: 15
   minDistanceTarget: 8
-  randomMin: {x: 0, y: 0, z: 0}
-  randomMax: {x: 0, y: 0, z: 0}
-  speedSmoothRandom: 0
+  randomMin: {x: -2, y: 0, z: -1}
+  randomMax: {x: 2, y: 0, z: 1}
+  timeSmoothRandom: 1
   idelRandomSphereInsideUnits: 6
   minTimeRandomSIU: 3
   maxTimeRandomSIU: 8
