@@ -6,22 +6,10 @@ using UnityEngine.Serialization;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip musicClipOST;
-    //[SerializeField] private AudioClip musicClipAmbient;
     private AudioSource _audioSourceOst;
-    private AudioSource _audioSourceAmbient;
     private AudioSource _audioSourceFx;
     private float VolumeGlobal;
     private float VolumeMusique;
-    private float volumeModifierGontrant = 1.0f;
-    public float VolumeModifierGontrant
-    {
-        get { return volumeModifierGontrant; }
-        set
-        {
-            volumeModifierGontrant = value;
-            _audioSourceOst.volume = VolumeGlobal * VolumeMusique * volumeModifierGontrant;
-        }
-    }
 
     public static SoundManager Instance { get; private set; }
 
@@ -31,12 +19,6 @@ public class SoundManager : MonoBehaviour
         set { musicClipOST = value; }
     }
     
-    /*public AudioClip MusicClipAmbient
-    {
-        get { return musicClipAmbient; }
-        set { musicClipAmbient = value; }
-    }*/
-
     public float Volume
     {
         get { return VolumeGlobal; }
@@ -58,7 +40,6 @@ public class SoundManager : MonoBehaviour
         else
         {
             Instance.MusicClipOst = musicClipOST;
-            //Instance.MusicClipAmbient = musicClipAmbient;
             Destroy(gameObject);
         }
     }
@@ -74,7 +55,7 @@ public class SoundManager : MonoBehaviour
         VolumeGlobal = PlayerPrefs.GetFloat("VolumeGlobal", 0.5f);
         VolumeMusique = PlayerPrefs.GetFloat("VolumeMusique", 0.8f);
         _audioSourceOst = CreateAudioSource(musicClipOST, true);
-        //_audioSourceAmbient = CreateAudioSource(musicClipAmbient, true);
+        _audioSourceFx = CreateAudioSource(null, false);
         StartCoroutine(StartOstSound());
     }
 
@@ -141,7 +122,6 @@ public class SoundManager : MonoBehaviour
         }
         _audioSourceOst.Stop();
         _audioSourceOst.pitch = 1.0f;
-        volumeModifierGontrant = 1.0f;
         _audioSourceOst.clip = musicClipOST;
         _audioSourceOst.Play();
         while (_audioSourceOst.volume < VolumeGlobal * VolumeMusique)
@@ -164,7 +144,6 @@ public class SoundManager : MonoBehaviour
         }
         _audioSourceOst.Stop();
         _audioSourceOst.pitch = 1.0f;
-        volumeModifierGontrant = 1.0f;
         yield break;
     }
 }

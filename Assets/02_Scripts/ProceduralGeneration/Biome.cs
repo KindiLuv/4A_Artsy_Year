@@ -24,7 +24,13 @@ public class Biome : ScriptableObject
     [SerializeField] private float sunIntensity = 0.5f;
     [SerializeField] private Vector2 speedSunMove;
     [SerializeField] private Vector2 sunSizeCookie;
-    [SerializeField] private Texture2D sunLightCookie;    
+    [SerializeField] private Texture2D sunLightCookie;
+    [SerializeField] private List<EnemySO> enemy = new List<EnemySO>();
+    [SerializeField] private int waveEnemy = 1;
+    [SerializeField] [Range(0, 100)] private int randomPercentAddWaveEnemy = 25;
+    [SerializeField] private int addWaveEnemy = 2;
+    [SerializeField] private int enemyPerRoom = 5;
+    [SerializeField] private int addRandomEnemyPerRoom = 3;
 
     #region Getter Setter
     public AudioClip BiomeMusic { get { return biomeMusic; } }
@@ -47,5 +53,12 @@ public class Biome : ScriptableObject
     public Vector2 SpeedSunMove { get { return speedSunMove; } }
     public Vector2 SunSizeCookie { get { return sunSizeCookie; } }    
     public Texture2D SunLightCookie { get { return sunLightCookie; } }
+    public List<EnemySO> Enemy { get { return enemy; } }
+    public int WaveEnemy { get { return waveEnemy; } }
+    public int RandomPercentAddWaveEnemy { get { return randomPercentAddWaveEnemy; } }
+    public int AddWaveEnemy { get { return addWaveEnemy; } }
+    public int EnemyPerRoom { get { return enemyPerRoom; } }
+    public int AddRandomEnemyPerRoom { get { return addRandomEnemyPerRoom; } }
+
     #endregion
 }

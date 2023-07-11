@@ -24,6 +24,8 @@ public class AOE : MonoBehaviour
     [SerializeField] private GameObject effect;
     [SerializeField] private Vector3 baseScale = Vector3.one;
     [SerializeField] private GameObject baseEffect = null;
+    [SerializeField] private AudioClip audioEffect;
+    private bool soundState = false;
     
     private float timeBe;
     private float rateTime = 0.0f;
@@ -109,9 +111,14 @@ public class AOE : MonoBehaviour
         timeBe -= Time.deltaTime;
         if (timeBe < 0 && !endEffect)
         {
+            if(!soundState && audioEffect != null)
+            {
+                soundState = true;
+                SoundManager.PlayFxSound(audioEffect);
+            }
             if(effect != null)
             {
-                effect.SetActive(true);
+                effect.SetActive(true);                
             }
             if(impulse)
             {

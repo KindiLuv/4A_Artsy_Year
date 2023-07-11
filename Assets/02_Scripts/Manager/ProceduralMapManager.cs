@@ -16,6 +16,7 @@ public class ProceduralMapManager : NetEntity
     [SerializeField] private LightCookieOffset lco = null;
     [SerializeField] private GameObject prefabBiomeRoom = null;
     private Biome b;
+    private List<int> idEnemy = new List<int>();
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
@@ -352,6 +353,11 @@ public class ProceduralMapManager : NetEntity
         ns = navmeshSurface.AddComponent<NavMeshSurface>();
         ns.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
 
+        foreach (EnemySO enemy in b.Enemy)
+        {
+            idEnemy.Add(GameRessourceManager.Instance.GetIdByEnemy(enemy));
+        }
+
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
             GameObject obj = new GameObject("Chunck_" + pair.Key.ToString());
@@ -481,7 +487,7 @@ public class ProceduralMapManager : NetEntity
                     {
                         dList.Add(doorObject[pair.Value.doors[i]].GetComponent<OpeningDoor>());
                     }
-                    biomeRoom.GetComponent<BiomeRoom>().SetBiomeRoom(dList);
+                    biomeRoom.GetComponent<BiomeRoom>().SetBiomeRoom(dList,b.WaveEnemy+ (UnityEngine.Random.Range(0,100) < b.RandomPercentAddWaveEnemy ? UnityEngine.Random.Range(0, b.AddWaveEnemy) : 0),b,pair.Value.map, idEnemy,wallSize);
                 }
             }
         }

@@ -213,9 +213,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5d1bd011b0d2d04f8b4f5c75e4a43f3, type: 2}
   - {fileID: 11400000, guid: 666a339a802d8894183f23f3d1092bf7, type: 2}
   - {fileID: 11400000, guid: 848e71c2a367bbe4c9f14e07316375b8, type: 2}
+  - {fileID: 11400000, guid: 3fbebe08c951d564da436d2d57a345ac, type: 2}
   enemies:
   - {fileID: 11400000, guid: 3cf94f9c54e1e4743998f97cfd939826, type: 2}
   - {fileID: 11400000, guid: dc68f74b8d1e5814ca252fcc5d29ea4c, type: 2}
+  enemyTypePrebab:
+  - {fileID: 8685688584890935724, guid: b754393ee4959424fa63233124e723f0, type: 3}
+  - {fileID: 6437199265679976842, guid: 8e34f7a476464cc4984b48819c04020d, type: 3}
 --- !u!114 &2304225578689325126
 MonoBehaviour:
   m_ObjectHideFlags: 0

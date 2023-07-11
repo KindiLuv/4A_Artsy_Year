@@ -305,18 +305,22 @@ public class PlayerController : Character
     [ClientRpc]
     public void DashClientRpc(ClientRpcParams clientRpcParams = default)
     {
-        StartCoroutine(DashAction());
+        StartCoroutine(DashAction(!IsLocalPlayer));
     }
 
-    IEnumerator DashAction()
+    IEnumerator DashAction(bool fromClient = false)
     {
+        if(fromClient)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
         _dashCD = true;
         _dashLocked = true;
         gameObject.layer = 9;
         _tr.SetFloat("ParticlesRate", 256.0f);
         _dashValue = 4f;
         _gravityValue = 0f;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(fromClient ? 0.25f : 0.2f);
         _dashValue = 0.7f;
         _gravityValue = -9.81f;
         _tr.SetFloat("ParticlesRate", 0.0f);

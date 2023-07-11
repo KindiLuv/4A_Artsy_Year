@@ -37,3 +37,10 @@ MonoBehaviour:
   speedSunMove: {x: 0.1, y: -0.1}
   sunSizeCookie: {x: 40, y: 40}
   sunLightCookie: {fileID: 2800000, guid: 7abc4a3e0daadb54db6e7cab23f2d71e, type: 3}
+  enemy:
+  - {fileID: 11400000, guid: dc68f74b8d1e5814ca252fcc5d29ea4c, type: 2}
+  waveEnemy: 1
+  randomPercentAddWaveEnemy: 25
+  addWaveEnemy: 2
+  enemyPerRoom: 5
+  addRandomEnemyPerRoom: 3
