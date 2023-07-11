@@ -153,7 +153,7 @@ public class PlayerController : Character
             DamageIndicator();
         }
         if (_controller.isGrounded)
-        {
+        {            
             lastGroundPosition = transform.position;
         }
         if (_actionLocked || (!GameNetworkManager.IsOffline && !IsLocalPlayer)) return;

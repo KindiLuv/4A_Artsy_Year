@@ -224,6 +224,16 @@ public class Character : NetEntity, IDamageable
     {
         return !_ded;
     }
+    [ClientRpc]
+    public void TeleportationLGPClientRpc()
+    {        
+        NavMeshHit myNavHit;
+        if (NavMesh.SamplePosition(lastGroundPosition, out myNavHit, Mathf.Infinity, -1))
+        {
+            Teleportation(myNavHit.position);
+        }
+    }
+
 
     public virtual void Teleportation(Vector3 positionTarget)
     {
