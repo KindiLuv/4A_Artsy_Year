@@ -503,7 +503,12 @@ MonoBehaviour:
   bodyPos: {fileID: 5209986976720382469}
   raycastRange: 1
   audioSource: {fileID: 2365399225609233414}
-  audioClip: []
+  audioClip:
+  - {fileID: 8300000, guid: 854ac4afeeab1854ca6dbbbc8d309eb8, type: 3}
+  - {fileID: 8300000, guid: baee2364bdb508146ae34f583609cd8c, type: 3}
+  - {fileID: 8300000, guid: a67a521911b99a748991951713a1ad90, type: 3}
+  - {fileID: 8300000, guid: 4fd4265b8a94f554c9caff0261281f04, type: 3}
+  - {fileID: 8300000, guid: 3030bab56a376f84eb61b427e110d5fd, type: 3}
 --- !u!82 &2365399225609233414
 AudioSource:
   m_ObjectHideFlags: 0

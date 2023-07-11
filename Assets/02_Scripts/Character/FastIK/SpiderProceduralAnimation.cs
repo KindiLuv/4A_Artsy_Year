@@ -25,7 +25,7 @@ public class SpiderProceduralAnimation : ProceduralAnimation
     [SerializeField] private List<AudioClip> audioClip = null;
     private float audioStep = 0.0f;
     #endregion
-
+    private int countSound = 0;
     public override bool SetActive
     {
         get
@@ -100,13 +100,6 @@ public class SpiderProceduralAnimation : ProceduralAnimation
                 lastVelocity = velocity;
             }
 
-            audioStep += Time.fixedDeltaTime * velocity.magnitude;
-            if(audioStep > 0.05f && audioClip.Count > 0)
-            {
-                audioSource.PlayOneShot(audioClip[Random.Range(0, audioClip.Count)]);
-                audioStep = 0;
-            }
-
             indexToMove = -1;
             maxDistance = stepSize;
             for (int i = 0; i < nbLegs; ++i)
@@ -134,6 +127,11 @@ public class SpiderProceduralAnimation : ProceduralAnimation
                 Vector3[] positionAndNormal = MatchToSurfaceFromAbove(targetPoint, raycastRange, bodyPos.transform.up, base.layerMask);
                 legMoving[0] = true;
                 StartCoroutine(PerformStep(indexToMove, positionAndNormal[0]));
+                if (audioClip.Count > 0 && countSound%2 == 0)
+                {
+                    audioSource.PlayOneShot(audioClip[Random.Range(0, audioClip.Count)],Mathf.Clamp(velocity.magnitude,0,1.0f));                    
+                }
+                countSound++;
             }
 
             lastBodyPos = bodyPos.transform.position;

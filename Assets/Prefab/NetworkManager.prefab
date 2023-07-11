@@ -110,6 +110,36 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 3526325574365378841, guid: 63cb9935384fb09498f2820e9c4eb0af,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6717879549476563698, guid: 31c1349f78f867246855c96fb1744378,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 5273598650047238186, guid: a124222644aa2eb44a88d9dc6369928a,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6717879549476563698, guid: 46e3d8f75f5f4f2489c72c0efb91e702,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 5273598650047238186, guid: 03f239e9dde8df240ad54180e1b467ce,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 1
@@ -179,6 +209,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e, type: 2}
   - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}
   - {fileID: 11400000, guid: aa3ed6a7f9966e947bc1f210b5f02a99, type: 2}
+  - {fileID: 11400000, guid: ffe159527ba2bfe4ba17d9755025e11b, type: 2}
+  - {fileID: 11400000, guid: a5d1bd011b0d2d04f8b4f5c75e4a43f3, type: 2}
+  - {fileID: 11400000, guid: 666a339a802d8894183f23f3d1092bf7, type: 2}
+  - {fileID: 11400000, guid: 848e71c2a367bbe4c9f14e07316375b8, type: 2}
   enemies:
   - {fileID: 11400000, guid: 3cf94f9c54e1e4743998f97cfd939826, type: 2}
   - {fileID: 11400000, guid: dc68f74b8d1e5814ca252fcc5d29ea4c, type: 2}
@@ -272,7 +306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClipOST: {fileID: 8300000, guid: 9d9d5ed97b73942488689270f0bb7457, type: 3}
-  musicClipAmbient: {fileID: 0}
 --- !u!1 &7134140247337050931
 GameObject:
   m_ObjectHideFlags: 0

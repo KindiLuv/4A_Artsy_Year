@@ -14,13 +14,15 @@ public class ProceduralMapManager : NetEntity
     [SerializeField] private int countZone = 10;
     [SerializeField] private int idBiome = 0;
     [SerializeField] private LightCookieOffset lco = null;
+    [SerializeField] private GameObject prefabBiomeRoom = null;
     private Biome b;
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
+    private Dictionary<Vector3, GameObject> doorObject = new Dictionary<Vector3, GameObject>();
     private NavMeshSurface ns;
     private static ProceduralMapManager instance;
-
+    
     #region GetterSetter
     public static ProceduralMapManager Instance { get { return instance; } }
     public NavMeshSurface NavMesh { get { return ns; } }
@@ -29,6 +31,7 @@ public class ProceduralMapManager : NetEntity
     {
         public int[,] map;
         public List<Spawnable> spawnables;
+        public List<Vector3> doors;
     }
     struct Spawnable
     {
@@ -418,21 +421,67 @@ public class ProceduralMapManager : NetEntity
                 SpawnableObject so = GetID(spawn.id);
                 if (so != null)
                 {
-                    GameObject go = Instantiate(so.Prefab[pseudoRandom.Next(so.Prefab.Count)], spawn.position, spawn.rotation);
                     bool rotate = false;
-                    float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
-                    if (rotate)
+                    if (IsServer)
                     {
-                        go.transform.eulerAngles = new Vector3(0, angle, 0);
-                    }
-                    if (!so.IsNetCodeObject)
-                    {
-                        go.transform.parent = obj.transform;
+                        GameObject go = Instantiate(so.Prefab[pseudoRandom.Next(so.Prefab.Count)], spawn.position, spawn.rotation);
+                        if (b.Door.SpawnID == so.SpawnID || b.BossDoor.SpawnID == so.SpawnID)
+                        {
+                            doorObject.Add(spawn.position, go);
+                        }                        
+                        float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
+                        if (rotate)
+                        {
+                            go.transform.eulerAngles = new Vector3(0, angle, 0);
+                        }
+                        if (!so.IsNetCodeObject)
+                        {
+                            go.transform.parent = obj.transform;
+                        }
+                        else
+                        {
+                            go.GetComponent<NetworkObject>().Spawn();
+                        }
                     }
                     else
                     {
-                        go.GetComponent<NetworkObject>().Spawn();
+                        if (!so.IsNetCodeObject)
+                        {
+                            GameObject go = Instantiate(so.Prefab[pseudoRandom.Next(so.Prefab.Count)], spawn.position, spawn.rotation);
+                            float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
+                            if (rotate)
+                            {
+                                go.transform.eulerAngles = new Vector3(0, angle, 0);
+                            }                        
+                            go.transform.parent = obj.transform;
+                        }
+                        else
+                        {
+                            pseudoRandom.Next(so.Prefab.Count);
+                            float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
+                        }
                     }
+                }
+            }
+        }
+        if (IsServer)
+        {
+            int cdSize = chunckSize / 8;
+            foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
+            {
+                if (pair.Key != Vector2Int.zero)
+                {
+                    Vector3 p = new Vector3(pair.Key.x * (chunckSize), 0, pair.Key.y * (chunckSize));
+                    GameObject biomeRoom = Instantiate(prefabBiomeRoom, p + Vector3.down * wallSize, Quaternion.identity);
+                    BoxCollider brbc = biomeRoom.GetComponent<BoxCollider>();
+                    brbc.size = new Vector3(chunckSize - cdSize, wallSize, chunckSize - cdSize);
+                    biomeRoom.GetComponent<NetworkObject>().Spawn();
+                    List<OpeningDoor> dList = new List<OpeningDoor>();
+                    for(int i =  0; i < pair.Value.doors.Count;i++)
+                    {
+                        dList.Add(doorObject[pair.Value.doors[i]].GetComponent<OpeningDoor>());
+                    }
+                    biomeRoom.GetComponent<BiomeRoom>().SetBiomeRoom(dList);
                 }
             }
         }
@@ -601,6 +650,8 @@ public class ProceduralMapManager : NetEntity
         spawn.position = new Vector3((((chunk1.x * chunckSize) + midel1.x)+ ((chunk2.x * chunckSize) + midel2.x))/2.0f, -wallSize, (((chunk1.y * chunckSize) + midel1.y)+ ((chunk2.y * chunckSize) + midel2.y))/2.0f) + offset;
         spawn.rotation = Quaternion.LookRotation((new Vector3(gfp1.x, 0, gfp1.y) - new Vector3(gfp2.x, 0, gfp2.y)).normalized, Vector3.up);
         maps[chunk1].spawnables.Add(spawn);
+        maps[chunk1].doors.Add(spawn.position);
+        maps[chunk2].doors.Add(spawn.position);
     }
 
     private int[,] InitChunkHole(int fill, System.Random pseudoRandom)
@@ -681,6 +732,7 @@ public class ProceduralMapManager : NetEntity
         Chunck c;
         c.map = chunckMap;
         c.spawnables = new List<Spawnable>();
+        c.doors = new List<Vector3>();
         maps[pos] = c;
     }
 
