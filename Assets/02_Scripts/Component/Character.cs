@@ -106,14 +106,14 @@ public class Character : NetEntity, IDamageable
     }
 
     [ClientRpc]
-    public void CreateFTClientRpc(float damage,Vector3 pos,ClientRpcParams clientRpcParams = default)
+    public virtual void CreateFTClientRpc(float damage,Vector3 pos,ClientRpcParams clientRpcParams = default)
     {
         UIManager.instance.CreateFloatingText(damage.ToString(), pos, Color.red, new Color(1.0f, 0.5f, 0.0f));
         StartCoroutine(ApplyVisualDamage());
     }
 
     [ClientRpc]
-    public void CreateFTHealClientRpc(float damage, Vector3 pos, ClientRpcParams clientRpcParams = default)
+    public virtual void CreateFTHealClientRpc(float damage, Vector3 pos, ClientRpcParams clientRpcParams = default)
     {
         UIManager.instance.CreateFloatingText(damage.ToString(), pos, Color.green, new Color(0.0f, 1.0f, 0.5f));
     }

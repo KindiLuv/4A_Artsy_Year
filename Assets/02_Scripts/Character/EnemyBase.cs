@@ -19,6 +19,7 @@ public class EnemyBase : Enemy
     private float timeChangeRandomDirection;
     private float timeIdelChangePosition;
     private LayerMask lm;
+    private Vector3 lastPosSpeed = Vector3.zero;
 
     protected override void Start()
     {
@@ -99,7 +100,15 @@ public class EnemyBase : Enemy
 
         if (_animator != null)
         {
-            _animator.SetFloat(ASpeed, _navMeshAgent.velocity.magnitude / _navMeshAgent.speed);
+            if (_navMeshAgent == null)
+            {
+                _animator.SetFloat(ASpeed, ((lastPosSpeed-transform.position).magnitude * 10.0f) / _speed);
+                lastPosSpeed = transform.position;
+            }
+            else
+            {
+                _animator.SetFloat(ASpeed, _navMeshAgent.velocity.magnitude / _navMeshAgent.speed);
+            }
         }
         if (GameNetworkManager.IsOffline || IsServer)
         {
@@ -116,7 +125,7 @@ public class EnemyBase : Enemy
                     for (int i = 0; i < PlayerManager.instance.players.Count; i++)
                     {
                         float d = Vector3.Distance(PlayerManager.instance.players[i].transform.position, offsetUp);
-                        if (d < distance)
+                        if (d < distance && PlayerManager.instance.players[i].isAlive())
                         {                            
                             if (Physics.Raycast(offsetUp, (PlayerManager.instance.players[i].transform.position- offsetUp).normalized, out hit,Mathf.Infinity, lm))
                             {

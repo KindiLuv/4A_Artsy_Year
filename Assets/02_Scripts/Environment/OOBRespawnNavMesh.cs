@@ -10,7 +10,7 @@ public class OOBRespawnNavMesh : OOBRespawn
         {
             
                 character.TeleportationLGPClientRpc();
-                character.TakeDamage(10);
+                character.TakeDamage(1);
             
         }
     }

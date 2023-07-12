@@ -67,6 +67,11 @@ public class PlayerController : Character
         _playerspeed = cs.BaseSpeed;
         _health = cs.BaseLife;
         _maxHealth = cs.BaseLife;
+        if(IsLocalPlayer)
+        {
+            UIHeartPlayer.Instance.RefreshMaxContainer(Mathf.CeilToInt(_maxHealth/4.0f));
+            UIHeartPlayer.Instance.Refresh((int)_health);
+        }
     }
 
     protected void Start()
@@ -164,6 +169,28 @@ public class PlayerController : Character
         if (_dashLocked) return;
         //OnDeviceChange(_playerInput);
         HandleInputMovement();
+    }
+
+    [ClientRpc]
+    public override void CreateFTClientRpc(float damage, Vector3 pos, ClientRpcParams clientRpcParams = default)
+    {
+        base.CreateFTClientRpc(damage, pos, clientRpcParams);
+        if(IsLocalPlayer)
+        {
+            _health -= damage;
+            UIHeartPlayer.Instance.Refresh((int)_health);
+        }
+    }
+
+    [ClientRpc]
+    public override void CreateFTHealClientRpc(float damage, Vector3 pos, ClientRpcParams clientRpcParams = default)
+    {
+        UIManager.instance.CreateFloatingText(damage.ToString(), pos, Color.green, new Color(0.0f, 1.0f, 0.5f));
+        if (IsLocalPlayer)
+        {
+            _health += damage;
+            UIHeartPlayer.Instance.Refresh((int)_health);
+        }
     }
 
     void HandleAttack()
@@ -330,6 +357,15 @@ public class PlayerController : Character
         _dashLocked = false;
         _dashCD = false;
         
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        if (IsLocalPlayer)
+        {
+            UIHeartPlayer.Instance.Refresh((int)_health);
+        }
     }
 
     void LookAt(Vector3 target)
