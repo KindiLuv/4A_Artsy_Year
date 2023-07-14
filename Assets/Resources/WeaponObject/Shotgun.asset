@@ -23,12 +23,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6ee8a84557fc1344883d26077a66d9e, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 5
-  spawnProjectileRate: 0.5
+  spawnProjectileRate: 1
   autoWeapon: 0
   muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
     type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0.5, y: 0.4, z: 1.3}
+  spawnProjectileLocalPosition: {x: 0.5, y: 0, z: 1.3}
   spreadUniform: 0
   offsetAngle: -10
   Angle: 20

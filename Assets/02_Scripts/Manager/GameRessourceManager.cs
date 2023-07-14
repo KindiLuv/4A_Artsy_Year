@@ -7,6 +7,7 @@ public class GameRessourceManager : MonoBehaviour
     [SerializeField] private List<CharacterSO> characters = new List<CharacterSO>();
     [SerializeField] private List<WeaponSO> weapons = new List<WeaponSO>();
     [SerializeField] private List<EnemySO> enemies = new List<EnemySO>();
+    [SerializeField] private List<GameObject> enemyTypePrebab = new List<GameObject>();
 
     private static GameRessourceManager instance = null;
 
@@ -20,8 +21,22 @@ public class GameRessourceManager : MonoBehaviour
     public List<EnemySO> Enemies { get { return enemies; } }
 
     public List<Biome> Biomes { get { return biomes; } }
+    public List<GameObject> EnemyTypePrebab { get { return enemyTypePrebab; } }
 
     #endregion 
+
+
+    public int GetIdByEnemy(EnemySO es)
+    {
+        for(int i = 0; i  < enemies.Count; i++)
+        {
+            if (es == enemies[i])
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     private void Awake()
     {

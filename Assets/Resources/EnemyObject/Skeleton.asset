@@ -19,6 +19,14 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: ffe159527ba2bfe4ba17d9755025e11b, type: 2}
   weaponChangeRate: 30
-  maxFollowDistance: 30
+  maxFollowDistance: 15
+  minDistanceTarget: 8
+  randomMin: {x: -2, y: 0, z: -1}
+  randomMax: {x: 2, y: 0, z: 1}
+  timeSmoothRandom: 1
+  idelRandomSphereInsideUnits: 6
+  minTimeRandomSIU: 3
+  maxTimeRandomSIU: 8
+  timeLostPlayer: 1.25
   effectDie: {fileID: 5541579379989539237, guid: 44da4e4f9f44dfd4ca4dd88f7cecccf5,
     type: 3}

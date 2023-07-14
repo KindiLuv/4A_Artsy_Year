@@ -18,7 +18,15 @@ public class EnemySO : ScriptableObject
     public GameObject Prefab;
     public List<WeaponSO> weapons;
     public float weaponChangeRate = 30.0f;
-    public float maxFollowDistance = 30.0f;
+    public float maxFollowDistance = 15.0f;
+    public float minDistanceTarget = 5.0f;
+    public Vector3 randomMin;
+    public Vector3 randomMax;
+    public float timeSmoothRandom = 1.0f;
+    public float idelRandomSphereInsideUnits = 0.0f;
+    public float minTimeRandomSIU = 2.0f;
+    public float maxTimeRandomSIU = 5.0f;
+    public float timeLostPlayer = 2.0f;
     public GameObject effectDie = null;
 }
 

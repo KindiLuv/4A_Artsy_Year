@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject launchGameUI = null;
     [SerializeField] private GameObject multiGameUI = null;
     [SerializeField] private List<Transform> spawnPointList = new List<Transform>();
-    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();    
+    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();
     private static MenuManager instance = null;
 
     private PlayerControls _playerControls;
@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
 
     #region Getter Setter
     public static MenuManager Instance { get { return instance; } }
-    #endregion 
+    #endregion
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class MenuManager : MonoBehaviour
         selectHero = Instantiate(_interactEffect);
         selectHero.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
         OnEnable();
-    }    
+    }
 
     public void OnEnable()
     {
@@ -76,7 +76,7 @@ public class MenuManager : MonoBehaviour
     public void SelectHero(InputAction.CallbackContext obj)
     {
         if(_currentHeroSelected >= 0)
-        {            
+        {
             _playerControls.controls.BasicAttack.performed -= SelectHero;
             _playerControls.controls.Dash.performed -= NextHero;
             FadeScreenManager.FadeIn(0.0f);
@@ -92,7 +92,7 @@ public class MenuManager : MonoBehaviour
         player = Instantiate(playerControlerPrefab, spawnPointList[_currentHeroSelected % spawnPointList.Count].position + new Vector3(0.0f, 1.0f,0.0f), Quaternion.identity);
         spawnPrefabs[_currentHeroSelected % spawnPrefabs.Count].SetActive(false);
         SaveManager.Instance.CurrentPlayerCharacterChoise = _currentHeroSelected % spawnPrefabs.Count;
-        SaveManager.Instance.CurrentPlayerWeaponChoise = 1;
+        SaveManager.Instance.CurrentPlayerWeaponChoise = 8;
         Player p = player.GetComponent<Player>();
         p.CharacterID = _currentHeroSelected % spawnPrefabs.Count;
         FadeScreenManager.OnFadeInComplete -= LoadPlayerController;
@@ -129,12 +129,12 @@ public class MenuManager : MonoBehaviour
         launchGameUI.GetComponent<Animator>().SetTrigger("Exit");
         if (multiGameUI.activeSelf)
         {
-            multiGameUI.GetComponent<Animator>().SetTrigger("Spawn");            
+            multiGameUI.GetComponent<Animator>().SetTrigger("Spawn");
         }
         else
         {
             multiGameUI.SetActive(true);
-        }        
+        }
     }
 
     public void RetourGameLauncheur()

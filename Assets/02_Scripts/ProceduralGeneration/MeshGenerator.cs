@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Utilities;
 
 public class MeshGenerator : MonoBehaviour
 {
@@ -323,7 +324,8 @@ public class MeshGenerator : MonoBehaviour
         List<Vector2> uvs = new List<Vector2>();
 
         List<int> wallTriangles = new List<int>();
-
+        Ray r;
+        float dr,d;
         Mesh wallMesh = new Mesh();        
         foreach (List<int> outline in outlines)
         {
@@ -334,11 +336,21 @@ public class MeshGenerator : MonoBehaviour
                 wallVertices.Add(vertices[outline[i + 1]]); // right;
                 float height = wallHeight;
 
+                r = new Ray(vertices[outline[i]], vertices[outline[i + 1]]- vertices[outline[i]]);
+                dr = Vector3.Distance(vertices[outline[i]],vertices[outline[i + 1]]);
+                
                 for(int j = 0; j < door.Count;j++)
                 {
                     if(door[j].Contains(vertices[outline[i]]))
                     {                    
                         height = 0.0f;
+                    }
+                    else if(door[j].IntersectRay(r,out d))
+                    {
+                        if(d < dr)
+                        {
+                            height = 0.0f;
+                        }
                     }
                 }
 

@@ -44,7 +44,7 @@ public class Enemy : Character
     {
         LoadData(ei);
     }
-    
+
     public void LoadData(int ei)
     {
         foreach(Transform t in enemyModelSpawn.transform)

@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5206830484469625129}
-  m_Layer: 0
+  - component: {fileID: 8814373054189811872}
+  m_Layer: 8
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8814373054189811872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598961248700307069}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5, z: 1}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &6951567909240409401
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +57,7 @@ GameObject:
   - component: {fileID: 6951567909240409406}
   - component: {fileID: 6951567909240409404}
   - component: {fileID: 6951567909240409407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vfxgraph_Fire_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6951567909582380104}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vfx_Fire01_v5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +257,7 @@ GameObject:
   - component: {fileID: 6951567909588339729}
   - component: {fileID: 6951567909588339735}
   - component: {fileID: 6951567909588339734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LIGHT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5176,7 +5190,7 @@ GameObject:
   - component: {fileID: 4750082440889020202}
   - component: {fileID: 819006680488451068}
   - component: {fileID: 1259897801280783905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5291,7 +5305,7 @@ GameObject:
   - component: {fileID: 8504652500613782252}
   - component: {fileID: 4731387609571906889}
   - component: {fileID: 7371746899271295363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
