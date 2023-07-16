@@ -19,14 +19,15 @@ MonoBehaviour:
   weaponDescription: Admirez ce bordel
   weaponModel: {fileID: 5098113193050838385, guid: e7dcee606062bd341ad98a5b6b5ca6fb,
     type: 3}
-  projectile: []
+  projectile:
+  - {fileID: 11400000, guid: ef0bb0f3f65994644ae20ebf6d3fe090, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 1
   spawnProjectileRate: 0.5
   autoWeapon: 0
   muzzelFlash: {fileID: 0}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0, y: 0, z: 0}
+  spawnProjectileLocalPosition: {x: 0, y: 0, z: 2}
   spreadUniform: 0
   offsetAngle: 0
   Angle: 0
