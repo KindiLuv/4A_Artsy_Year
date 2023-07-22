@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98c326eab97b8554da9a7db12a19b7f5, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 5
-  spawnProjectileRate: 1
+  spawnProjectileRate: 1.5
   autoWeapon: 0
   muzzelFlash: {fileID: 3565017316599769400, guid: 22003f521cee16e4da351cc9f6600048,
     type: 3}

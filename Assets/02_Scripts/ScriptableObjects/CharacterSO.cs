@@ -27,6 +27,7 @@ public class CharacterSO : ScriptableObject
     [SerializeField] private float baseShield;//+ tards
     [SerializeField] private float baseMana;//+ tards
     [SerializeField] private float baseSpeed = 1.0f;
+    [SerializeField] private WeaponSO baseWeapon;
 
     #region Getter Setter
 
@@ -36,6 +37,7 @@ public class CharacterSO : ScriptableObject
     public float BaseShield { get { return baseShield; } }
     public float BaseMana { get { return baseMana; } }
     public float BaseSpeed { get { return baseSpeed; } }
+    public WeaponSO Weapon { get { return baseWeapon; } }
 
     #endregion
 }

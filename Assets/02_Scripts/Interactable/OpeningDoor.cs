@@ -30,6 +30,7 @@ public class OpeningDoor : Interactable
         interactState = false;
         animatorDoor.SetBool("Swap", interactState);
         base.StopInteract();
+        OutlinesEffect(false);
     }
 
     public override void StartInteract()
@@ -37,6 +38,7 @@ public class OpeningDoor : Interactable
         if (!_locked)
         {
             base.StartInteract();
+            OutlinesEffect(true);
         }
     }
     public override void StopInteract()
@@ -44,6 +46,7 @@ public class OpeningDoor : Interactable
         if (!_locked)
         {
             base.StopInteract();
+            OutlinesEffect(false);
         }
     }
 

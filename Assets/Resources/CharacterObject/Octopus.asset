@@ -17,4 +17,5 @@ MonoBehaviour:
   baseLife: 52
   baseShield: 0
   baseMana: 0
-  baseSpeed: 8
+  baseSpeed: 7
+  baseWeapon: {fileID: 11400000, guid: a5d1bd011b0d2d04f8b4f5c75e4a43f3, type: 2}

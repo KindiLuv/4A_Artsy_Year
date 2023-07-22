@@ -12,12 +12,15 @@ public class Enemy : Character
     public EnemySO _enemy;
     protected List<WeaponSO> _weapons = new List<WeaponSO>();
     protected Animator _animator;
+    protected CapsuleCollider _enemyCollider;
     
     [SerializeField] private Animator _enemyHand;
     [SerializeField] private GameObject enemyModelSpawn = null;
-
+    
     protected static readonly int Attacking = Animator.StringToHash("Attacking");
     protected static readonly int ASpeed = Animator.StringToHash("Speed");
+
+    protected float contactTimer = 1f;
     #region Getter Setter
 
     public int EnemyID { get { return enemyID; } set { enemyID = value; } }
@@ -57,11 +60,13 @@ public class Enemy : Character
             if (_enemy != null)
             {
                 Instantiate(_enemy.Prefab, enemyModelSpawn.transform.position, enemyModelSpawn.transform.rotation, enemyModelSpawn.transform);
+                _enemyCollider = GetComponent<CapsuleCollider>();
+                _enemyCollider.radius *= _enemy.size;
+                _animator = GetComponentInChildren<Animator>();
                 if (!GameNetworkManager.IsOffline)
                 {
                     SetupEnemy();
                 }
-                _animator = GetComponentInChildren<Animator>();
             }
         }
         foreach (Transform t in _enemyHand.transform)
@@ -77,7 +82,10 @@ public class Enemy : Character
         {
             if(_weapons[0] != null)
             {
-                Instantiate(_weapons[0].weaponModel, _enemyHand.transform);
+                if (_weapons[0].weaponModel != null)
+                {
+                    Instantiate(_weapons[0].weaponModel, _enemyHand.transform);
+                }
                 _currentWeapon = 0;
             }
             int enumSize = Enum.GetValues(typeof(WeaponType)).Length;

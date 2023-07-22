@@ -24,7 +24,7 @@ MonoBehaviour:
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 1
   spawnProjectileRate: 60
-  autoWeapon: 0
+  autoWeapon: 1
   muzzelFlash: {fileID: 0}
   muzzelDestroyTime: 1
   spawnProjectileLocalPosition: {x: 0.6, y: 0, z: 1.5}

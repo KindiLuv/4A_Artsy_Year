@@ -28,7 +28,7 @@ MonoBehaviour:
   radius: 1
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
-  arcRadius: 1.5
+  arcRadius: 2
   lifeTime: 0.2
   wallBounds: 0
   punchThrough: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3665336290778850863}
   - component: {fileID: 1650557538542955966}
   - component: {fileID: 325401350741159412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stone_4_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8764392808256492745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stone 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

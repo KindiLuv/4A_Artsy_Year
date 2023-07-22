@@ -20,7 +20,7 @@ MonoBehaviour:
   speed: 10
   dmgPerHit: 10
   dmgPerHitAddRandom: 2
-  knockBack: {x: 0, y: 0, z: 0}
+  knockBack: {x: 0, y: 0, z: -5}
   prefab:
   - {fileID: 1853155248454027377, guid: b1cab2d7aeecb4b49aafd79759fb08c8, type: 3}
   shapeProjectileType: 0

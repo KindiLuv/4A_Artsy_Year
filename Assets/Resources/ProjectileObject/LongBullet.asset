@@ -18,8 +18,8 @@ MonoBehaviour:
   radiusSearch: 5
   colapseSearchSpeed: 5
   speed: 40
-  dmgPerHit: 100
-  dmgPerHitAddRandom: 4
+  dmgPerHit: 24
+  dmgPerHitAddRandom: 1
   knockBack: {x: 0, y: 0, z: 0.1}
   prefab:
   - {fileID: 7766503117856685945, guid: 052725283a627004396a6466395deb09, type: 3}

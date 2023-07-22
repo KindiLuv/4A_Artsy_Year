@@ -37,6 +37,18 @@ public class GameRessourceManager : MonoBehaviour
         }
         return -1;
     }
+    
+    public int GetIdByWeapon(WeaponSO ws)
+    {
+        for(int i = 0; i  < weapons.Count; i++)
+        {
+            if (ws == weapons[i])
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     private void Awake()
     {

@@ -186,7 +186,10 @@ public class ProjectileManager : MonoBehaviour
             || pd.teamProjectile == Team.PlayerFF && cs[i].GetTeam() == Team.PlayerFF
             || cs[i].GetTeam() == Team.Object)
             {
-                hitIDamageable.Add(cs[i]);
+                if (!hitIDamageable.Contains(cs[i]))
+                {
+                    hitIDamageable.Add(cs[i]);
+                }
             }
         }
         for (int i = 0; i < hitIDamageable.Count; i++)

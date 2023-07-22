@@ -18,3 +18,4 @@ MonoBehaviour:
   baseShield: 0
   baseMana: 0
   baseSpeed: 8
+  baseWeapon: {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}

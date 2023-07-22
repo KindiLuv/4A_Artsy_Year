@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.000000009312026, y: -0.92387956, z: 0.38268346, w: 0.000000022481217}
+  m_LocalRotation: {x: 0.000000012469619, y: -0.92387956, z: 0.38268343, w: 0.000000030104328}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61131,6 +61131,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: enemies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e421e7c677ca80409d71d59253a9ad1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534
@@ -67495,12 +67506,12 @@ PrefabInstance:
     - target: {fileID: 3850688587774950740, guid: 679b6c598591fed4e8fc9e0c28997d5c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -19.999634
+      value: -19.999512
       objectReference: {fileID: 0}
     - target: {fileID: 3850688587774950740, guid: 679b6c598591fed4e8fc9e0c28997d5c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -19.999939
+      value: -19.99997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679b6c598591fed4e8fc9e0c28997d5c, type: 3}
@@ -69539,7 +69550,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e85e6ab804dfdec4697049a08fe2bf43, type: 2}
   - {fileID: 2100000, guid: e85e6ab804dfdec4697049a08fe2bf43, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

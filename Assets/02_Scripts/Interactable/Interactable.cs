@@ -1,4 +1,5 @@
-﻿using ArtsyNetcode;
+﻿using System;
+using ArtsyNetcode;
 using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
@@ -11,6 +12,7 @@ public class Interactable : NetEntity, InitializeEditor
     protected bool interactState = false;
     private SphereCollider sphereCollider;
     private GameObject interactableObject;
+    protected Outline[] outlines;
 
     #region GetterSetter
 
@@ -22,6 +24,19 @@ public class Interactable : NetEntity, InitializeEditor
         }
     }
     #endregion
+
+    public virtual void Start()
+    {
+        outlines = gameObject.GetComponentsInChildren<Outline>();
+    }
+
+    public virtual void OutlinesEffect(bool activate = false)
+    {
+        foreach (Outline outline in outlines)
+        {
+            outline.enabled = activate;
+        }
+    }
 
     public virtual void StartInteract()
     {

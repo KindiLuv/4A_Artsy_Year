@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public void CreateFloatingText(string text, Vector3 pos, Color colorG1, Color colorG2)
     {
         GameObject go = new GameObject("FloatingText");
-        go.transform.position = pos + Random.insideUnitSphere;
+        go.transform.position = pos + Random.insideUnitSphere + Vector3.up*0.5f;
         TextMeshPro textmeshPro = go.AddComponent<TextMeshPro>();
         textmeshPro.font = newFont;
         textmeshPro.outlineWidth = 0.2f;

@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 1280630279352920018}
   - component: {fileID: 4187359698625151966}
   - component: {fileID: 7456655665620119022}
+  - component: {fileID: 8571297487092493162}
   m_Layer: 8
   m_Name: door_01_right
   m_TagString: Untagged
@@ -295,6 +296,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1999598, y: 3.4534953, z: 0.34407014}
   m_Center: {x: -1.5999811, y: 1.7243699, z: -0.0048500076}
+--- !u!114 &8571297487092493162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716773445211970162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.89164263, b: 0, a: 0.7058824}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4994271690691619015
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +642,7 @@ GameObject:
   - component: {fileID: 7531718569660170499}
   - component: {fileID: 321351521316859238}
   - component: {fileID: 1850973254397782471}
+  - component: {fileID: 2378267376993452377}
   m_Layer: 8
   m_Name: door_01_left
   m_TagString: Untagged
@@ -708,6 +728,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.19996, y: 3.4534948, z: 0.34407026}
   m_Center: {x: -0.40002367, y: 1.7243694, z: -0.012825854}
+--- !u!114 &2378267376993452377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390894671996172710}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.89164263, b: 0, a: 0.7058824}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &9000883207097790757
 GameObject:
   m_ObjectHideFlags: 0

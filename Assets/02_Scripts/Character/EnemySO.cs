@@ -5,6 +5,7 @@ public enum EnemyType
 {
     NoAI,
     Base,
+    Dasher,
     Boss
 }
 
@@ -28,6 +29,8 @@ public class EnemySO : ScriptableObject
     public float maxTimeRandomSIU = 5.0f;
     public float timeLostPlayer = 2.0f;
     public GameObject effectDie = null;
+    public float size = 1;
+    public float contactDamage;
 }
 
 
