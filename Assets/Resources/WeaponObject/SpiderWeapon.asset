@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0952497ec5d431409abcfccfacb5275, type: 3}
+  m_Name: SpiderWeapon
+  m_EditorClassIdentifier: 
+  weaponName: SpiderWebShooter
+  weaponType: 7
+  weaponFamily: 1
+  rarity: 1
+  weaponDescription: Shotgun
+  weaponModel: {fileID: 0}
+  projectile:
+  - {fileID: 11400000, guid: 98c326eab97b8554da9a7db12a19b7f5, type: 2}
+  spawnProjectileAddRandom: 0
+  spawnProjectileCount: 15
+  spawnProjectileRate: 2
+  autoWeapon: 0
+  muzzelFlash: {fileID: 3565017316599769400, guid: 22003f521cee16e4da351cc9f6600048,
+    type: 3}
+  muzzelDestroyTime: 1
+  spawnProjectileLocalPosition: {x: 0.3, y: 1.2, z: 0.1}
+  spreadUniform: 1
+  offsetAngle: 0
+  Angle: 360
+  impulseForce: 0

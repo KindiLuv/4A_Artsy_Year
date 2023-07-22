@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693dae453df35d64abde7e3a09a0452c, type: 3}
+  m_Name: Spider
+  m_EditorClassIdentifier: 
+  EnemyType: 1
+  BaseHealth: 80
+  BaseSpeed: 5
+  Prefab: {fileID: 3945491864731072377, guid: 37c3403824dab3240837223daea0669c, type: 3}
+  weapons:
+  - {fileID: 11400000, guid: 4f8c9e487eeb6224ca740c357e7b01ed, type: 2}
+  weaponChangeRate: 30
+  maxFollowDistance: 15
+  minDistanceTarget: 8
+  randomMin: {x: -3, y: 0, z: -1}
+  randomMax: {x: 3, y: 0, z: 1}
+  timeSmoothRandom: 1
+  idelRandomSphereInsideUnits: 6
+  minTimeRandomSIU: 3
+  maxTimeRandomSIU: 8
+  timeLostPlayer: 1.25
+  effectDie: {fileID: 5541579379989539237, guid: 44da4e4f9f44dfd4ca4dd88f7cecccf5,
+    type: 3}
+  size: 2
+  contactDamage: 0
