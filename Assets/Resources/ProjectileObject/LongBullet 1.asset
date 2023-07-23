@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: BoltSlash
+  m_Name: LongBullet 1
   m_EditorClassIdentifier: 
-  moveProjectileType: 1
-  sinForce: 1
-  sinFrequence: 5
+  moveProjectileType: 2
+  sinForce: 0.25
+  sinFrequence: 20
   radiusSearch: 5
   colapseSearchSpeed: 5
   speed: 20
-  dmgPerHit: 20
-  dmgPerHitAddRandom: 0
-  knockBack: {x: 0, y: 0, z: 0}
+  dmgPerHit: 100
+  dmgPerHitAddRandom: 4
+  knockBack: {x: 0, y: 0, z: 0.1}
   prefab:
-  - {fileID: 2322627104585361743, guid: 3b722c203c88ce64aa668fba9aea9eb0, type: 3}
+  - {fileID: 7766503117856685945, guid: 052725283a627004396a6466395deb09, type: 3}
   shapeProjectileType: 0
-  collideOffset: {x: 0, y: 0.5, z: 0}
-  radius: 2
-  extends: {x: 0, y: 0, z: 0}
+  collideOffset: {x: 0, y: 0, z: 0}
+  radius: 0.6
+  extends: {x: 0.5, y: 0.5, z: 0.5}
   rayDistance: 100
   arcRadius: 1
-  lifeTime: 20
+  lifeTime: 10
   wallBounds: 0
-  punchThrough: 1
-  throughCount: 5
-  explodeEffect: {fileID: 0}
-  timeExplode: 2
+  punchThrough: 0
+  throughCount: 0
+  explodeEffect: {fileID: 7080524343175428333, guid: 86e33f56ecab36a4bbf772c1f74f018d,
+    type: 3}
+  timeExplode: 5

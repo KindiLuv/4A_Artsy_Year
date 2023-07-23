@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: BoltSlash
+  m_Name: BulletPlayerSin
   m_EditorClassIdentifier: 
-  moveProjectileType: 1
-  sinForce: 1
+  moveProjectileType: 2
+  sinForce: 0.1
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 20
-  dmgPerHit: 20
-  dmgPerHitAddRandom: 0
+  speed: 12
+  dmgPerHit: 3
+  dmgPerHitAddRandom: 2
   knockBack: {x: 0, y: 0, z: 0}
   prefab:
-  - {fileID: 2322627104585361743, guid: 3b722c203c88ce64aa668fba9aea9eb0, type: 3}
+  - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}
   shapeProjectileType: 0
-  collideOffset: {x: 0, y: 0.5, z: 0}
-  radius: 2
+  collideOffset: {x: 0, y: 0, z: 0}
+  radius: 0.25
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
-  arcRadius: 1
-  lifeTime: 20
+  arcRadius: 3
+  lifeTime: 5
   wallBounds: 0
-  punchThrough: 1
-  throughCount: 5
-  explodeEffect: {fileID: 0}
-  timeExplode: 2
+  punchThrough: 0
+  throughCount: 0
+  explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
+    type: 3}
+  timeExplode: 5

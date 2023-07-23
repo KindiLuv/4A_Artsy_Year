@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: SpaceGun
   m_EditorClassIdentifier: 
   weaponName: SpaceGun
-  weaponType: 10
-  weaponFamily: 0
+  weaponType: 9
+  weaponFamily: 1
   rarity: 3
   weaponDescription: pew pew
   weaponModel: {fileID: 8252394765221460871, guid: 661d1f92f245c7346bf9dd9722408f8c,
     type: 3}
   projectile:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: db7e8ce5bc1a83d41bb5d6013f8cbc4b, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 1
-  spawnProjectileRate: 0.5
-  autoWeapon: 0
+  spawnProjectileRate: 0.275
+  autoWeapon: 1
   muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
     type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0, y: 0, z: 0}
+  spawnProjectileLocalPosition: {x: 0.4, y: 0, z: 1.7}
   spreadUniform: 0
   offsetAngle: 0
   Angle: 0

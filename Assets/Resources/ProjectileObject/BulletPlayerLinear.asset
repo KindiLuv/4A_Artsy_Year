@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: BulletPlayer
+  m_Name: BulletPlayerLinear
   m_EditorClassIdentifier: 
   moveProjectileType: 1
   sinForce: 0.1

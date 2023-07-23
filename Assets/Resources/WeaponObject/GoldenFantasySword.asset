@@ -15,8 +15,8 @@ MonoBehaviour:
   weaponName: GoldenFantasySword
   weaponType: 1
   weaponFamily: 0
-  rarity: 0
-  weaponDescription: Admirez ce bordel
+  rarity: 5
+  weaponDescription: "L'\xE9p\xE9e du dieu de la foudre"
   weaponModel: {fileID: 5098113193050838385, guid: e7dcee606062bd341ad98a5b6b5ca6fb,
     type: 3}
   projectile:
