@@ -26,6 +26,7 @@ public class Biome : ScriptableObject
     [SerializeField] private Vector2 sunSizeCookie;
     [SerializeField] private Texture2D sunLightCookie;
     [SerializeField] private List<EnemySO> enemy = new List<EnemySO>();
+    [SerializeField] private List<EnemySO> enemyBoss = new List<EnemySO>();
     [SerializeField] private int waveEnemy = 1;
     [SerializeField] [Range(0, 100)] private int randomPercentAddWaveEnemy = 25;
     [SerializeField] private int addWaveEnemy = 2;
@@ -54,6 +55,7 @@ public class Biome : ScriptableObject
     public Vector2 SunSizeCookie { get { return sunSizeCookie; } }    
     public Texture2D SunLightCookie { get { return sunLightCookie; } }
     public List<EnemySO> Enemy { get { return enemy; } }
+    public List<EnemySO> EnemyBoss { get { return enemyBoss; } }
     public int WaveEnemy { get { return waveEnemy; } }
     public int RandomPercentAddWaveEnemy { get { return randomPercentAddWaveEnemy; } }
     public int AddWaveEnemy { get { return addWaveEnemy; } }

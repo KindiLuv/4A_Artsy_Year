@@ -1,20 +1,17 @@
-using System;
 using System.Collections;
 using Assets.Scripts.NetCode;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
-public class EnemyDash : Enemy
+public class EnemyBoss1 : Enemy
 {
     private NavMeshAgent _navMeshAgent;
     private Vector3 targetPositionImpulse = Vector3.zero;
     private bool isImpulse = false;
     private float timeChangePlayer = 0.5f;
     private float timeToShoot;
-    private float dashCooldown = 4f;
     private Character targetPlayer = null;
     private Vector3 direction;
     private Vector3 randomDirection;
@@ -23,11 +20,13 @@ public class EnemyDash : Enemy
     private float timeIdelChangePosition;
     private LayerMask lm;
     private Vector3 lastPosSpeed = Vector3.zero;
+    private float phaseTimer = 5f;
 
     protected override void Start()
     {
         base.Start();
         lm = 1 << 8 | 1 << 9;
+        phaseTimer = _enemy.weaponChangeRate;
         if (IsServer)
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -39,7 +38,7 @@ public class EnemyDash : Enemy
     {
         if (impulse != Vector3.zero)
         {
-            StartCoroutine(ImpulseMovementCoroutine(impulse, 0.2f));
+            //StartCoroutine(ImpulseMovementCoroutine(impulse, 0.2f));
         }
     }
 
@@ -66,13 +65,12 @@ public class EnemyDash : Enemy
         }
     }
 
-    public IEnumerator ImpulseMovementCoroutine(Vector3 impulseForce, float impulseDuration, bool isDash = false)
+    public IEnumerator ImpulseMovementCoroutine(Vector3 impulseForce, float impulseDuration)
     {
         targetPositionImpulse = transform.position + impulseForce;
         if (!isImpulse)
         {
             isImpulse = true;
-            GetComponent<CapsuleCollider>().isTrigger = true;
             float timer = 0f;
 
             while (timer < impulseDuration)
@@ -85,7 +83,6 @@ public class EnemyDash : Enemy
                 yield return null;
             }
             isImpulse = false;
-            GetComponent<CapsuleCollider>().isTrigger = false;
         }
     }
 
@@ -99,24 +96,32 @@ public class EnemyDash : Enemy
         Destroy(gameObject);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == 9 || !other.CompareTag("Player")) return;
-        if (!(contactTimer < 0)) return;
-        other.GetComponent<PlayerController>().TakeDamage(_enemy.contactDamage);
-        contactTimer = 1f;
-    }
-
     protected override void Update()
     {
         base.Update();
-        
+
+        if (_animator != null)
+        {
+            if (_navMeshAgent == null)
+            {
+                _animator.SetFloat(ASpeed, ((lastPosSpeed-transform.position).magnitude * 10.0f) / _speed);
+                lastPosSpeed = transform.position;
+            }
+            else
+            {
+                _animator.SetFloat(ASpeed, _navMeshAgent.velocity.magnitude / _navMeshAgent.speed);
+            }
+        }
         if (GameNetworkManager.IsOffline || IsServer)
         {
             if (!_ded)
             {
-                contactTimer -= Time.deltaTime;
-                dashCooldown -= Time.deltaTime;
+                phaseTimer -= Time.deltaTime;
+                if (phaseTimer <= 0)
+                {
+                    ChangeWeapon(1);
+                    phaseTimer = _enemy.weaponChangeRate;
+                }
                 timeChangePlayer -= Time.deltaTime;
                 if (timeChangePlayer <= 0.0f)
                 {
@@ -152,6 +157,7 @@ public class EnemyDash : Enemy
                 }
                 if (targetPlayer != null)
                 {
+                    timeToShoot -= Time.deltaTime;
                     direction = targetPlayer.transform.position - transform.position;
                     direction.y = 0;
                     transform.rotation = Quaternion.LookRotation(direction);
@@ -163,11 +169,10 @@ public class EnemyDash : Enemy
                         {
                             timeChangePlayer = _enemy.timeLostPlayer;
                             _navMeshAgent.destination = ((transform.position - targetPlayer.transform.position).normalized * _enemy.minDistanceTarget) + targetPlayer.transform.position + transform.TransformDirection(randomDirection);
-                            if (dashCooldown <= 0)
+                            if (timeToShoot <= 0 && _currentWeapon != -1)
                             {
-                                contactTimer = 0f;
-                                StartCoroutine(ImpulseMovementCoroutine(transform.forward * 8, 1.5f, true));
-                                dashCooldown = 4f;
+                                BasicAttackClientRpc(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
+                                timeToShoot = _weapons[_currentWeapon].spawnProjectileRate;
                             }
                             timeChangeRandomDirection -= Time.deltaTime;
                             if(timeChangeRandomDirection <= 0.0f)

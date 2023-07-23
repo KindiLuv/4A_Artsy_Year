@@ -121,7 +121,12 @@ public class Enemy : Character
 
         if (!serveur && IsClient || serveur && !IsClient)
         {
-            ProjectileManager.Instance.SpawnProjectile(_weapons[0], pos, rot, Team.Enemy,((float)NetworkManager.Singleton.LocalTime.Time) - time);
+            ProjectileManager.Instance.SpawnProjectile(_weapons[_currentWeapon], pos, rot, Team.Enemy,((float)NetworkManager.Singleton.LocalTime.Time) - time);
         }
-    }   
+    }
+
+    public void ChangeWeapon(int i)
+    {
+        _currentWeapon = (_currentWeapon+i) % _weapons.Count;
+    }
 }

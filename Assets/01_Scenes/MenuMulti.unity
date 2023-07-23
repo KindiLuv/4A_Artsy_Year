@@ -61134,7 +61134,12 @@ PrefabInstance:
     - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
       propertyPath: enemies.Array.size
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: weapons.Array.size
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
@@ -61142,6 +61147,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1e421e7c677ca80409d71d59253a9ad1,
         type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: enemies.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 026babc8efe5a3f4d9a45f26fd00e915,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: weapons.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: bcfc00597cb7f22448159fb8276eeedb,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: weapons.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 91becb066efca1b4d82893b061d0a3e2,
+        type: 2}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: enemyTypePrebab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: enemyTypePrebab.Array.data[3]
+      value: 
+      objectReference: {fileID: 6437199265679976842, guid: 456292831f33c7f4cb43507fc9345355,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534

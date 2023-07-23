@@ -16,7 +16,8 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
     private List<int> idEnemy;
     private int[,] maps;
     private float wallHeight;
-    public void SetBiomeRoom(List<OpeningDoor> d,int v,Biome b,int[,] m,List<int> ide,float wh)
+    private bool bossRoom = false;
+    public void SetBiomeRoom(List<OpeningDoor> d, int v, Biome b, int[,] m, List<int> ide, float wh, bool br = false)
     {
         this.doors = d;
         this.vagues = v;
@@ -24,6 +25,7 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
         this.idEnemy = ide;
         this.maps = m;
         this.wallHeight = wh;
+        this.bossRoom = br;
         bool pp = false;
         for (int i = 0; i < m.GetLength(0); i++)
         {
@@ -93,7 +95,10 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
         {            
             this.vagues--;
             int enemyInV = biome.EnemyPerRoom + Random.Range(0,biome.AddRandomEnemyPerRoom);
-            
+            if (bossRoom)
+            {
+                enemyInV = 1;
+            }
             for(int i = 0; i < enemyInV && idEnemy.Count > 0; i++)
             {
                 LoadEnemy(idEnemy[Random.Range(0, idEnemy.Count)],GetRadomPosition());

@@ -17,6 +17,7 @@ public class ProceduralMapManager : NetEntity
     [SerializeField] private GameObject prefabBiomeRoom = null;
     private Biome b;
     private List<int> idEnemy = new List<int>();
+    private List<int> idEnemyBoss = new List<int>();
     private SpawnableObject[] spawnData;
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
@@ -357,6 +358,11 @@ public class ProceduralMapManager : NetEntity
         {
             idEnemy.Add(GameRessourceManager.Instance.GetIdByEnemy(enemy));
         }
+        
+        foreach (EnemySO enemyBoss in b.EnemyBoss)
+        {
+            idEnemyBoss.Add(GameRessourceManager.Instance.GetIdByEnemy(enemyBoss));
+        }
 
         foreach (KeyValuePair<Vector2Int, Chunck> pair in maps)
         {
@@ -487,7 +493,15 @@ public class ProceduralMapManager : NetEntity
                     {
                         dList.Add(doorObject[pair.Value.doors[i]].GetComponent<OpeningDoor>());
                     }
-                    biomeRoom.GetComponent<BiomeRoom>().SetBiomeRoom(dList,b.WaveEnemy+ (UnityEngine.Random.Range(0,100) < b.RandomPercentAddWaveEnemy ? UnityEngine.Random.Range(0, b.AddWaveEnemy) : 0),b,pair.Value.map, idEnemy,wallSize);
+
+                    if (pair.Key == bossRoom)
+                    {
+                        biomeRoom.GetComponent<BiomeRoom>().SetBiomeRoom(dList,1, b, pair.Value.map, idEnemyBoss ,wallSize, true);
+                    }
+                    else
+                    {
+                        biomeRoom.GetComponent<BiomeRoom>().SetBiomeRoom(dList,b.WaveEnemy+ (UnityEngine.Random.Range(0,100) < b.RandomPercentAddWaveEnemy ? UnityEngine.Random.Range(0, b.AddWaveEnemy) : 0),b,pair.Value.map, idEnemy,wallSize);
+                    }
                 }
             }
         }
