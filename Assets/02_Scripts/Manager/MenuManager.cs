@@ -110,7 +110,7 @@ public class MenuManager : MonoBehaviour
         {
             FadeScreenManager.FadeIn();
             FadeScreenManager.OnFadeInComplete += LaunchGame;
-            other.GetComponent<PlayerController>().AtionLocked = true;
+            other.GetComponent<PlayerController>().ActionLocked = true;
         }
     }
 

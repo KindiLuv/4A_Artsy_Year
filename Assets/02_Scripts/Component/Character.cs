@@ -35,6 +35,7 @@ public class Character : NetEntity, IDamageable
     private bool visualDamage = false;
     private float timeVisualDamage = 0.0f;
     protected Vector3 lastGroundPosition = Vector3.zero;
+    protected bool inCombat = false;
     #region Getter Setter
 
     public bool Ded { get { return _ded; } }
@@ -45,11 +46,13 @@ public class Character : NetEntity, IDamageable
 
     public Vector3 LastGroundPosition { get { return lastGroundPosition; } }
 
-    public virtual bool AtionLocked { set { _actionLocked = value; } get { return _actionLocked; } }
+    public virtual bool ActionLocked { set { _actionLocked = value; } get { return _actionLocked; } }
 
     public Team Team { get { return team; } }
 
     public Team GetTeam() { return team; } 
+    
+    public bool InCombat { set { inCombat = value; } get { return inCombat; } }
 
     #endregion
 

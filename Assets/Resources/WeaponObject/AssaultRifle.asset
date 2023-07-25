@@ -17,8 +17,6 @@ MonoBehaviour:
   weaponFamily: 1
   rarity: 1
   weaponDescription: AssaultRifle
-  dmgPerHit: 2
-  dmgPerHitAddRandom: 0
   weaponModel: {fileID: 6302734909189455219, guid: d28d20876a35ca242aeba04ffe48f609,
     type: 3}
   projectile:
@@ -30,7 +28,8 @@ MonoBehaviour:
   muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
     type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0.55, y: 0.3, z: 1.3}
+  spawnProjectileLocalPosition: {x: 0.55, y: 0, z: 1.3}
+  spreadUniform: 0
   offsetAngle: -5
   Angle: 10
   impulseForce: -1

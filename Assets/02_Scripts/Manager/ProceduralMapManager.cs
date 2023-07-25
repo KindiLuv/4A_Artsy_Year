@@ -22,6 +22,7 @@ public class ProceduralMapManager : NetEntity
     private Biome[] biomeData;
     private Dictionary<Vector2Int, Chunck> maps = new Dictionary<Vector2Int, Chunck>();
     private Dictionary<Vector3, GameObject> doorObject = new Dictionary<Vector3, GameObject>();
+    private Dictionary<Vector3, GameObject> chestObject = new Dictionary<Vector3, GameObject>();
     private NavMeshSurface ns;
     private static ProceduralMapManager instance;
     
@@ -440,7 +441,7 @@ public class ProceduralMapManager : NetEntity
                         if (b.Door.SpawnID == so.SpawnID || b.BossDoor.SpawnID == so.SpawnID)
                         {
                             doorObject.Add(spawn.position, go);
-                        }                        
+                        }
                         float angle = CalculateAngle(so.RotateMode, pseudoRandom, so.AngleMin, so.Angle, out rotate);
                         if (rotate)
                         {

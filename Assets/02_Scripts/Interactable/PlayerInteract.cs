@@ -43,6 +43,10 @@ public class PlayerInteract : NetEntity
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GetComponent<Character>().InCombat)
+        {
+            return;
+        }
         if (other.CompareTag("Interactable"))
         {
             if (other.GetComponent<Interactable>())
@@ -71,7 +75,7 @@ public class PlayerInteract : NetEntity
 
     public void Interact()
     {            
-        if (false /*condition joueur a mettre*/) return;
+        if (GetComponent<Character>().InCombat) return;
         Interactable inter = null;
         float distance = float.MaxValue;
         interactable.RemoveAll(i => i == null);
@@ -110,6 +114,10 @@ public class PlayerInteract : NetEntity
 
     private void OnTriggerExit(Collider other)
     {
+        if (GetComponent<Character>().InCombat)
+        {
+            return;
+        }
         if (other.CompareTag("Interactable"))
         {
             if (other.GetComponent<Interactable>())

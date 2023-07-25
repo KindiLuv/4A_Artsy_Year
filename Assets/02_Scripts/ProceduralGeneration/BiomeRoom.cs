@@ -62,9 +62,11 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
         {
             isVisited = true;
             Debug.Log("isVisited");
+            other.GetComponent<Character>().InCombat = true;
             foreach (OpeningDoor od in doors)
             {
                 od.Locked = true;
+                
             }
 
             foreach (Character c in PlayerManager.instance.players)
@@ -103,12 +105,6 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
             {
                 LoadEnemy(idEnemy[Random.Range(0, idEnemy.Count)],GetRadomPosition());
             }
-            /*for(int i =0; i< posibleSpawnPosition.Count; i++)
-            {
-                Vector3 pos = new Vector3(transform.position.x + posibleSpawnPosition[i].x - (maps.GetLength(0) / 2.0f), -wallHeight, transform.position.z + posibleSpawnPosition[i].y - (maps.GetLength(1) / 2.0f));
-                GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                go.transform.position = pos;
-            }*/
         }
         if(isVisited && this.vagues == 0 && enemyInRoom.Count == 0)
         {
@@ -124,6 +120,11 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
             foreach (OpeningDoor od in doors)
             {
                 od.Locked = false;
+            }
+
+            foreach (Character character in PlayerManager.instance.players)
+            {
+                character.InCombat = false;
             }
         }
         Destroy(gameObject);

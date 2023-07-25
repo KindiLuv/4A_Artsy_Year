@@ -32,6 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c0ff9b457065e0e40a15dcea3c2b8d4a, type: 2}
   - {fileID: 11400000, guid: f4a291dd1e2bdfb4b9a1286716aa38e6, type: 2}
   - {fileID: 11400000, guid: ace0922a3128cac45b5ffdd0016fed91, type: 2}
+  - {fileID: 11400000, guid: 11fbab86a2186be40ada3adfcd67acff, type: 2}
   randomFillPercent: 46
   randomAddPercent: 4
   hole_rate_chunck: 50
