@@ -28,26 +28,23 @@ public class Loot : NetEntity
         }
         nb = n;
     }
-
-    public void Start()
-    {
-        collider = new Collider[8];
-    }
-
     private void Update()
     {
         if(rate <= 0.0f && loot != null && !take)
         {
             rate = 1.0f;
-            int colCount = Physics.OverlapSphereNonAlloc(transform.position, loot.RangeTake, collider);
-            for(int i = 0; i < colCount; i++) 
+            collider = Physics.OverlapSphere(transform.position, loot.RangeTake);
+            if (collider != null)
             {
-                if(collider[i].tag == "Player")
+                for (int i = 0; i < collider.Length; i++)
                 {
-                    Player p = collider[i].GetComponent<Player>();
-                    if(p != null && p.IsLocalPlayer)
+                    if (collider[i].tag == "Player")
                     {
-                        StartCoroutine(Take(p));
+                        Player p = collider[i].GetComponent<Player>();
+                        if (p != null && p.IsLocalPlayer)
+                        {
+                            StartCoroutine(Take(p));
+                        }
                     }
                 }
             }

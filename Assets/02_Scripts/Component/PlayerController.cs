@@ -8,6 +8,7 @@ using UnityEngine.VFX;
 using System.Linq;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PlayerController : Character
 {
@@ -34,7 +35,8 @@ public class PlayerController : Character
     private bool _dashLocked;
     private bool _dashCD;
     private bool _onAttackHandle = false;
-    private float _attackRate = 0.0f;
+    private Dictionary<WeaponSO,int> _attackRate = new Dictionary<WeaponSO, int>();
+    private List<float> _attackValue = new List<float>();
     private Vector3 _impulseForce = Vector3.zero;
     private float clampImpulseSpeed = 25;
     private float timeToZeroImpulse = 20;
@@ -197,8 +199,11 @@ public class PlayerController : Character
     }
 
     void HandleAttack()
-    {
-        _attackRate -= Time.deltaTime;
+    {        
+        for(int i = 0; i < _attackValue.Count; i++) 
+        {
+            _attackValue[i] -= Time.deltaTime;
+        }
         if (_impulseForce.x > 0.5f) { _impulseForce.x -= Time.deltaTime * timeToZeroImpulse; }
 
         if (_impulseForce.z > 0.5f) { _impulseForce.z -= Time.deltaTime * timeToZeroImpulse; }
@@ -209,17 +214,23 @@ public class PlayerController : Character
 
         if (_impulseForce.magnitude < 0.8f) { _impulseForce = Vector3.zero; }
 
-        if (_onAttackHandle && _attackRate <= 0.0f)
+        if (_onAttackHandle && _player.HasWeapon())
         {
-            if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _player.HasWeapon() && !_dashLocked)
+            WeaponSO ws = _player.Weapons[_player.CurrentWeapon];
+            if (!_attackRate.ContainsKey(ws))
+            {
+                _attackRate[ws] = _attackValue.Count;
+                _attackValue.Add(0.0f);
+            }
+            if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _attackValue[_attackRate[ws]] <= 0.0f && !_dashLocked)
             {
                 _player.BasicAttack(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
-                _impulseForce += transform.forward * _player.Weapons[_player.CurrentWeapon].impulseForce;
+                _impulseForce += transform.forward * ws.impulseForce;
                 _impulseForce.x = Mathf.Clamp(_impulseForce.x, -clampImpulseSpeed, clampImpulseSpeed);
                 _impulseForce.y = Mathf.Clamp(_impulseForce.y, -clampImpulseSpeed, clampImpulseSpeed);
                 _impulseForce.z = Mathf.Clamp(_impulseForce.z, -clampImpulseSpeed, clampImpulseSpeed);
-                _attackRate = _player.Weapons[_player.CurrentWeapon].spawnProjectileRate;
-                if (!_player.Weapons[_player.CurrentWeapon].autoWeapon)
+                _attackValue[_attackRate[ws]] = ws.spawnProjectileRate;
+                if (!ws.autoWeapon)
                 {
                     _onAttackHandle = false;
                 }
