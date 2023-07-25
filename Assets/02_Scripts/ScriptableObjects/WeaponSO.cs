@@ -14,7 +14,8 @@ public enum WeaponType
    Rifle,
    Shotgun,
    Pistol,
-   AutoRifle
+   AutoRifle,
+   RayGun
 }
 
 public enum Rarity
