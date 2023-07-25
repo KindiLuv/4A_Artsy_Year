@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyType: 3
   BaseHealth: 500
-  BaseSpeed: 4
+  BaseSpeed: 5
   Prefab: {fileID: 3912175080916798147, guid: 57106af7b8f31ca4a85e20bedc3e8170, type: 3}
   weapons:
   - {fileID: 11400000, guid: bcfc00597cb7f22448159fb8276eeedb, type: 2}
   - {fileID: 11400000, guid: 91becb066efca1b4d82893b061d0a3e2, type: 2}
-  weaponChangeRate: 5
+  weaponChangeRate: 6
   maxFollowDistance: 30
   minDistanceTarget: 10
   randomMin: {x: -3, y: 0, z: -1}
   randomMax: {x: 3, y: 0, z: 1}
   timeSmoothRandom: 1
-  idelRandomSphereInsideUnits: 6
+  idleRandomSphereInsideUnits: 0
   minTimeRandomSIU: 3
   maxTimeRandomSIU: 8
   timeLostPlayer: 5

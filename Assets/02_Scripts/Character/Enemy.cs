@@ -13,7 +13,6 @@ public class Enemy : Character
     protected List<WeaponSO> _weapons = new List<WeaponSO>();
     protected Animator _animator;
     protected CapsuleCollider _enemyCollider;
-    
     [SerializeField] private Animator _enemyHand;
     [SerializeField] private GameObject enemyModelSpawn = null;
     
@@ -24,6 +23,9 @@ public class Enemy : Character
     #region Getter Setter
 
     public int EnemyID { get { return enemyID; } set { enemyID = value; } }
+
+    public int CurrentWeapon { get { return _currentWeapon; } }
+
     public List<WeaponSO> Weapon { get { return _weapons; } }
     
     #endregion
@@ -102,11 +104,7 @@ public class Enemy : Character
         {
             Destroy(t.gameObject);
         }
-
-        for (int i = 0; i < _weapons.Count; i++)
-        {
-            
-        }
+        
         if (_weapons.Count > 0)
         {
             if(_weapons[0] != null)

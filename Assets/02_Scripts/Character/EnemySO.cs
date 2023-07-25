@@ -6,7 +6,8 @@ public enum EnemyType
     NoAI,
     Base,
     Dasher,
-    Boss
+    Boss,
+    Gigachad
 }
 
 
@@ -24,7 +25,7 @@ public class EnemySO : ScriptableObject
     public Vector3 randomMin;
     public Vector3 randomMax;
     public float timeSmoothRandom = 1.0f;
-    public float idelRandomSphereInsideUnits = 0.0f;
+    public float idleRandomSphereInsideUnits = 0.0f;
     public float minTimeRandomSIU = 2.0f;
     public float maxTimeRandomSIU = 5.0f;
     public float timeLostPlayer = 2.0f;

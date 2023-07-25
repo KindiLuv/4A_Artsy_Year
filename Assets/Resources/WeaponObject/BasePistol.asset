@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0952497ec5d431409abcfccfacb5275, type: 3}
-  m_Name: BossSprayWeapon
+  m_Name: BasePistol
   m_EditorClassIdentifier: 
-  weaponName: SprayAndPray
-  weaponType: 9
+  weaponName: Base Pistol
+  weaponType: 6
   weaponFamily: 1
   rarity: 1
-  weaponDescription: Shotgun
-  weaponModel: {fileID: 0}
+  weaponDescription: Base Pistol
+  weaponModel: {fileID: 5121407234397427551, guid: b9b64e2f1b2a49c4cb016510c226e8d2,
+    type: 3}
   projectile:
-  - {fileID: 11400000, guid: 262edeb4364027c4e8bb31d7ccdca5c1, type: 2}
+  - {fileID: 11400000, guid: b2878cb68c5b7d14ba54984c4236ee65, type: 2}
   spawnProjectileAddRandom: 0
-  spawnProjectileCount: 2
-  spawnProjectileRate: 0.1
-  autoWeapon: 1
-  muzzelFlash: {fileID: 3565017316599769400, guid: 22003f521cee16e4da351cc9f6600048,
+  spawnProjectileCount: 1
+  spawnProjectileRate: 0.5
+  autoWeapon: 0
+  muzzelFlash: {fileID: 3565017316599769400, guid: 3d93b1a755936b042b914d61334a7352,
     type: 3}
   muzzelDestroyTime: 1
-  spawnProjectileLocalPosition: {x: 0.3, y: 1.2, z: 0.7}
+  spawnProjectileLocalPosition: {x: 0.55, y: 0, z: 1.3}
   spreadUniform: 0
-  offsetAngle: -25
-  Angle: 50
+  offsetAngle: 0
+  Angle: 0
   impulseForce: 0

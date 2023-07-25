@@ -82,6 +82,7 @@ public class AOE : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(timeLength);
+        endEffect = false;
         time = scaleAnimation;
         while (time > 0.0f)
         {

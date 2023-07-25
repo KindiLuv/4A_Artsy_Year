@@ -33,7 +33,7 @@ public class PlayerController : Character
 
     private bool _dashLocked;
     private bool _dashCD;
-    private bool _onAttackHandel = false;
+    private bool _onAttackHandle = false;
     private float _attackRate = 0.0f;
     private Vector3 _impulseForce = Vector3.zero;
     private float clampImpulseSpeed = 25;
@@ -67,6 +67,7 @@ public class PlayerController : Character
         _playerspeed = cs.BaseSpeed;
         _health = cs.BaseLife;
         _maxHealth = cs.BaseLife;
+        
         if(IsLocalPlayer)
         {
             UIHeartPlayer.Instance.RefreshMaxContainer(Mathf.CeilToInt(_maxHealth/4.0f));
@@ -86,6 +87,7 @@ public class PlayerController : Character
             _playerControls.controls.Ultimate.performed += HandleUltimate;
             _playerControls.controls.Interact.performed += HandleInteract;
             _playerControls.controls.OpenMenu.performed += HandleOpenMenu;
+            _playerControls.controls.ChangeWeapon.performed += HandleChangeWeapon;
         }
     }
 
@@ -100,6 +102,7 @@ public class PlayerController : Character
         _playerControls.controls.Ultimate.performed -= HandleUltimate;
         _playerControls.controls.Interact.performed -= HandleInteract;
         _playerControls.controls.OpenMenu.performed -= HandleOpenMenu;
+        _playerControls.controls.ChangeWeapon.performed -= HandleChangeWeapon;
     }
 
     public override void Teleportation(Vector3 positionTarget)
@@ -206,19 +209,19 @@ public class PlayerController : Character
 
         if (_impulseForce.magnitude < 0.8f) { _impulseForce = Vector3.zero; }
 
-        if (_onAttackHandel && _attackRate <= 0.0f)
+        if (_onAttackHandle && _attackRate <= 0.0f)
         {
             if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _player.HasWeapon() && !_dashLocked)
             {
                 _player.BasicAttack(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
-                _impulseForce += transform.forward * _player.Weapon.impulseForce;
+                _impulseForce += transform.forward * _player.Weapons[_player.CurrentWeapon].impulseForce;
                 _impulseForce.x = Mathf.Clamp(_impulseForce.x, -clampImpulseSpeed, clampImpulseSpeed);
                 _impulseForce.y = Mathf.Clamp(_impulseForce.y, -clampImpulseSpeed, clampImpulseSpeed);
                 _impulseForce.z = Mathf.Clamp(_impulseForce.z, -clampImpulseSpeed, clampImpulseSpeed);
-                _attackRate = _player.Weapon.spawnProjectileRate;
-                if (!_player.Weapon.autoWeapon)
+                _attackRate = _player.Weapons[_player.CurrentWeapon].spawnProjectileRate;
+                if (!_player.Weapons[_player.CurrentWeapon].autoWeapon)
                 {
-                    _onAttackHandel = false;
+                    _onAttackHandle = false;
                 }
             }
         }
@@ -286,12 +289,12 @@ public class PlayerController : Character
 
     private void HandleBasicAttack(InputAction.CallbackContext obj)
     {
-        _onAttackHandel = true;
+        _onAttackHandle = true;
     }
 
     private void HandleCancelBasicAttack(InputAction.CallbackContext obj)
     {
-        _onAttackHandel = false;
+        _onAttackHandle = false;
     }
 
     private void HandleSpell1(InputAction.CallbackContext obj)
@@ -317,6 +320,16 @@ public class PlayerController : Character
     private void HandleOpenMenu(InputAction.CallbackContext obj)
     {
         throw new NotImplementedException();
+    }
+    
+    void HandleChangeWeapon(InputAction.CallbackContext obj)
+    {
+        if (_player.Weapons.Count < 2)
+        {
+            return;
+        }
+        int id = _player.CurrentWeapon + (_playerControls.controls.ChangeWeapon.ReadValue<Vector2>().y > 0 ? -1 : 1);
+        _player.LoadWeapon((id < 0 ? _player.Weapons.Count-1 : id) % (_player.Weapons.Count));
     }
 
     [ServerRpc]
@@ -362,6 +375,15 @@ public class PlayerController : Character
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        if (IsLocalPlayer)
+        {
+            UIHeartPlayer.Instance.Refresh((int)_health);
+        }
+    }
+    
+    public override void HealDamage(float damage)
+    {
+        base.HealDamage(damage);
         if (IsLocalPlayer)
         {
             UIHeartPlayer.Instance.Refresh((int)_health);

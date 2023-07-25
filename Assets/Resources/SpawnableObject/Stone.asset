@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 3635692365560299395, guid: 4d98a3d88d9666f48aaace9785f543df, type: 3}
   - {fileID: 8793859155345193978, guid: 408aaeafdcb09754e87026e822f560a7, type: 3}
   - {fileID: 6165409282764192317, guid: dc166b6894f45c847b60364f677abaae, type: 3}
-  size: {x: 1, y: 1}
+  size: {x: 2, y: 2}
   isNetCodeObject: 0
   wallObject: 0
   rotateMode: 3

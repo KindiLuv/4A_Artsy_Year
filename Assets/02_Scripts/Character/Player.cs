@@ -4,13 +4,15 @@ using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 public class Player : NetEntity
 {
     private int characterID = -1;
-    private int weaponID = -1;
+    protected int _currentWeapon = -1;
+    //private int weaponID = -1;
     private CharacterSO _character;
-    private WeaponSO _weapon;
+    protected List<WeaponSO> _weapons = new List<WeaponSO>();
 
     private PlayerController _playerController;
     [SerializeField] private Animator _playerHand;
@@ -21,8 +23,10 @@ public class Player : NetEntity
     #region Getter Setter
 
     public int CharacterID { get { return characterID; } set { characterID = value; } }
-    public int WeaponID { get { return weaponID; } set { weaponID = value; } }
-    public WeaponSO Weapon { get { return _weapon; } }
+    
+    public int CurrentWeapon { get { return _currentWeapon; } }
+    //public int WeaponID { get { return weaponID; } set { weaponID = value; } }
+    public List<WeaponSO> Weapons { get { return _weapons; } }
     #endregion
 
 
@@ -31,8 +35,8 @@ public class Player : NetEntity
         _playerController = GetComponent<PlayerController>();
         if (GameNetworkManager.IsOffline)
         {
-            LoadData(characterID,weaponID);            
-        }           
+            LoadData(characterID);            
+        }
     }
 
     public override void OnNetworkSpawn()
@@ -42,20 +46,20 @@ public class Player : NetEntity
             return;
         }
         characterID = SaveManager.Instance.CurrentPlayerCharacterChoise;
-        weaponID = SaveManager.Instance.CurrentPlayerWeaponChoise;
-        LoadDataServerRpc(characterID,weaponID);
+        //weaponID = SaveManager.Instance.CurrentPlayerWeaponChoise;
+        LoadDataServerRpc(characterID);
     }
 
     [ServerRpc]
-    public void LoadDataServerRpc(int ci,int wi)
+    public void LoadDataServerRpc(int ci)
     {
-        LoadDataClientRpc(ci, wi);
+        LoadDataClientRpc(ci);
     }
 
     [ClientRpc]
-    public void LoadDataClientRpc(int ci,int wi)
+    public void LoadDataClientRpc(int ci)
     {
-        LoadData(ci, wi);
+        LoadData(ci);
     }
 
     public void TakeLoot(LootableSO ls, int nb)
@@ -77,7 +81,7 @@ public class Player : NetEntity
         GetComponent<PlayerController>().HealDamage(nb * 4);
     }
 
-    public void LoadData(int ci, int wi)
+    public void LoadData(int ci)
     {
         foreach(Transform t in playerModelSpawn.transform)
         {
@@ -93,6 +97,7 @@ public class Player : NetEntity
                 {
                     _playerController = GetComponent<PlayerController>();
                     _playerController.SetupCSO(_character);
+                    _weapons = _character.Weapons;
                 }
             }
         }
@@ -100,27 +105,66 @@ public class Player : NetEntity
         {
             Destroy(t.gameObject);
         }
-        if (wi >= 0)
+        if (_weapons.Count > 0)
         {
-            _weapon = GameRessourceManager.Instance.Weapons[wi % GameRessourceManager.Instance.Weapons.Count];
-            if(_weapon != null)
+            if(_weapons[0] != null)
             {
-                Instantiate(_weapon.weaponModel, _playerHand.transform);                
+                if (_weapons[0].weaponModel != null)
+                {
+                    Instantiate(_weapons[0].weaponModel, _playerHand.transform);
+                }
+                _currentWeapon = 0;
             }
             int enumSize = Enum.GetValues(typeof(WeaponType)).Length;
             for (int i = 0; i < enumSize;i++)
             {
                 _playerHand.SetLayerWeight(i+1, 0.0f);
             }
-            _playerHand.SetLayerWeight((int)_weapon.weaponType+1, 1.0f); 
+            _playerHand.SetLayerWeight((int)_weapons[0].weaponType+1, 1.0f); 
         }
         characterID = ci;
-        weaponID = wi;
+    }
+    
+    [ServerRpc]
+    public void LoadWeaponChangeServerRpc(int wi)
+    {
+        LoadWeaponChangeClientRpc(wi);
+    }
+
+    [ClientRpc]
+    public void LoadWeaponChangeClientRpc(int wi)
+    {
+        LoadWeapon(wi);
+    }
+
+    public void LoadWeapon(int wi)
+    {
+        if (_weapons.Count > wi)
+        {
+            foreach (Transform t in _playerHand.transform)
+            {
+                Destroy(t.gameObject);
+            }
+            if(_weapons[wi] != null)
+            {
+                if (_weapons[wi].weaponModel != null)
+                {
+                    Instantiate(_weapons[wi].weaponModel, _playerHand.transform);
+                }
+                _currentWeapon = wi;
+            }
+            int enumSize = Enum.GetValues(typeof(WeaponType)).Length;
+            for (int i = 0; i < enumSize;i++)
+            {
+                _playerHand.SetLayerWeight(i+1, 0.0f);
+            }
+            _playerHand.SetLayerWeight((int)_weapons[wi].weaponType+1, 1.0f); 
+        }
     }
 
     public bool HasWeapon()
     {
-        return _weapon != null;
+        return _weapons.Count > 0;
     }
 
     [ServerRpc]
@@ -153,7 +197,7 @@ public class Player : NetEntity
         }
         if (!serveur && IsClient || serveur && !IsClient)
         {
-            ProjectileManager.Instance.SpawnProjectile(_weapon, pos, rot, _playerController.Team,((float)NetworkManager.Singleton.LocalTime.Time) - time);
+            ProjectileManager.Instance.SpawnProjectile(_weapons[_currentWeapon], pos, rot, _playerController.Team,((float)NetworkManager.Singleton.LocalTime.Time) - time);
         }
     }
 

@@ -200,7 +200,7 @@ public class Character : NetEntity, IDamageable
 
     }
 
-    public void HealDamage(float heal)
+    public virtual void HealDamage(float heal)
     {
         if (_health + heal > _maxHealth)
         {

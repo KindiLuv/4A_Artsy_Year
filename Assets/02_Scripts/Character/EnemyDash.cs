@@ -187,10 +187,10 @@ public class EnemyDash : Enemy
                         _navMeshAgent.destination = targetPlayer.transform.position;
                     }                                  
                 }
-                else if (timeIdelChangePosition <= 0.0f && _enemy.idelRandomSphereInsideUnits != 0.0f)
+                else if (timeIdelChangePosition <= 0.0f && _enemy.idleRandomSphereInsideUnits != 0.0f)
                 {
                     timeIdelChangePosition = Random.Range(_enemy.minTimeRandomSIU, _enemy.maxTimeRandomSIU);
-                    Vector2 iuc = Random.insideUnitCircle * _enemy.idelRandomSphereInsideUnits;
+                    Vector2 iuc = Random.insideUnitCircle * _enemy.idleRandomSphereInsideUnits;
                     NavMeshHit hit;
                     if (NavMesh.SamplePosition(transform.position + new Vector3(iuc.x, 0.0f, iuc.y), out hit, Mathf.Infinity, -1))
                     {

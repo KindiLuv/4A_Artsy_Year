@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBoss1 : Enemy
+public class EnemyCrate : Enemy
 {
     private NavMeshAgent _navMeshAgent;
     private Vector3 targetPositionImpulse = Vector3.zero;
@@ -17,16 +17,14 @@ public class EnemyBoss1 : Enemy
     private Vector3 randomDirection;
     private Vector3 targetRandomDirection;
     private float timeChangeRandomDirection;
-    private float timeIdelChangePosition;
+    private float timeIdleChangePosition;
     private LayerMask lm;
     private Vector3 lastPosSpeed = Vector3.zero;
-    private float phaseTimer = 5f;
 
     protected override void Start()
     {
         base.Start();
         lm = 1 << 8 | 1 << 9;
-        phaseTimer = _enemy.weaponChangeRate;
         if (IsServer)
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -38,7 +36,7 @@ public class EnemyBoss1 : Enemy
     {
         if (impulse != Vector3.zero)
         {
-            //StartCoroutine(ImpulseMovementCoroutine(impulse, 0.2f));
+            StartCoroutine(ImpulseMovementCoroutine(impulse, 0.2f));
         }
     }
 
@@ -95,12 +93,20 @@ public class EnemyBoss1 : Enemy
         }
         Destroy(gameObject);
     }
-
+    
+    public static bool ContainsParam(Animator _Anim, string _ParamName)
+    {
+        foreach (AnimatorControllerParameter param in _Anim.parameters)
+        {
+            if (param.name == _ParamName) return true;
+        }
+        return false;
+    }
     protected override void Update()
     {
         base.Update();
 
-        if (_animator != null)
+        if (_animator != null && ContainsParam(_animator,"Speed"))
         {
             if (_navMeshAgent == null)
             {
@@ -116,12 +122,6 @@ public class EnemyBoss1 : Enemy
         {
             if (!_ded)
             {
-                phaseTimer -= Time.deltaTime;
-                if (phaseTimer <= 0)
-                {
-                    ChangeWeapon(1);
-                    phaseTimer = _enemy.weaponChangeRate;
-                }
                 timeChangePlayer -= Time.deltaTime;
                 if (timeChangePlayer <= 0.0f)
                 {
@@ -143,7 +143,7 @@ public class EnemyBoss1 : Enemy
                                     idt = i;
                                 }
                             }
-                            //Debug.DrawRay(offsetUp, PlayerManager.instance.players[i].transform.position - offsetUp);
+                            Debug.DrawRay(offsetUp, PlayerManager.instance.players[i].transform.position - offsetUp);
                         }
                     }
                     if (idt >= 0)
@@ -158,7 +158,7 @@ public class EnemyBoss1 : Enemy
                 if (targetPlayer != null)
                 {
                     timeToShoot -= Time.deltaTime;
-                    direction = targetPlayer.transform.position - transform.position;
+                    direction = -(targetPlayer.transform.position - transform.position).normalized;
                     direction.y = 0;
                     transform.rotation = Quaternion.LookRotation(direction);
                     RaycastHit hit;
@@ -182,19 +182,19 @@ public class EnemyBoss1 : Enemy
                             }
                             randomDirection = Vector3.Lerp(randomDirection, targetRandomDirection, Time.deltaTime*5.0f);
                         }
-                        else
-                        {
-                            _navMeshAgent.destination = targetPlayer.transform.position;
-                        }
+                        // else
+                        // {
+                        //     _navMeshAgent.destination = targetPlayer.transform.position;
+                        // }
                     }
-                    else
-                    {
-                        _navMeshAgent.destination = targetPlayer.transform.position;
-                    }                                  
+                    // else
+                    // {
+                    //     _navMeshAgent.destination = targetPlayer.transform.position;
+                    // }                                  
                 }
-                else if (timeIdelChangePosition <= 0.0f && _enemy.idleRandomSphereInsideUnits != 0.0f)
+                else if (timeIdleChangePosition <= 0.0f && _enemy.idleRandomSphereInsideUnits != 0.0f)
                 {
-                    timeIdelChangePosition = Random.Range(_enemy.minTimeRandomSIU, _enemy.maxTimeRandomSIU);
+                    timeIdleChangePosition = Random.Range(_enemy.minTimeRandomSIU, _enemy.maxTimeRandomSIU);
                     Vector2 iuc = Random.insideUnitCircle * _enemy.idleRandomSphereInsideUnits;
                     NavMeshHit hit;
                     if (NavMesh.SamplePosition(transform.position + new Vector3(iuc.x, 0.0f, iuc.y), out hit, Mathf.Infinity, -1))
@@ -204,7 +204,7 @@ public class EnemyBoss1 : Enemy
                 }
                 else
                 {
-                    timeIdelChangePosition -= Time.deltaTime;                    
+                    timeIdleChangePosition -= Time.deltaTime;                    
                 }
             }
             else

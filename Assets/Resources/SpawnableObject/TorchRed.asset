@@ -15,7 +15,7 @@ MonoBehaviour:
   spawnID: 12
   prefab:
   - {fileID: 3598961248700307069, guid: 681e23dcaa8f5e04d9434b9ace6e0aa2, type: 3}
-  size: {x: 1, y: 1}
+  size: {x: 2, y: 2}
   isNetCodeObject: 0
   wallObject: 0
   rotateMode: 0

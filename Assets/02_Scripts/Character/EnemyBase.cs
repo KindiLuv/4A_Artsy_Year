@@ -93,12 +93,20 @@ public class EnemyBase : Enemy
         }
         Destroy(gameObject);
     }
-
+    
+    public static bool ContainsParam(Animator _Anim, string _ParamName)
+    {
+        foreach (AnimatorControllerParameter param in _Anim.parameters)
+        {
+            if (param.name == _ParamName) return true;
+        }
+        return false;
+    }
     protected override void Update()
     {
         base.Update();
 
-        if (_animator != null)
+        if (_animator != null && ContainsParam(_animator,"Speed"))
         {
             if (_navMeshAgent == null)
             {
@@ -184,10 +192,10 @@ public class EnemyBase : Enemy
                         _navMeshAgent.destination = targetPlayer.transform.position;
                     }                                  
                 }
-                else if (timeIdelChangePosition <= 0.0f && _enemy.idelRandomSphereInsideUnits != 0.0f)
+                else if (timeIdelChangePosition <= 0.0f && _enemy.idleRandomSphereInsideUnits != 0.0f)
                 {
                     timeIdelChangePosition = Random.Range(_enemy.minTimeRandomSIU, _enemy.maxTimeRandomSIU);
-                    Vector2 iuc = Random.insideUnitCircle * _enemy.idelRandomSphereInsideUnits;
+                    Vector2 iuc = Random.insideUnitCircle * _enemy.idleRandomSphereInsideUnits;
                     NavMeshHit hit;
                     if (NavMesh.SamplePosition(transform.position + new Vector3(iuc.x, 0.0f, iuc.y), out hit, Mathf.Infinity, -1))
                     {

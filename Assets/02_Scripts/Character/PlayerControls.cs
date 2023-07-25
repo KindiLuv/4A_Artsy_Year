@@ -116,6 +116,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeWeapon"",
+                    ""type"": ""Value"",
+                    ""id"": ""0ada30e6-a506-46f1-b5aa-7ef8191ea34a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -316,6 +325,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""OpenMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31db9f1e-3e70-4d36-83fc-c03115e6ee7b"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""ChangeWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -362,6 +382,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_controls_UseItem = m_controls.FindAction("UseItem", throwIfNotFound: true);
         m_controls_Interact = m_controls.FindAction("Interact", throwIfNotFound: true);
         m_controls_OpenMenu = m_controls.FindAction("OpenMenu", throwIfNotFound: true);
+        m_controls_ChangeWeapon = m_controls.FindAction("ChangeWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -431,6 +452,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_controls_UseItem;
     private readonly InputAction m_controls_Interact;
     private readonly InputAction m_controls_OpenMenu;
+    private readonly InputAction m_controls_ChangeWeapon;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -445,6 +467,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @UseItem => m_Wrapper.m_controls_UseItem;
         public InputAction @Interact => m_Wrapper.m_controls_Interact;
         public InputAction @OpenMenu => m_Wrapper.m_controls_OpenMenu;
+        public InputAction @ChangeWeapon => m_Wrapper.m_controls_ChangeWeapon;
         public InputActionMap Get() { return m_Wrapper.m_controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -484,6 +507,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @OpenMenu.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnOpenMenu;
                 @OpenMenu.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnOpenMenu;
                 @OpenMenu.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnOpenMenu;
+                @ChangeWeapon.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnChangeWeapon;
+                @ChangeWeapon.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnChangeWeapon;
+                @ChangeWeapon.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnChangeWeapon;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -518,6 +544,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @OpenMenu.started += instance.OnOpenMenu;
                 @OpenMenu.performed += instance.OnOpenMenu;
                 @OpenMenu.canceled += instance.OnOpenMenu;
+                @ChangeWeapon.started += instance.OnChangeWeapon;
+                @ChangeWeapon.performed += instance.OnChangeWeapon;
+                @ChangeWeapon.canceled += instance.OnChangeWeapon;
             }
         }
     }
@@ -552,5 +581,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnUseItem(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
+        void OnChangeWeapon(InputAction.CallbackContext context);
     }
 }

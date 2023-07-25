@@ -20,6 +20,7 @@ MonoBehaviour:
   speed: 0
   dmgPerHit: 0
   dmgPerHitAddRandom: 0
+  knockBack: {x: 0, y: 0, z: 0}
   prefab:
   - {fileID: 7364396999178479647, guid: bc447fa8fdaad1f4dbb6140c0b122e8a, type: 3}
   shapeProjectileType: 4
@@ -28,7 +29,9 @@ MonoBehaviour:
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
   arcRadius: 1.5
-  lifeTime: 4
-  wallBounds: 10
+  lifeTime: 5
+  wallBounds: 0
+  punchThrough: 0
+  throughCount: 0
   explodeEffect: {fileID: 0}
   timeExplode: 0

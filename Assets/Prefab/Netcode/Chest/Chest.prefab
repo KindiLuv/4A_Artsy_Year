@@ -254,6 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3485971941161545235}
   - component: {fileID: 1877099720564506275}
+  - component: {fileID: 5386234054238129897}
   m_Layer: 0
   m_Name: Animated PBR Chest _Wood_Demo
   m_TagString: Untagged
@@ -299,6 +300,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5386234054238129897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263635261731763369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 2, z: 1.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5890154334462081868
 GameObject:
   m_ObjectHideFlags: 0

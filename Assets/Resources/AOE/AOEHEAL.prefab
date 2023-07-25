@@ -14659,9 +14659,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 2.75
-  valueEffect: 10
-  timeBeforEffect: 0
-  timeLength: 3
+  valueEffect: 2
+  timeBeforEffect: 0.25
+  timeLength: 4
   impulse: 0
   scaleAnimation: 0.5
   rate: 0.5
@@ -14673,6 +14673,7 @@ MonoBehaviour:
   effect: {fileID: 0}
   baseScale: {x: 1, y: 1, z: 1}
   baseEffect: {fileID: 6081977208583112307}
+  audioEffect: {fileID: 0}
 --- !u!1 &7758845358874697711
 GameObject:
   m_ObjectHideFlags: 0

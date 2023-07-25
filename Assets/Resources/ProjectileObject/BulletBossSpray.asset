@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: SinBullet
+  m_Name: BulletBossSpray
   m_EditorClassIdentifier: 
-  moveProjectileType: 2
-  sinForce: 0.1
-  sinFrequence: 8
+  moveProjectileType: 1
+  sinForce: 1
+  sinFrequence: 5
   radiusSearch: 5
-  colapseSearchSpeed: 1
+  colapseSearchSpeed: 5
   speed: 10
-  dmgPerHit: 10
-  dmgPerHitAddRandom: 2
-  knockBack: {x: 0, y: 0, z: 2}
+  dmgPerHit: 1
+  dmgPerHitAddRandom: 1
+  knockBack: {x: 0, y: 0, z: 0}
   prefab:
-  - {fileID: 1853155248454027377, guid: b1cab2d7aeecb4b49aafd79759fb08c8, type: 3}
+  - {fileID: 8009012414925897728, guid: e93f2b4e75f84b540a93b22dd2efa446, type: 3}
   shapeProjectileType: 0
   collideOffset: {x: 0, y: 0, z: 0}
   radius: 0.25
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
   arcRadius: 3
-  lifeTime: 10
-  wallBounds: 3
+  lifeTime: 5
+  wallBounds: 0
   punchThrough: 0
-  throughCount: 2
-  explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
+  throughCount: 0
+  explodeEffect: {fileID: 7080524343175428333, guid: 9932874698b5f8e409babe88caf0744f,
     type: 3}
   timeExplode: 5
