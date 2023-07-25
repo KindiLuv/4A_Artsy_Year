@@ -32,3 +32,6 @@ MonoBehaviour:
     type: 3}
   size: 2
   contactDamage: 0
+  lootables:
+  - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}
+  - {fileID: 11400000, guid: 2045a9f247d746b4b92cb1638577fafb, type: 2}

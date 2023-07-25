@@ -212,14 +212,12 @@ public class Character : NetEntity, IDamageable
         _health += heal;
     }
 
-    public void DropLoot()
-    {
-        throw new System.NotImplementedException();
-    }
+    public virtual void DropLoot() {}
 
     public virtual void Death()
     {
         Debug.Log($"{gameObject.name} died");
+        DropLoot();
         _ded = true;
     }
 

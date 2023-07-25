@@ -31,6 +31,7 @@ public class EnemySO : ScriptableObject
     public GameObject effectDie = null;
     public float size = 1;
     public float contactDamage;
+    public List<LootableSO> lootables;
 }
 
 

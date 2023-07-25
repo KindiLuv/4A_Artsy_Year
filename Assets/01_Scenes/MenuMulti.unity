@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 2.0236665e-10, y: -0.92387956, z: 0.38268346, w: 4.885565e-10}
+  m_LocalRotation: {x: 0.000000013877811, y: -0.92387956, z: 0.3826835, w: 0.000000033503998}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30783,128 +30783,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001241734}
   m_Mesh: {fileID: -1550514412580984892, guid: cd8f44ee31a0c0e488647010e27b624e, type: 3}
---- !u!1 &1002574775
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1002574778}
-  - component: {fileID: 1002574777}
-  - component: {fileID: 1002574776}
-  m_Layer: 0
-  m_Name: Lootable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!73398921 &1002574776
-VFXRenderer:
-  serializedVersion: 1
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002574775}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!2083052967 &1002574777
-VisualEffect:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002574775}
-  m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 9bf291955b68f574ca8557f5251f5a76, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
-  m_StartSeed: 0
-  m_ResetSeedOnPlay: 1
-  m_ResourceVersion: 1
-  m_PropertySheet:
-    m_Float:
-      m_Array: []
-    m_Vector2f:
-      m_Array:
-      - m_Value: {x: 10, y: 7}
-        m_Name: SizeRandom
-        m_Overridden: 1
-    m_Vector3f:
-      m_Array: []
-    m_Vector4f:
-      m_Array:
-      - m_Value: {x: 1, y: 1, z: 1, w: 1}
-        m_Name: BaseColor
-        m_Overridden: 1
-      - m_Value: {x: 0.16981131, y: 0.16981131, z: 0.16981131, w: 1}
-        m_Name: OtherColor
-        m_Overridden: 1
-    m_Uint:
-      m_Array: []
-    m_Int:
-      m_Array:
-      - m_Value: 50
-        m_Name: SpawnBurst
-        m_Overridden: 1
-    m_Matrix4x4f:
-      m_Array: []
-    m_AnimationCurve:
-      m_Array: []
-    m_Gradient:
-      m_Array: []
-    m_NamedObject:
-      m_Array: []
-    m_Bool:
-      m_Array: []
---- !u!4 &1002574778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002574775}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.0090525, y: 0.294, z: 0.2432785}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003703264
 GameObject:
   m_ObjectHideFlags: 0
@@ -61253,51 +61131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemies.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemies.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 1e421e7c677ca80409d71d59253a9ad1,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemies.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 026babc8efe5a3f4d9a45f26fd00e915,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[10]
-      value: 
-      objectReference: {fileID: 11400000, guid: bcfc00597cb7f22448159fb8276eeedb,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: weapons.Array.data[11]
-      value: 
-      objectReference: {fileID: 11400000, guid: 91becb066efca1b4d82893b061d0a3e2,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemyTypePrebab.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemyTypePrebab.Array.data[3]
-      value: 
-      objectReference: {fileID: 6437199265679976842, guid: 456292831f33c7f4cb43507fc9345355,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534

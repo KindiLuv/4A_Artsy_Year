@@ -9,7 +9,7 @@ public class PlayerManager : NetEntity
     [SerializeField] private GameObject prefabPlayer = null;
     private GameObject[] arraySpawnPoint;
     public static PlayerManager instance;
-    public List<Character> players;
+    public List<Character> players;    
 
     protected override void Awake()
     {
@@ -36,7 +36,7 @@ public class PlayerManager : NetEntity
             players.Add(player.GetComponent<Character>());
             no = player.GetComponent<NetworkObject>();            
             no.SpawnAsPlayerObject(clientId);
-            no.ChangeOwnership(clientId);
+            no.ChangeOwnership(clientId);            
             i++;
         }
     }

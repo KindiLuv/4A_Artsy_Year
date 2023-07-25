@@ -48,6 +48,35 @@ public class Enemy : Character
         LoadData(ei);
     }
 
+    public override void DropLoot()
+    {
+        base.DropLoot();
+        if(IsServer && _enemy != null)
+        {
+            foreach(LootableSO ls in _enemy.lootables)
+            {
+                if(ls.SpawnProbabilite > UnityEngine.Random.Range(0.0f,100.0f))
+                {
+                    int nb = UnityEngine.Random.Range(ls.Spawn, ls.Spawn + ls.SpawnAddRandom);
+                    if (nb > 0)
+                    {
+                        InstantiateLootClientRpc(GameRessourceManager.Instance.GetIdByLoot(ls), nb);
+                    }
+                }
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void InstantiateLootClientRpc(int id,int nb)
+    {
+        GameObject lp = GameRessourceManager.Instance.LootParticlePrefab;
+        LootableSO ls = GameRessourceManager.Instance.Loots[id];
+        GameObject obj = Instantiate(lp,transform.position,Quaternion.identity);
+        Loot l = obj.AddComponent<Loot>();
+        l.initLoot(ls,nb);
+    }
+
     public void LoadData(int ei)
     {
         foreach(Transform t in enemyModelSpawn.transform)

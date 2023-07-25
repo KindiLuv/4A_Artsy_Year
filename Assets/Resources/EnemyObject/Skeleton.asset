@@ -30,3 +30,8 @@ MonoBehaviour:
   timeLostPlayer: 1.25
   effectDie: {fileID: 5541579379989539237, guid: 44da4e4f9f44dfd4ca4dd88f7cecccf5,
     type: 3}
+  size: 1
+  contactDamage: 0
+  lootables:
+  - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}
+  - {fileID: 11400000, guid: 2045a9f247d746b4b92cb1638577fafb, type: 2}

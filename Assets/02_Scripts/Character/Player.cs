@@ -58,6 +58,25 @@ public class Player : NetEntity
         LoadData(ci, wi);
     }
 
+    public void TakeLoot(LootableSO ls, int nb)
+    {
+        int id = GameRessourceManager.Instance.GetIdByLoot(ls);
+        if(id == 0 && IsLocalPlayer)
+        {
+            UICoin.Instance.CoinNumber += nb;
+        }
+        else if(id == 1 && IsLocalPlayer)
+        {  
+            TakeHealServerRpc(nb);
+        }
+    }
+
+    [ServerRpc]
+    public void TakeHealServerRpc(int nb)
+    {
+        GetComponent<PlayerController>().HealDamage(nb * 4);
+    }
+
     public void LoadData(int ci, int wi)
     {
         foreach(Transform t in playerModelSpawn.transform)
