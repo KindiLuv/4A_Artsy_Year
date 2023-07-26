@@ -140,6 +140,30 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6717879549476563698, guid: d0501902cf5530f40a7382443c69e866,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6437199265679976842, guid: a4752774737dd014b859cb562c9ebf40,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6437199265679976842, guid: 456292831f33c7f4cb43507fc9345355,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 6437199265679976842, guid: 33504e9bef3661b41aa18f97db168164,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 1
@@ -222,6 +246,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b310c4ff9feb3be40bdb130e191d0d60, type: 2}
   - {fileID: 11400000, guid: 1e421e7c677ca80409d71d59253a9ad1, type: 2}
   - {fileID: 11400000, guid: 026babc8efe5a3f4d9a45f26fd00e915, type: 2}
+  - {fileID: 11400000, guid: c1ec256099865414d83c8cbc08d9493f, type: 2}
   loots:
   - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}
   - {fileID: 11400000, guid: 2045a9f247d746b4b92cb1638577fafb, type: 2}
@@ -230,6 +255,7 @@ MonoBehaviour:
   - {fileID: 6437199265679976842, guid: 8e34f7a476464cc4984b48819c04020d, type: 3}
   - {fileID: 6437199265679976842, guid: 33504e9bef3661b41aa18f97db168164, type: 3}
   - {fileID: 6437199265679976842, guid: 456292831f33c7f4cb43507fc9345355, type: 3}
+  - {fileID: 6437199265679976842, guid: a4752774737dd014b859cb562c9ebf40, type: 3}
   lootParticlePrefab: {fileID: 5818688699838495243, guid: 2584124b8cecbec4691496610888bb2b,
     type: 3}
 --- !u!114 &2304225578689325126

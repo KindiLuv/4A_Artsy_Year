@@ -154,6 +154,24 @@ public class Enemy : Character
 
     public void ChangeWeapon(int i)
     {
-        _currentWeapon = (_currentWeapon+i) % _weapons.Count;
+        _currentWeapon = i % _weapons.Count;
+        ChangeWeaponServerRpc(NetworkManager.Singleton.LocalClientId, _currentWeapon);        
+    }
+
+    [ServerRpc]
+    public void ChangeWeaponServerRpc(ulong localClientId, int i)
+    {
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds.Where(x => x != localClientId).ToList() }
+        };        
+        ChangeWeaponClientRpc(i, clientRpcParams);
+    }
+
+
+    [ClientRpc]
+    public void ChangeWeaponClientRpc(int i, ClientRpcParams clientRpcParams = default)
+    {
+        _currentWeapon = i % _weapons.Count;
     }
 }

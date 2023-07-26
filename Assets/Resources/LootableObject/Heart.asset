@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m: {fileID: 8087458221035121081, guid: e1e0e4cce61a2fb4bb2f34b635401946, type: 3}
   mainText: {fileID: 2800000, guid: fecbd4b757ce95a4da268d97190e16c0, type: 3}
-  rangeTake: 10
+  rangeTake: 5
   spawn: 1
   spawnAddRandom: 2
   offsetHeight: 0.5

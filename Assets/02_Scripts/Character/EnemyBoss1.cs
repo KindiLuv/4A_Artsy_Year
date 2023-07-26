@@ -21,7 +21,7 @@ public class EnemyBoss1 : Enemy
     private LayerMask lm;
     private Vector3 lastPosSpeed = Vector3.zero;
     private float phaseTimer = 5f;
-
+    
     protected override void Start()
     {
         base.Start();
@@ -119,7 +119,7 @@ public class EnemyBoss1 : Enemy
                 phaseTimer -= Time.deltaTime;
                 if (phaseTimer <= 0)
                 {
-                    ChangeWeapon(1);
+                    ChangeWeapon(_currentWeapon+1);
                     phaseTimer = _enemy.weaponChangeRate;
                 }
                 timeChangePlayer -= Time.deltaTime;

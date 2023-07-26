@@ -28,6 +28,15 @@ public class Loot : NetEntity
         }
         nb = n;
     }
+
+    public void TakePlayer(PlayerController p)
+    {
+        if (p != null && p.IsLocalPlayer)
+        {
+            StartCoroutine(Take(p.GetComponent<Player>()));
+        }
+    }
+
     private void Update()
     {
         if(rate <= 0.0f && loot != null && !take)
