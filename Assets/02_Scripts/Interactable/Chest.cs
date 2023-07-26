@@ -56,15 +56,18 @@ public class Chest : Interactable
     {
         if (!_locked && !_opened)
         {
-            if (UICoin.Instance.CoinNumber < 10 || !character.IsLocalPlayer)
+            if (UICoin.Instance.CoinNumber < 10 && character.IsLocalPlayer)
             {
                 return;
             }
+            else if(character.IsLocalPlayer)
+            {
+                UICoin.Instance.CoinNumber -= 10;
+                character.GetComponent<Player>().AddRandomWeapon();
+            }
             base.Interact(character);
             interactState = !interactState;
-            animatorChest.SetTrigger(Open);
-            UICoin.Instance.CoinNumber -= 10;
-            character.GetComponent<Player>().AddRandomWeapon();
+            animatorChest.SetTrigger(Open);                        
             foreach (var p in particleSystems)
             {
                 p.Play();
