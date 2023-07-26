@@ -7,12 +7,18 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip musicClip;
     [SerializeField] private AudioClip ambientClip;
+    private AudioClip tavernMusicDefault;
     private AudioSource _audioSourceMusic;
     private AudioSource _audioSourceAmbient;
     private float VolumeGlobal;
     private float VolumeMusique;
 
     public static SoundManager Instance { get; private set; }
+
+    public AudioClip TavernMusicDefault
+    {
+        get { return tavernMusicDefault; }
+    }
 
     public AudioClip MusicClip
     {
@@ -59,12 +65,11 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        tavernMusicDefault = musicClip;
         VolumeGlobal = PlayerPrefs.GetFloat("VolumeGlobal", 0.5f);
         VolumeMusique = PlayerPrefs.GetFloat("VolumeMusique", 0.8f);
         _audioSourceMusic = CreateAudioSource(musicClip, true);
         _audioSourceAmbient = CreateAudioSource(ambientClip, true);
-        StartCoroutine(StartOstSound());
-        //StartCoroutine(StartAmbientSound());
     }
 
     private AudioSource CreateAudioSource(AudioClip clip, bool loop)

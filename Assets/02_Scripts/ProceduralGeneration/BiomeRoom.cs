@@ -1,3 +1,4 @@
+using System;
 using ArtsyNetcode;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using Unity.Netcode;
 using UnityEngine.AI;
 using Assets.Scripts.NetCode;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in room
 {
