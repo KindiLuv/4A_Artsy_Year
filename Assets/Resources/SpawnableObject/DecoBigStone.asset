@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ca126a6c89a0541b5119ae2629e7bd, type: 3}
+  m_Name: DecoBigStone
+  m_EditorClassIdentifier: 
+  spawnID: 5
+  prefab:
+  - {fileID: 8075874904429915695, guid: d990bf893bef88d448f2bf865fe49805, type: 3}
+  size: {x: 2, y: 3}
+  isNetCodeObject: 0
+  wallObject: 1
+  rotateMode: 0
+  angleMin: 0
+  angle: 360
+  spawnRateChunck: 25
+  hasSpawnFillPercent: 0
+  spawnFillPercent: 0.005
+  spawnNumber: 1

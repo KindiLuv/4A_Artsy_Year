@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693dae453df35d64abde7e3a09a0452c, type: 3}
+  m_Name: GigaChadCrate
+  m_EditorClassIdentifier: 
+  EnemyType: 4
+  BaseHealth: 30
+  BaseSpeed: 20
+  Prefab: {fileID: 8911272301080724041, guid: d1997bc833f7a4040a8cc4c98e7157f1, type: 3}
+  weapons: []
+  weaponChangeRate: 15
+  maxFollowDistance: 15
+  minDistanceTarget: 15
+  randomMin: {x: -2, y: 0, z: -1}
+  randomMax: {x: 2, y: 0, z: 1}
+  timeSmoothRandom: 1
+  idleRandomSphereInsideUnits: 0
+  minTimeRandomSIU: 0
+  maxTimeRandomSIU: 0
+  timeLostPlayer: 1.25
+  effectDie: {fileID: 5541579379989539237, guid: 44da4e4f9f44dfd4ca4dd88f7cecccf5,
+    type: 3}
+  size: 1
+  contactDamage: 0
+  lootables:
+  - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}
+  - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}
+  - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}

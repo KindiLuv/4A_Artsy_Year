@@ -1,0 +1,75 @@
+#pragma kernel OilPainting
+
+Texture2D<float4> _OriginTex;
+RWTexture2D<float4> _Result;
+
+uint width;
+uint height;
+
+int radius;
+float intensity;
+
+[numthreads(8,8,1)]
+void OilPainting(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= width || id.y >= height)
+    {
+        return;
+    }
+    int squareRadius = radius * radius;
+    float2 tc;
+    float3 subCol;
+    int4 bathIntensity;
+    int subIntensity = 0;
+    int bestIntensity = 0;
+    int bestId = 0;
+    float3 averageColor;
+    int totalAverage = 0;
+
+    for (int k = 0; k < intensity; k += 4)
+    {
+        bathIntensity.r = 0;
+        bathIntensity.g = 0;
+        bathIntensity.b = 0;
+        bathIntensity.a = 0;
+        for (int i = -radius; i <= radius; i++)
+        {
+            for (int j = -radius; j <= radius; j++)
+            {
+                if ((i * i) + (j * j) == squareRadius)
+                {
+                    tc = float2(clamp(id.x + i, 0, width - 1), clamp(id.y + j, 0, height - 1));
+                    subCol = _OriginTex[tc].rgb;
+                    subIntensity = int(((subCol.r + subCol.g + subCol.b) / 3.0) * intensity);
+                    if (subIntensity == k) { bathIntensity.r++; }
+                    if (subIntensity == k+1) { bathIntensity.g++; }
+                    if (subIntensity == k+2) { bathIntensity.b++; }
+                    if (subIntensity == k+3) { bathIntensity.a++; }
+                }
+            }
+        }
+        if (bathIntensity.r > bestIntensity) { bestIntensity = bathIntensity.r; bestId = k; }
+        if (bathIntensity.g > bestIntensity) { bestIntensity = bathIntensity.g; bestId = k+1; }
+        if (bathIntensity.b > bestIntensity) { bestIntensity = bathIntensity.b; bestId = k+2; }
+        if (bathIntensity.a > bestIntensity) { bestIntensity = bathIntensity.a; bestId = k+3; }
+    }
+
+    for (int i = -radius; i <= radius; i++)
+    {
+        for (int j = -radius; j <= radius; j++)
+        {
+            if ((i * i) + (j * j) == squareRadius)
+            {
+                tc = float2(clamp(id.x + i, 0, width - 1), clamp(id.y + j, 0, height - 1));
+                subCol = _OriginTex[tc].rgb;
+                if (bestId == int(((subCol.r + subCol.g + subCol.b) / 3.0) * intensity))
+                {
+                    averageColor += subCol;
+                    totalAverage++;
+                }
+            }
+        }
+    }
+
+    _Result[id.xy] = float4(averageColor/ totalAverage, 1.0);    
+}

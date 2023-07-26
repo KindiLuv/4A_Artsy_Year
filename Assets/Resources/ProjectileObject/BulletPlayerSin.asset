@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
+  m_Name: BulletPlayerSin
+  m_EditorClassIdentifier: 
+  moveProjectileType: 2
+  sinForce: 0.1
+  sinFrequence: 5
+  radiusSearch: 5
+  colapseSearchSpeed: 5
+  speed: 12
+  dmgPerHit: 3
+  dmgPerHitAddRandom: 2
+  knockBack: {x: 0, y: 0, z: 0}
+  prefab:
+  - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}
+  shapeProjectileType: 0
+  collideOffset: {x: 0, y: 0, z: 0}
+  radius: 0.25
+  extends: {x: 0, y: 0, z: 0}
+  rayDistance: 100
+  arcRadius: 3
+  lifeTime: 5
+  wallBounds: 0
+  punchThrough: 0
+  throughCount: 0
+  explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
+    type: 3}
+  timeExplode: 5

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693dae453df35d64abde7e3a09a0452c, type: 3}
+  m_Name: MARC
+  m_EditorClassIdentifier: 
+  EnemyType: 0
+  BaseHealth: 100
+  BaseSpeed: 0
+  Prefab: {fileID: 5524944343573959598, guid: b2575b9573c654a4b8960b33f1f55230, type: 3}
+  weapons: []
+  weaponChangeRate: 30
+  maxFollowDistance: 15
+  minDistanceTarget: 5
+  randomMin: {x: 0, y: 0, z: 0}
+  randomMax: {x: 0, y: 0, z: 0}
+  timeSmoothRandom: 1
+  idelRandomSphereInsideUnits: 0
+  minTimeRandomSIU: 2
+  maxTimeRandomSIU: 5
+  timeLostPlayer: 2
+  effectDie: {fileID: 0}
+  size: 1
+  contactDamage: 0
+  lootables:
+  - {fileID: 11400000, guid: 81bd34d9eacb5bc4499145a32cbf20cc, type: 2}
+  - {fileID: 11400000, guid: 2045a9f247d746b4b92cb1638577fafb, type: 2}

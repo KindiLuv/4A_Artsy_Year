@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b131bcaa2b79ee4d82be636147ee8e8, type: 3}
+  m_Name: Debug
+  m_EditorClassIdentifier: 
+  biomeID: 999
+  ground: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  wall: {fileID: 2100000, guid: 2a6235bfe830c9d4fb42ecef250c97d0, type: 2}
+  ceil: {fileID: 2100000, guid: 2a6235bfe830c9d4fb42ecef250c97d0, type: 2}
+  border: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  borderHole: {fileID: 2100000, guid: dc53b0a3f0abafa46be35f05f4b0c13e, type: 2}
+  voidHole: {fileID: 2100000, guid: bc0a3b09afe6aa44ea05b7b5d3fcbca3, type: 2}
+  door: {fileID: 11400000, guid: 7755005087ce3e84ebaff5f9127217ef, type: 2}
+  bossDoor: {fileID: 11400000, guid: 4d7db77476684d0479e25b92bfbcf994, type: 2}
+  spawnObjects: []
+  randomFillPercent: 46
+  randomAddPercent: 4
+  hole_rate_chunck: 50
+  hole_fill_percent: 56
+  sunKelvin: 8100
+  sunIntensity: 0.5
+  speedSunMove: {x: 0, y: 0}
+  sunSizeCookie: {x: 0, y: 0}
+  sunLightCookie: {fileID: 0}

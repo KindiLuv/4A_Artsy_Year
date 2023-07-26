@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf37e8044105cbb45972e76590ece05f, type: 3}
+  m_Name: Monkey
+  m_EditorClassIdentifier: 
+  characterClass: 8
+  prefab: {fileID: 6439057977524427019, guid: 29feb63160cf29b4692a3e7ff8867945, type: 3}
+  baseLife: 52
+  baseShield: 0
+  baseMana: 0
+  baseSpeed: 9
+  baseWeapons:
+  - {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f, type: 2}
+  - {fileID: 11400000, guid: e4d71ee91d405a44f9aba697c57b1ea4, type: 2}

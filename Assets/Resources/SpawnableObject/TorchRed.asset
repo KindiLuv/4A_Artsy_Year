@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ca126a6c89a0541b5119ae2629e7bd, type: 3}
+  m_Name: TorchRed
+  m_EditorClassIdentifier: 
+  spawnID: 12
+  prefab:
+  - {fileID: 3598961248700307069, guid: 681e23dcaa8f5e04d9434b9ace6e0aa2, type: 3}
+  size: {x: 2, y: 2}
+  isNetCodeObject: 0
+  wallObject: 0
+  rotateMode: 0
+  angleMin: 0
+  angle: 0
+  spawnRateChunck: 100
+  hasSpawnFillPercent: 0
+  spawnFillPercent: 1
+  spawnNumber: 1

@@ -1,0 +1,826 @@
+fileFormatVersion: 2
+guid: 8ed51937cb353fe408a9f4557c93fb5a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2527987927047923318
+    second: Coin_Spin_Animation_A_0
+  - first:
+      213: 1916597533562965307
+    second: Coin_Spin_Animation_A_1
+  - first:
+      213: -2323044058506379346
+    second: Coin_Spin_Animation_A_2
+  - first:
+      213: -7138214795269361738
+    second: Coin_Spin_Animation_A_3
+  - first:
+      213: -2794809516446059857
+    second: Coin_Spin_Animation_A_4
+  - first:
+      213: 7017234586786114193
+    second: Coin_Spin_Animation_A_5
+  - first:
+      213: 7672893138383289957
+    second: Coin_Spin_Animation_A_6
+  - first:
+      213: -8570247240625622829
+    second: Coin_Spin_Animation_A_7
+  - first:
+      213: -1514860693044257337
+    second: Coin_Spin_Animation_A_8
+  - first:
+      213: -7176291881437338763
+    second: Coin_Spin_Animation_A_9
+  - first:
+      213: 6833167391539136296
+    second: Coin_Spin_Animation_A_10
+  - first:
+      213: 8426027427360576635
+    second: Coin_Spin_Animation_A_11
+  - first:
+      213: 4985561018401762027
+    second: Coin_Spin_Animation_A_12
+  - first:
+      213: 6315236426688614542
+    second: Coin_Spin_Animation_A_13
+  - first:
+      213: -1797368022126831493
+    second: Coin_Spin_Animation_A_14
+  - first:
+      213: 8792807845252231432
+    second: Coin_Spin_Animation_A_15
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676ea2430a7351320800000000000000
+      internalID: 2527987927047923318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3d096d5d4f199a10800000000000000
+      internalID: 1916597533562965307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf352f9cb3e2cfd0800000000000000
+      internalID: -2323044058506379346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf288da677ffec90800000000000000
+      internalID: -7138214795269361738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2f9556d87d639d0800000000000000
+      internalID: -2794809516446059857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19aa8f28da9326160800000000000000
+      internalID: 7017234586786114193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e3ed818a79b7a60800000000000000
+      internalID: 7672893138383289957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0fc31ba8d501980800000000000000
+      internalID: -8570247240625622829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd15eac9322afae0800000000000000
+      internalID: -1514860693044257337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57368623e80b86c90800000000000000
+      internalID: -7176291881437338763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8270977f98944de50800000000000000
+      internalID: 6833167391539136296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b74968b5d434fe470800000000000000
+      internalID: 8426027427360576635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea2fd3e455403540800000000000000
+      internalID: 4985561018401762027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80d16d021a34a750800000000000000
+      internalID: 6315236426688614542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78db768e477e07e0800000000000000
+      internalID: -1797368022126831493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin_Spin_Animation_A_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 801f6822624560a70800000000000000
+      internalID: 8792807845252231432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: 656, y: -587}
+      - {x: 551, y: -758}
+      - {x: 551, y: -779}
+      - {x: 657, y: -949}
+      - {x: 892, y: -949}
+      - {x: 985, y: -781}
+      - {x: 985, y: -735}
+      - {x: 882, y: -587}
+    - - {x: 145, y: -622}
+      - {x: 39, y: -718}
+      - {x: 39, y: -792}
+      - {x: 122, y: -914}
+      - {x: 393, y: -914}
+      - {x: 473, y: -789}
+      - {x: 473, y: -720}
+      - {x: 367, y: -622}
+    - - {x: -471, y: -679}
+      - {x: -473, y: -683}
+      - {x: -473, y: -857}
+      - {x: -131, y: -857}
+      - {x: -39, y: -834}
+      - {x: -39, y: -744}
+      - {x: -129, y: -679}
+    - - {x: -961, y: -737}
+      - {x: -985, y: -747}
+      - {x: -985, y: -794}
+      - {x: -929, y: -799}
+      - {x: -625, y: -799}
+      - {x: -551, y: -792}
+      - {x: -551, y: -738}
+      - {x: -584, y: -737}
+    - - {x: -553, y: -239}
+      - {x: -658, y: -67}
+      - {x: -904, y: -67}
+      - {x: -985, y: -247}
+      - {x: -985, y: -303}
+      - {x: -876, y: -445}
+      - {x: -660, y: -445}
+      - {x: -651, y: -434}
+      - {x: -551, y: -263}
+      - {x: -551, y: -249}
+    - - {x: -380, y: -75}
+      - {x: -473, y: -242}
+      - {x: -473, y: -290}
+      - {x: -366, y: -437}
+      - {x: -146, y: -437}
+      - {x: -39, y: -287}
+      - {x: -39, y: -244}
+      - {x: -135, y: -75}
+    - - {x: 113, y: -110}
+      - {x: 39, y: -235}
+      - {x: 39, y: -312}
+      - {x: 146, y: -402}
+      - {x: 368, y: -402}
+      - {x: 473, y: -303}
+      - {x: 473, y: -237}
+      - {x: 390, y: -110}
+    - - {x: 645, y: -167}
+      - {x: 551, y: -191}
+      - {x: 551, y: -334}
+      - {x: 601, y: -345}
+      - {x: 940, y: -345}
+      - {x: 985, y: -278}
+      - {x: 985, y: -228}
+      - {x: 941, y: -167}
+    - - {x: 654, y: 437}
+      - {x: 551, y: 360}
+      - {x: 551, y: 224}
+      - {x: 606, y: 75}
+      - {x: 895, y: 75}
+      - {x: 985, y: 232}
+      - {x: 985, y: 296}
+      - {x: 882, y: 437}
+    - - {x: 112, y: 402}
+      - {x: 39, y: 270}
+      - {x: 39, y: 216}
+      - {x: 131, y: 110}
+      - {x: 400, y: 110}
+      - {x: 473, y: 241}
+      - {x: 473, y: 297}
+      - {x: 381, y: 402}
+    - - {x: -418, y: 345}
+      - {x: -473, y: 336}
+      - {x: -473, y: 217}
+      - {x: -381, y: 167}
+      - {x: -90, y: 167}
+      - {x: -39, y: 231}
+      - {x: -39, y: 328}
+      - {x: -61, y: 345}
+    - - {x: -963, y: 287}
+      - {x: -985, y: 277}
+      - {x: -985, y: 233}
+      - {x: -928, y: 225}
+      - {x: -596, y: 225}
+      - {x: -551, y: 230}
+      - {x: -551, y: 287}
+    - - {x: -879, y: 957}
+      - {x: -985, y: 855}
+      - {x: -985, y: 752}
+      - {x: -918, y: 579}
+      - {x: -653, y: 579}
+      - {x: -551, y: 751}
+      - {x: -551, y: 790}
+      - {x: -658, y: 957}
+    - - {x: -147, y: 949}
+      - {x: -365, y: 949}
+      - {x: -473, y: 784}
+      - {x: -473, y: 760}
+      - {x: -470, y: 747}
+      - {x: -365, y: 587}
+      - {x: -147, y: 587}
+      - {x: -39, y: 752}
+      - {x: -39, y: 776}
+      - {x: -42, y: 789}
+    - - {x: 112, y: 914}
+      - {x: 39, y: 782}
+      - {x: 39, y: 728}
+      - {x: 131, y: 622}
+      - {x: 400, y: 622}
+      - {x: 473, y: 753}
+      - {x: 473, y: 809}
+      - {x: 381, y: 914}
+    - - {x: 645, y: 857}
+      - {x: 551, y: 833}
+      - {x: 551, y: 690}
+      - {x: 601, y: 679}
+      - {x: 940, y: 679}
+      - {x: 985, y: 746}
+      - {x: 985, y: 796}
+      - {x: 941, y: 857}
+    physicsShape:
+    - - {x: 658, y: -588}
+      - {x: 551, y: -738}
+      - {x: 551, y: -784}
+      - {x: 648, y: -948}
+      - {x: 878, y: -948}
+      - {x: 985, y: -804}
+      - {x: 985, y: -757}
+      - {x: 895, y: -588}
+    - - {x: 391, y: -881}
+      - {x: 405, y: -866}
+      - {x: 473, y: -783}
+      - {x: 473, y: -751}
+      - {x: 365, y: -623}
+      - {x: 113, y: -623}
+      - {x: 39, y: -728}
+      - {x: 39, y: -835}
+      - {x: 146, y: -913}
+      - {x: 364, y: -913}
+      - {x: 368, y: -909}
+      - {x: 382, y: -892}
+      - {x: 386, y: -887}
+    - - {x: -141, y: -679}
+      - {x: -396, y: -679}
+      - {x: -473, y: -745}
+      - {x: -473, y: -838}
+      - {x: -394, y: -857}
+      - {x: -78, y: -857}
+      - {x: -39, y: -794}
+      - {x: -39, y: -753}
+      - {x: -40, y: -745}
+    - - {x: -964, y: -738}
+      - {x: -985, y: -749}
+      - {x: -985, y: -784}
+      - {x: -984, y: -791}
+      - {x: -926, y: -798}
+      - {x: -604, y: -798}
+      - {x: -551, y: -793}
+      - {x: -551, y: -738}
+    - - {x: -882, y: -68}
+      - {x: -984, y: -253}
+      - {x: -984, y: -266}
+      - {x: -883, y: -444}
+      - {x: -654, y: -444}
+      - {x: -552, y: -280}
+      - {x: -552, y: -247}
+      - {x: -651, y: -68}
+    - - {x: -365, y: -76}
+      - {x: -473, y: -225}
+      - {x: -473, y: -273}
+      - {x: -378, y: -436}
+      - {x: -147, y: -436}
+      - {x: -39, y: -287}
+      - {x: -39, y: -239}
+      - {x: -134, y: -76}
+    - - {x: 144, y: -111}
+      - {x: 39, y: -212}
+      - {x: 39, y: -272}
+      - {x: 120, y: -401}
+      - {x: 389, y: -401}
+      - {x: 473, y: -278}
+      - {x: 473, y: -214}
+      - {x: 366, y: -111}
+    - - {x: 591, y: -345}
+      - {x: 906, y: -345}
+      - {x: 985, y: -325}
+      - {x: 985, y: -197}
+      - {x: 962, y: -167}
+      - {x: 651, y: -167}
+      - {x: 551, y: -196}
+      - {x: 551, y: -293}
+    - - {x: 649, y: 436}
+      - {x: 551, y: 268}
+      - {x: 551, y: 230}
+      - {x: 658, y: 76}
+      - {x: 887, y: 76}
+      - {x: 985, y: 244}
+      - {x: 985, y: 282}
+      - {x: 878, y: 436}
+    - - {x: 146, y: 401}
+      - {x: 39, y: 301}
+      - {x: 39, y: 239}
+      - {x: 122, y: 111}
+      - {x: 366, y: 111}
+      - {x: 473, y: 211}
+      - {x: 473, y: 273}
+      - {x: 390, y: 401}
+    - - {x: -424, y: 345}
+      - {x: -473, y: 282}
+      - {x: -473, y: 192}
+      - {x: -368, y: 167}
+      - {x: -90, y: 167}
+      - {x: -39, y: 232}
+      - {x: -39, y: 321}
+      - {x: -141, y: 345}
+    - - {x: -611, y: 286}
+      - {x: -956, y: 286}
+      - {x: -985, y: 281}
+      - {x: -985, y: 240}
+      - {x: -982, y: 237}
+      - {x: -903, y: 227}
+      - {x: -791, y: 226}
+      - {x: -686, y: 226}
+      - {x: -611, y: 227}
+      - {x: -551, y: 238}
+      - {x: -551, y: 277}
+    - - {x: -883, y: 956}
+      - {x: -984, y: 778}
+      - {x: -984, y: 751}
+      - {x: -882, y: 580}
+      - {x: -653, y: 580}
+      - {x: -552, y: 762}
+      - {x: -552, y: 780}
+      - {x: -658, y: 956}
+    - - {x: -367, y: 948}
+      - {x: -473, y: 797}
+      - {x: -473, y: 753}
+      - {x: -377, y: 588}
+      - {x: -145, y: 588}
+      - {x: -39, y: 739}
+      - {x: -39, y: 783}
+      - {x: -135, y: 948}
+    - - {x: 140, y: 913}
+      - {x: 39, y: 814}
+      - {x: 39, y: 750}
+      - {x: 122, y: 623}
+      - {x: 399, y: 623}
+      - {x: 473, y: 747}
+      - {x: 473, y: 824}
+      - {x: 371, y: 913}
+    - - {x: 592, y: 679}
+      - {x: 903, y: 679}
+      - {x: 985, y: 700}
+      - {x: 985, y: 822}
+      - {x: 959, y: 857}
+      - {x: 648, y: 857}
+      - {x: 551, y: 830}
+      - {x: 551, y: 734}
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Coin_Spin_Animation_A_0: 2527987927047923318
+      Coin_Spin_Animation_A_6: 7672893138383289957
+      Coin_Spin_Animation_A_3: -7138214795269361738
+      Coin_Spin_Animation_A_15: 8792807845252231432
+      Coin_Spin_Animation_A_5: 7017234586786114193
+      Coin_Spin_Animation_A_12: 4985561018401762027
+      Coin_Spin_Animation_A_11: 8426027427360576635
+      Coin_Spin_Animation_A_1: 1916597533562965307
+      Coin_Spin_Animation_A_7: -8570247240625622829
+      Coin_Spin_Animation_A_13: 6315236426688614542
+      Coin_Spin_Animation_A_2: -2323044058506379346
+      Coin_Spin_Animation_A_14: -1797368022126831493
+      Coin_Spin_Animation_A_10: 6833167391539136296
+      Coin_Spin_Animation_A_9: -7176291881437338763
+      Coin_Spin_Animation_A_4: -2794809516446059857
+      Coin_Spin_Animation_A_8: -1514860693044257337
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
+  m_Name: Slash
+  m_EditorClassIdentifier: 
+  moveProjectileType: 0
+  sinForce: 1
+  sinFrequence: 5
+  radiusSearch: 5
+  colapseSearchSpeed: 5
+  speed: 0
+  dmgPerHit: 20
+  dmgPerHitAddRandom: 2
+  knockBack: {x: 0, y: 0, z: 0}
+  prefab:
+  - {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb, type: 3}
+  shapeProjectileType: 3
+  collideOffset: {x: 0, y: 0, z: 0}
+  radius: 1
+  extends: {x: 0, y: 0, z: 0}
+  rayDistance: 100
+  arcRadius: 2
+  lifeTime: 0.2
+  wallBounds: 0
+  punchThrough: 0
+  throughCount: 0
+  explodeEffect: {fileID: 2569510318821416610, guid: 0174e46fe4a65474f8343ba61c6c33fb,
+    type: 3}
+  timeExplode: 1

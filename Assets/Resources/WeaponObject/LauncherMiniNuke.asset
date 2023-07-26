@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0952497ec5d431409abcfccfacb5275, type: 3}
+  m_Name: LauncherMiniNuke
+  m_EditorClassIdentifier: 
+  weaponName: MiniNukeLauncher
+  weaponType: 2
+  weaponFamily: 1
+  rarity: 5
+  weaponDescription: MiniNukeLauncher
+  weaponModel: {fileID: 3285456865892819144, guid: acc23a70093ed804b914bf7bc90e34f0,
+    type: 3}
+  projectile:
+  - {fileID: 11400000, guid: 2210c4654d397f840a30a504d7475e97, type: 2}
+  spawnProjectileAddRandom: 0
+  spawnProjectileCount: 1
+  spawnProjectileRate: 60
+  autoWeapon: 1
+  muzzelFlash: {fileID: 0}
+  muzzelDestroyTime: 1
+  spawnProjectileLocalPosition: {x: 0.6, y: 0, z: 1.5}
+  spreadUniform: 0
+  offsetAngle: 0
+  Angle: 0
+  impulseForce: 5
