@@ -66,8 +66,8 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         tavernMusicDefault = musicClip;
-        VolumeGlobal = PlayerPrefs.GetFloat("VolumeGlobal", 0.5f);
-        VolumeMusique = PlayerPrefs.GetFloat("VolumeMusique", 0.8f);
+        VolumeGlobal = 0.25f;//PlayerPrefs.GetFloat("VolumeGlobal", 0.5f);
+        VolumeMusique = 1.5f;//PlayerPrefs.GetFloat("VolumeMusique", 0.8f);
         _audioSourceMusic = CreateAudioSource(musicClip, true);
         _audioSourceAmbient = CreateAudioSource(ambientClip, true);
     }
@@ -120,7 +120,7 @@ public class SoundManager : MonoBehaviour
 
     public static void PlayFxSound(AudioClip clip)
     {
-        Instance._audioSourceAmbient.PlayOneShot(clip);
+        Instance._audioSourceAmbient.PlayOneShot(clip, 0.25f);
     }
 
     public IEnumerator StartOstSound()

@@ -40,6 +40,7 @@ public enum WeaponFamily
 public class WeaponSO : ScriptableObject
 {
    public string weaponName;
+   public List<AudioClip> shootSFX;
    public WeaponType weaponType;
    public WeaponFamily weaponFamily;
    public Rarity rarity;
