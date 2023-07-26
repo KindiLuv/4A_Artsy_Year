@@ -21,3 +21,13 @@ MonoBehaviour:
   baseWeapons:
   - {fileID: 11400000, guid: a5d1bd011b0d2d04f8b4f5c75e4a43f3, type: 2}
   - {fileID: 11400000, guid: e4d71ee91d405a44f9aba697c57b1ea4, type: 2}
+  - {fileID: 11400000, guid: c352fe3bc7acea94da084048a34bf085, type: 2}
+  - {fileID: 11400000, guid: 815b315fc6b48ea48be63b924c9a3b92, type: 2}
+  - {fileID: 11400000, guid: 3fbebe08c951d564da436d2d57a345ac, type: 2}
+  - {fileID: 11400000, guid: 666a339a802d8894183f23f3d1092bf7, type: 2}
+  - {fileID: 11400000, guid: 55cc464d1b4e4224bae7ffb6421243e0, type: 2}
+  - {fileID: 11400000, guid: a5d839a26fe6b61499129095530133dc, type: 2}
+  - {fileID: 11400000, guid: 848e71c2a367bbe4c9f14e07316375b8, type: 2}
+  - {fileID: 11400000, guid: 584c86893435aa944a74d92a4b70800e, type: 2}
+  - {fileID: 11400000, guid: 53711963ea6eb0044811fdda0338337f, type: 2}
+  - {fileID: 11400000, guid: aa3ed6a7f9966e947bc1f210b5f02a99, type: 2}

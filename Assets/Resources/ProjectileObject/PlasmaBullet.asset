@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
   m_Name: PlasmaBullet
   m_EditorClassIdentifier: 
-  moveProjectileType: 1
+  moveProjectileType: 3
   sinForce: 1
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 21
+  speed: 18
   dmgPerHit: 5
   dmgPerHitAddRandom: 3
   knockBack: {x: 0, y: 0, z: 0}
@@ -30,8 +30,8 @@ MonoBehaviour:
   rayDistance: 100
   arcRadius: 1
   lifeTime: 8
-  wallBounds: 4
-  punchThrough: 1
+  wallBounds: 0
+  punchThrough: 0
   throughCount: 3
   explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
     type: 3}
