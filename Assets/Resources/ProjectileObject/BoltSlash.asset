@@ -18,7 +18,7 @@ MonoBehaviour:
   radiusSearch: 5
   colapseSearchSpeed: 5
   speed: 20
-  dmgPerHit: 20
+  dmgPerHit: 15
   dmgPerHitAddRandom: 0
   knockBack: {x: 0, y: 0, z: 0}
   prefab:
@@ -31,7 +31,8 @@ MonoBehaviour:
   arcRadius: 1
   lifeTime: 20
   wallBounds: 0
-  punchThrough: 1
+  punchThrough: 0
   throughCount: 5
-  explodeEffect: {fileID: 0}
+  explodeEffect: {fileID: 7364396999178479647, guid: 13023e6dfa5b127439aafe4f3a4db01c,
+    type: 3}
   timeExplode: 2
