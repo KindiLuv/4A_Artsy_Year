@@ -51,11 +51,12 @@ public class Chest : Interactable
             OutlinesEffect(false);
         }
     }
+
     public override void Interact(Character character)
     {
         if (!_locked && !_opened)
         {
-            if (UICoin.Instance.CoinNumber < 10)
+            if (UICoin.Instance.CoinNumber < 10 || !character.IsLocalPlayer)
             {
                 return;
             }

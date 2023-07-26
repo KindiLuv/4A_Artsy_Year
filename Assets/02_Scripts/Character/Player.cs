@@ -30,7 +30,6 @@ public class Player : NetEntity
     public List<WeaponSO> Weapons { get { return _weapons; } }
     #endregion
 
-
     protected void Start()
     {
         _playerController = GetComponent<PlayerController>();
@@ -179,6 +178,7 @@ public class Player : NetEntity
 
     public void AddWeapon(int wi)
     {
+        Debug.Log(wi);
         if (_weapons.Count == GameRessourceManager.Instance.Weapons.Count+1)
         {
             return;
