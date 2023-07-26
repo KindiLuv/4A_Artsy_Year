@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponFamily: 2
   rarity: 1
   weaponDescription: HealStaff
-  weaponModel: {fileID: 919132149155446097, guid: 5d48695472dfda94b92ac5316397da95,
+  weaponModel: {fileID: 3106789586801676679, guid: a6d59514237468343b8651a4832841c0,
     type: 3}
   projectile:
   - {fileID: 11400000, guid: 97d3fcbb80791624a9c99256cd172461, type: 2}

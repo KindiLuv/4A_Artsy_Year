@@ -171,7 +171,7 @@ public class EnemyCrate : Enemy
                             _navMeshAgent.destination = ((transform.position - targetPlayer.transform.position).normalized * _enemy.minDistanceTarget) + targetPlayer.transform.position + transform.TransformDirection(randomDirection);
                             if (timeToShoot <= 0 && _currentWeapon != -1)
                             {
-                                BasicAttackClientRpc(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
+                                BasicAttackClientRpc(transform.position + (transform.rotation * _weapons[_currentWeapon].spawnProjectileLocalPosition), transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
                                 timeToShoot = _weapons[_currentWeapon].spawnProjectileRate;
                             }
                             timeChangeRandomDirection -= Time.deltaTime;

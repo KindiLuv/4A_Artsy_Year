@@ -224,7 +224,20 @@ public class PlayerController : Character
             }
             if ((GameNetworkManager.IsOffline || IsLocalPlayer) && _attackValue[_attackRate[ws]] <= 0.0f && !_dashLocked)
             {
-                _player.BasicAttack(transform.position, transform.rotation, (float)NetworkManager.Singleton.LocalTime.Time);
+                Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                Vector3 dir = transform.rotation * Vector3.forward;
+                Vector3 spawnPos = transform.position + (transform.rotation * ws.spawnProjectileLocalPosition);
+                if (Physics.Raycast(r, out hit))
+                {
+                    if (Vector3.Distance(hit.point, spawnPos) > 4.0f)
+                    {
+                        dir = (hit.point - spawnPos).normalized;
+                    }
+                }
+                dir.y = 0.0f;
+
+                _player.BasicAttack(spawnPos, Quaternion.LookRotation(dir, Vector3.up), (float)NetworkManager.Singleton.LocalTime.Time);
                 _impulseForce += transform.forward * ws.impulseForce;
                 _impulseForce.x = Mathf.Clamp(_impulseForce.x, -clampImpulseSpeed, clampImpulseSpeed);
                 _impulseForce.y = Mathf.Clamp(_impulseForce.y, -clampImpulseSpeed, clampImpulseSpeed);

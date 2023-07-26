@@ -17,9 +17,9 @@ MonoBehaviour:
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 12
-  dmgPerHit: 5
-  dmgPerHitAddRandom: 3
+  speed: 13
+  dmgPerHit: 2
+  dmgPerHitAddRandom: 2
   knockBack: {x: 0, y: 0, z: 0}
   prefab:
   - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}

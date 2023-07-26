@@ -118,7 +118,7 @@ public class ProjectileManager : MonoBehaviour
             if (usedProjectiles[p].Count == 0)
             {                
                 pd.direction = rot * Vector3.forward;
-                pd.obj = Instantiate(p.prefab[pseudoRandom.Next(p.prefab.Count)], position+ (rot * weapon.spawnProjectileLocalPosition), rot, projectilePool.transform);
+                pd.obj = Instantiate(p.prefab[pseudoRandom.Next(p.prefab.Count)], position, rot, projectilePool.transform);
                 pd.tr = pd.obj.GetComponentsInChildren<TrailRenderer>();
             }
             else
@@ -127,7 +127,7 @@ public class ProjectileManager : MonoBehaviour
                 pd.direction = rot * Vector3.forward;
                 pd.obj.SetActive(true);
                 pseudoRandom.Next(p.prefab.Count);//juste pour etre sur au niveaux de la synchronisation
-                pd.obj.transform.position = position+(rot * weapon.spawnProjectileLocalPosition);
+                pd.obj.transform.position = position;
                 pd.obj.transform.rotation = rot;
                 for (int j = 0; j < pd.tr.Length; j++)
                 {
