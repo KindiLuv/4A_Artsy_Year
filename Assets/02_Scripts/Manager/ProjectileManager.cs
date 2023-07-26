@@ -56,6 +56,7 @@ public class ProjectileManager : MonoBehaviour
     private Dictionary<ProjectileSO,List<ProjectileData>> projectiles = new Dictionary<ProjectileSO,List<ProjectileData>>();
     private Dictionary<ProjectileSO, Queue<ProjectileData>> usedProjectiles = new Dictionary<ProjectileSO, Queue<ProjectileData>>();
     private System.Random pseudoRandom = new System.Random(0);
+    private System.Random gunRandom = new();
     private static ProjectileManager instance = null;
     private List<IDamageable> targetIDamageable = new List<IDamageable>();
     private bool hitWall = false;
@@ -151,6 +152,12 @@ public class ProjectileManager : MonoBehaviour
 
             projectiles[p].Add(pd);
             UpdateProjectile(p, pd, timeStamp);
+            
+            if (weapon.shootSFX.Count > 0)
+            {
+                int r = gunRandom.Next(weapon.shootSFX.Count);
+                SoundManager.PlayFxSound(weapon.shootSFX[r]);
+            }
         }
     }
 

@@ -51,8 +51,6 @@ public class ProceduralMapManager : NetEntity
     {
         spawnData = Resources.LoadAll<SpawnableObject>("SpawnableObject");
         biomeData = Resources.LoadAll<Biome>("Biome");
-        StartCoroutine(SoundManager.Instance.StopOstSound());
-        StartCoroutine(SoundManager.Instance.StopAmbientSound());
         SoundManager.Instance.MusicClip = biomeData[idBiome].BiomeMusic;
         SoundManager.Instance.AmbientClip = biomeData[idBiome].BiomeAmbient;
         StartCoroutine(SoundManager.Instance.StartOstSound());
