@@ -10,29 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: BoltSlash
+  m_Name: BulletHealing
   m_EditorClassIdentifier: 
   moveProjectileType: 1
   sinForce: 1
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 20
-  dmgPerHit: 15
-  dmgPerHitAddRandom: 0
+  speed: 15
+  dmgPerHit: 10
+  dmgPerHitAddRandom: 5
   knockBack: {x: 0, y: 0, z: 0}
   prefab:
-  - {fileID: 2322627104585361743, guid: 3b722c203c88ce64aa668fba9aea9eb0, type: 3}
+  - {fileID: 8009012414925897728, guid: 4a2fe8083040ea54fa84aea93b506dd1, type: 3}
   shapeProjectileType: 0
-  collideOffset: {x: 0, y: 0.5, z: 0}
-  radius: 2
+  collideOffset: {x: 0, y: 0, z: 0}
+  radius: 0.25
   extends: {x: 0, y: 0, z: 0}
   rayDistance: 100
   arcRadius: 1
-  lifeTime: 20
-  wallBounds: 0
+  lifeTime: 8
+  wallBounds: 5
   punchThrough: 0
-  throughCount: 5
-  explodeEffect: {fileID: 7364396999178479647, guid: 13023e6dfa5b127439aafe4f3a4db01c,
-    type: 3}
+  throughCount: 0
+  explodeEffect: {fileID: 0}
   timeExplode: 2
