@@ -5,18 +5,31 @@ using UnityEngine.Serialization;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private AudioClip musicClipOST;
-    private AudioSource _audioSourceOst;
-    private AudioSource _audioSourceFx;
+    [SerializeField] private AudioClip musicClip;
+    [SerializeField] private AudioClip ambientClip;
+    private AudioClip tavernMusicDefault;
+    private AudioSource _audioSourceMusic;
+    private AudioSource _audioSourceAmbient;
     private float VolumeGlobal;
     private float VolumeMusique;
 
     public static SoundManager Instance { get; private set; }
 
-    public AudioClip MusicClipOst
+    public AudioClip TavernMusicDefault
     {
-        get { return musicClipOST; }
-        set { musicClipOST = value; }
+        get { return tavernMusicDefault; }
+    }
+
+    public AudioClip MusicClip
+    {
+        get { return musicClip; }
+        set { musicClip = value; }
+    }
+
+    public AudioClip AmbientClip
+    {
+        get { return ambientClip; }
+        set { ambientClip = value; }
     }
     
     public float Volume
@@ -25,8 +38,8 @@ public class SoundManager : MonoBehaviour
         set {  
             VolumeGlobal = value; 
             PlayerPrefs.SetFloat("VolumeGlobal", VolumeGlobal);
-            _audioSourceOst.volume = VolumeGlobal * VolumeMusique;
-            _audioSourceFx.volume = VolumeGlobal;
+            _audioSourceMusic.volume = VolumeGlobal * VolumeMusique;
+            _audioSourceAmbient.volume = VolumeGlobal;
         }
     }
 
@@ -39,24 +52,24 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            Instance.MusicClipOst = musicClipOST;
+            Instance.MusicClip = musicClip;
             Destroy(gameObject);
         }
     }
 
     public float PitchModifier
     {
-        get { return _audioSourceOst.pitch; }
-        set { _audioSourceOst.pitch = value; }
+        get { return _audioSourceMusic.pitch; }
+        set { _audioSourceMusic.pitch = value; }
     }
 
     private void Start()
     {
+        tavernMusicDefault = musicClip;
         VolumeGlobal = PlayerPrefs.GetFloat("VolumeGlobal", 0.5f);
         VolumeMusique = PlayerPrefs.GetFloat("VolumeMusique", 0.8f);
-        _audioSourceOst = CreateAudioSource(musicClipOST, true);
-        _audioSourceFx = CreateAudioSource(null, false);
-        StartCoroutine(StartOstSound());
+        _audioSourceMusic = CreateAudioSource(musicClip, true);
+        _audioSourceAmbient = CreateAudioSource(ambientClip, true);
     }
 
     private AudioSource CreateAudioSource(AudioClip clip, bool loop)
@@ -107,26 +120,26 @@ public class SoundManager : MonoBehaviour
 
     public static void PlayFxSound(AudioClip clip)
     {
-        Instance._audioSourceFx.PlayOneShot(clip);
+        Instance._audioSourceAmbient.PlayOneShot(clip);
     }
 
     public IEnumerator StartOstSound()
     {
-        if (_audioSourceOst != null)
+        if (_audioSourceMusic != null)
         {
-            while (_audioSourceOst.volume > 0)
+            while (_audioSourceMusic.volume > 0)
             {
-                _audioSourceOst.volume -= Time.deltaTime;
+                _audioSourceMusic.volume -= Time.deltaTime;
                 yield return null;
             }
         }
-        _audioSourceOst.Stop();
-        _audioSourceOst.pitch = 1.0f;
-        _audioSourceOst.clip = musicClipOST;
-        _audioSourceOst.Play();
-        while (_audioSourceOst.volume < VolumeGlobal * VolumeMusique)
+        _audioSourceMusic.Stop();
+        _audioSourceMusic.pitch = 1.0f;
+        _audioSourceMusic.clip = musicClip;
+        _audioSourceMusic.Play();
+        while (_audioSourceMusic.volume < VolumeGlobal * VolumeMusique)
         {
-            _audioSourceOst.volume += Time.deltaTime;
+            _audioSourceMusic.volume += Time.deltaTime;
             yield return null;
         }
         yield break;
@@ -134,16 +147,53 @@ public class SoundManager : MonoBehaviour
 
     public IEnumerator StopOstSound()
     {
-        if (_audioSourceOst != null)
+        if (_audioSourceMusic != null)
         {
-            while (_audioSourceOst.volume > 0)
+            while (_audioSourceMusic.volume > 0)
             {
-                _audioSourceOst.volume -= Time.deltaTime;
+                _audioSourceMusic.volume -= Time.deltaTime;
                 yield return null;
             }
         }
-        _audioSourceOst.Stop();
-        _audioSourceOst.pitch = 1.0f;
+        _audioSourceMusic.Stop();
+        _audioSourceMusic.pitch = 1.0f;
+        yield break;
+    }
+    
+    public IEnumerator StartAmbientSound()
+    {
+        if (_audioSourceAmbient != null)
+        {
+            while (_audioSourceAmbient.volume > 0)
+            {
+                _audioSourceAmbient.volume -= Time.deltaTime;
+                yield return null;
+            }
+        }
+        _audioSourceAmbient.Stop();
+        _audioSourceAmbient.pitch = 1.0f;
+        _audioSourceAmbient.clip = ambientClip;
+        _audioSourceAmbient.Play();
+        while (_audioSourceAmbient.volume < VolumeGlobal)
+        {
+            _audioSourceAmbient.volume += Time.deltaTime;
+            yield return null;
+        }
+        yield break;
+    }
+
+    public IEnumerator StopAmbientSound()
+    {
+        if (_audioSourceAmbient != null)
+        {
+            while (_audioSourceAmbient.volume > 0)
+            {
+                _audioSourceAmbient.volume -= Time.deltaTime;
+                yield return null;
+            }
+        }
+        _audioSourceAmbient.Stop();
+        _audioSourceAmbient.pitch = 1.0f;
         yield break;
     }
 }

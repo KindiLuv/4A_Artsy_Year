@@ -50,6 +50,9 @@ public class MenuManager : MonoBehaviour
         selectHero = Instantiate(_interactEffect);
         selectHero.transform.position = new Vector3(0.0f, -10.0f, 0.0f);
         OnEnable();
+        SoundManager.Instance.MusicClip = SoundManager.Instance.TavernMusicDefault;
+        StartCoroutine(SoundManager.Instance.StopAmbientSound());
+        StartCoroutine(SoundManager.Instance.StartOstSound());
     }    
 
     public void OnEnable()

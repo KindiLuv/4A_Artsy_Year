@@ -600,7 +600,7 @@ MonoBehaviour:
   seed: 0
   useRandomSeed: 0
   countZone: 15
-  idBiome: 1
+  idBiome: 2
   lco: {fileID: 1013776612}
   prefabBiomeRoom: {fileID: 3526325574365378841, guid: 63cb9935384fb09498f2820e9c4eb0af,
     type: 3}
