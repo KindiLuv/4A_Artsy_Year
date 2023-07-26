@@ -35,6 +35,7 @@ public class Biome : ScriptableObject
 
     #region Getter Setter
     public AudioClip BiomeMusic { get { return biomeMusic; } }
+    public AudioClip BiomeAmbient { get { return biomeAmbient; } }
     public int BiomeID { get { return biomeID; } }
     public Material Ground { get { return ground; } }
     public Material Wall { get { return wall; } }

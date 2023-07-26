@@ -29992,7 +29992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.000000012681959, y: -0.92387956, z: 0.38268346, w: 0.000000030616956}
+  m_LocalRotation: {x: 0.000000025433797, y: -0.92387956, z: 0.38268346, w: 0.00000006140262}
   m_LocalPosition: {x: -0.21, y: 7, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61153,6 +61153,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6437199265679976842, guid: a4752774737dd014b859cb562c9ebf40,
         type: 3}
+    - target: {fileID: 3891833324127919952, guid: 6e8aa20d779409340a8ba13b9871db9d,
+        type: 3}
+      propertyPath: musicClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d9d5ed97b73942488689270f0bb7457, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e8aa20d779409340a8ba13b9871db9d, type: 3}
 --- !u!4 &1187810829107910534
@@ -67517,7 +67522,7 @@ PrefabInstance:
     - target: {fileID: 3850688587774950740, guid: 679b6c598591fed4e8fc9e0c28997d5c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -19.999603
+      value: -19.999634
       objectReference: {fileID: 0}
     - target: {fileID: 3850688587774950740, guid: 679b6c598591fed4e8fc9e0c28997d5c,
         type: 3}
