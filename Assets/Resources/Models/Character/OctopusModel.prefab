@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 3949829733469281612}
   - component: {fileID: 3949829733469281613}
   - component: {fileID: 3949829733469281614}
+  - component: {fileID: 4846608472810812342}
   m_Layer: 0
   m_Name: OctopusModel
   m_TagString: Untagged
@@ -664,6 +665,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4846608472810812342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949829733469281615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3949829733628204764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1266,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6817861500564559624}
   - component: {fileID: 9148968579540213425}
-  - component: {fileID: 1172327893011224565}
   m_Layer: 0
   m_Name: Inkfish_LOD1
   m_TagString: Untagged
@@ -1341,24 +1359,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000029802322, y: 0.36060077, z: 0.9596206}
     m_Extent: {x: 0.54634875, y: 0.92254466, z: 0.9603418}
   m_DirtyAABB: 0
---- !u!114 &1172327893011224565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4827573304348324698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &4846135307070815058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,7 +1675,6 @@ GameObject:
   - component: {fileID: 191994748560180165}
   - component: {fileID: 2498651926959959783}
   - component: {fileID: 6644860261909733706}
-  - component: {fileID: 3555627264478269227}
   m_Layer: 0
   m_Name: hat
   m_TagString: Untagged
@@ -3937,24 +3936,6 @@ Cloth:
   - {x: 0.6666667, y: 0.16666667, z: 0.16666667}
   - {x: 0.5, y: 0.5, z: 0}
   m_VirtualParticleIndices: 
---- !u!114 &3555627264478269227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6644860261909733707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &7254278630661860408
 GameObject:
   m_ObjectHideFlags: 0

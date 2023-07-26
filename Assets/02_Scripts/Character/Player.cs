@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class Player : NetEntity
 {
@@ -124,18 +125,6 @@ public class Player : NetEntity
         }
         characterID = ci;
     }
-    
-    [ServerRpc]
-    public void LoadWeaponChangeServerRpc(int wi)
-    {
-        LoadWeaponChangeClientRpc(wi);
-    }
-
-    [ClientRpc]
-    public void LoadWeaponChangeClientRpc(int wi)
-    {
-        LoadWeapon(wi);
-    }
 
     public void LoadWeapon(int wi)
     {
@@ -165,6 +154,42 @@ public class Player : NetEntity
     public bool HasWeapon()
     {
         return _weapons.Count > 0;
+    }
+    
+    [ServerRpc]
+    public void AddWeaponServerRpc()
+    {
+        int wi = Random.Range(0, GameRessourceManager.Instance.Weapons.Count);
+        AddWeaponClientRpc(wi);
+    }
+
+    [ClientRpc]
+    public void AddWeaponClientRpc(int wi)
+    {
+        AddWeapon(wi);
+    }
+
+    public void AddRandomWeapon()
+    {
+        if (GameNetworkManager.IsOffline || IsLocalPlayer)
+        {
+            AddWeaponServerRpc();
+        }
+    }
+
+    public void AddWeapon(int wi)
+    {
+        if (_weapons.Count == GameRessourceManager.Instance.Weapons.Count+1)
+        {
+            return;
+        }
+        
+        if (_weapons.Contains(GameRessourceManager.Instance.Weapons[wi]))
+        {
+            AddWeapon((wi+1)%GameRessourceManager.Instance.Weapons.Count);
+            return;
+        }
+        _weapons.Add(GameRessourceManager.Instance.Weapons[wi]);
     }
 
     [ServerRpc]

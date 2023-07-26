@@ -361,8 +361,7 @@ public class PlayerController : Character
             WeaponServerRpc(NetworkManager.Singleton.LocalClientId, id);
         }        
     }
-
-
+    
     [ServerRpc]
     public void WeaponServerRpc(ulong localClientId,int id)
     {

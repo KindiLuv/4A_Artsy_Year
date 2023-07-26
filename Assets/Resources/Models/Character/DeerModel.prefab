@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 4374876019992616283}
   - component: {fileID: 4374876019992616285}
   - component: {fileID: 4374876019992616284}
-  - component: {fileID: 670851528237500894}
   m_Layer: 0
   m_Name: cape
   m_TagString: Untagged
@@ -978,24 +977,6 @@ Cloth:
   - {x: 0.6666667, y: 0.16666667, z: 0.16666667}
   - {x: 0.5, y: 0.5, z: 0}
   m_VirtualParticleIndices: 
---- !u!114 &670851528237500894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23263151218198596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &160764350371427667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1279,7 @@ GameObject:
   - component: {fileID: 2718956331391563089}
   - component: {fileID: 2718956331391563090}
   - component: {fileID: 44087837}
+  - component: {fileID: 1156114961681573956}
   m_Layer: 0
   m_Name: DeerModel
   m_TagString: Untagged
@@ -1470,6 +1452,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1156114961681573956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718956331391563092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2718956331488705354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,7 +1876,6 @@ GameObject:
   m_Component:
   - component: {fileID: 327378524068372583}
   - component: {fileID: 4062987764079725265}
-  - component: {fileID: 2537919583565615688}
   m_Layer: 0
   m_Name: Pudu_LOD1
   m_TagString: Untagged
@@ -1961,21 +1960,3 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000014901161, y: -0.13282207, z: 0.63160616}
     m_Extent: {x: 0.35628977, y: 0.7665819, z: 0.656511}
   m_DirtyAABB: 0
---- !u!114 &2537919583565615688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9198369353584354393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

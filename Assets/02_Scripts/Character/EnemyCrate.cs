@@ -20,6 +20,7 @@ public class EnemyCrate : Enemy
     private float timeIdleChangePosition;
     private LayerMask lm;
     private Vector3 lastPosSpeed = Vector3.zero;
+    private bool isFleeing = false;
 
     protected override void Start()
     {

@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 2636119782445722868}
   - component: {fileID: 2636119782448622806}
   - component: {fileID: 2636119782447623702}
-  - component: {fileID: 6724176257878122952}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -147,24 +146,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6724176257878122952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636119782445363412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.69803923, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &3324843376948925298
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8428039874535036537}
   - component: {fileID: 6097983560641501135}
-  - component: {fileID: 6981938437348195098}
   m_Layer: 0
   m_Name: LOD1
   m_TagString: Untagged
@@ -329,24 +309,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000059604645, y: 0.04530731, z: 0.4752853}
     m_Extent: {x: 0.33151788, y: 0.7, z: 0.7}
   m_DirtyAABB: 0
---- !u!114 &6981938437348195098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4410856982217245810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.69803923, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &4877204666671199555
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +448,7 @@ GameObject:
   - component: {fileID: 2365399225609233417}
   - component: {fileID: 2365399225609233414}
   - component: {fileID: 7985735086140515482}
+  - component: {fileID: 1795797693931752458}
   m_Layer: 0
   m_Name: MonkeyModel
   m_TagString: Untagged
@@ -663,6 +626,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1795797693931752458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6439057977524427019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6750872722539047715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1116,6 @@ GameObject:
   - component: {fileID: 4732425766348042950}
   - component: {fileID: 1189461368326297602}
   - component: {fileID: 5941069713566433820}
-  - component: {fileID: 5438755555000078992}
   m_Layer: 0
   m_Name: Barbarian Wyder.002
   m_TagString: Untagged
@@ -1208,21 +1188,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5438755555000078992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8907674673962443351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.69803923, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

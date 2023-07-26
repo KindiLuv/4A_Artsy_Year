@@ -302,7 +302,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5646423807255706054}
   - component: {fileID: 2510482043672481912}
-  - component: {fileID: 7878388125861362538}
   m_Layer: 0
   m_Name: Icosphere
   m_TagString: Untagged
@@ -404,24 +403,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0013305964, y: 0.0015506018, z: 0.00037264638}
     m_Extent: {x: 0.01532952, y: 0.012057537, z: 0.017572416}
   m_DirtyAABB: 0
---- !u!114 &7878388125861362538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2607939039724912213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 0.17485826, b: 0, a: 0.7058824}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &2701321133463555419
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3945491864310467467}
   - component: {fileID: 3945491864310467466}
+  - component: {fileID: 5857400097079851428}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -963,6 +945,24 @@ MonoBehaviour:
   raycastRange: 1
   audioSource: {fileID: 0}
   audioClip: []
+--- !u!114 &5857400097079851428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945491864310467476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.17485826, b: 0, a: 0.7058824}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3945491864455762408
 GameObject:
   m_ObjectHideFlags: 0

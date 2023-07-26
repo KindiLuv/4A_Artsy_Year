@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489098473712412197}
   - component: {fileID: 3745673552246212470}
+  - component: {fileID: 5540033383920532093}
   m_Layer: 0
   m_Name: FishModel
   m_TagString: Untagged
@@ -86,6 +87,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5540033383920532093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489098473712412194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1511925051238970608
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +149,6 @@ GameObject:
   - component: {fileID: 3891226610630401553}
   - component: {fileID: 1802091967582848883}
   - component: {fileID: 6832873962216424483}
-  - component: {fileID: 6846175723566437683}
   m_Layer: 0
   m_Name: Cross2_low
   m_TagString: Untagged
@@ -203,24 +221,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6846175723566437683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2406524629045566099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &2512221024718380943
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +326,6 @@ GameObject:
   - component: {fileID: 2128879859684264464}
   - component: {fileID: 1561934999536638625}
   - component: {fileID: 7744693713420247475}
-  - component: {fileID: 928708196976407266}
   m_Layer: 0
   m_Name: Cross1_low
   m_TagString: Untagged
@@ -399,24 +398,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &928708196976407266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4489434280760641227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &4715088855118334142
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +410,6 @@ GameObject:
   - component: {fileID: 9046420401512783265}
   - component: {fileID: 5342550061711299082}
   - component: {fileID: 5342550061711299083}
-  - component: {fileID: 4266571745146261993}
   m_Layer: 0
   m_Name: cloth
   m_TagString: Untagged
@@ -1009,24 +989,6 @@ Cloth:
   - {x: 0.6666667, y: 0.16666667, z: 0.16666667}
   - {x: 0.5, y: 0.5, z: 0}
   m_VirtualParticleIndices: 
---- !u!114 &4266571745146261993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4715088855118334142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &4889435020894995088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1163,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7641545050292012862}
   - component: {fileID: 2761081113419909538}
-  - component: {fileID: 251741856778759540}
   m_Layer: 0
   m_Name: Herring_LOD1
   m_TagString: Untagged
@@ -1286,24 +1247,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000010430813, y: 0.14867938, z: 0.27577773}
     m_Extent: {x: 0.13832816, y: 0.7461484, z: 0.29811653}
   m_DirtyAABB: 0
---- !u!114 &251741856778759540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7109800613125658976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0.7019608, b: 1, a: 0.7058824}
-  outlineWidth: 4
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &7657495739296769919
 GameObject:
   m_ObjectHideFlags: 0
