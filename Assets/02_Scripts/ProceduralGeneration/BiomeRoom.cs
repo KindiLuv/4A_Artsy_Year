@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.AI;
+using Assets.Scripts.NetCode;
+using UnityEngine.SceneManagement;
 
 public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in room
 {
@@ -121,13 +123,13 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
         }
         if(isVisited && this.vagues == 0 && enemyInRoom.Count == 0)
         {
-            EndRoomClientRpc();
+            EndRoomClientRpc(bossRoom);
             GetComponent<NetworkObject>().Despawn();            
         }
     }
 
     [ClientRpc]
-    public void EndRoomClientRpc()
+    public void EndRoomClientRpc(bool boss)
     {
         PlayerController currentLocalPlayer = null;
         PlayerController[] p = FindObjectsOfType<PlayerController>();
@@ -148,11 +150,18 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
                 l[i].TakePlayer(currentLocalPlayer);
             }
         }
-        if (bossRoom)
+        if (boss)
         {
             Debug.Log("End");
-
+            GameNetworkManager.Instance.StartCoroutine(ExitGame());
         }
+    }
+    
+    public IEnumerator ExitGame()
+    {
+        yield return new WaitForSeconds(2.0f);
+        GameNetworkManager.Instance.Disconnect();
+        SceneManager.LoadScene("MenuMulti", LoadSceneMode.Single);
     }
 
     public override void OnNetworkDespawn()
