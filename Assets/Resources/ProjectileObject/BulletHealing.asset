@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de404a9cda78b4042bb973bfc22472c6, type: 3}
-  m_Name: PlasmaBullet
+  m_Name: BulletHealing
   m_EditorClassIdentifier: 
   moveProjectileType: 1
   sinForce: 1
   sinFrequence: 5
   radiusSearch: 5
   colapseSearchSpeed: 5
-  speed: 21
-  dmgPerHit: 5
-  dmgPerHitAddRandom: 3
+  speed: 15
+  dmgPerHit: 10
+  dmgPerHitAddRandom: 5
   knockBack: {x: 0, y: 0, z: 0}
   prefab:
-  - {fileID: 5609939212734862053, guid: b83524cbe144dd2488ba14058c02c3af, type: 3}
+  - {fileID: 8009012414925897728, guid: 4a2fe8083040ea54fa84aea93b506dd1, type: 3}
   shapeProjectileType: 0
   collideOffset: {x: 0, y: 0, z: 0}
   radius: 0.25
@@ -30,9 +30,8 @@ MonoBehaviour:
   rayDistance: 100
   arcRadius: 1
   lifeTime: 8
-  wallBounds: 4
-  punchThrough: 1
-  throughCount: 3
-  explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
-    type: 3}
+  wallBounds: 5
+  punchThrough: 0
+  throughCount: 0
+  explodeEffect: {fileID: 0}
   timeExplode: 2

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25cfc86ed409cd846953683ec494a9fa, type: 3}
-  m_Name: PlasmaRifleRed
+  m_Name: PlasmaRifleGreen
   m_EditorClassIdentifier: 
-  weaponName: PlasmaRifle-Red
+  weaponName: PlasmaRifle-Green
   weaponType: 6
   weaponFamily: 1
-  rarity: 5
-  weaponDescription: 
-  weaponModel: {fileID: 1610696798496722610, guid: 3deef8f2a0a2d764fbc9a4dcf4f0b866,
+  rarity: 6
+  weaponDescription: Rifle with Healing Power
+  weaponModel: {fileID: 8003041300437253903, guid: 89daef26aa1085a42a0b98783f013161,
     type: 3}
   projectile:
-  - {fileID: 11400000, guid: 91bfa99531e950e4eb5fd9ec76d22b2b, type: 2}
+  - {fileID: 11400000, guid: d23c0b035595584488d602186836fd89, type: 2}
   spawnProjectileAddRandom: 0
   spawnProjectileCount: 1
-  spawnProjectileRate: 0.4
+  spawnProjectileRate: 0.75
   autoWeapon: 0
   muzzelFlash: {fileID: 0}
   muzzelDestroyTime: 1
