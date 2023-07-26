@@ -20,6 +20,7 @@ MonoBehaviour:
   speed: 10
   dmgPerHit: 3
   dmgPerHitAddRandom: 1
+  knockBack: {x: 0, y: 0, z: 0}
   prefab:
   - {fileID: 8009012414925897728, guid: b411707c9fd1ed44ca5928754c6f0ac7, type: 3}
   shapeProjectileType: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   rayDistance: 100
   arcRadius: 3
   lifeTime: 10
-  wallBounds: 1
+  wallBounds: 0
   punchThrough: 0
   throughCount: 2
   explodeEffect: {fileID: 7080524343175428333, guid: 2ef876106d0cedd4192f31a97679908a,
