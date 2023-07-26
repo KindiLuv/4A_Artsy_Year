@@ -161,9 +161,12 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
     
     public IEnumerator ExitGame()
     {
+        FadeScreenManager.FadeIn();
         yield return new WaitForSeconds(2.0f);
         GameNetworkManager.Instance.Disconnect();
         SceneManager.LoadScene("MenuMulti", LoadSceneMode.Single);
+        yield return new WaitForSeconds(2.0f);
+        FadeScreenManager.FadeOut();
     }
 
     public override void OnNetworkDespawn()

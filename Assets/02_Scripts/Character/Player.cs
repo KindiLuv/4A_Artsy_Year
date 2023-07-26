@@ -6,6 +6,8 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : NetEntity
 {
@@ -97,7 +99,7 @@ public class Player : NetEntity
                 {
                     _playerController = GetComponent<PlayerController>();
                     _playerController.SetupCSO(_character);
-                    _weapons = _character.Weapons;
+                    _weapons = new List<WeaponSO>(_character.Weapons);
                 }
             }
         }
@@ -178,7 +180,6 @@ public class Player : NetEntity
 
     public void AddWeapon(int wi)
     {
-        Debug.Log(wi);
         if (_weapons.Count == GameRessourceManager.Instance.Weapons.Count+1)
         {
             return;

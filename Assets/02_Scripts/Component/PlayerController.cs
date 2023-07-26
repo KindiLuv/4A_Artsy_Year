@@ -298,6 +298,12 @@ public class PlayerController : Character
         }
     }
 
+    public override void Death()
+    {
+        base.Death();
+        GameNetworkManager.Instance.StartCoroutine(ExitGame());
+    }
+
     private void HandleDash(InputAction.CallbackContext obj)
     {
         if(_movement.magnitude < 0.1f || !_controller.isGrounded || _dashCD || _dashLocked)
@@ -361,7 +367,17 @@ public class PlayerController : Character
             WeaponServerRpc(NetworkManager.Singleton.LocalClientId, id);
         }        
     }
-    
+
+    public IEnumerator ExitGame()
+    {
+        FadeScreenManager.FadeIn();
+        yield return new WaitForSeconds(2.0f);
+        GameNetworkManager.Instance.Disconnect();
+        SceneManager.LoadScene("MenuMulti", LoadSceneMode.Single);
+        yield return new WaitForSeconds(2.0f);
+        FadeScreenManager.FadeOut();
+    }
+
     [ServerRpc]
     public void WeaponServerRpc(ulong localClientId,int id)
     {
