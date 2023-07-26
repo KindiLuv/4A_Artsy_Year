@@ -353,7 +353,30 @@ public class PlayerController : Character
             return;
         }
         int id = _player.CurrentWeapon + (_playerControls.controls.ChangeWeapon.ReadValue<Vector2>().y > 0 ? -1 : 1);
-        _player.LoadWeapon((id < 0 ? _player.Weapons.Count-1 : id) % (_player.Weapons.Count));
+        id = (id < 0 ? _player.Weapons.Count - 1 : id) % (_player.Weapons.Count);
+        _player.LoadWeapon(id);
+
+        if (GameNetworkManager.IsOffline || IsLocalPlayer)
+        {
+            WeaponServerRpc(NetworkManager.Singleton.LocalClientId, id);
+        }        
+    }
+
+
+    [ServerRpc]
+    public void WeaponServerRpc(ulong localClientId,int id)
+    {
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams { TargetClientIds = NetworkManager.Singleton.ConnectedClientsIds.Where(x => x != localClientId).ToList() }
+        };
+        WeaponClientRpc(id,clientRpcParams);
+    }
+
+    [ClientRpc]
+    public void WeaponClientRpc(int id ,ClientRpcParams clientRpcParams = default)
+    {
+        _player.LoadWeapon(id);
     }
 
     [ServerRpc]

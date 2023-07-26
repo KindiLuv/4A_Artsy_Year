@@ -12660,7 +12660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479462960}
   m_Layer: 0
-  m_Name: ---LIGHT---
+  m_Name: '---LIGHT---'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33085,7 +33085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1161839236}
   m_Layer: 0
-  m_Name: ---MAP---
+  m_Name: '---MAP---'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61131,28 +61131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemies.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemies.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: c1ec256099865414d83c8cbc08d9493f,
-        type: 2}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemyTypePrebab.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148866411645030711, guid: 6e8aa20d779409340a8ba13b9871db9d,
-        type: 3}
-      propertyPath: enemyTypePrebab.Array.data[4]
-      value: 
-      objectReference: {fileID: 6437199265679976842, guid: a4752774737dd014b859cb562c9ebf40,
-        type: 3}
     - target: {fileID: 3891833324127919952, guid: 6e8aa20d779409340a8ba13b9871db9d,
         type: 3}
       propertyPath: musicClip

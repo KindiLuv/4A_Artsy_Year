@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.AI;
+using Assets.Scripts.NetCode;
+using UnityEngine.SceneManagement;
 
 public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in room
 {
@@ -56,13 +58,26 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
         }
 
     }
+
+    [ClientRpc]
+    public void SetInCombatClientRpc(bool state)
+    {
+        PlayerController[] p = FindObjectsOfType<PlayerController>();
+        for(int i = 0; i < p.Length;i++)
+        {
+            p[i].InCombat = state;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (IsServer && other.gameObject.tag == "Player" && !isVisited)
         {
             isVisited = true;
             Debug.Log("isVisited");
-            other.GetComponent<Character>().InCombat = true;
+
+            SetInCombatClientRpc(true);
+
             foreach (OpeningDoor od in doors)
             {
                 od.Locked = true;
@@ -108,8 +123,45 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
         }
         if(isVisited && this.vagues == 0 && enemyInRoom.Count == 0)
         {
+            EndRoomClientRpc(bossRoom);
             GetComponent<NetworkObject>().Despawn();            
         }
+    }
+
+    [ClientRpc]
+    public void EndRoomClientRpc(bool boss)
+    {
+        PlayerController currentLocalPlayer = null;
+        PlayerController[] p = FindObjectsOfType<PlayerController>();
+        for (int i = 0; i < p.Length; i++)
+        {
+            p[i].InCombat = false;
+            if (p[i].IsLocalPlayer)
+            {
+                currentLocalPlayer = p[i];
+            }
+        }
+
+        Loot[] l = FindObjectsOfType<Loot>();
+        if (l != null)
+        {
+            for (int i = 0; i < l.Length; i++)
+            {
+                l[i].TakePlayer(currentLocalPlayer);
+            }
+        }
+        if (boss)
+        {
+            Debug.Log("End");
+            GameNetworkManager.Instance.StartCoroutine(ExitGame());
+        }
+    }
+    
+    public IEnumerator ExitGame()
+    {
+        yield return new WaitForSeconds(2.0f);
+        GameNetworkManager.Instance.Disconnect();
+        SceneManager.LoadScene("MenuMulti", LoadSceneMode.Single);
     }
 
     public override void OnNetworkDespawn()
@@ -120,11 +172,6 @@ public class BiomeRoom : NetEntity//Instantiate enemy/vague when player enter in
             foreach (OpeningDoor od in doors)
             {
                 od.Locked = false;
-            }
-
-            foreach (Character character in PlayerManager.instance.players)
-            {
-                character.InCombat = false;
             }
         }
         Destroy(gameObject);
