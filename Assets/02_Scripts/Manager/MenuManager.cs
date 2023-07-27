@@ -15,7 +15,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject launchGameUI = null;
     [SerializeField] private GameObject multiGameUI = null;
     [SerializeField] private List<Transform> spawnPointList = new List<Transform>();
-    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();    
+    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();
+    [SerializeField] private int nbPlayer = 2;
     private static MenuManager instance = null;
 
     private PlayerControls _playerControls;
@@ -124,12 +125,12 @@ public class MenuManager : MonoBehaviour
 
     public void Server()
     {
-        GameNetworkManager.Instance.DebugStartIPServer(2);
+        GameNetworkManager.Instance.DebugStartIPServer(nbPlayer);
     }
 
     public void Client()
     {
-        GameNetworkManager.Instance.DebugStartIPClient(2);
+        GameNetworkManager.Instance.DebugStartIPClient(nbPlayer);
     }
 
     public void Multijoueur()
